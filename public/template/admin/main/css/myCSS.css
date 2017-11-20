@@ -1,0 +1,13 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.blah{
+    width: 100px;
+}
+.blah #blah{
+    width: 100%;
+    height:auto;
+
+}

@@ -1,0 +1,245 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+html{
+    font-size: 15px;
+}
+
+
+/* content */
+#content button.btn.btn-primary {
+    margin: 0 auto;
+    background-color: #74d14c;
+    border: none;
+    display: block;
+}
+
+h4 {}
+
+#content table {
+    margin: auto;
+    width: 303px;
+}
+
+td {
+    padding: 10px;
+}
+
+a.news {
+    display: inline-block;
+    padding: 5px;
+    margin-top: 10px;
+    border-bottom: 1px dotted;
+    color: #4a0000;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+a.coupon {
+    display: inline-block;
+    margin-top: 20px;
+    border-bottom: 1px dotted;
+    color: #000;
+    /* font-family: 'Roboto Condensed', sans-serif; */
+    padding-bottom: 15px;
+    display: block;
+}
+
+#content a.label {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px;
+    /* margin-left: 18px; */
+    background-color: #74d14c;
+    color: white;
+    font-weight: bold;
+    text-decoration: none !important;
+    float: left;
+}
+
+#content h4.sale-hot {
+    /* background-image: url('../images/board.jpg'); */
+    /* border-radius: 10px 10px 10px 10px; */
+    color: #74d14c;
+    border: 2px solid #083b66;
+    border-width: 2px 0 2px 0;
+    /* font-family: 'Roboto Condensed', sans-serif; */
+    padding: 20px;
+    background-repeat: no-repeat;
+    background-size: 319px 71px;
+    /* margin: -16px -16px; */
+    /* margin-left: -16px; */
+    /* text-shadow: 3px 3px 1px #170a0a; */
+    /* margin-right: -16px; */
+    /* background-color: #74d14c; */
+    text-align: center;
+}
+
+#content  .sale1, .sale2, .sale3, .sale4{
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    margin-top: 15px;
+}
+
+#content .find{
+    margin-top: 15px;
+    width: 100%;
+}
+
+
+#content .product {
+    border-bottom: 1px solid #d6d6d6;
+    box-sizing: border-box;
+    padding: 10px 0;
+}
+
+#content .coupon h4 {
+    text-align: center;
+    color: #083b66;
+    background-color: #d6d6d6;
+    border-top: 3px solid #74d14c;
+    padding: 10px 0;
+}
+/* //content */
+
+
+/* banner */
+div#banner {
+    padding: 20px;
+    border-bottom: 1px solid #d6d6d6;
+    margin-bottom: 20px;
+}
+
+
+#banner .logo img {
+    margin-top: -50px;
+}
+
+#banner .logo {
+    height: 100px;
+    overflow: hidden;
+    text-align: center;
+}
+/* //banner */
+
+/* header */
+#header li.nav-item.active a {
+    color: #74d14c;
+}
+
+#header i.fa.fa-home {
+    color: #083b66;
+}
+
+#header i.fa.fa-home:hover {
+    color: #74D14C;
+}
+
+#header {border-bottom: 1px solid #d6d6d6;}
+
+div#header ul li a {
+    text-transform: uppercase;
+    display: block;
+    padding: 10px 20px;
+    color: #083b66;
+    font-weight: bold;
+}
+
+div#header ul li a:hover {
+    color: #74d14c;
+}
+
+#header nav {
+    background: transparent;
+    padding: 0px;
+}
+/* //header */
+
+
+/* footer */
+
+#footer .copyright.text-center {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 0;
+}
+
+/* //footer */
+
+/* mobile */
+@media (max-width: 575px) { 
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #content .product h5.title {
+        font-size: 1rem;
+    }
+
+
+    #header .logo img {
+    }
+
+    #header .btn-toggle {
+        height: 60px;
+        line-height: 60px;
+    }
+
+    div#header {
+        text-align: center;
+    }
+}
+/* //mobile */
+
+/* tablet */
+@media (min-width: 575px) and (max-width:767px) {
+    *{}
+}
+/* //tablet */
+
+
+
+
+div#footer {
+    background-color: #f3f3f3;
+    padding: 40px 0 0px 0;
+}
+
+div#content .col-4 {
+    height: 400px;
+    background-color: chartreuse;
+    }*/
+
+    /* mobile */
+    @media (max-width: 575px) { 
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #content .product h5.title {
+            font-size: 1rem;
+        }
+
+
+        #header .logo img {
+        }
+
+        #header .btn-toggle {
+            height: 60px;
+            line-height: 60px;
+        }
+
+        div#header {
+            text-align: center;
+        }
+    }
+    /* //mobile */
+
+    /* tablet */
+    @media (min-width: 575px) and (max-width:767px) {
+        *{}
+    }
+/* //tablet */
