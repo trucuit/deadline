@@ -26,6 +26,7 @@ define('DB_TABLE', '');
 
 define('DB_TBUSER', 'user');
 define('DB_TBCATEGORY', 'category');
+define('DB_TBCOURSE', 'course');
 // ====================== TIME LOGIN ===========================
 define('TIME_LOGIN',3600);
 
