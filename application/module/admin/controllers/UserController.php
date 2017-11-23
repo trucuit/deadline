@@ -17,9 +17,6 @@ class UserController extends Controller
 
     public function loginAction()
     {
-//
-
-
         if (isset($this->_arrParam['form'])) {
 
             $validate = new Validate($this->_arrParam['form']);
@@ -33,10 +30,9 @@ class UserController extends Controller
 
             } else {
 
-                if (isset($this->_arrParam['form']['check']) ){
-                    setcookie('remember', serialize(['user' => $this->_model->execute($queryUserName)]),time() + TIME_LOGIN);
-                }
-                else {
+                if (isset($this->_arrParam['form']['check'])) {
+                    setcookie('remember', serialize(['user' => $this->_model->execute($queryUserName)]), time() + TIME_LOGIN);
+                } else {
 
                     setcookie('remember', serialize(['user' => $this->_model->execute($queryUserName)]), false);
                 }
@@ -48,15 +44,13 @@ class UserController extends Controller
     }
 
 
-    public
-    function logoutAction()
+    public function logoutAction()
     {
         Session::delete('login');
         URL::redirect('admin', 'user', 'login');
     }
 
-    public
-    function profileAction()
+    public function profileAction()
     {
         if (isset($this->_arrParam['form'])) {
             $validate = new Validate($this->_arrParam['form']);

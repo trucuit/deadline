@@ -93,7 +93,7 @@ class Model
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
         return $data = $stmt->fetch(PDO::FETCH_ASSOC);
-
+    }
     public function select($table, $id = null, $return = false)
     {
         $query = "SELECT * FROM `$table` AS `t1`";
