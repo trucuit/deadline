@@ -147,10 +147,8 @@
 									<input type="email" class="form-control"  aria-describedby="emailHelp" placeholder="Email Của Bạn">
 								</div>
 								<div class="form-group">
-
 									<input type="text" class="form-control"  placeholder="Tên Của Bạn">
 								</div>
-
 								<button type="submit" class="btn btn-primary">Đăng Ký</button>
 							</form>
 						</div>

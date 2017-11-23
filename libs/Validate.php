@@ -66,46 +66,46 @@ class Validate
             } else {
                 switch ($value['type']) {
                     case 'int':
-                    $this->validateInt($element, $value['options']['min'], $value['options']['max']);
-                    break;
+                        $this->validateInt($element, $value['options']['min'], $value['options']['max']);
+                        break;
                     case 'string':
-                    $this->validateString($element, $value['options']['min'], $value['options']['max']);
-                    break;
+                        $this->validateString($element, $value['options']['min'], $value['options']['max']);
+                        break;
                     case 'url':
-                    $this->validateUrl($element);
-                    break;
+                        $this->validateUrl($element);
+                        break;
                     case 'email':
-                    $this->validateEmail($element);
-                    break;
+                        $this->validateEmail($element);
+                        break;
                     case 'status':
-                    $this->validateStatus($element, $value['options']);
-                    break;
+                        $this->validateStatus($element, $value['options']);
+                        break;
                     case 'group':
-                    $this->validateGroupID($element);
-                    break;
+                        $this->validateGroupID($element);
+                        break;
                     case 'password':
-                    $this->validatePassword($element, $value['options']);
-                    break;
+                        $this->validatePassword($element, $value['options']);
+                        break;
                     case 'date':
-                    $this->validateDate($element, $value['options']['start'], $value['options']['end']);
-                    break;
+                        $this->validateDate($element, $value['options']['start'], $value['options']['end']);
+                        break;
                     case 'existRecord':
-                    $this->validateExistRecord($element, $value['options']);
-                    break;
+                        $this->validateExistRecord($element, $value['options']);
+                        break;
                     case 'notExistRecord':
-                    $this->validateNotExistRecord($element, $value['options']);
-                    break;
+                        $this->validateNotExistRecord($element, $value['options']);
+                        break;
                     case 'string-notExistRecord':
-                    $this->validateString($element, $value['options']['min'], $value['options']['max']);
-                    $this->validateNotExistRecord($element, $value['options']);
-                    break;
+                        $this->validateString($element, $value['options']['min'], $value['options']['max']);
+                        $this->validateNotExistRecord($element, $value['options']);
+                        break;
                     case 'email-notExistRecord':
-                    $this->validateEmail($element);
-                    $this->validateNotExistRecord($element, $value['options']);
-                    break;
+                        $this->validateEmail($element);
+                        $this->validateNotExistRecord($element, $value['options']);
+                        break;
                     case 'file':
-                    $this->validateFile($element, $value['options']);
-                    break;
+                        $this->validateFile($element, $value['options']);
+                        break;
                 }
             }
             if (!array_key_exists($element, $this->errors)) {
@@ -271,7 +271,7 @@ class Validate
             if (in_array($ext, $options['extension']) == false) {
                 $this->setError($element, 'phần mở rộng không phù hợp');
             }
-        }else{
+        } else {
             $this->setError($element, 'chưa chọn hình ảnh');
         }
     }

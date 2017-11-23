@@ -1,12 +1,20 @@
 <?php
-$listCategory = $this->listCategory;
+$listCategory = empty($this->listCategory) ? [] : $this->listCategory;
+$url = array(
+    'category' => [
+        'add' => URL::createLink('admin', 'category', 'add'),
+        'active' => URL::createLink('admin', 'category', 'active'),
+        'inactive' => URL::createLink('admin', 'category', 'inactive'),
+        'delete' => URL::createLink('admin', 'category', 'delete'),
+    ]
+);
 ?>
-<div class="content-wrapper" style="min-height: 915.8px;">
+<div class="content-wrapper category" style="min-height: 915.8px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-        Data Tables
-        <small>advanced tables</small>
+            Manage Category
+            <small>List</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -19,149 +27,79 @@ $listCategory = $this->listCategory;
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Data Table With Full Features</h3>
+                    <div class="box-header text-center">
+                        <button class="btn btn-app" data-toggle="modal" data-target="#modal-add"
+                                onclick="javascript:ajaxEdit('<?php echo $url['category']['add'] ?>')"
+                        >
+                            <i class="fa fa-plus-square-o"></i> Add
+                        </button>
+                        <button class="btn btn-app">
+                            <i class="fa fa-check-circle-o"></i> Active
+                        </button>
+                        <button class="btn btn-app">
+                            <i class="fa fa-circle-o"></i> Inactive
+                        </button>
+                        <button class="btn btn-app">
+                            <i class="fa fa-minus-square-o"></i> delete
+                        </button>
                     </div>
+                    <?php
+                    if (isset($this->success)) echo $this->success;
+                    ?>
                     <!-- /.box-header -->
-                    <div class="box-body">
-                        <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <table id="example1" class="table table-bordered table-striped dataTable"
-                                        role="grid" aria-describedby="example1_info">
-                                        <thead>
+                    <form action="#" method="post" id="adminForm">
+                        <div class="box-body">
+                            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table id="example1" class="table table-bordered table-striped dataTable"
+                                               role="grid" aria-describedby="example1_info">
+                                            <thead>
                                             <tr role="row">
-                                                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1"
-                                                    colspan="1" aria-sort="ascending"
-                                                    aria-label="Rendering engine: activate to sort column descending"
-                                                style="width: 217px;">Tên khóa học</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                    colspan="1" aria-label="Browser: activate to sort column ascending"
-                                                style="width: 267.4px;">Hình ảnh</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                    colspan="1" aria-label="Platform(s): activate to sort column ascending"
-                                                style="width: 237px;">Created</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Engine version: activate to sort column ascending"
-                                                style="width: 186.6px;">Created by</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                    colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                                style="width: 135.6px;">Modified</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                    colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                                style="width: 135.6px;">Modified By</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                    colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                                style="width: 135.6px;">Status</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1"
-                                                    colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                                style="width: 135.6px;">Action</th>
+                                                <th><input type="checkbox" name="checkall-toggle"></th>
+                                                <th class="sorting_asc">Name</th>
+                                                <th class="sorting">Created</th>
+                                                <th class="sorting">Created by</th>
+                                                <th class="sorting">Modified</th>
+                                                <th class="sorting">Modified By</th>
+                                                <th class="sorting">Status</th>
+                                                <th class="sorting">ID</th>
                                             </tr>
-                                        </thead>
-                                        <tbody>
+                                            </thead>
+                                            <tbody>
                                             <?php
                                             foreach ($listCategory as $key => $value) {
-                                            $urlEdit = URL::createLink('admin','category','ajaxEditCategory',['id'=>$value['id']])
-                                            ?>
-                                            <tr role="row" class="odd">
-                                                <td class="sorting_1"><?php echo $value['name'] ?></td>
-                                                <td><img src="<?php echo $value['picture'] ?>" alt="" width="50%"></td>
-                                                <td><?php echo $value['created'] ?></td>
-                                                <td><?php echo $value['created_by'] ?></td>
-                                                <td><?php echo $value['modified'] ?></td>
-                                                <td><?php echo $value['modified_by'] ?></td>
-                                                <td class="text-center">
-                                                    <?php
-                                                    if ($value['status'])
-                                                    $gly_val = 'ok';
-                                                    else
-                                                    $gly_val = 'remove';
-                                                    $onclick = URL::createLink('admin', 'category', 'ajaxStatus', ['id' => $value['id'], 'status' => $value['status']]);
-                                                    echo '<span class="glyphicon glyphicon-' . $gly_val . '" onclick="javascript:ajaxStatus(\'' . $onclick . '\')" id="status-' . $value['id'] . '"></span>';
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <!--Sửa Category-->
-                                                    <section class="pull-left">
-                                                        <button type="button" class="btn btn-primary "
-                                                        data-toggle="modal"
-                                                        data-target="#modal-category-edit"
-                                                        onclick="javascript:ajaxEdit('<?php echo $urlEdit ?>')"
-                                                        >
-                                                        <span class="glyphicon glyphicon-pencil"></span>
-                                                        </button>
-                                                        <div class="modal fade" id="modal-category-edit"
-                                                            style="display: none;">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <button type="button" class="close"
-                                                                        data-dismiss="modal"
-                                                                        aria-label="Close">
-                                                                        <span aria-hidden="true">×</span></button>
-                                                                        <h4 class="modal-title">Sửa Category</h4>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button"
-                                                                        class="btn btn-default pull-left"
-                                                                        data-dismiss="modal">Không
-                                                                        </button>
-                                                                        <button type="submit"
-                                                                        class="btn btn-primary submit-form">Có
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- /.modal-content -->
-                                                            </div>
-                                                            <!-- /.modal-dialog -->
-                                                        </div>
-                                                    </section>
-                                                    <!--Xóa Category-->
-                                                    <section class="pull-right">
-                                                        <button type="button" class="btn btn-danger "
-                                                        data-toggle="modal"
-                                                        data-target="#modal-category-trash">
-                                                        <i class="fa fa-fw fa-trash-o"></i>
-                                                        </button>
-                                                        <div class="modal fade" id="modal-category-trash"
-                                                            style="display: none;">
-                                                            <div class="modal-dialog">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <button type="button" class="close"
-                                                                        data-dismiss="modal"
-                                                                        aria-label="Close">
-                                                                        <span aria-hidden="true">×</span></button>
-                                                                        <h4 class="modal-title">Bạn có muốn xóa
-                                                                        không?</h4>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button"
-                                                                        class="btn btn-default pull-left"
-                                                                        data-dismiss="modal">Không
-                                                                        </button>
-                                                                        <button type="submit"
-                                                                        class="btn btn-danger submit-form">Có
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- /.modal-content -->
-                                                            </div>
-                                                            <!-- /.modal-dialog -->
-                                                        </div>
-                                                    </section>
-                                                </td>
-                                            </tr>
+                                                $urlEdit = URL::createLink('admin', 'category', 'ajaxEditCategory', ['id' => $value['id']]);
+                                                $urlDelete = URL::createLink('admin', 'category', 'delete', ['id' => $value['id']])
+                                                ?>
+                                                <tr role="row" class="odd">
+                                                    <td><input type="checkbox" name="cid[]"
+                                                               value="<?php echo $value['id'] ?>"></td>
+                                                    <td class="sorting_1"><?php echo $value['name'] ?></td>
+                                                    <td><?php echo $value['created'] ?></td>
+                                                    <td><?php echo $value['created_by'] ?></td>
+                                                    <td><?php echo $value['modified'] ?></td>
+                                                    <td><?php echo $value['modified_by'] ?></td>
+                                                    <td class="text-center">
+                                                        <?php
+                                                        if ($value['status'])
+                                                            $gly_val = 'ok';
+                                                        else
+                                                            $gly_val = 'remove';
+                                                        $onclick = URL::createLink('admin', 'category', 'ajaxStatus', ['id' => $value['id'], 'status' => $value['status']]);
+                                                        echo '<span class="glyphicon glyphicon-' . $gly_val . '" onclick="javascript:ajaxStatus(\'' . $onclick . '\')" id="status-' . $value['id'] . '"></span>';
+                                                        ?>
+                                                    </td>
+                                                    <td><?php echo $value['id'] ?></td>
+                                                </tr>
                                             <?php } ?>
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                     <!-- /.box-body -->
                 </div>
                 <!-- /.box -->
@@ -170,5 +108,27 @@ $listCategory = $this->listCategory;
         </div>
         <!-- /.row -->
     </section>
+
     <!-- /.content -->
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-add">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Default Modal</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body…</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.Modal -->

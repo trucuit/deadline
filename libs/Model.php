@@ -32,36 +32,52 @@ class Model
         $this->table = $table;
     }
 
-    public function insert($data)
+    public function delete($table, $id)
     {
-        $stmt = $this->conn->prepare("INSERT INTO `$this->table` (`name`, `price`, `image`, `description`) VALUES (:name, :price, :image, :description)");
-        $stmt->bindParam(':name', $data['name'], PDO::PARAM_STR);
-        $stmt->bindParam(':price', $data['price'], PDO::PARAM_INT);
-        $stmt->bindParam(':image', $data['image']['name'], PDO::PARAM_STR);
-        $stmt->bindParam(':description', $data['description'], PDO::PARAM_STR);
-        $stmt->execute();
-    }
-
-    public function delete($id)
-    {
-        $stmt = $this->conn->prepare("DELETE FROM `$this->table` WHERE id=:id");
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-    }
-
-    public function update($id, $data)
-    {
-        $stmt = $this->conn->prepare("UPDATE `$this->table` SET name=:name, price=:price, image=:image, description=:description WHERE id=:id");
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->bindParam(':name', $data['name'], PDO::PARAM_STR);
-        if (is_array($data['image'])) {
-            $stmt->bindParam(':image', $data['image']['name'], PDO::PARAM_STR);
-        } else {
-            $stmt->bindParam(':image', $data['image'], PDO::PARAM_STR);
+        if ($table == 'category') {
+            $itemOld = $this->select('category', $id, true);
+            $path = TEMPLATE_PATH . "/admin/main/images/" . $itemOld['picture'];
+            if (file_exists($path))
+                unlink($path);
         }
-        $stmt->bindParam(':price', $data['price'], PDO::PARAM_INT);
-        $stmt->bindParam(':description', $data['description'], PDO::PARAM_STR);
+
+        $stmt = $this->conn->prepare("DELETE FROM `$table` WHERE id=:id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
+    }
+
+    public function update($table, $data, $where)
+    {
+        $newSet = $this->createUpdateSQL($data);
+        $newWhere = $this->createUpdateSQL($where);
+        $query = "UPDATE `$table` SET " . $newSet . " WHERE $newWhere";
+        $this->execute($query);
+    }
+
+    // CREATE UPDATE SQL
+    public function createUpdateSQL($data)
+    {
+        $newQuery = "";
+        if (!empty($data)) {
+            foreach ($data as $key => $value) {
+                $newQuery .= ", `$key` = '$value'";
+            }
+        }
+        $newQuery = substr($newQuery, 2);
+        return $newQuery;
+    }
+
+    public function createWhereUpdateSQL($data)
+    {
+        $newWhere = '';
+        if (!empty($data)) {
+            foreach ($data as $value) {
+                $newWhere[] = "`$value[0]` = '$value[1]'";
+                $newWhere[] = $value[2];
+            }
+            $newWhere = implode(" ", $newWhere);
+        }
+        return $newWhere;
     }
 
     public function showAll($table)
@@ -69,23 +85,35 @@ class Model
         $stmt = $this->conn->prepare("SELECT * FROM `$table`");
         $stmt->execute();
         return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     }
 
-    public function show($table)
+    public function show($table, $id)
     {
-        $stmt = $this->conn->prepare("SELECT * FROM `$table`");
-        
+        $stmt = $this->conn->prepare("SELECT * FROM `$table` WHERE id=:id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
-         return $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    public function select($table, $id = null, $return = false)
+    {
+        $query = "SELECT * FROM `$table` AS `t1`";
+        $query .= " WHERE `id` > 0";
+        if ($id)
+            $query .= " AND id=:id";
+        $stmt = $this->conn->prepare($query);
+        if ($id)
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        if ($return)
+            return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function execute($sql)
+
+    public function execute($sql, $return = false)
     {
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
-       return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//        return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function isExist($query)
@@ -99,6 +127,38 @@ class Model
             return false;
         }
         return true;
+    }
+
+
+    public function createInsertSQL($data)
+    {
+        $newQuery = array();
+        $cols = '';
+        $vals = '';
+        if (!empty($data)) {
+            foreach ($data as $key => $value) {
+                $cols .= ", `$key`";
+                $vals .= ", '$value'";
+            }
+        }
+        $newQuery['cols'] = substr($cols, 2);
+        $newQuery['vals'] = substr($vals, 2);
+        return $newQuery;
+    }
+
+    public function insert($table, $data, $type = 'single')
+    {
+        if ($type == 'single') {
+            $newQuery = $this->createInsertSQL($data);
+            $query = "INSERT INTO `$table`(" . $newQuery['cols'] . ") VALUES (" . $newQuery['vals'] . ")";
+            $this->execute($query);
+        } else {
+            foreach ($data as $value) {
+                $newQuery = $this->createInsertSQL($value);
+                $query = "INSERT INTO `$table`(" . $newQuery['cols'] . ") VALUES (" . $newQuery['vals'] . ")";
+                $this->execute($query);
+            }
+        }
     }
 }
 

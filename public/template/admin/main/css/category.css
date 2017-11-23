@@ -1,3 +1,7 @@
-input{
-	width: 100% !important
+.category .modal input {
+    width: 100% !important
+}
+
+.course .modal input, .course .modal select {
+    width: 100% !important
 }

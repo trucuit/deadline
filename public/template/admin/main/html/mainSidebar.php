@@ -1,11 +1,11 @@
 <?php
 $url = array(
     'profile' => URL::createLink('admin', 'user', 'profile'),
-    'category' => array(
-        'list' => URL::createLink('admin', 'category', 'index'),
-        'add' => URL::createLink('admin', 'category', 'add'),
-
-    ),
+    'category' => URL::createLink('admin', 'category', 'index'),
+    'course' => array(
+        'list' => URL::createLink('admin', 'course', 'index'),
+        'add' => URL::createLink('admin', 'course', 'add'),
+    )
 );
 
 ?>
@@ -43,25 +43,32 @@ $url = array(
                     <span>Profile</span>
                 </a>
             </li>
+            <li>
+                <a href="<?php echo $url['category'] ?>">
+                    <span class="glyphicon glyphicon-folder-open"></span>
+                    <span>Category</span>
+                </a>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <span class="glyphicon glyphicon-folder-open"></span>
-                    <span>Category</span>
+                    <span>Course</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="<?php echo $url['category']['list'] ?>">
+                        <a href="<?php echo $url['course']['list'] ?>">
                             <i class="fa fa-circle-o"></i>
                             <span>Danh sách</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo $url['category']['add'] ?>">
+                        <a href="<?php echo $url['course']['add'] ?>">
                             <i class="fa fa-circle-o"></i>
-                            <span>Thêm Category</span>
+                            <span>Thêm Course</span>
                         </a>
                     </li>
+
                 </ul>
             </li>
         </ul>
