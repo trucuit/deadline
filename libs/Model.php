@@ -72,12 +72,12 @@ class Model
 
     }
 
-    public function show($table, $id)
+    public function show($table)
     {
-        $stmt = $this->conn->prepare("SELECT * FROM `$table` WHERE id=:id");
-        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt = $this->conn->prepare("SELECT * FROM `$table`");
+        
         $stmt->execute();
-        return $data = $stmt->fetch(PDO::FETCH_ASSOC);
+         return $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
     }
 
@@ -85,7 +85,7 @@ class Model
     {
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
-//        return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+       return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function isExist($query)
