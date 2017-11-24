@@ -1,4 +1,62 @@
 $(function () {
+    // $(':checkbox').click(function () {
+    //    var val= $(this).attr("name");
+    //     console.log(val);
+    //     $.ajax({
+    //         url: 'index.php?module=admin&controller=category&action=ajaxActive',
+    //         type: 'POST',
+    //         dataType:'html',
+    //         data: {value:val},
+    //
+    //     }).done(function(data) {
+    //         		console.log("success");
+    //         console.log(data);
+    //     })
+    // });
+// ajaxActive
+
+    $('.btn-active,.btn-inactive,.btn-delete').click(function (event) {
+        event.preventDefault();
+        var a=[];
+        $('#adminForm').find(':checkbox').each(function () {
+            if(this.checked == true){
+                a.push($(this).val());
+            }
+
+        })
+        for (var i=0;i<a.length;i++){
+            if(a[i]=='on'){
+                var indexRemove=a.indexOf('on');
+                a.splice(indexRemove,1);
+            }
+        }
+         var checkButton=$(this).text().trim();
+
+        if(checkButton === 'Active') {
+
+            var url = 'index.php?module=admin&controller=category&action=ajaxActive';
+        }
+        else if(checkButton === 'Inactive'){
+            var url = 'index.php?module=admin&controller=category&action=ajaxInactive';
+        }
+        else if(checkButton === 'Delete'){
+            var url = 'index.php?module=admin&controller=category&action=ajaxDelete';
+        }
+        console.log(checkButton);
+        $.ajax({
+            url: url,
+            type:'POST',
+            data:{cid:a},
+            success:function (data) {
+                $('#modal-action .modal-body').html(data);
+                $('.close-active').click(function () {
+                    location.reload();
+                })
+
+            }
+        })
+    });
+    //end ajaxACtive
     $('.category .submit-form').click(function (event) {
         event.preventDefault();
 
@@ -29,33 +87,63 @@ $(function () {
         });
     });
 
-    // submit form fiel ajax
-    $('.course .submit-form').click(function (event) {
+
+    // submit new form fiel ajax
+    $('#form-add .submit-add').click(function (event) {
         event.preventDefault();
-        dataForm = {
-            'name': $('.edit-modal input[name="name"]').val(),
-            'link': $('.edit-modal input[name="link"]').val(),
-            'category_id': $('.edit-modal select[name="category_id"]').val(),
-            'id': $('.edit-modal input[name="id"]').val(),
+        var dataForm = {
+            'name': $('#form-add input[name="name"]').val(),
+            'status': $('#form-add select[name="status"]').val()
+
+
         }
         $.ajax({
             type: "POST",
-            url: "index.php?module=admin&controller=course&action=ajaxEditCourse",
-            data: {form: dataForm, id: dataForm['id']}, // serializes the form's elements.
+            url: "index.php?module=admin&controller=category&action=ajaxAdd",
+            data: {form: dataForm}, // serializes the form's elements.
             success: function (data) {
-                $('#modal-category-edit .modal-body').html(data);
+
+                $('#form-add .modal-body').html(data);
             }
         });
     });
     // /.submit form fiel ajax
+    //submit close form field ajax
+    $('#form-add .submit-close').click(function (event) {
+        event.preventDefault();
+        var dataForm = {
+            'name': $('#form-add input[name="name"]').val(),
+            'status': $('#form-add select[name="status"]').val(),
 
+
+        }
+        $.ajax({
+            type: "POST",
+            url: "index.php?module=admin&controller=category&action=ajaxAdd",
+            data: {form: dataForm}, // serializes the form's elements.
+            success: function (data) {
+
+                $('#form-add .modal-body').html(data);
+                $('.modal-backdrop').remove();
+                $('#form-add').hide();
+                location.reload();
+            }
+        });
+    });
     // $("button.close span").click(function () {
     //     location.reload();
     // })
-
+    //checks
+    // $(':checkbox').change(function () {
+    //     var checkStatus = this.checked;
+    //     console.log(checkStatus);
+    //     $('#adminForm').find(':checkbox').each(function () {
+    //         this.checked = checkStatus;
+    //     });
+    // })
 
     // check All
-    $('input[name=checkall-toggle]').change(function () {
+    $('input[name="checkall-toggle"]').change(function () {
         var checkStatus = this.checked;
         console.log(checkStatus);
         $('#adminForm').find(':checkbox').each(function () {
@@ -93,27 +181,38 @@ function readURL(input) {
             $('#blah')
                 .attr('src', e.target.result)
         };
+
         reader.readAsDataURL(input.files[0]);
     }
 }
 // /.send File Ajax
 
-// ajaxEdit
+// ajaxAdd
+
+function ajaxAdd(url) {
+
+    $.get(url, function (data) {
+        $('#modal-add .modal-body').html(data);
+    })
+
+
+}
+//ajaxActive
+// function ajaxActive(url) {
+//     console.log(url);
+//     $.get(url,function(data){
+//         console.log(data);
+//         $('#modal-add .modal-body').html(data);
+//     })
+//
+// }
+// /.ajaxEdit
 function ajaxEdit(url) {
     console.log(url);
     $.get(url, function (data) {
         $('#modal-category-edit .modal-body').html(data);
     })
 }
-
-function ajaxAdd() {
-    url =
-    $.get(url, function (data) {
-        $('#modal-category-edit .modal-body').html(data);
-    })
-}
-
-// /.ajaxEdit
 
 // ajax Delete
 function ajaxDelete(url) {

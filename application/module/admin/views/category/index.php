@@ -1,15 +1,16 @@
 <?php
 $listCategory = empty($this->listCategory) ? [] : $this->listCategory;
+
 $url = array(
     'category' => [
-        'add' => URL::createLink('admin', 'category', 'add'),
-        'active' => URL::createLink('admin', 'category', 'active'),
-        'inactive' => URL::createLink('admin', 'category', 'inactive'),
-        'delete' => URL::createLink('admin', 'category', 'delete'),
+        'add' => URL::createLink('admin', 'category', 'ajaxAdd'),
+        'active' => URL::createLink('admin', 'category', 'ajaxActive'),
+        'inactive' => URL::createLink('admin', 'category', 'ajaxInactive'),
+        'delete' => URL::createLink('admin', 'category', 'ajaxDelete'),
     ]
 );
 ?>
-<div class="content-wrapper category" style="min-height: 915.8px;">
+<div class="content-wrapper category" style="min-height: 915.8px;" xmlns="http://www.w3.org/1999/html">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
@@ -27,20 +28,27 @@ $url = array(
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
+                    <!--                    <form action="" method="post">-->
+
                     <div class="box-header text-center">
-                        <button class="btn btn-app" data-toggle="modal" data-target="#modal-add"
-                                onclick="javascript:ajaxEdit('<?php echo $url['category']['add'] ?>')"
+                        <button class="btn btn-app btn-add" data-toggle="modal" data-target="#modal-add"
+                                onclick="javascript:ajaxAdd('<?php echo $url['category']['add'] ?>')"
                         >
                             <i class="fa fa-plus-square-o"></i> Add
                         </button>
-                        <button class="btn btn-app">
+                        <button  form="adminForm" class="btn btn-app btn-active" data-toggle="modal"
+                                data-target="#modal-action"
+                                >
                             <i class="fa fa-check-circle-o"></i> Active
+
                         </button>
-                        <button class="btn btn-app">
+                        <button form="adminForm" class="btn btn-app btn-inactive" data-toggle="modal"
+                                data-target="#modal-action">
                             <i class="fa fa-circle-o"></i> Inactive
                         </button>
-                        <button class="btn btn-app">
-                            <i class="fa fa-minus-square-o"></i> delete
+                        <button form="adminForm" class="btn btn-app btn-delete" data-toggle="modal"
+                                data-target="#modal-action">
+                            <i class="fa fa-minus-square-o"></i> Delete
                         </button>
                     </div>
                     <?php
@@ -68,6 +76,7 @@ $url = array(
                                             </thead>
                                             <tbody>
                                             <?php
+                                            $i = 0;
                                             foreach ($listCategory as $key => $value) {
                                                 $urlEdit = URL::createLink('admin', 'category', 'ajaxEditCategory', ['id' => $value['id']]);
                                                 $urlDelete = URL::createLink('admin', 'category', 'delete', ['id' => $value['id']])
@@ -92,16 +101,21 @@ $url = array(
                                                     </td>
                                                     <td><?php echo $value['id'] ?></td>
                                                 </tr>
-                                            <?php } ?>
+
+                                                <?php
+                                                $i++;
+                                            } ?>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </form>
                     <!-- /.box-body -->
                 </div>
+                <!--            </form>-->
                 <!-- /.box -->
             </div>
             <!-- /.col -->
@@ -112,23 +126,46 @@ $url = array(
     <!-- /.content -->
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="modal-add">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Default Modal</h4>
-            </div>
-            <div class="modal-body">
-                <p>One fine body…</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+<!-- Modal add -->
+<form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" id="form-add">
+    <div class="modal fade" id="modal-add">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">ADD </h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn pull-right btn-primary submit-add">Save & New</button>
+                    <button type="submit" class="btn btn-primary pull-right submit-close">Save & Close</button>
+                    <button class="btn btn-default" data-dismiss="modal">Hủy</button>
+                </div>
+                <!-- /.box-footer -->
             </div>
         </div>
     </div>
-</div>
+</form>
 <!-- /.Modal -->
+<!--modal Active-->
+
+    <div class="modal fade" id="modal-action" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Successed</h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default close-active " data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>

@@ -31,10 +31,10 @@ class UserController extends Controller
             } else {
 
                 if (isset($this->_arrParam['form']['check'])) {
-                    setcookie('remember', serialize(['user' => $this->_model->execute($queryUserName)]), time() + TIME_LOGIN);
+                    setcookie('remember', serialize(['user' => $this->_model->execute($queryUserName, true)]), time() + TIME_LOGIN);
                 } else {
 
-                    setcookie('remember', serialize(['user' => $this->_model->execute($queryUserName)]), false);
+                    setcookie('remember', serialize(['user' => $this->_model->execute($queryUserName, true)]), false);
                 }
 
                 URL::redirect('admin', 'index', 'index');
@@ -46,7 +46,7 @@ class UserController extends Controller
 
     public function logoutAction()
     {
-        Session::delete('login');
+        setcookie('remember', ' ', time() - TIME_LOGIN);
         URL::redirect('admin', 'user', 'login');
     }
 
@@ -58,7 +58,6 @@ class UserController extends Controller
                 ->addRule('email', 'email')
                 ->addRule('password', 'password');
             $validate->run();
-            $this->_arrParam['form'] = $validate->getResult();
             if ($validate->isValid() == false) {
                 $this->_view->errors = $validate->showErrors();
             } else {

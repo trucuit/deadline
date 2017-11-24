@@ -12,11 +12,9 @@ class IndexController extends Controller
 
 	public function indexAction()
 	{
+
 		if(!isset($_COOKIE['remember'])){
 		    URL::redirect('admin','user','login');
-        }else{
-		    $arrCookies=unserialize($_COOKIE['remember']);
-
         }
 
 		$this->_view->render('index/index');

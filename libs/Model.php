@@ -34,12 +34,12 @@ class Model
 
     public function delete($table, $id)
     {
-        if ($table == 'category') {
-            $itemOld = $this->select('category', $id, true);
-            $path = TEMPLATE_PATH . "/admin/main/images/" . $itemOld['picture'];
-            if (file_exists($path))
-                unlink($path);
-        }
+//        if ($table == 'category') {
+//            $itemOld = $this->select('category', $id, true);
+//            $path = TEMPLATE_PATH . "/admin/main/images/" . $itemOld['picture'];
+//            if (file_exists($path))
+//                unlink($path);
+//        }
 
         $stmt = $this->conn->prepare("DELETE FROM `$table` WHERE id=:id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -94,6 +94,7 @@ class Model
         $stmt->execute();
         return $data = $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
     public function select($table, $id = null, $return = false)
     {
         $query = "SELECT * FROM `$table` AS `t1`";
@@ -113,7 +114,8 @@ class Model
     {
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
-//        return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($return)
+            return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function isExist($query)
