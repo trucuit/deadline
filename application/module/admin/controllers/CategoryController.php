@@ -14,30 +14,51 @@ class CategoryController extends Controller
     public function indexAction()
     {
         $this->_view->listCategory = $this->_model->showAll('category');
+
         $this->_view->render('category/index');
     }
 
     public function ajaxAddAction()
     {
         if (isset($this->_arrParam['form'])) {
-            $this->_arrParam['form']['image'] = $_FILES['image'];
+            $query = "SELECT * FROM `" . DB_TBCATEGORY . "` WHERE `name`='" . $this->_arrParam['form']['name']."'";
             $validate = new Validate($this->_arrParam['form']);
-            $query = "SELECT * FROM `" . DB_TBCATEGORY . "` WHERE `name`='" . $this->_arrParam['form']['category'] . "'";
-            $validate->addRule('category', 'string-notExistRecord', ['min' => 5, 'max' => 200, 'database' => $this->_model, 'query' => $query])
-                ->addRule('image', 'file', ['min' => 1000, 'max' => 2097152, 'extension' => ['jpg', 'png', 'jpeg']], false);
+            $validate->addRule('name', 'string-notExistRecord', ['min' => 3, 'max' => 200, 'database' => $this->_model, 'query' => $query]);
             $validate->run();
-            $this->_arrParam['form'] = $validate->getResult();
             if ($validate->isValid() == false) {
                 $this->_view->errors = $validate->showErrors();
 
             } else {
-                $this->_arrParam['form']['image'] = $_FILES['image'];
-                $this->_model->insertCategory($this->_arrParam['form']);
-                $this->_view->success = Helper::success('Thêm thành công');
+                $arrCategory = array();
+                $arrCategory['name'] = $this->_arrParam['form']['name'];
+                $arrCategory['status']=$this->_arrParam['form']['status'];
+                $this->_model->insertCategory($arrCategory);
+                $this->_view->success=Helper::success("thêm thành công!");
             }
         }
-        $this->_view->render('category/add');
+        $this->_view->render('category/add', false);
 
+    }
+    public function ajaxActiveAction(){
+        echo "<pre>";
+        print_r($this->_arrParam);
+        echo "</pre>";
+        if(isset($this->_arrParam['cid'])){
+
+            $query=array();
+            $exe=array();
+            foreach ($this->_arrParam['cid'] as $value){
+                $query[]="SELECT * FROM `" . DB_TBCATEGORY . "` WHERE `id`='" .$value."'";
+            }
+            foreach ($query as $valueQuery){
+                $this->_view->exe[]=$this->_model->execute($valueQuery,true);
+
+            }
+            echo "<pre>";
+            print_r($this->_view->exe);
+            echo "</pre>";
+        }
+        $this->_view->render('category/active',false);
     }
 
     public function ajaxStatusAction()

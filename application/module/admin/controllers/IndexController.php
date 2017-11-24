@@ -14,9 +14,6 @@ class IndexController extends Controller
 	{
 		if(!isset($_COOKIE['remember'])){
 		    URL::redirect('admin','user','login');
-        }else{
-		    $arrCookies=unserialize($_COOKIE['remember']);
-
         }
 
 		$this->_view->render('index/index');

@@ -29,26 +29,48 @@ $(function () {
         });
     });
 
-    // submit form fiel ajax
-    $('.course .submit-form').click(function (event) {
+    // submit new form fiel ajax
+    $('#form-add .submit-add').click(function (event) {
         event.preventDefault();
-        dataForm = {
-            'name': $('.edit-modal input[name="name"]').val(),
-            'link': $('.edit-modal input[name="link"]').val(),
-            'category_id': $('.edit-modal select[name="category_id"]').val(),
-            'id': $('.edit-modal input[name="id"]').val(),
+        var dataForm = {
+            'name': $('#form-add input[name="name"]').val(),
+            'status': $('#form-add select[name="status"]').val(),
+
+
         }
         $.ajax({
             type: "POST",
-            url: "index.php?module=admin&controller=course&action=ajaxEditCourse",
-            data: {form: dataForm, id: dataForm['id']}, // serializes the form's elements.
+            url: "index.php?module=admin&controller=category&action=ajaxAdd",
+            data: {form: dataForm}, // serializes the form's elements.
             success: function (data) {
-                $('#modal-category-edit .modal-body').html(data);
+
+                $('#form-add .modal-body').html(data);
             }
         });
     });
     // /.submit form fiel ajax
+    //submit close form field ajax
+    $('#form-add .submit-close').click(function (event) {
+        event.preventDefault();
+        var dataForm = {
+            'name': $('#form-add input[name="name"]').val(),
+            'status': $('#form-add select[name="status"]').val(),
 
+
+        }
+        $.ajax({
+            type: "POST",
+            url: "index.php?module=admin&controller=category&action=ajaxAdd",
+            data: {form: dataForm}, // serializes the form's elements.
+            success: function (data) {
+
+                $('#form-add .modal-body').html(data);
+                $('.modal-backdrop').remove();
+                $('#form-add').hide();
+                location.reload();
+            }
+        });
+    });
     // $("button.close span").click(function () {
     //     location.reload();
     // })
@@ -93,27 +115,38 @@ function readURL(input) {
             $('#blah')
                 .attr('src', e.target.result)
         };
+
         reader.readAsDataURL(input.files[0]);
     }
 }
 // /.send File Ajax
 
-// ajaxEdit
+// ajaxAdd
+
+function ajaxAdd(url) {
+
+    $.get(url, function (data) {
+        $('#modal-add .modal-body').html(data);
+    })
+
+
+}
+//ajaxActive
+function ajaxActive(url) {
+    console.log(url);
+    $.get(url,function(data){
+        console.log(data);
+        $('#modal-add .modal-body').html(data);
+    })
+
+}
+// /.ajaxEdit
 function ajaxEdit(url) {
     console.log(url);
     $.get(url, function (data) {
         $('#modal-category-edit .modal-body').html(data);
     })
 }
-
-function ajaxAdd() {
-    url =
-    $.get(url, function (data) {
-        $('#modal-category-edit .modal-body').html(data);
-    })
-}
-
-// /.ajaxEdit
 
 // ajax Delete
 function ajaxDelete(url) {

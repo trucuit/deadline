@@ -1,9 +1,10 @@
 <?php
 $listCategory = empty($this->listCategory) ? [] : $this->listCategory;
+
 $url = array(
     'category' => [
-        'add' => URL::createLink('admin', 'category', 'add'),
-        'active' => URL::createLink('admin', 'category', 'active'),
+        'add' => URL::createLink('admin', 'category', 'ajaxAdd'),
+        'active' => URL::createLink('admin', 'category', 'ajaxActive'),
         'inactive' => URL::createLink('admin', 'category', 'inactive'),
         'delete' => URL::createLink('admin', 'category', 'delete'),
     ]
@@ -29,12 +30,13 @@ $url = array(
                 <div class="box">
                     <div class="box-header text-center">
                         <button class="btn btn-app" data-toggle="modal" data-target="#modal-add"
-                                onclick="javascript:ajaxEdit('<?php echo $url['category']['add'] ?>')"
+                                onclick="javascript:ajaxAdd('<?php echo $url['category']['add'] ?>')"
                         >
                             <i class="fa fa-plus-square-o"></i> Add
                         </button>
-                        <button class="btn btn-app">
+                        <button class="btn btn-app" onclick="ajaxActive('<?php echo $url['category']['active'] ?>')">
                             <i class="fa fa-check-circle-o"></i> Active
+
                         </button>
                         <button class="btn btn-app">
                             <i class="fa fa-circle-o"></i> Inactive
@@ -113,22 +115,26 @@ $url = array(
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="modal-add">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">Default Modal</h4>
-            </div>
-            <div class="modal-body">
-                <p>One fine body…</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+<form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" id="form-add">
+    <div class="modal fade" id="modal-add">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">ADD </h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn pull-right btn-primary submit-add">Save & New</button>
+                    <button type="submit" class="btn btn-primary pull-right submit-close">Save & Close</button>
+                    <button class="btn btn-default" data-dismiss="modal">Hủy</button>
+                </div>
+                <!-- /.box-footer -->
             </div>
         </div>
     </div>
-</div>
+</form>
 <!-- /.Modal -->

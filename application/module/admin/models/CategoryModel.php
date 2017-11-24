@@ -27,20 +27,19 @@ class CategoryModel extends Model
 
     public function insertCategory($arrParam)
     {
-        $name = trim($arrParam['category']);
-        $image = $name . Helper::cutCharacter($arrParam['image']['name'], '.');
-        $created = date('Y-m-d', time());
-        $created_by = Session::get('login')['user']['username'];
-        $status = 0;
+       $arrCookie=unserialize($_COOKIE['remember']);
+        $name = trim($arrParam['name']);
+        $created = date('Y-m-d H:i:s', time());
+        $created_by = $arrCookie['user'][0]['username'];
+        $status = $arrParam['status'];
         $query[] = "INSERT INTO `" . DB_TBCATEGORY . "`";
-        $query[] = "(`name`, `picture`, `created`, `created_by`, `status`)";
-        $query[] = "VALUES ('$name','$image','$created','$created_by','$status')";
+        $query[] = "(`name`, `created`, `created_by`, `status`)";
+        $query[] = "VALUES ('$name','$created','$created_by','$status')";
+
         $query = implode(' ', $query);
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-        $nameImage = TEMPLATE_PATH . "/admin\main\images/" . $image;
-        move_uploaded_file($arrParam['image']['tmp_name'], $nameImage);
-        return $stmt->rowCount();
+
     }
 
 
