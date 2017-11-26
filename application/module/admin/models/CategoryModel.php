@@ -43,16 +43,22 @@ class CategoryModel extends Model
     }
 
 
-    public function updateCategory($arrParam, $where)
+    public function updateCategory($arrParam,$where)
     {
-        $arrCookie = unserialize($_COOKIE['remember']);
-        //$name = $arrParam['category'];
+        $arrCookie=unserialize($_COOKIE['remember']);
+
         $modified = date('Y-m-d H:i:s', time());
         $modified_by = $arrCookie['user'][0]['username'];
-        $status = $arrParam['status'];
+        $status=$arrParam['status'];
         $id = $where;
+        if (isset($arrParam['name'])){
+            $name = $arrParam['name'];
+            $query = "UPDATE `category` SET `name`='$name', `modified`='$modified',`modified_by`='$modified_by',`status`='$status' WHERE `id`='$id'";
 
-        $query = "UPDATE `category` SET `modified`='$modified',`modified_by`='$modified_by',`status`='$status' WHERE `id`='$id'";
+        }else{
+            $query = "UPDATE `category` SET `modified`='$modified',`modified_by`='$modified_by',`status`='$status' WHERE `id`='$id'";
+
+        }
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
 

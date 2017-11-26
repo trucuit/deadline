@@ -1,37 +1,52 @@
-<?php
-$infoCategory = empty($this->infoCategory) ? [] : $this->infoCategory;
-?>
-<div class="box-body edit-modal">
-   <?php
-                      if (isset($this->errors)) echo $this->errors;
-                      if (isset($this->success)) echo $this->success;
-                      ?>
-    <div class="row">
+<div class="box-body ">
+    <?php
+    if (isset($this->infoCategory)){
+
+
+    ?>
+    <div class="form-group">
         <label class="col-sm-3 control-label">Tên Category <i style="color: red">*</i></label>
 
         <div class="col-sm-9">
-            <input type="text" class="form-control" placeholder="Tên Category" name="category" value="<?php echo $this->infoCategory['name'] ?>">
+            <input type="text" class="form-control" placeholder="Tên Category"
+                   name="name" value="<?php echo $this->infoCategory['name'] ?>"
+                   id="<?php echo $this->infoCategory['id'] ?>">
         </div>
     </div>
-     <div class="row" style="margin:20px 0 20px -15px">
-            <label class="col-sm-3 control-label">Hình hiện tại</label>
-
-            <div class="col-sm-9" style="height: 50px">
-               <img src="<?php echo TEMPLATE_URL . '/admin/main/images/' . $infoCategory['picture'] ?>"
-                                                                               alt=""
-                                                                               height="100%">
-            </div>
-        </div>
-    <div class="row ">
-        <label class="col-sm-3 control-label">Hình ảnh</label>
-
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Status:</label>
         <div class="col-sm-9">
-            <input type="file" class="form-control" onchange="readURL(this);" name="image">
-            <input type="hidden" value="<?php echo $infoCategory['id'] ?>" name="id">
-            <div class="blah">
-                <img id="blah" src="#"/>
-            </div>
+        <?php if ($this->infoCategory['status'] == 1) {
+            ?>
+            <select name="status" id="status" class="form-control">
+                <option value="1">on</option>
+                <option value="0">off</option>
+
+            </select>
+            <?php
+        } else {
+            ?>
+            <select name="status" id="status" class="form-control">
+                <option value="0">off</option>
+                <option value="1">on</option>
+            </select>
+            <?php
+        }
+        ?>
         </div>
+
     </div>
 
 </div>
+<!-- /.box-body -->
+<?php }
+else{
+    if (isset($this->errors)) {
+        echo $this->errors;
+    }
+    if (isset($this->success)) {
+        echo $this->success;
+    }
+}
+?>
+
