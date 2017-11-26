@@ -26,7 +26,6 @@ class CourseModel extends Model
         return $this->execute($query, 1);
     }
 
-<<<<<<< HEAD
     public function chageStatus($param, $type = 1, $task = '')
     {
         if ($task == "change-status") {
@@ -46,33 +45,14 @@ class CourseModel extends Model
             );
             return $result;
         }
-=======
-    public function chageStatus($param)
-    {
-        $status = ($param['status'] == 0) ? 1 : 0;
-        $id = $param['id'];
-        $query = "UPDATE `" . DB_TBCOURSE . "` SET `status` = '$status' WHERE `id` = '" . $id . "'";
-
-        $this->execute($query);
-
-        $result = array(
-            'id' => $id,
-            'status' => $status,
-            'link' => URL::createLink('admin', 'course', 'ajaxStatus', array('id' => $id, 'status' => $status))
-        );
-        return $result;
->>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
     }
 
     public function insertCourse($data)
     {
         $image = $data['image'];
         $data['image'] = $data['name'] . '.' . Helper::cutCharacter($image['type'], '/', 1);
-<<<<<<< HEAD
         $data['created'] = date("Y-m-d H:i:s");
         $data['created_by'] = unserialize($_COOKIE['remember'])['user'][0]['username'];
-=======
->>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
         $this->insert(DB_TBCOURSE, $data);
         $nameImage = TEMPLATE_PATH . "/admin/main/images/" . $data['image'];
         move_uploaded_file($image['tmp_name'], $nameImage);
@@ -80,7 +60,6 @@ class CourseModel extends Model
         $this->insertVideo($data['link'], $this->execute($query, 1)[0]['id']);
     }
 
-<<<<<<< HEAD
     public function updateCourse($data, $file)
     {
 
@@ -106,18 +85,12 @@ class CourseModel extends Model
             $this->insertVideo($data['link'], $id);
         }
     }
-=======
->>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
 
     public function insertVideo($link, $id)
     {
         $data = $this->getVideo($link);
         foreach ($data as $value) {
-<<<<<<< HEAD
             $val['link'] = $value['id'];
-=======
-            $val['nameID'] = $value['id'];
->>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
             $val['course_id'] = $id;
             $val['title'] = $value['title'];
             $val['thumbnails'] = $value['thumbnails'];
@@ -125,15 +98,12 @@ class CourseModel extends Model
         }
     }
 
-<<<<<<< HEAD
     public function deleteVideo($where)
     {
         $newWhere = $this->createWhereDeleteSQL($where);
         $query = "DELETE FROM `" . DB_TBVIDEO . "` WHERE `course_id` IN ($newWhere)";
         $this->execute($query);
     }
-=======
->>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
 
     public function createURL($arrURL)
     {
@@ -193,8 +163,6 @@ class CourseModel extends Model
 
     public function getVideo($playlistID)
     {
-//        $playlistInfo = [];
-// Step 01 - Get Playlist Info
         $strInfoURL = $this->createURL([
             'part' => 'snippet',
             'id' => $playlistID,
@@ -203,18 +171,6 @@ class CourseModel extends Model
 
         $dataInfoReturn = json_decode(file_get_contents(API_URL . 'playlists?' . $strInfoURL), true);
 
-//        if ($dataInfoReturn['items']) {
-//            $snippet = $dataInfoReturn['items'][0]['snippet'];
-//            $playlistInfo['id'] = $playlistID;
-//            $playlistInfo['publishedAt'] = $snippet['publishedAt'];
-//            $playlistInfo['title'] = $snippet['title'];
-//            $playlistInfo['slug'] = $this->createSlug($snippet['title']);
-//            $playlistInfo['description'] = $snippet['description'];
-//            $playlistInfo['thumbnails'] = $snippet['thumbnails']['standard']['url'];
-//
-//        }
-
-// Step 02 - Get Videos Info
         $items = [];
         $nextPageToken = '';
         do {
@@ -233,43 +189,24 @@ class CourseModel extends Model
                     $snippet = $value['snippet'];
                     $items[] = [
                         'id' => $snippet['resourceId']['videoId'],
-//                        'publishedAt' => $snippet['publishedAt'],
-//                        'channelId' => .$snippet['channelId'],
-//                        'playlistID' => $playlistID,
                         'title' => $snippet['title'],
-//                        'slug' => $this->createSlug($snippet['title']),
-//                        'description' => $snippet['description'],
                         'thumbnails' => $snippet['thumbnails']['maxres']['url'],
-//                        'views' => 1,
-//                        'comments' => 1,
-//                        'ratings' => 1,
                     ];
                 }
             }
 
             $nextPageToken = isset($dataReturn['nextPageToken']) ? $dataReturn['nextPageToken'] : '';
         } while ($nextPageToken != '');
-
-
-//
-//        $playlistInfo['items'] = $items;
         return $items;
-        echo "<pre>";
-        print_r($items);
-        echo "</pre>";
     }
-<<<<<<< HEAD
 
-    public function deleteItem($param)
-    {
-        $this->delete(DB_TBCOURSE, $param);
-        foreach ($param as $val) {
+    public function deleteItem($param){
+        $this->delete(DB_TBCOURSE,$param);
+        foreach ($param as $val){
             $newWhere = $this->createWhereDeleteSQL([$val]);
-            $query = "DELETE FROM `" . DB_TBVIDEO . "` WHERE `course_id` IN ($newWhere)";
+            $query = "DELETE FROM `".DB_TBVIDEO."` WHERE `course_id` IN ($newWhere)";
             $this->execute($query);
         }
     }
-=======
->>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
 }
 

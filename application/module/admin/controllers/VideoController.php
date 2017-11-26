@@ -13,7 +13,6 @@ class VideoController extends Controller
 
     public function indexAction()
     {
-<<<<<<< HEAD
         $course_id = isset($this->_arrParam['id']) ? (int)$this->_arrParam['id'] : 0;
         $this->_view->listItem = $this->_model->showVideo($course_id);
         $this->_view->render('video/index');
@@ -61,8 +60,8 @@ class VideoController extends Controller
             foreach ($form as $key => $value) {
                 switch ($key) {
                     case 'title':
-                        $query = "SELECT * FROM `" . DB_TBVIDEO . "` WHERE `name`='" . $form['title'] . "'";
-                        $validate->addRule('name', 'string-notExistRecord', ['min' => 1, 'max' => 200, 'database' => $this->_model, 'query' => $query]);
+                        $query = "SELECT * FROM `" . DB_TBVIDEO . "` WHERE `title`='" . $form['title'] . "'";
+                        $validate->addRule('title', 'string-notExistRecord', ['min' => 1, 'max' => 200, 'database' => $this->_model, 'query' => $query]);
                         break;
                     case 'link':
                         $query = "SELECT * FROM `" . DB_TBVIDEO . "` WHERE `link`='" . $form['link'] . "'";
@@ -101,20 +100,15 @@ class VideoController extends Controller
     //Ajax
     public function statusAction()
     {
-        $this->_model->chageStatus($this->_arrParam['cid'],$this->_arrParam['type'],"change-status");
-        URL::redirect('admin','video','index',['id'=>$this->_arrParam['id']]);
+        $this->_model->chageStatus($this->_arrParam['cid'], $this->_arrParam['type'], "change-status");
+        URL::redirect('admin', 'video', 'index', ['id' => $this->_arrParam['id']]);
     }
 
     //Ajax
     public function deleteAction()
     {
-        $this->_model->deleteItem($this->_arrParam['cid']);
-        URL::redirect('admin', 'video', 'index',['id'=>$this->_arrParam['id']]);
-    }
-=======
-        $this->_view->render('course/index');
+        $this->_model->delete(DB_TBVIDEO,$this->_arrParam['cid']);
+        URL::redirect('admin', 'video', 'index', ['id' => $this->_arrParam['id']]);
     }
 
-
->>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
 }
