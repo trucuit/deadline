@@ -7,7 +7,7 @@ class CategoryController extends Controller
         parent::__construct($params);
         $this->_templateObj->setFolderTemplate('admin/main');
         $this->_templateObj->setFileTemplate('index.php');
-        $this->_templateObj->setFileConfig('template.ini');
+        $this->_templateObj->setFileConfig('category.ini');
         $this->_templateObj->load();
     }
 
@@ -21,9 +21,6 @@ class CategoryController extends Controller
 
     public function ajaxAddAction()
     {
-        echo "<pre>";
-        print_r($this->_arrParam);
-        echo "</pre>";
         if (isset($this->_arrParam['form'])) {
             $query = "SELECT * FROM `" . DB_TBCATEGORY . "` WHERE `name`='" . $this->_arrParam['form']['name'] . "'";
             $validate = new Validate($this->_arrParam['form']);
@@ -62,29 +59,12 @@ class CategoryController extends Controller
                 $this->_view->exe[] = $this->_model->execute($valueQuery, true);
 
             }
-            //if (isset($this->_arrParam['active'])) {
-//                $data= array(
-//                    "status"=> "1"
-//                );
-//
-//                foreach ($this->_arrParam['cid'] as $value) {
-//                    $this->_model->updateCategory($data,$value);
-//
-//                }
-
-            //}
         }
-
-
         $this->_view->render('category/active', false);
-
     }
-
-
 
     public function ajaxInactiveAction()
     {
-
         if (isset($this->_arrParam['cid'])) {
 
             $query = array();
@@ -120,13 +100,10 @@ class CategoryController extends Controller
 
             }
             foreach ($this->_arrParam['cid'] as $value) {
-                $this->_model->delete(DB_TBCATEGORY, $value);
-
+                $this->_model->deleteCategory(DB_TBCATEGORY, $value);
             }
         }
-
         $this->_view->render('category/delete', false);
-
     }
 
     public function ajaxStatusAction()
@@ -187,3 +164,6 @@ class CategoryController extends Controller
         URL::redirect('admin', 'category', 'index');
     }
 }
+
+?>
+

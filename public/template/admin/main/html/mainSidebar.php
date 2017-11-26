@@ -8,7 +8,7 @@ $url = array(
 $model = new Model();
 $query = "SELECT `id`,`name` FROM `" . DB_TBCOURSE . "`";
 $listCourse = $model->execute($query, 1);
-
+$userInfo = unserialize($_COOKIE['remember'])['user'][0];
 ?>
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -16,11 +16,11 @@ $listCourse = $model->execute($query, 1);
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?php echo $dirAdminLTE ?>/dist/img/user2-160x160.jpg" class="img-circle"
+                <img src="<?php echo $dirAdminLTE ?>/dist/img/no_image_user.png" class="img-circle"
                      alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p><?php echo $userInfo['username'] ?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>

@@ -17,12 +17,12 @@
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">Status:</label>
-        <select name="status" id="status">
-            <option value="1">on</option>
-            <option value="0">off</option>
-        </select>
-
-
+        <div class="col-sm-9">
+            <select name="status" id="status" class="form-control">
+                <option value="1">on</option>
+                <option value="0">off</option>
+            </select>
+        </div>
     </div>
 
 </div>

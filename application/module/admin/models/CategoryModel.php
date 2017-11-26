@@ -27,7 +27,7 @@ class CategoryModel extends Model
 
     public function insertCategory($arrParam)
     {
-       $arrCookie=unserialize($_COOKIE['remember']);
+        $arrCookie = unserialize($_COOKIE['remember']);
         $name = trim($arrParam['name']);
         $created = date('Y-m-d H:i:s', time());
         $created_by = $arrCookie['user'][0]['username'];
@@ -43,13 +43,13 @@ class CategoryModel extends Model
     }
 
 
-    public function updateCategory($arrParam,$where)
+    public function updateCategory($arrParam, $where)
     {
-        $arrCookie=unserialize($_COOKIE['remember']);
+        $arrCookie = unserialize($_COOKIE['remember']);
         //$name = $arrParam['category'];
         $modified = date('Y-m-d H:i:s', time());
         $modified_by = $arrCookie['user'][0]['username'];
-        $status=$arrParam['status'];
+        $status = $arrParam['status'];
         $id = $where;
 
         $query = "UPDATE `category` SET `modified`='$modified',`modified_by`='$modified_by',`status`='$status' WHERE `id`='$id'";
@@ -59,6 +59,12 @@ class CategoryModel extends Model
 
     }
 
+    public function deleteCategory($table, $id)
+    {
+        $stmt = $this->conn->prepare("DELETE FROM `$table` WHERE id=:id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+    }
 
     public function selectItemLast($table)
     {

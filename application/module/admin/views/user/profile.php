@@ -1,5 +1,5 @@
 <?php
-$userInfo = Session::get('login')['user'];
+$userInfo = $this->userInfo;
 print_r($_SESSION);
 ?>
 
@@ -33,10 +33,10 @@ print_r($_SESSION);
 
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
-                                <b>Username</b> <a class="pull-right"><?php ?></a>
+                                <b>Username</b> <a class="pull-right"><?php echo $userInfo['fullname'] ?></a>
                             </li>
                             <li class="list-group-item">
-                                <b>Email</b> <a class="pull-right"><?php ?></a>
+                                <b>Email</b> <a class="pull-right"><?php echo $userInfo['email'] ?></a>
                             </li>
                         </ul>
                     </div>
@@ -58,9 +58,9 @@ print_r($_SESSION);
                                 if (isset($this->errors)) echo $this->errors;
                                 if (isset($this->success)) echo $this->success;
                                 ?>
-
+                                <input type="hidden" value="<?php echo time() ?>" name="token">
                                 <div class="form-group">
-                                    <label for="inputName" class="col-sm-2 control-label">Username</label>
+                                    <label for="inputName" class="col-sm-2 control-label">Username<i style="color: red"> *</i></label>
 
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="inputName" placeholder="Username"
@@ -68,7 +68,7 @@ print_r($_SESSION);
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputName" class="col-sm-2 control-label">Full Name</label>
+                                    <label for="inputName" class="col-sm-2 control-label">Full Name<i style="color: red"> *</i></label>
 
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="inputName" placeholder="Fullname"
@@ -76,7 +76,7 @@ print_r($_SESSION);
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                                    <label for="inputEmail" class="col-sm-2 control-label">Email<i style="color: red"> *</i></label>
                                     <div class="col-sm-10">
                                         <input type="email" class="form-control" id="inputEmail" placeholder="Email"
                                                value="<?php echo $userInfo['email'] ?>" name="form[email]">
