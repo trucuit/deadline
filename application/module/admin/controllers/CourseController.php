@@ -13,29 +13,12 @@ class CourseController extends Controller
 
     public function indexAction()
     {
-<<<<<<< HEAD
-
-=======
-        echo "<pre>";
-        print_r(($_COOKIE['remember']));
-        echo "</pre>";
-        echo "<pre>";
-        print_r(unserialize($_COOKIE['remember']));
-        echo "</pre>";
->>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
         $this->_view->listCourse = $this->_model->showCourse();
         $this->_view->render('course/index');
     }
 
     public function addAjaxAction()
     {
-<<<<<<< HEAD
-=======
-//        echo "<pre>";
-//        print_r($this->_model->getVideo('PLv6GftO355AtUQTd6IPuTdgopUaysOCbO'));
-//        echo "</pre>";
->>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
-
         if (isset($this->_arrParam['form'])) {
             if (strlen($this->_arrParam['form']['link']) > 40) {
                 $this->_arrParam['form']['link'] = Helper::cutCharacter($this->_arrParam['form']['link'], 'list=', 5);
@@ -76,7 +59,6 @@ class CourseController extends Controller
     public function ajaxStatusAction()
     {
         echo json_encode($this->_model->chageStatus($this->_arrParam));
-<<<<<<< HEAD
     }
 
     //Ajax
@@ -142,16 +124,6 @@ class CourseController extends Controller
         $this->_model->chageStatus($this->_arrParam['cid'],$this->_arrParam['type'],"change-status");
         URL::redirect('admin','course','index');
     }
-=======
-//        echo $this->_model->chageStatus($this->_arrParam);
-    }
-
-    public function deleteAction()
-    {
-        $this->_model->delete(DB_TBCOURSE, $this->_arrParam['id']);
-        $this->_view->success = Helper::success('Xóa thành công');
-        URL::redirect('admin', 'course', 'index');
-    }
 
     public function ajaxEditCourseAction()
     {
@@ -180,6 +152,5 @@ class CourseController extends Controller
         $this->_view->render('course/editCourse', false);
     }
 
->>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
 
 }

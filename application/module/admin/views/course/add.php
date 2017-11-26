@@ -2,13 +2,6 @@
 $listCategory = empty($this->listCategory) ? [] : $this->listCategory;
 $infoItem = empty($this->infoItem) ? ['name' => '', 'category_id' => 0, 'link' => ''] : $this->infoItem;
 $catefory_id = isset($infoItem ['category_id']) ? $infoItem['category_id'] : 0;
-<<<<<<< HEAD
-=======
-$url = [
-    'cancel' => URL::createLink('admin', 'category', 'index')
-];
-
->>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
 $selectBox = Helper::cmsSelecbox($listCategory, 'category_id', 'form-control', $catefory_id);
 ?>
 <div class="box-body">
@@ -16,11 +9,6 @@ $selectBox = Helper::cmsSelecbox($listCategory, 'category_id', 'form-control', $
     if (isset($this->errors)) echo $this->errors;
     if (isset($this->success)) echo $this->success;
     ?>
-<<<<<<< HEAD
-<!--    <div id="loader" style="display: none"></div>-->
-=======
-    <div id="loader" style="display: none"></div>
->>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
     <div class="form-group">
         <label class="col-sm-3 control-label">Name<i style="color: red"> *</i></label>
         <div class="col-sm-9">
@@ -58,8 +46,4 @@ $selectBox = Helper::cmsSelecbox($listCategory, 'category_id', 'form-control', $
 <!-- /.box-body -->
 
 <!-- /.box-footer -->
-<<<<<<< HEAD
-</div>
-=======
-</div>
->>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
+
