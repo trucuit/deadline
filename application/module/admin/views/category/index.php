@@ -5,8 +5,13 @@ $url = array(
     'category' => [
         'add' => URL::createLink('admin', 'category', 'ajaxAdd'),
         'active' => URL::createLink('admin', 'category', 'ajaxActive'),
+<<<<<<< HEAD
         'inactive' => URL::createLink('admin', 'category', 'ajaxInactive'),
         'delete' => URL::createLink('admin', 'category', 'ajaxDelete'),
+=======
+        'inactive' => URL::createLink('admin', 'category', 'inactive'),
+        'delete' => URL::createLink('admin', 'category', 'delete'),
+>>>>>>> 581958087cb608a3178d3dd2cf853f940a56e34b
     ]
 );
 ?>
@@ -31,14 +36,22 @@ $url = array(
                     <!--                    <form action="" method="post">-->
 
                     <div class="box-header text-center">
+<<<<<<< HEAD
                         <button class="btn btn-app btn-add" data-toggle="modal" data-target="#modal-add"
+=======
+                        <button class="btn btn-app" data-toggle="modal" data-target="#modal-add"
+>>>>>>> 581958087cb608a3178d3dd2cf853f940a56e34b
                                 onclick="javascript:ajaxAdd('<?php echo $url['category']['add'] ?>')"
                         >
                             <i class="fa fa-plus-square-o"></i> Add
                         </button>
+<<<<<<< HEAD
                         <button  form="adminForm" class="btn btn-app btn-active" data-toggle="modal"
                                 data-target="#modal-action"
                                 >
+=======
+                        <button class="btn btn-app" onclick="ajaxActive('<?php echo $url['category']['active'] ?>')">
+>>>>>>> 581958087cb608a3178d3dd2cf853f940a56e34b
                             <i class="fa fa-check-circle-o"></i> Active
 
                         </button>
@@ -126,7 +139,11 @@ $url = array(
     <!-- /.content -->
 </div>
 
+<<<<<<< HEAD
 <!-- Modal add -->
+=======
+<!-- Modal -->
+>>>>>>> 581958087cb608a3178d3dd2cf853f940a56e34b
 <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" id="form-add">
     <div class="modal fade" id="modal-add">
         <div class="modal-dialog">
@@ -145,6 +162,7 @@ $url = array(
                     <button class="btn btn-default" data-dismiss="modal">Hủy</button>
                 </div>
                 <!-- /.box-footer -->
+<<<<<<< HEAD
             </div>
         </div>
     </div>
@@ -169,3 +187,10 @@ $url = array(
             </div>
         </div>
     </div>
+=======
+            </div>
+        </div>
+    </div>
+</form>
+<!-- /.Modal -->
+>>>>>>> 581958087cb608a3178d3dd2cf853f940a56e34b

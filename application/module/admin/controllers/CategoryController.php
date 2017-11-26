@@ -22,7 +22,11 @@ class CategoryController extends Controller
     public function ajaxAddAction()
     {
         if (isset($this->_arrParam['form'])) {
+<<<<<<< HEAD
             $query = "SELECT * FROM `" . DB_TBCATEGORY . "` WHERE `name`='" . $this->_arrParam['form']['name'] . "'";
+=======
+            $query = "SELECT * FROM `" . DB_TBCATEGORY . "` WHERE `name`='" . $this->_arrParam['form']['name']."'";
+>>>>>>> 581958087cb608a3178d3dd2cf853f940a56e34b
             $validate = new Validate($this->_arrParam['form']);
             $validate->addRule('name', 'string-notExistRecord', ['min' => 3, 'max' => 200, 'database' => $this->_model, 'query' => $query]);
             $validate->run();
@@ -32,6 +36,7 @@ class CategoryController extends Controller
             } else {
                 $arrCategory = array();
                 $arrCategory['name'] = $this->_arrParam['form']['name'];
+<<<<<<< HEAD
                 $arrCategory['status'] = $this->_arrParam['form']['status'];
                 $this->_model->insertCategory($arrCategory);
                 $this->_view->success = Helper::success("thêm thành công!");
@@ -54,6 +59,11 @@ class CategoryController extends Controller
             foreach ($this->_arrParam['cid'] as $value) {
                 $query[] = "SELECT `name`,`status` FROM `" . DB_TBCATEGORY . "` WHERE `id`='" . $value . "'";
                 $this->_model->updateCategory($data,$value);
+=======
+                $arrCategory['status']=$this->_arrParam['form']['status'];
+                $this->_model->insertCategory($arrCategory);
+                $this->_view->success=Helper::success("thêm thành công!");
+>>>>>>> 581958087cb608a3178d3dd2cf853f940a56e34b
             }
             foreach ($query as $valueQuery) {
                 $this->_view->exe[] = $this->_model->execute($valueQuery, true);
@@ -71,9 +81,35 @@ class CategoryController extends Controller
 
             //}
         }
+<<<<<<< HEAD
 
 
         $this->_view->render('category/active', false);
+=======
+        $this->_view->render('category/add', false);
+
+    }
+    public function ajaxActiveAction(){
+        echo "<pre>";
+        print_r($this->_arrParam);
+        echo "</pre>";
+        if(isset($this->_arrParam['cid'])){
+
+            $query=array();
+            $exe=array();
+            foreach ($this->_arrParam['cid'] as $value){
+                $query[]="SELECT * FROM `" . DB_TBCATEGORY . "` WHERE `id`='" .$value."'";
+            }
+            foreach ($query as $valueQuery){
+                $this->_view->exe[]=$this->_model->execute($valueQuery,true);
+
+            }
+            echo "<pre>";
+            print_r($this->_view->exe);
+            echo "</pre>";
+        }
+        $this->_view->render('category/active',false);
+>>>>>>> 581958087cb608a3178d3dd2cf853f940a56e34b
     }
     public function ajaxInactiveAction()
     {
