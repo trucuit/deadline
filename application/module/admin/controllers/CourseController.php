@@ -13,13 +13,28 @@ class CourseController extends Controller
 
     public function indexAction()
     {
+<<<<<<< HEAD
 
+=======
+        echo "<pre>";
+        print_r(($_COOKIE['remember']));
+        echo "</pre>";
+        echo "<pre>";
+        print_r(unserialize($_COOKIE['remember']));
+        echo "</pre>";
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
         $this->_view->listCourse = $this->_model->showCourse();
         $this->_view->render('course/index');
     }
 
     public function addAjaxAction()
     {
+<<<<<<< HEAD
+=======
+//        echo "<pre>";
+//        print_r($this->_model->getVideo('PLv6GftO355AtUQTd6IPuTdgopUaysOCbO'));
+//        echo "</pre>";
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
 
         if (isset($this->_arrParam['form'])) {
             if (strlen($this->_arrParam['form']['link']) > 40) {
@@ -61,6 +76,7 @@ class CourseController extends Controller
     public function ajaxStatusAction()
     {
         echo json_encode($this->_model->chageStatus($this->_arrParam));
+<<<<<<< HEAD
     }
 
     //Ajax
@@ -126,5 +142,44 @@ class CourseController extends Controller
         $this->_model->chageStatus($this->_arrParam['cid'],$this->_arrParam['type'],"change-status");
         URL::redirect('admin','course','index');
     }
+=======
+//        echo $this->_model->chageStatus($this->_arrParam);
+    }
+
+    public function deleteAction()
+    {
+        $this->_model->delete(DB_TBCOURSE, $this->_arrParam['id']);
+        $this->_view->success = Helper::success('Xóa thành công');
+        URL::redirect('admin', 'course', 'index');
+    }
+
+    public function ajaxEditCourseAction()
+    {
+        if (isset($this->_arrParam['form'])) {
+            $this->_arrParam['form']['id'] = $this->_arrParam['id'];
+            $validate = new Validate($this->_arrParam['form']);
+            $queryName = "SELECT * FROM `" . DB_TBCOURSE . "` WHERE `name`='" . $this->_arrParam['form']['name'] . "' AND `id` <> '" . $this->_arrParam['form']['id'] . "'";
+            $queryLink = "SELECT * FROM `" . DB_TBCOURSE . "` WHERE `name`='" . $this->_arrParam['form']['link'] . "' AND `id` <> '" . $this->_arrParam['form']['id'] . "'";
+
+            $validate->addRule('name', 'string-notExistRecord', ['min' => 1, 'max' => 200, 'database' => $this->_model, 'query' => $queryName])
+                ->addRule('link', 'string-notExistRecord', ['min' => 1, 'max' => 200, 'database' => $this->_model, 'query' => $queryLink])
+                ->addRule('category_id', 'status', ['deny' => [0]]);
+            $validate->run();
+            $this->_arrParam['form'] = $validate->getResult();
+            if ($validate->isValid() == false) {
+                $this->_view->errors = $validate->showErrors();
+            } else {
+                $form = $this->_arrParam['form'];
+                unset($form['id']);
+                $this->_model->update(DB_TBCOURSE, $form, ['id' => $this->_arrParam['form']['id']]);
+                $this->_view->success = Helper::success('Cập nhật thành công');
+            }
+        }
+        $this->_view->listCategory = $this->_model->showAll(DB_TBCATEGORY);
+        $this->_view->infoCourse = $this->_model->select(DB_TBCOURSE, $this->_arrParam['id'], true);
+        $this->_view->render('course/editCourse', false);
+    }
+
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
 
 }

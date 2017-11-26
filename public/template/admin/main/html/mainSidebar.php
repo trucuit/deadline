@@ -3,7 +3,10 @@ $url = array(
     'profile' => URL::createLink('admin', 'user', 'profile'),
     'category' => URL::createLink('admin', 'category', 'index'),
     'course' => URL::createLink('admin', 'course', 'index'),
+<<<<<<< HEAD
     'video' => URL::createLink('admin', 'video', 'index'),
+=======
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
 );
 $model = new Model();
 $query = "SELECT `id`,`name` FROM `" . DB_TBCOURSE . "`";
@@ -52,6 +55,7 @@ $listCourse = $model->execute($query, 1);
             </li>
             <li>
                 <a href="<?php echo $url['course'] ?>">
+<<<<<<< HEAD
                     <i class="fa fa-fw fa-file-o"></i>
                     <span>Course</span>
                 </a>
@@ -74,6 +78,11 @@ $listCourse = $model->execute($query, 1);
                         </li>
                     <?php } ?>
                 </ul>
+=======
+                    <span class="glyphicon glyphicon-folder-open"></span>
+                    <span>Course</span>
+                </a>
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
             </li>
         </ul>
     </section>
