@@ -31,6 +31,7 @@
     margin: auto;
     margin-bottom: 30px;
     margin: 155px auto;
+    z-index: 100;
 }
 
 @-webkit-keyframes spin {

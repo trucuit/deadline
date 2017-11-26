@@ -8,7 +8,7 @@ if(!empty($this->exe)){
     }
 }
 else{
-    echo "Bạn chưa chọn tên!";
+    echo "Bạn chưa chọn phần tử!";
 }
 
 ?>

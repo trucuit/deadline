@@ -110,7 +110,7 @@ class CourseController extends Controller
                 $form['image'] = $this->_view->infoItem['image'];
                 $form['name'] = $this->_view->infoItem['name'];
                 $this->_model->updateCourse($form, $_FILES);
-                $this->_view->success = Helper::success('Thêm thành công');
+                $this->_view->success = Helper::success('Sửa thành công');
             }
         }
 

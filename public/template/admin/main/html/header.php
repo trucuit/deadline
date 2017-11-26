@@ -29,7 +29,7 @@
                                 <li><!-- start message -->
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="<?php echo $dirAdminLTE ?>/dist/img/user2-160x160.jpg"
+                                            <img src="<?php echo $dirAdminLTE ?>/dist/img/no_image_user.png"
                                                  class="img-circle" alt="User Image">
                                         </div>
                                         <h4>

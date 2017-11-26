@@ -2,6 +2,7 @@ $(function () {
     // add form file ajax course
     $('.form-add-course .submit-form').click(function (event) {
         event.preventDefault();
+        id = this.id;
         name = $('#modal-add input[name="name"]').val();
         link = $('#modal-add input[name="link"]').val();
         category_id = $('#modal-add select[name="category_id"]').val();
@@ -208,12 +209,14 @@ function readURL(input) {
 function ajaxEdit(url) {
     console.log(url);
     $.get(url, function (data) {
+        console.log(data);
         $('#modal-edit .modal-body').html(data);
     })
 }
 
 //ajaxAdd
 function ajaxAdd(url) {
+    console.log(url);
     $.get(url, function (data) {
         $('#modal-add .modal-body').html(data);
     })

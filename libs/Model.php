@@ -32,19 +32,7 @@ class Model
         $this->table = $table;
     }
 
-    public function delete($table, $id)
-    {
-        if ($table == 'category') {
-            $itemOld = $this->select('category', $id, true);
-            $path = TEMPLATE_PATH . "/admin/main/images/" . $itemOld['picture'];
-            if (file_exists($path))
-                unlink($path);
-        }
 
-        $stmt = $this->conn->prepare("DELETE FROM `$table` WHERE id=:id");
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-    }
 
     public function update($table, $data, $where)
     {

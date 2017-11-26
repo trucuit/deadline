@@ -3,10 +3,10 @@ $listCategory = empty($this->listCategory) ? [] : $this->listCategory;
 
 $url = array(
     'category' => [
-        'add' => URL::createLink('admin', 'category', 'add'),
-        'active' => URL::createLink('admin', 'category', 'active'),
-        'inactive' => URL::createLink('admin', 'category', 'inactive'),
-        'delete' => URL::createLink('admin', 'category', 'delete'),
+        'add' => URL::createLink('admin', 'category', 'ajaxAdd'),
+        'active' => URL::createLink('admin', 'category', 'ajaxActive'),
+        'inactive' => URL::createLink('admin', 'category', 'ajaxInactive'),
+        'delete' => URL::createLink('admin', 'category', 'ajaxDelete'),
     ]
 );
 ?>
@@ -84,7 +84,9 @@ $url = array(
                                                 <tr role="row" class="odd">
                                                     <td><input type="checkbox" name="cid[]"
                                                                value="<?php echo $value['id'] ?>"></td>
-                                                    <td class="sorting_1"><?php echo $value['name'] ?></td>
+                                                    <td class="sorting_1">
+                                                        <?php echo $value['name'] ?>
+                                                    </td>
                                                     <td><?php echo $value['created'] ?></td>
                                                     <td><?php echo $value['created_by'] ?></td>
                                                     <td><?php echo $value['modified'] ?></td>
@@ -127,7 +129,6 @@ $url = array(
 </div>
 
 <!-- Modal add -->
-=======
 <!-- Modal -->
 <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" id="form-add">
     <div class="modal fade" id="modal-add">
@@ -141,13 +142,16 @@ $url = array(
                 <div class="modal-body">
 
                 </div>
-                <div class="box-footer">
-                    <button type="submit" class="btn pull-right btn-primary submit-add">Save & New</button>
-                    <button type="submit" class="btn btn-primary pull-right submit-close">Save & Close</button>
+                <div class="box-footer text-center">
                     <button class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary submit-close" id="save-close">Save & Close</button>
+                    <button type="submit" class="btn btn-primary submit-add">Save & New</button>
                 </div>
                 <!-- /.box-footer -->
             </div>
+        </div>
+        <div id="xoay">
+            <div id="loader" style="display: none"></div>
         </div>
     </div>
 </form>
@@ -166,7 +170,7 @@ $url = array(
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default close-active " data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default close-active " data-dismiss="modal">OK</button>
 
             </div>
         </div>
