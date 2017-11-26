@@ -23,14 +23,22 @@ class UserController extends Controller
             $this->_arrParam['form'] = $validate->getResult();
             if ($validate->isValid() == false) {
                 $this->_view->errors = $validate->showErrors();
+<<<<<<< HEAD
 
             } else {
 
+=======
+            } else {
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
                 if (isset($this->_arrParam['form']['check'])) {
                     setcookie('remember', serialize(['user' => $this->_model->execute($queryUserName, true)]), time() + TIME_LOGIN);
                 } else {
 
+<<<<<<< HEAD
                     setcookie('remember', serialize(['user' => $this->_model->execute($queryUserName, true)]), false);
+=======
+                    setcookie('remember', serialize(['user' => $this->_model->execute($queryUserName), true]), false);
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
                 }
 
                 URL::redirect('admin', 'index', 'index');

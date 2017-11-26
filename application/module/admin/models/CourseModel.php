@@ -26,6 +26,7 @@ class CourseModel extends Model
         return $this->execute($query, 1);
     }
 
+<<<<<<< HEAD
     public function chageStatus($param, $type = 1, $task = '')
     {
         if ($task == "change-status") {
@@ -45,14 +46,33 @@ class CourseModel extends Model
             );
             return $result;
         }
+=======
+    public function chageStatus($param)
+    {
+        $status = ($param['status'] == 0) ? 1 : 0;
+        $id = $param['id'];
+        $query = "UPDATE `" . DB_TBCOURSE . "` SET `status` = '$status' WHERE `id` = '" . $id . "'";
+
+        $this->execute($query);
+
+        $result = array(
+            'id' => $id,
+            'status' => $status,
+            'link' => URL::createLink('admin', 'course', 'ajaxStatus', array('id' => $id, 'status' => $status))
+        );
+        return $result;
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
     }
 
     public function insertCourse($data)
     {
         $image = $data['image'];
         $data['image'] = $data['name'] . '.' . Helper::cutCharacter($image['type'], '/', 1);
+<<<<<<< HEAD
         $data['created'] = date("Y-m-d H:i:s");
         $data['created_by'] = unserialize($_COOKIE['remember'])['user'][0]['username'];
+=======
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
         $this->insert(DB_TBCOURSE, $data);
         $nameImage = TEMPLATE_PATH . "/admin/main/images/" . $data['image'];
         move_uploaded_file($image['tmp_name'], $nameImage);
@@ -60,6 +80,7 @@ class CourseModel extends Model
         $this->insertVideo($data['link'], $this->execute($query, 1)[0]['id']);
     }
 
+<<<<<<< HEAD
     public function updateCourse($data, $file)
     {
 
@@ -85,12 +106,18 @@ class CourseModel extends Model
             $this->insertVideo($data['link'], $id);
         }
     }
+=======
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
 
     public function insertVideo($link, $id)
     {
         $data = $this->getVideo($link);
         foreach ($data as $value) {
+<<<<<<< HEAD
             $val['link'] = $value['id'];
+=======
+            $val['nameID'] = $value['id'];
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
             $val['course_id'] = $id;
             $val['title'] = $value['title'];
             $val['thumbnails'] = $value['thumbnails'];
@@ -98,12 +125,15 @@ class CourseModel extends Model
         }
     }
 
+<<<<<<< HEAD
     public function deleteVideo($where)
     {
         $newWhere = $this->createWhereDeleteSQL($where);
         $query = "DELETE FROM `" . DB_TBVIDEO . "` WHERE `course_id` IN ($newWhere)";
         $this->execute($query);
     }
+=======
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
 
     public function createURL($arrURL)
     {
@@ -228,6 +258,7 @@ class CourseModel extends Model
         print_r($items);
         echo "</pre>";
     }
+<<<<<<< HEAD
 
     public function deleteItem($param)
     {
@@ -238,5 +269,7 @@ class CourseModel extends Model
             $this->execute($query);
         }
     }
+=======
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
 }
 

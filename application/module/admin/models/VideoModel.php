@@ -7,6 +7,7 @@ class VideoModel extends Model
         parent::__construct();
     }
 
+<<<<<<< HEAD
     public function showVideo($course_id)
     {
         $query[] = "SELECT v.id, v.link, v.title,v.status,v.ordering , v.thumbnails, c.name as courseName";
@@ -35,4 +36,6 @@ class VideoModel extends Model
             return $result;
         }
     }
+=======
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
 }

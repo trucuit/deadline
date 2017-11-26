@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 $listCourse = empty($this->listCourse) ? [] : $this->listCourse;
 $infoItem = empty($this->infoItem) ? ['name' => '', 'category_id' => 0, 'link' => ''] : $this->infoItem;
 $course_id = isset($infoItem ['course_id']) ? $infoItem['course_id'] : 0;
@@ -38,3 +39,11 @@ $selectBox = Helper::cmsSelecbox($listCourse, 'course_id', 'form-control', $cour
 
 <!-- /.box-footer -->
 </div>
+=======
+/**
+ * Created by PhpStorm.
+ * User: USER
+ * Date: 11/26/2017
+ * Time: 12:03 PM
+ */
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5

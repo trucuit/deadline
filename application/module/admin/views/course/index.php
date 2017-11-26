@@ -3,8 +3,13 @@ $listCourse = empty($this->listCourse) ? [] : $this->listCourse;
 $url = array(
     'course' => [
         'add' => URL::createLink('admin', 'course', 'addAjax'),
+<<<<<<< HEAD
         'active' => URL::createLink('admin', 'course', 'status', ['type' => 1]),
         'inactive' => URL::createLink('admin', 'course', 'status', ['type' => 0]),
+=======
+        'active' => URL::createLink('admin', 'course', 'active'),
+        'inactive' => URL::createLink('admin', 'course', 'inactive'),
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
         'delete' => URL::createLink('admin', 'course', 'delete'),
     ]
 );
@@ -33,6 +38,7 @@ $url = array(
                         >
                             <i class="fa fa-plus-square-o"></i> Add
                         </button>
+<<<<<<< HEAD
                         <button class="btn btn-app"
                                 onclick="javascript:submitForm('<?php echo $url['course']['active'] ?>')"
                         >
@@ -46,6 +52,15 @@ $url = array(
                         <button class="btn btn-app"
                                 onclick="javascript:submitForm('<?php echo $url['course']['delete'] ?>')"
                         >
+=======
+                        <button class="btn btn-app">
+                            <i class="fa fa-check-circle-o"></i> Active
+                        </button>
+                        <button class="btn btn-app">
+                            <i class="fa fa-circle-o"></i> Inactive
+                        </button>
+                        <button class="btn btn-app">
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
                             <i class="fa fa-minus-square-o"></i> delete
                         </button>
                     </div>
@@ -62,6 +77,10 @@ $url = array(
                                                 <th><input type="checkbox" name="checkall-toggle"></th>
                                                 <th class="sorting">Name</th>
                                                 <th>Image</th>
+<<<<<<< HEAD
+=======
+                                                <th class="sorting">Link</th>
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
                                                 <th class="sorting">Total Video</th>
                                                 <th class="sorting">Category</th>
                                                 <th class="sorting">Created</th>
@@ -75,14 +94,20 @@ $url = array(
                                             <tbody>
                                             <?php
                                             foreach ($listCourse as $key => $value) {
+<<<<<<< HEAD
                                                 $urlEdit = URL::createLink('admin', 'course', 'ajaxEdit', ['id' => $value['id']]);
                                                 $urlDelete = URL::createLink('admin', 'course', 'delete', ['id' => $value['id']])
+=======
+                                                $urlEdit = URL::createLink('admin', 'category', 'ajaxEditCategory', ['id' => $value['id']]);
+                                                $urlDelete = URL::createLink('admin', 'category', 'delete', ['id' => $value['id']])
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
                                                 ?>
                                                 <tr role="row" class="odd">
                                                     <td>
                                                         <input type="checkbox" name="cid[]"
                                                                value="<?php echo $value['id'] ?>">
                                                     </td>
+<<<<<<< HEAD
                                                     <td class="sorting_1">
                                                         <a href="#"
                                                            data-toggle="modal" data-target="#modal-edit"
@@ -98,6 +123,14 @@ $url = array(
                                                                  alt="" height="40px">
                                                         </a>
                                                     </td>
+=======
+                                                    <td class="sorting_1"><?php echo $value['name'] ?></td>
+                                                    <td>
+                                                        <img src="<?php echo $this->_dirImg . "/" . $value['image'] ?>"
+                                                             alt="" height="40px">
+                                                    </td>
+                                                    <td><?php echo $value['link'] ?></td>
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
                                                     <td><?php echo $value['total_video'] ?></td>
                                                     <td><?php echo $value['category'] ?></td>
                                                     <td><?php echo $value['created'] ?></td>
@@ -110,7 +143,11 @@ $url = array(
                                                             $gly_val = 'ok';
                                                         else
                                                             $gly_val = 'remove';
+<<<<<<< HEAD
                                                         $onclick = URL::createLink('admin', 'course', 'ajaxStatus', ['id' => $value['id'], 'status' => $value['status']]);
+=======
+                                                        $onclick = URL::createLink('admin', 'category', 'ajaxStatus', ['id' => $value['id'], 'status' => $value['status']]);
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
                                                         echo '<span class="glyphicon glyphicon-' . $gly_val . '" onclick="javascript:ajaxStatus(\'' . $onclick . '\')" id="status-' . $value['id'] . '"></span>';
                                                         ?>
                                                     </td>
@@ -137,7 +174,11 @@ $url = array(
 </div>
 
 <!-- Modal -->
+<<<<<<< HEAD
 <form class="form-horizontal form-add-course" action="#" method="post" enctype="multipart/form-data" id="form-add">
+=======
+<form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" id="form-add">
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
     <div class="modal fade" id="modal-add">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -156,6 +197,7 @@ $url = array(
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
         <div id="xoay">
             <div id="loader" style="display: none"></div>
         </div>
@@ -186,3 +228,9 @@ $url = array(
     </div>
 </form>
 <!-- /.Modal -->
+=======
+    </div>
+</form>
+
+<!-- /.Modal -->
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5

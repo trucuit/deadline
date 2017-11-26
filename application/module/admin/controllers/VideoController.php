@@ -13,6 +13,7 @@ class VideoController extends Controller
 
     public function indexAction()
     {
+<<<<<<< HEAD
         $course_id = isset($this->_arrParam['id']) ? (int)$this->_arrParam['id'] : 0;
         $this->_view->listItem = $this->_model->showVideo($course_id);
         $this->_view->render('video/index');
@@ -110,4 +111,10 @@ class VideoController extends Controller
         $this->_model->deleteItem($this->_arrParam['cid']);
         URL::redirect('admin', 'video', 'index',['id'=>$this->_arrParam['id']]);
     }
+=======
+        $this->_view->render('course/index');
+    }
+
+
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
 }

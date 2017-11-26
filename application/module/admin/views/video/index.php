@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 $listItem = empty($this->listItem) ? [] : $this->listItem;
 $url = array(
     'video' => [
@@ -177,3 +178,11 @@ $url = array(
     </div>
 </form>
 <!-- /.Modal -->
+=======
+/**
+ * Created by PhpStorm.
+ * User: USER
+ * Date: 11/25/2017
+ * Time: 11:22 PM
+ */
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5

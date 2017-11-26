@@ -30,7 +30,10 @@
     animation: spin 2s linear infinite;
     margin: auto;
     margin-bottom: 30px;
+<<<<<<< HEAD
     margin: 155px auto;
+=======
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
 }
 
 @-webkit-keyframes spin {

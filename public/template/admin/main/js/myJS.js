@@ -1,8 +1,16 @@
 $(function () {
+<<<<<<< HEAD
     // add form file ajax course
     $('.form-add-course .submit-form').click(function (event) {
         event.preventDefault();
         id = this.id;
+=======
+
+    // add form file ajax course
+    $('#form-add .submit-form').click(function (event) {
+        event.preventDefault();
+
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
         name = $('#modal-add input[name="name"]').val();
         link = $('#modal-add input[name="link"]').val();
         category_id = $('#modal-add select[name="category_id"]').val();
@@ -22,6 +30,7 @@ $(function () {
             beforeSend: function () {
                 $('.alert-course').hide();
                 $("#loader").show();
+<<<<<<< HEAD
                 $("#xoay").addClass('xoay');
 
             },
@@ -111,10 +120,24 @@ $(function () {
                         location.reload();
                     }
                 }
+=======
+            },
+            success: function (data, status) {
+                $("#loader").hide();
+                $('#modal-add .modal-body').html(data);
+            },
+            complete: function () {
+                // ele = this;
+                // id = $(ele).attr('id');
+                // if (id = "save-close") {
+                //     location.reload();
+                // }
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
             }
         });
     });
 
+<<<<<<< HEAD
     // edit form ajax video
     $('.form-edit-video .submit-form').click(function (event) {
         event.preventDefault();
@@ -146,6 +169,23 @@ $(function () {
                     if ($("#form-add .alert-success").length)
                         location.reload();
                 }
+=======
+    // submit form  ajax
+    $('.course .submit-form').click(function (event) {
+        event.preventDefault();
+        dataForm = {
+            'name': $('.edit-modal input[name="name"]').val(),
+            'link': $('.edit-modal input[name="link"]').val(),
+            'category_id': $('.edit-modal select[name="category_id"]').val(),
+            'id': $('.edit-modal input[name="id"]').val(),
+        }
+        $.ajax({
+            type: "POST",
+            url: "index.php?module=admin&controller=course&action=ajaxEditCourse",
+            data: {form: dataForm, id: dataForm['id']}, // serializes the form's elements.
+            success: function (data) {
+                $('#modal-category-edit .modal-body').html(data);
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
             }
         });
     });
@@ -154,16 +194,27 @@ $(function () {
         location.reload();
     })
 
+<<<<<<< HEAD
     // check All
     $('input[name=checkall-toggle]').change(function () {
         var checkStatus = this.checked;
         $('#adminForm').find(':checkbox').each(function () {
             this.checked = checkStatus;
             console.log(this.value);
+=======
+
+    // check All
+    $('input[name=checkall-toggle]').change(function () {
+        var checkStatus = this.checked;
+        console.log(checkStatus);
+        $('#adminForm').find(':checkbox').each(function () {
+            this.checked = checkStatus;
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
         });
     })
 })
 
+<<<<<<< HEAD
 //submit Form
 function submitForm(url) {
     $('#adminForm').attr('action', url);
@@ -184,12 +235,19 @@ function getUrlVar(key) {
 // change Status
 function ajaxStatus(url) {
     console.log(url);
+=======
+// change Status
+function ajaxStatus(url) {
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
     $.ajax({
         url: url,
         type: "GET",
         dataType: "json",
         success: function (data) {
+<<<<<<< HEAD
             console.log(data);
+=======
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
             var element = ".content span#status-" + data['id'];
             if (data['status'] == 0) {
                 $(element).attr({
@@ -208,7 +266,11 @@ function ajaxStatus(url) {
 
 }
 
+<<<<<<< HEAD
 // xem hình ảnh trước khi submit
+=======
+// send File Ajax
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -224,12 +286,20 @@ function readURL(input) {
 function ajaxEdit(url) {
     console.log(url);
     $.get(url, function (data) {
+<<<<<<< HEAD
         $('#modal-edit .modal-body').html(data);
+=======
+        $('#modal-category-edit .modal-body').html(data);
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
     })
 }
 
 //ajaxAdd
 function ajaxAdd(url) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1dab6ebfd7dcfbf8c36a164d56696b10e4ff86f5
     $.get(url, function (data) {
         $('#modal-add .modal-body').html(data);
     })
