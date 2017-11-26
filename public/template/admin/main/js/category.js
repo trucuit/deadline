@@ -87,22 +87,12 @@ $(function () {
         });
     });
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 581958087cb608a3178d3dd2cf853f940a56e34b
     // submit new form fiel ajax
     $('#form-add .submit-add').click(function (event) {
         event.preventDefault();
         var dataForm = {
             'name': $('#form-add input[name="name"]').val(),
-<<<<<<< HEAD
             'status': $('#form-add select[name="status"]').val()
-=======
-            'status': $('#form-add select[name="status"]').val(),
->>>>>>> 581958087cb608a3178d3dd2cf853f940a56e34b
-
-
         }
         $.ajax({
             type: "POST",
@@ -201,7 +191,6 @@ function ajaxAdd(url) {
     $.get(url, function (data) {
         $('#modal-add .modal-body').html(data);
     })
-<<<<<<< HEAD
 
 
 }
@@ -214,10 +203,8 @@ function ajaxAdd(url) {
 //     })
 //
 // }
-=======
 
 
-}
 //ajaxActive
 function ajaxActive(url) {
     console.log(url);
@@ -227,7 +214,6 @@ function ajaxActive(url) {
     })
 
 }
->>>>>>> 581958087cb608a3178d3dd2cf853f940a56e34b
 // /.ajaxEdit
 function ajaxEdit(url) {
     console.log(url);
