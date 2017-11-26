@@ -126,7 +126,7 @@ $url = array(
     <!-- /.content -->
 </div>
 
-
+ 
 <!-- Modal add -->
 <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" id="form-add">
     <div class="modal fade" id="modal-add">
