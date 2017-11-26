@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/deadline.iml" filepath="$PROJECT_DIR$/.idea/deadline.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../php/.idea/php.iml" filepath="$PROJECT_DIR$/../php/.idea/php.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../zendtube-backend/.idea/zendtube-backend.iml" filepath="$PROJECT_DIR$/../zendtube-backend/.idea/zendtube-backend.iml" />
+    </modules>
+  </component>
+</project>
