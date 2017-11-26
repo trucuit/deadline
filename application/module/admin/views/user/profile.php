@@ -1,5 +1,6 @@
 <?php
 $userInfo = Session::get('login')['user'];
+print_r($_SESSION);
 ?>
 
 <div class="content-wrapper" style="min-height: 1125.8px;" id="profile">
@@ -28,14 +29,14 @@ $userInfo = Session::get('login')['user'];
                              src="<?php echo $dirAdminLTE ?>/dist/img/user4-128x128.jpg"
                              alt="User profile picture">
 
-                        <h3 class="profile-username text-center"><?php echo $userInfo['fullname'] ?></h3>
+                        <h3 class="profile-username text-center"><?php  ?></h3>
 
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
-                                <b>Username</b> <a class="pull-right"><?php echo $userInfo['username'] ?></a>
+                                <b>Username</b> <a class="pull-right"><?php ?></a>
                             </li>
                             <li class="list-group-item">
-                                <b>Email</b> <a class="pull-right"><?php echo $userInfo['email'] ?></a>
+                                <b>Email</b> <a class="pull-right"><?php ?></a>
                             </li>
                         </ul>
                     </div>

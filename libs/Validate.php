@@ -19,6 +19,7 @@ class Validate
     public function __construct($source)
     {
         $this->source = $source;
+
     }
 
     // Add rules
@@ -58,6 +59,10 @@ class Validate
     }
 
     // Run
+
+    /**
+     *
+     */
     public function run()
     {
         foreach ($this->rules as $element => $value) {

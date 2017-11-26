@@ -8,10 +8,10 @@ define('APPLICATION_PATH', ROOT_PATH . DS . 'application'); // Định nghĩa đ
 define('MODULE_PATH', APPLICATION_PATH . DS . 'module'); // Định nghĩa đường dẫn đến thư mục module
 define('TEMPLATE_PATH', PUBLIC_PATH . DS . 'template'); // Định nghĩa đường dẫn đến thư mục template
 
-define('ROOT_URL', '/deadline');
-define('APPLICATION_URL', ROOT_URL . DS . 'application');
-define('PUBLIC_URL', ROOT_URL . DS . 'public');
-define('TEMPLATE_URL', PUBLIC_URL . DS . 'template');
+define('ROOT_URL', '/do-an/deadline');
+define('APPLICATION_URL', ROOT_URL .DS. 'application');
+define('PUBLIC_URL', ROOT_URL .DS. 'public');
+define('TEMPLATE_URL', PUBLIC_URL .DS. 'template');
 
 define('DEFAULT_MODULE', 'admin');
 define('DEFAULT_CONTROLLER', 'index');
