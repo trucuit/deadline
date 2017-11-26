@@ -7,7 +7,7 @@ $url = array(
         'active' => URL::createLink('admin', 'category', 'ajaxActive'),
         'inactive' => URL::createLink('admin', 'category', 'ajaxInactive'),
         'delete' => URL::createLink('admin', 'category', 'ajaxDelete'),
-        'edit'=>URL::createLink('admin','category','ajaxEditCategory')
+        'edit' => URL::createLink('admin', 'category', 'ajaxEditCategory')
     ]
 );
 ?>
@@ -85,7 +85,12 @@ $url = array(
                                                 <tr role="row" class="odd">
                                                     <td><input type="checkbox" name="cid[]"
                                                                value="<?php echo $value['id'] ?>"></td>
-                                                    <td class="sorting_1"><a href="#" value="<?php echo $value['id'] ?>" class="name-edit" onclick="ajaxEdit('<?php echo $url['category']['edit']?>')" data-toggle="modal" data-target="#modal-category-edit" ><?php echo $value['name'] ?></a></td>
+                                                    <td class="sorting_1"><a href="#" value="<?php echo $value['id'] ?>"
+                                                                             class="name-edit"
+                                                                             onclick="ajaxEdit('<?php echo $url['category']['edit'] ?>')"
+                                                                             data-toggle="modal"
+                                                                             data-target="#modal-category-edit"><?php echo $value['name'] ?></a>
+                                                    </td>
                                                     <td><?php echo $value['created'] ?></td>
                                                     <td><?php echo $value['created_by'] ?></td>
                                                     <td><?php echo $value['modified'] ?></td>
@@ -166,7 +171,7 @@ $url = array(
 
                 </div>
                 <div class="box-footer">
-                    <button type="submit" class="btn pull-right btn-primary submit-edit">Save </button>
+                    <button type="submit" class="btn pull-right btn-primary submit-edit">Save</button>
                     <button class="btn btn-default" data-dismiss="modal">Hủy</button>
                 </div>
                 <!-- /.box-footer -->

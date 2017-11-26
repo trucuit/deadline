@@ -2,24 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="411d6198-aff6-455f-bf3c-64771bbc14b5" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/template/admin/main/images/Angular JS.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/template/admin/main/images/php.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/template/admin/main/images/reactjs.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/module/admin/controllers/CourseController.php" afterPath="$PROJECT_DIR$/application/module/admin/controllers/CourseController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/module/admin/controllers/UserController.php" afterPath="$PROJECT_DIR$/application/module/admin/controllers/UserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/module/admin/controllers/VideoController.php" afterPath="$PROJECT_DIR$/application/module/admin/controllers/VideoController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/module/admin/models/CourseModel.php" afterPath="$PROJECT_DIR$/application/module/admin/models/CourseModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/module/admin/models/VideoModel.php" afterPath="$PROJECT_DIR$/application/module/admin/models/VideoModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/module/admin/views/course/add.php" afterPath="$PROJECT_DIR$/application/module/admin/views/course/add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/module/admin/views/course/editCourse.php" afterPath="$PROJECT_DIR$/application/module/admin/views/course/editCourse.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/module/admin/views/course/index.php" afterPath="$PROJECT_DIR$/application/module/admin/views/course/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/module/admin/views/video/add.php" afterPath="$PROJECT_DIR$/application/module/admin/views/video/add.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/module/admin/views/video/editVideo.php" afterPath="$PROJECT_DIR$/application/module/admin/views/video/editVideo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/module/admin/views/video/index.php" afterPath="$PROJECT_DIR$/application/module/admin/views/video/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/template/admin/main/css/myCSS.css" afterPath="$PROJECT_DIR$/public/template/admin/main/css/myCSS.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/template/admin/main/html/mainSidebar.php" afterPath="$PROJECT_DIR$/public/template/admin/main/html/mainSidebar.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/template/admin/main/js/myJS.js" afterPath="$PROJECT_DIR$/public/template/admin/main/js/myJS.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/module/admin/controllers/CategoryController.php" afterPath="$PROJECT_DIR$/application/module/admin/controllers/CategoryController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/module/admin/views/category/edit.php" afterPath="$PROJECT_DIR$/application/module/admin/views/category/edit.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/module/admin/views/category/index.php" afterPath="$PROJECT_DIR$/application/module/admin/views/category/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/template/admin/main/js/category.js" afterPath="$PROJECT_DIR$/public/template/admin/main/js/category.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,89 +27,106 @@
     <favorites_list name="deadline" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="myJS.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/public/template/admin/main/js/myJS.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="880">
-                  <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#3025#4092#0" expanded="false" />
-                    <element signature="e#5120#5154#0" expanded="false" />
-                    <element signature="e#5230#5427#0" expanded="false" />
-                    <element signature="n#!!block;n#submitForm#0" expanded="false" />
-                    <element signature="n#!!block;n#submitFormVideo#0" expanded="false" />
-                    <element signature="n#!!block;n#getUrlVar#0" expanded="false" />
-                    <element signature="n#!!block;n#ajaxStatus#0" expanded="false" />
-                    <element signature="n#!!block;n#readURL#0" expanded="false" />
-                    <element signature="n#!!block;n#ajaxEdit#0" expanded="false" />
-                    <element signature="n#!!block;n#ajaxAdd#0" expanded="false" />
-                    <element signature="e#7137#7192#0" expanded="false" />
-                    <element signature="n#!!block;n#ajaxDelete#0" expanded="false" />
-                    <element signature="e#7271#7322#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/application/module/admin/views/video/index.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="935">
-                  <caret line="179" column="0" lean-forward="true" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/application/module/admin/views/course/index.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="581">
-                  <caret line="185" column="36" lean-forward="true" selection-start-line="185" selection-start-column="36" selection-end-line="185" selection-end-column="36" />
-                  <folding>
-                    <element signature="n#div#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-                    <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
-                    <element signature="n#div#0;n#div#0;n#form#1;n#!!top" expanded="false" />
-                    <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#form#1;n#!!top" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="myJS.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/public/template/admin/main/js/myJS.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="375">
-                  <caret line="64" column="26" lean-forward="false" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="26" />
-                  <folding>
-                    <element signature="e#3025#4092#0" expanded="false" />
-                    <element signature="e#5120#5154#0" expanded="false" />
-                    <element signature="e#5230#5427#0" expanded="false" />
-                    <element signature="n#!!block;n#submitForm#0" expanded="false" />
-                    <element signature="n#!!block;n#submitFormVideo#0" expanded="false" />
-                    <element signature="n#!!block;n#getUrlVar#0" expanded="false" />
-                    <element signature="n#!!block;n#ajaxStatus#0" expanded="false" />
-                    <element signature="n#!!block;n#readURL#0" expanded="false" />
-                    <element signature="n#!!block;n#ajaxEdit#0" expanded="false" />
-                    <element signature="n#!!block;n#ajaxAdd#0" expanded="false" />
-                    <element signature="e#7137#7192#0" expanded="false" />
-                    <element signature="n#!!block;n#ajaxDelete#0" expanded="false" />
-                    <element signature="e#7271#7322#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="myJS.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/template/admin/main/js/myJS.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="139" column="6" lean-forward="true" selection-start-line="137" selection-start-column="4" selection-end-line="139" selection-end-column="6" />
+              <folding>
+                <element signature="n#!!block;n#submitForm#0" expanded="false" />
+                <element signature="n#!!block;n#submitFormVideo#0" expanded="false" />
+                <element signature="n#!!block;n#getUrlVar#0" expanded="false" />
+                <element signature="n#!!block;n#ajaxStatus#0" expanded="false" />
+                <element signature="n#!!block;n#readURL#0" expanded="false" />
+                <element signature="n#!!block;n#ajaxEdit#0" expanded="false" />
+                <element signature="n#!!block;n#ajaxAdd#0" expanded="false" />
+                <element signature="n#!!block;n#ajaxDelete#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="category.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/template/admin/main/js/category.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="22" column="63" lean-forward="true" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/module/admin/views/category/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="13" column="38" lean-forward="false" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/module/admin/views/category/edit.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="9" column="76" lean-forward="false" selection-start-line="9" selection-start-column="76" selection-end-line="9" selection-end-column="76" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/module/admin/controllers/CategoryController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="387">
+              <caret line="127" column="35" lean-forward="true" selection-start-line="127" selection-start-column="35" selection-end-line="127" selection-end-column="35" />
+              <folding>
+                <element signature="n#__construct#0;n#CategoryController#0;n#!!top" expanded="false" />
+                <element signature="n#indexAction#0;n#CategoryController#0;n#!!top" expanded="false" />
+                <element signature="n#ajaxAddAction#0;n#CategoryController#0;n#!!top" expanded="false" />
+                <element signature="e#583#1461#0#PHP" expanded="false" />
+                <element signature="e#987#1451#0#PHP" expanded="false" />
+                <element signature="e#1103#1451#0#PHP" expanded="false" />
+                <element signature="n#ajaxActiveAction#0;n#CategoryController#0;n#!!top" expanded="false" />
+                <element signature="e#1577#2143#0#PHP" expanded="false" />
+                <element signature="e#1694#1746#0#PHP" expanded="false" />
+                <element signature="e#1760#1991#0#PHP" expanded="false" />
+                <element signature="e#2004#2133#0#PHP" expanded="false" />
+                <element signature="n#ajaxInactiveAction#0;n#CategoryController#0;n#!!top" expanded="false" />
+                <element signature="e#2262#2827#0#PHP" expanded="false" />
+                <element signature="e#2379#2431#0#PHP" expanded="false" />
+                <element signature="e#2445#2676#0#PHP" expanded="false" />
+                <element signature="e#2689#2817#0#PHP" expanded="false" />
+                <element signature="n#ajaxDeleteAction#0;n#CategoryController#0;n#!!top" expanded="false" />
+                <element signature="e#2947#3521#0#PHP" expanded="false" />
+                <element signature="e#3057#3227#0#PHP" expanded="false" />
+                <element signature="e#3240#3369#0#PHP" expanded="false" />
+                <element signature="e#3382#3511#0#PHP" expanded="false" />
+                <element signature="n#ajaxStatusAction#0;n#CategoryController#0;n#!!top" expanded="false" />
+                <element signature="n#deleteAction#0;n#CategoryController#0;n#!!top" expanded="false" />
+                <marker date="1511724882518" expanded="true" signature="644:737" ph="SELECT * FRO... ${DB_TBCATEGORY}" />
+                <marker date="1511724882518" expanded="true" signature="1834:1913" ph="SELECT `name... ${DB_TBCATEGORY}" />
+                <marker date="1511724882518" expanded="true" signature="2519:2598" ph="SELECT `name... ${DB_TBCATEGORY}" />
+                <marker date="1511724882518" expanded="true" signature="3131:3210" ph="SELECT `name... ${DB_TBCATEGORY}" />
+                <marker date="1511724882518" expanded="true" signature="3829:3922" ph="SELECT * FRO... ${DB_TBCATEGORY}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="define.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/define.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="594">
+              <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -145,6 +148,8 @@
       <find>createURL</find>
       <find>insertVideo</find>
       <find>nameitl</find>
+      <find>name-edit</find>
+      <find>ajaxEditCategory</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -160,7 +165,6 @@
       <list>
         <option value="$PROJECT_DIR$/application/module/admin/views/category/editq.php" />
         <option value="$PROJECT_DIR$/application/module/admin/views/category/edit1.php" />
-        <option value="$PROJECT_DIR$/application/module/admin/views/category/edit.php" />
         <option value="$PROJECT_DIR$/application/module/admin/models/CategoryModel.php" />
         <option value="$PROJECT_DIR$/application/module/admin/views/course/01.php" />
         <option value="$PROJECT_DIR$/public/template/admin/main/css/category.css" />
@@ -174,7 +178,6 @@
         <option value="$PROJECT_DIR$/application/module/admin/controllers/IndexController.php" />
         <option value="$PROJECT_DIR$/application/module/admin/controllers/CourseController1.php" />
         <option value="$PROJECT_DIR$/application/module/admin/controllers/CategoryController1.php" />
-        <option value="$PROJECT_DIR$/application/module/admin/controllers/CategoryController.php" />
         <option value="$PROJECT_DIR$/application/module/admin/views/course/index1.php" />
         <option value="$PROJECT_DIR$/public/template/admin/main/category.ini" />
         <option value="$PROJECT_DIR$/public/template/admin/main/template.ini" />
@@ -182,10 +185,8 @@
         <option value="$PROJECT_DIR$/define.php" />
         <option value="$PROJECT_DIR$/../zendtube-backend/playlist.php" />
         <option value="$PROJECT_DIR$/public/template/admin/main/index.php" />
-        <option value="$PROJECT_DIR$/public/template/admin/main/js/category.js" />
         <option value="$PROJECT_DIR$/libs/Validate.php" />
         <option value="$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/views/toolbar.php" />
-        <option value="$PROJECT_DIR$/application/module/admin/views/category/index.php" />
         <option value="$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/models/CategoryModel.php" />
         <option value="$PROJECT_DIR$/libs/Model.php" />
         <option value="$PROJECT_DIR$/application/module/admin/controllers/UserController.php" />
@@ -202,6 +203,10 @@
         <option value="$PROJECT_DIR$/application/module/admin/models/VideoModel.php" />
         <option value="$PROJECT_DIR$/application/module/admin/controllers/VideoController.php" />
         <option value="$PROJECT_DIR$/public/template/admin/main/js/myJS.js" />
+        <option value="$PROJECT_DIR$/application/module/admin/views/category/index.php" />
+        <option value="$PROJECT_DIR$/application/module/admin/views/category/edit.php" />
+        <option value="$PROJECT_DIR$/application/module/admin/controllers/CategoryController.php" />
+        <option value="$PROJECT_DIR$/public/template/admin/main/js/category.js" />
       </list>
     </option>
   </component>
@@ -310,16 +315,7 @@
               <item name="module" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="course" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="deadline" type="b2602c69:ProjectViewProjectNode" />
-              <item name="deadline" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="module" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="video" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="category" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="deadline" type="b2602c69:ProjectViewProjectNode" />
@@ -465,11 +461,12 @@
       <workItem from="1511613319977" duration="5320000" />
       <workItem from="1511661810056" duration="13188000" />
       <workItem from="1511699485084" duration="5590000" />
+      <workItem from="1511724066186" duration="857000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97792000" />
+    <option name="totallyTimeSpent" value="98649000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -484,7 +481,7 @@
     <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.178125" sideWeight="0.4960894" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.178125" sideWeight="0.4960894" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -530,18 +527,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../php/cb-nc/cb_nc/oop/04.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/template/admin/main/category.ini">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -549,49 +539,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../zendtube-backend/libs/define.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../zendtube-backend/assets/js/npm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../zendtube-backend/video.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-88">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../zendtube-backend/assets/js/case-01.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../zendtube-backend/libs/my-func.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="10" column="19" lean-forward="false" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../zendtube-backend/playlist.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="783">
-          <caret line="26" column="7" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="7" />
-          <caret line="93" column="11" lean-forward="false" selection-start-line="93" selection-start-column="4" selection-end-line="93" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../zendtube-backend/libs/define.php" />
+    <entry file="file://$PROJECT_DIR$/../zendtube-backend/assets/js/npm.js" />
+    <entry file="file://$PROJECT_DIR$/../zendtube-backend/video.php" />
+    <entry file="file://$PROJECT_DIR$/../zendtube-backend/assets/js/case-01.js" />
+    <entry file="file://$PROJECT_DIR$/../zendtube-backend/libs/my-func.php" />
+    <entry file="file://$PROJECT_DIR$/../zendtube-backend/playlist.php" />
     <entry file="file://$PROJECT_DIR$/libs/Template.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="473">
@@ -615,34 +568,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/views/group/submenu/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="6" lean-forward="true" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/controllers/GroupController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/models/GroupModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="103" column="32" lean-forward="false" selection-start-line="103" selection-start-column="32" selection-end-line="103" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/views/group/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-13">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/views/group/submenu/index.php" />
+    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/controllers/GroupController.php" />
+    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/models/GroupModel.php" />
+    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/views/group/index.php" />
     <entry file="file://$PROJECT_DIR$/application/module/admin/views/category/add.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -666,14 +595,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/template/admin/main/js/category.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="814">
-          <caret line="49" column="7" lean-forward="true" selection-start-line="33" selection-start-column="3" selection-end-line="49" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/template/admin/main/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1183">
@@ -682,144 +603,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/public/template/admin/main/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/module/admin/views/category/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="36" column="32" lean-forward="false" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/libs/Model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2689">
-          <caret line="144" column="31" lean-forward="true" selection-start-line="144" selection-start-column="31" selection-end-line="144" selection-end-column="31" />
-          <folding>
-            <marker date="1511026892008" expanded="true" signature="1334:1414" ph="INSERT INTO `${$this-&gt;table}`... " />
-            <marker date="1511026892008" expanded="true" signature="1542:1622" ph="INSERT INTO `${$this-&gt;table}`... " />
-            <marker date="1511026892008" expanded="true" signature="2380:2428" ph="UPDATE `${$t... " />
-            <marker date="1511026892008" expanded="true" signature="3254:3306" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/public/template/admin/main/js/custom.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="17" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/views/category/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="35" column="77" lean-forward="false" selection-start-line="35" selection-start-column="68" selection-end-line="35" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/controllers/CategoryController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#__construct#0;n#CategoryController#0;n#!!top" expanded="false" />
-            <element signature="n#indexAction#0;n#CategoryController#0;n#!!top" expanded="false" />
-            <element signature="n#formAction#0;n#CategoryController#0;n#!!top" expanded="false" />
-            <element signature="e#1034#1283#0#PHP" expanded="false" />
-            <element signature="e#1289#2350#0#PHP" expanded="false" />
-            <element signature="e#1395#1532#0#PHP" expanded="false" />
-            <element signature="e#1395#1603#0#PHP" expanded="false" />
-            <element signature="e#1395#1720#0#PHP" expanded="false" />
-            <element signature="e#1800#2346#0#PHP" expanded="false" />
-            <element signature="e#1891#2346#0#PHP" expanded="false" />
-            <element signature="n#ajaxStatusAction#0;n#CategoryController#0;n#!!top" expanded="false" />
-            <element signature="n#statusAction#0;n#CategoryController#0;n#!!top" expanded="false" />
-            <element signature="n#trashAction#0;n#CategoryController#0;n#!!top" expanded="false" />
-            <element signature="n#orderingAction#0;n#CategoryController#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/models/CategoryModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="193" column="3" lean-forward="false" selection-start-line="193" selection-start-column="3" selection-end-line="193" selection-end-column="3" />
-          <folding>
-            <element signature="n#__construct#0;n#CategoryModel#0;n#!!top" expanded="false" />
-            <element signature="n#countItem#0;n#CategoryModel#0;n#!!top" expanded="false" />
-            <element signature="e#567#708#0#PHP" expanded="false" />
-            <element signature="e#734#884#0#PHP" expanded="false" />
-            <element signature="n#listItem#0;n#CategoryModel#0;n#!!top" expanded="false" />
-            <element signature="e#1260#1401#0#PHP" expanded="false" />
-            <element signature="e#1428#1579#0#PHP" expanded="false" />
-            <element signature="e#1595#1862#0#PHP" expanded="false" />
-            <element signature="e#1817#1862#0#PHP" expanded="false" />
-            <element signature="e#1986#2136#0#PHP" expanded="false" />
-            <element signature="e#2293#2895#0#PHP" expanded="false" />
-            <element signature="e#2692#2870#0#PHP" expanded="false" />
-            <element signature="e#2901#3603#0#PHP" expanded="false" />
-            <element signature="e#3065#3599#0#PHP" expanded="false" />
-            <element signature="e#3465#3599#0#PHP" expanded="false" />
-            <element signature="n#deleteItem#0;n#CategoryModel#0;n#!!top" expanded="false" />
-            <element signature="e#3667#4547#0#PHP" expanded="false" />
-            <element signature="e#3691#4543#0#PHP" expanded="false" />
-            <element signature="e#4024#4169#0#PHP" expanded="false" />
-            <element signature="e#4425#4543#0#PHP" expanded="false" />
-            <element signature="n#infoItem#0;n#CategoryModel#0;n#!!top" expanded="false" />
-            <element signature="e#4609#4889#0#PHP" expanded="false" />
-            <element signature="n#saveItem#0;n#CategoryModel#0;n#!!top" expanded="false" />
-            <element signature="e#5031#5522#0#PHP" expanded="false" />
-            <element signature="e#5525#6358#0#PHP" expanded="false" />
-            <element signature="e#5688#6063#0#PHP" expanded="false" />
-            <element signature="e#5781#6063#0#PHP" expanded="false" />
-            <element signature="n#ordering#0;n#CategoryModel#0;n#!!top" expanded="false" />
-            <element signature="e#6420#6953#0#PHP" expanded="false" />
-            <element signature="e#6444#6949#0#PHP" expanded="false" />
-            <element signature="e#6581#6825#0#PHP" expanded="false" />
-            <marker date="1511700738376" expanded="false" signature="2516:2645" ph="UPDATE `${$t... " />
-            <marker date="1511700738376" expanded="false" signature="3169:3292" ph="UPDATE `${$t... " />
-            <marker date="1511700738376" expanded="false" signature="3820:3893" ph="SELECT `id`,... ${$this-&gt;table}" />
-            <marker date="1511700738376" expanded="false" signature="4216:4263" ph="DELETE FROM " />
-            <marker date="1511700738376" expanded="false" signature="6656:6790" ph="UPDATE `${$t... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/define.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="29" column="18" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/views/toolbar.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="15" lean-forward="false" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/libs/Helper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="79" lean-forward="false" selection-start-line="12" selection-start-column="69" selection-end-line="12" selection-end-column="79" />
-          <folding>
-            <marker date="1511028232124" expanded="true" signature="2039:2276" ph="..." />
-            <marker date="1511028232124" expanded="true" signature="2178:2264" ph="..." />
-            <marker date="1511028232124" expanded="true" signature="2191:2251" ph="..." />
-            <marker date="1511028232124" expanded="true" signature="3523:3529" ph=" " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/public/template/admin/main/index.php" />
+    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/libs/Model.php" />
+    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/public/template/admin/main/js/custom.js" />
+    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/views/category/index.php" />
+    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/controllers/CategoryController.php" />
+    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/models/CategoryModel.php" />
+    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/application/module/admin/views/toolbar.php" />
+    <entry file="file://$PROJECT_DIR$/../php/learn/ch1104category/bookstore/libs/Helper.php" />
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -828,22 +619,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/module/admin/controllers/CategoryController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1135">
-          <caret line="16" column="47" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="16" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/module/admin/controllers/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="13" column="33" lean-forward="true" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
-          <folding>
-            <marker date="1511707375160" expanded="true" signature="541:712" ph="SELECT id,us... user" />
-            <marker date="1511707375160" expanded="true" signature="2318:2568" ph="UPDATE `user... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -875,11 +655,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1511424319526" expanded="true" signature="1112:1147" ph="INSERT INTO `${DB_TBCATEGORY}`... " />
-            <marker date="1511424319526" expanded="true" signature="2092:2216" ph="UPDATE `cate... " />
-            <marker date="1511424319526" expanded="true" signature="2517:2561" ph="SELECT `id` ${$table}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -901,7 +677,6 @@
             <element signature="e#2465#2677#0#PHP" expanded="false" />
             <element signature="n#ajaxStatusAction#0;n#CourseController#0;n#!!top" expanded="false" />
             <element signature="n#ajaxEditAction#0;n#CourseController#0;n#!!top" expanded="false" />
-            <element signature="e#3264#5482#0#PHP" expanded="false" />
             <element signature="e#3403#3525#0#PHP" expanded="false" />
             <element signature="e#3538#3633#0#PHP" expanded="false" />
             <element signature="e#3691#4806#0#PHP" expanded="false" />
@@ -910,22 +685,8 @@
             <element signature="e#4105#4410#0#PHP" expanded="false" />
             <element signature="e#4431#4567#0#PHP" expanded="false" />
             <element signature="e#4588#4774#0#PHP" expanded="false" />
-            <element signature="e#5010#5472#0#PHP" expanded="false" />
-            <element signature="e#5125#5472#0#PHP" expanded="false" />
             <element signature="n#statusAction#0;n#CourseController#0;n#!!top" expanded="false" />
             <element signature="n#ajaxEditCourseAction#0;n#CourseController#0;n#!!top" expanded="false" />
-            <element signature="e#5892#7280#0#PHP" expanded="false" />
-            <element signature="e#6423#6693#0#PHP" expanded="false" />
-            <element signature="e#6423#6761#0#PHP" expanded="false" />
-            <element signature="e#6868#7270#0#PHP" expanded="false" />
-            <element signature="e#6983#7270#0#PHP" expanded="false" />
-            <marker date="1511708045112" expanded="false" signature="91:244" ph="{...}" />
-            <marker date="1511708045112" expanded="false" signature="895:986" ph="SELECT * FRO... ${DB_TBCOURSE}" />
-            <marker date="1511708045112" expanded="false" signature="1015:1106" ph="SELECT * FRO... ${DB_TBCOURSE}" />
-            <marker date="1511708045112" expanded="false" signature="3826:3898" ph="SELECT * FRO... ${DB_TBCOURSE}" />
-            <marker date="1511708045112" expanded="false" signature="4152:4224" ph="SELECT * FRO... ${DB_TBCOURSE}" />
-            <marker date="1511708045112" expanded="false" signature="6090:6234" ph="SELECT * FRO... ${DB_TBCOURSE}" />
-            <marker date="1511708045112" expanded="false" signature="6263:6407" ph="SELECT * FRO... ${DB_TBCOURSE}" />
           </folding>
         </state>
       </provider>
@@ -934,12 +695,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="973">
           <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#label#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#i#0;n#label#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#i#0;n#span#0;n#div#0;n#div#3;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#i#0;n#label#0;n#div#4;n#div#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -947,16 +703,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#label#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#label#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#label#0;n#div#3;n#div#0;n#!!top" expanded="true" />
-            <marker date="1511709490243" expanded="true" signature="380:779" ph="..." />
-            <marker date="1511709490243" expanded="true" signature="528:779" ph="..." />
-            <marker date="1511709490243" expanded="false" signature="590:600" ph="..." />
-            <marker date="1511709490243" expanded="true" signature="646:779" ph="..." />
-            <marker date="1511709490243" expanded="true" signature="736:779" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -964,7 +711,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -972,10 +718,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="599">
           <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-          <folding>
-            <marker date="1511710515034" expanded="true" signature="19:208" ph="..." />
-            <marker date="1511710515034" expanded="true" signature="302:347" ph="SELECT `id`,... ${DB_TBCOURSE}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -983,11 +726,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
           <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#label#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#i#0;n#label#0;n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#i#0;n#label#0;n#div#2;n#div#0;n#!!top" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -995,11 +734,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
           <caret line="1" column="44" lean-forward="false" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#label#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#i#0;n#label#0;n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#i#0;n#label#0;n#div#2;n#div#0;n#!!top" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1019,11 +754,6 @@
             <element signature="n#createURL#0;n#CourseModel#0;n#!!top" expanded="false" />
             <element signature="n#createSlug#0;n#CourseModel#0;n#!!top" expanded="false" />
             <element signature="n#getVideo#0;n#CourseModel#0;n#!!top" expanded="false" />
-            <marker date="1511708685968" expanded="false" signature="151:326" ph="{...}" />
-            <marker date="1511708685968" expanded="true" signature="2505:2572" ph="SELECT `id` ${DB_TBCOURSE}" />
-            <marker date="1511708685968" expanded="true" signature="4203:4268" ph="DELETE FROM " />
-            <marker date="1511708685968" expanded="true" signature="7722:7735" ph="DELETE FROM " />
-            <marker date="1511708685968" expanded="true" signature="7722:7783" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
@@ -1046,26 +776,11 @@
             <element signature="e#521#633#0#PHP" expanded="false" />
             <element signature="n#__destruct#0;n#Model#0;n#!!top" expanded="false" />
             <element signature="n#setTable#0;n#Model#0;n#!!top" expanded="false" />
-            <element signature="e#797#838#0#PHP" expanded="false" />
             <element signature="n#showAll#0;n#Model#0;n#!!top" expanded="false" />
             <element signature="n#show#0;n#Model#0;n#!!top" expanded="false" />
             <element signature="n#select#0;n#Model#0;n#!!top" expanded="false" />
             <element signature="n#isExist#0;n#Model#0;n#!!top" expanded="false" />
-            <element signature="e#3318#3481#0#PHP" expanded="false" />
-            <element signature="e#3490#3555#0#PHP" expanded="false" />
             <element signature="n#createInsertSQL#0;n#Model#0;n#!!top" expanded="false" />
-            <element signature="e#3711#3879#0#PHP" expanded="false" />
-            <element signature="e#3744#3869#0#PHP" expanded="false" />
-            <element signature="e#4079#4593#0#PHP" expanded="false" />
-            <element signature="e#4312#4593#0#PHP" expanded="false" />
-            <element signature="e#4331#4583#0#PHP" expanded="false" />
-            <element signature="e#4933#5019#0#PHP" expanded="false" />
-            <marker date="1511706980044" expanded="true" signature="1462:1504" ph="UPDATE `${$t... " />
-            <marker date="1511706980044" expanded="true" signature="2314:2336" ph="SELECT * FRO... ${$table}" />
-            <marker date="1511706980044" expanded="true" signature="2692:2722" ph="SELECT * FRO... ${$table}" />
-            <marker date="1511706980044" expanded="true" signature="4181:4263" ph="INSERT INTO `${$table}`... " />
-            <marker date="1511706980044" expanded="true" signature="4445:4527" ph="INSERT INTO `${$table}`... " />
-            <marker date="1511706980044" expanded="true" signature="4725:4771" ph="DELETE FROM " />
           </folding>
         </state>
       </provider>
@@ -1076,30 +791,39 @@
           <caret line="109" column="40" lean-forward="false" selection-start-line="109" selection-start-column="40" selection-end-line="109" selection-end-column="40" />
           <folding>
             <element signature="n#__construct#0;n#VideoController#0;n#!!top" expanded="false" />
-            <marker date="1511711054341" expanded="true" signature="984:1076" ph="SELECT * FRO... ${DB_TBVIDEO}" />
-            <marker date="1511711054341" expanded="true" signature="1105:1195" ph="SELECT * FRO... ${DB_TBVIDEO}" />
-            <marker date="1511711054341" expanded="true" signature="2824:2897" ph="SELECT * FRO... ${DB_TBVIDEO}" />
-            <marker date="1511711054341" expanded="true" signature="3152:3223" ph="SELECT * FRO... ${DB_TBVIDEO}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/module/admin/views/video/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="179" column="0" lean-forward="true" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+        <state relative-caret-position="3938">
+          <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/module/admin/views/course/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="829">
+          <caret line="183" column="14" lean-forward="true" selection-start-line="183" selection-start-column="14" selection-end-line="183" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/module/admin/views/category/edit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="76" lean-forward="false" selection-start-line="9" selection-start-column="76" selection-end-line="9" selection-end-column="76" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/template/admin/main/js/myJS.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="880">
-          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+        <state relative-caret-position="209">
+          <caret line="139" column="6" lean-forward="true" selection-start-line="137" selection-start-column="4" selection-end-line="139" selection-end-column="6" />
           <folding>
-            <element signature="e#3025#4092#0" expanded="false" />
-            <element signature="e#5120#5154#0" expanded="false" />
-            <element signature="e#5230#5427#0" expanded="false" />
             <element signature="n#!!block;n#submitForm#0" expanded="false" />
             <element signature="n#!!block;n#submitFormVideo#0" expanded="false" />
             <element signature="n#!!block;n#getUrlVar#0" expanded="false" />
@@ -1107,23 +831,69 @@
             <element signature="n#!!block;n#readURL#0" expanded="false" />
             <element signature="n#!!block;n#ajaxEdit#0" expanded="false" />
             <element signature="n#!!block;n#ajaxAdd#0" expanded="false" />
-            <element signature="e#7137#7192#0" expanded="false" />
             <element signature="n#!!block;n#ajaxDelete#0" expanded="false" />
-            <element signature="e#7271#7322#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/module/admin/views/course/index.php">
+    <entry file="file://$PROJECT_DIR$/application/module/admin/views/category/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="185" column="36" lean-forward="true" selection-start-line="185" selection-start-column="36" selection-end-line="185" selection-end-column="36" />
+        <state relative-caret-position="286">
+          <caret line="13" column="38" lean-forward="false" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/define.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="27" column="21" lean-forward="false" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/module/admin/controllers/CategoryController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="127" column="35" lean-forward="true" selection-start-line="127" selection-start-column="35" selection-end-line="127" selection-end-column="35" />
           <folding>
-            <element signature="n#div#0;n#div#0;n#form#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#0;n#form#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#form#1;n#!!top" expanded="true" />
+            <element signature="n#__construct#0;n#CategoryController#0;n#!!top" expanded="false" />
+            <element signature="n#indexAction#0;n#CategoryController#0;n#!!top" expanded="false" />
+            <element signature="n#ajaxAddAction#0;n#CategoryController#0;n#!!top" expanded="false" />
+            <element signature="e#583#1461#0#PHP" expanded="false" />
+            <element signature="e#987#1451#0#PHP" expanded="false" />
+            <element signature="e#1103#1451#0#PHP" expanded="false" />
+            <element signature="n#ajaxActiveAction#0;n#CategoryController#0;n#!!top" expanded="false" />
+            <element signature="e#1577#2143#0#PHP" expanded="false" />
+            <element signature="e#1694#1746#0#PHP" expanded="false" />
+            <element signature="e#1760#1991#0#PHP" expanded="false" />
+            <element signature="e#2004#2133#0#PHP" expanded="false" />
+            <element signature="n#ajaxInactiveAction#0;n#CategoryController#0;n#!!top" expanded="false" />
+            <element signature="e#2262#2827#0#PHP" expanded="false" />
+            <element signature="e#2379#2431#0#PHP" expanded="false" />
+            <element signature="e#2445#2676#0#PHP" expanded="false" />
+            <element signature="e#2689#2817#0#PHP" expanded="false" />
+            <element signature="n#ajaxDeleteAction#0;n#CategoryController#0;n#!!top" expanded="false" />
+            <element signature="e#2947#3521#0#PHP" expanded="false" />
+            <element signature="e#3057#3227#0#PHP" expanded="false" />
+            <element signature="e#3240#3369#0#PHP" expanded="false" />
+            <element signature="e#3382#3511#0#PHP" expanded="false" />
+            <element signature="n#ajaxStatusAction#0;n#CategoryController#0;n#!!top" expanded="false" />
+            <element signature="n#deleteAction#0;n#CategoryController#0;n#!!top" expanded="false" />
+            <marker date="1511724882518" expanded="true" signature="644:737" ph="SELECT * FRO... ${DB_TBCATEGORY}" />
+            <marker date="1511724882518" expanded="true" signature="1834:1913" ph="SELECT `name... ${DB_TBCATEGORY}" />
+            <marker date="1511724882518" expanded="true" signature="2519:2598" ph="SELECT `name... ${DB_TBCATEGORY}" />
+            <marker date="1511724882518" expanded="true" signature="3131:3210" ph="SELECT `name... ${DB_TBCATEGORY}" />
+            <marker date="1511724882518" expanded="true" signature="3829:3922" ph="SELECT * FRO... ${DB_TBCATEGORY}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/template/admin/main/js/category.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="22" column="63" lean-forward="true" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
+          <folding />
         </state>
       </provider>
     </entry>
