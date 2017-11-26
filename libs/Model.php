@@ -113,7 +113,7 @@ class Model
     {
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
-        if ($return)
+        if ($return == true)
             return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 

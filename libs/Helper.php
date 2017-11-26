@@ -13,6 +13,17 @@ class Helper
         return $xhtml;
     }
 
+    public function showErrors($message)
+    {
+        $xhtml = '<div class="alert alert-warning alert-dismissible">';
+        $xhtml .= '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>';
+        $xhtml .= '<h4><i class="icon fa fa-warning"></i> Oops!</h4>';
+        $xhtml .= '<ul class="list-unstyled">';
+        $xhtml .= '<li>' . $message . ' </li>';
+        $xhtml .= '</ul></div>';
+        return $xhtml;
+    }
+
     public static function cutCharacter($string, $pattern, $num = 0)
     {
         $pos = mb_stripos($string, $pattern);

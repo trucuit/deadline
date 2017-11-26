@@ -1,6 +1,6 @@
 <?php
 
-class IndexController extends Controller
+class VideoController extends Controller
 {
     public function __construct($params)
     {
@@ -13,7 +13,7 @@ class IndexController extends Controller
 
     public function indexAction()
     {
-        $this->_view->render('user/profile');
+        $this->_view->render('course/index');
     }
 
 

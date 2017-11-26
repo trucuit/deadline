@@ -2,10 +2,7 @@
 $url = array(
     'profile' => URL::createLink('admin', 'user', 'profile'),
     'category' => URL::createLink('admin', 'category', 'index'),
-    'course' => array(
-        'list' => URL::createLink('admin', 'course', 'index'),
-        'add' => URL::createLink('admin', 'course', 'add'),
-    )
+    'course' => URL::createLink('admin', 'course', 'index'),
 );
 
 ?>
@@ -49,27 +46,11 @@ $url = array(
                     <span>Category</span>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="#">
+            <li>
+                <a href="<?php echo $url['course'] ?>">
                     <span class="glyphicon glyphicon-folder-open"></span>
                     <span>Course</span>
-                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="<?php echo $url['course']['list'] ?>">
-                            <i class="fa fa-circle-o"></i>
-                            <span>Danh sách</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo $url['course']['add'] ?>">
-                            <i class="fa fa-circle-o"></i>
-                            <span>Thêm Course</span>
-                        </a>
-                    </li>
-
-                </ul>
             </li>
         </ul>
     </section>
