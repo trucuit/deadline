@@ -1,50 +1,46 @@
 $(function () {
-    // $(':checkbox').click(function () {
-    //    var val= $(this).attr("name");
-    //     console.log(val);
-    //     $.ajax({
-    //         url: 'index.php?module=admin&controller=category&action=ajaxActive',
-    //         type: 'POST',
-    //         dataType:'html',
-    //         data: {value:val},
-    //
-    //     }).done(function(data) {
-    //         		console.log("success");
-    //         console.log(data);
-    //     })
-    // });
-    // ajaxEdit
-    $('.name-edit').click(function () {
-       var value=$(this).attr("value");
-        console.log(value);
-        $.ajax({
-           url:'index.php?module=admin&controller=category&action=ajaxEditCategory',
-           data:{id:value},
-           success:function(data){
-               $('#modal-category-edit .modal-body').html(data);
-           }
-       })
-        $('#form-edit .submit-edit').click(function (event) {
-            event.preventDefault();
-            var dataForm = {
-                'name': $('#form-edit input[name="name"]').val(),
-                'status': $('#form-edit select[name="status"]').val(),
-                'id':$('#form-edit input[name="name"]').attr("id")
-            }
-
-            $.ajax({
-                type: "POST",
-                url: "index.php?module=admin&controller=category&action=ajaxEditCategory",
-                data: {form: dataForm}, // serializes the form's elements.
-                success: function (data) {
-                    console.log(data);
-                    $('#modal-category-edit .modal-body').html(data);
-                    location.reload();
-                }
-            });
-        });
-
+//reload khi close
+    $("button.close span").click(function () {
+        location.reload();
     })
+    // ajaxEdit
+    $('.name-edit').click(function (e) {
+        var value = $(this).attr("value");
+        e.preventDefault();
+        $.ajax({
+            url: 'index.php?module=admin&controller=category&action=ajaxEditCategory',
+            data: {id: value},
+            success: function (data) {
+                $('#modal-category-edit .modal-body').html(data);
+            }
+        })
+    })
+    $('#form-edit .submit-edit').click(function (event) {
+        event.preventDefault();
+        var dataForm = {
+            'name': $('#form-edit input[name="name"]').val(),
+            'status': $('#form-edit select[name="status"]').val(),
+            'id': $('#form-edit input[name="name"]').attr("id")
+        }
+        id = $('#form-edit input[name="name"]').attr("id")
+        $.ajax({
+            type: "POST",
+            url: "index.php?module=admin&controller=category&action=ajaxEditCategory",
+            data: {form: dataForm, id: id}, // serializes the form's elements.
+            beforeSend: function () {
+                $('.alert-course').hide();
+                $("#loader").show();
+                $("#xoay").addClass('xoay');
+
+            },
+            success: function (data) {
+                $("#loader").hide();
+                $("#xoay").removeClass('xoay');
+                $('#modal-category-edit .modal-body').html(data);
+                // location.reload();
+            }
+        });
+    });
     //ajaxEdit end
 
 // ajaxActive
@@ -278,4 +274,5 @@ function ajaxDelete(url) {
         $(".category .success").html(data);
     });
 }
+
 

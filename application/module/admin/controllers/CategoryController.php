@@ -113,8 +113,6 @@ class CategoryController extends Controller
 
     public function ajaxEditCategoryAction()
     {
-
-
         if (isset($this->_arrParam['form'])) {
             $query = "SELECT * FROM `" . DB_TBCATEGORY . "` WHERE `name`='" . $this->_arrParam['form']['name'] . "'";
             $validate = new Validate($this->_arrParam['form']);
@@ -127,13 +125,11 @@ class CategoryController extends Controller
                 $arrCategory = array();
                 $arrCategory['name'] = $this->_arrParam['form']['name'];
                 $arrCategory['status'] = $this->_arrParam['form']['status'];
-                $this->_model->updateCategory($arrCategory,$this->_arrParam['form']['id']);
+                $this->_model->updateCategory($arrCategory, $this->_arrParam['form']['id']);
                 $this->_view->success = Helper::success("Cập nhật thành công!");
             }
-        }else{
-            $this->_view->infoCategory = $this->_model->select('category', $this->_arrParam['id'], true);
         }
-
+        $this->_view->infoCategory = $this->_model->select(DB_TBCATEGORY, $this->_arrParam['id'], true);
 
         $this->_view->render('category/edit', false);
     }
