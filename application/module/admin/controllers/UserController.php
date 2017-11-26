@@ -2,6 +2,10 @@
 
 class UserController extends Controller
 {
+    /**
+     * UserController constructor.
+     * @param $params
+     */
     public function __construct($params)
     {
         parent::__construct($params);

@@ -1,6 +1,7 @@
 <?php
 $dirImg = $this->_dirImg;
 $dirAdminLTE = $this->_dirAdminLTE;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,7 +50,7 @@ $dirAdminLTE = $this->_dirAdminLTE;
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
-                            <input type="checkbox"> Remember Me
+                            <input type="checkbox" name="form[check]"> Remember Me
                         </label>
                     </div>
                 </div>
