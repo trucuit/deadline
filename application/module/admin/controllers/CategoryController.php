@@ -93,7 +93,7 @@ class CategoryController extends Controller
                 $this->_view->exe[] = $this->_model->execute($valueQuery, true);
             }
         }
-        $this->_view->render('category/inactive', false);
+        $this->_view->render('category/inActive', false);
     }
     public function ajaxDeleteAction()
     {
@@ -111,12 +111,13 @@ class CategoryController extends Controller
                 $this->_view->exe[] = $this->_model->execute($valueQuery, true);
 
             }
+            foreach ($this->_arrParam['cid'] as $value) {
+                $this->_model->delete(DB_TBCATEGORY,$value);
+
+            }
 
         }
-        foreach ($this->_arrParam['cid'] as $value) {
-            $this->_model->delete(DB_TBCATEGORY,$value);
 
-        }
         $this->_view->render('category/delete', false);
 
     }

@@ -260,7 +260,7 @@
       var el;
       el = this.getElement();
       el.className = el.className.replace('pace-active', '');
-      el.className += ' pace-inactive';
+      el.className += ' pace-inactive.php';
       document.body.className = document.body.className.replace('pace-running', '');
       return document.body.className += ' pace-done';
     };

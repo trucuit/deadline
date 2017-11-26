@@ -5,7 +5,7 @@ $url = array(
     'category' => [
         'add' => URL::createLink('admin', 'category', 'ajaxAdd'),
         'active' => URL::createLink('admin', 'category', 'ajaxActive'),
-        'inactive' => URL::createLink('admin', 'category', 'ajaxInactive'),
+        'inactive.php' => URL::createLink('admin', 'category', 'ajaxInactive'),
         'delete' => URL::createLink('admin', 'category', 'ajaxDelete'),
     ]
 );
@@ -139,10 +139,10 @@ $url = array(
                 <div class="modal-body">
 
                 </div>
-                <div class="box-footer">
-                    <button type="submit" class="btn pull-right btn-primary submit-add">Save & New</button>
-                    <button type="submit" class="btn btn-primary pull-right submit-close">Save & Close</button>
+                <div class=" text-center box-footer">
                     <button class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary submit-add">Save & New</button>
+                    <button type="submit" class="btn btn-primary submit-close">Save & Close</button>
                 </div>
                 <!-- /.box-footer -->
             </div>
@@ -163,7 +163,7 @@ $url = array(
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default close-active " data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default close-active " data-dismiss="modal">OK</button>
 
                 </div>
             </div>

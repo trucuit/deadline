@@ -37,12 +37,12 @@ $(function () {
             var url = 'index.php?module=admin&controller=category&action=ajaxActive';
         }
         else if(checkButton === 'Inactive'){
-            var url = 'index.php?module=admin&controller=category&action=ajaxInactive';
+             url = 'index.php?module=admin&controller=category&action=ajaxInactive';
         }
         else if(checkButton === 'Delete'){
-            var url = 'index.php?module=admin&controller=category&action=ajaxDelete';
+                 url = 'index.php?module=admin&controller=category&action=ajaxDelete';
         }
-        console.log(checkButton);
+        console.log(url);
         $.ajax({
             url: url,
             type:'POST',

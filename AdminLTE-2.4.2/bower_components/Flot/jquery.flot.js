@@ -459,7 +459,7 @@ Licensed under the MIT license.
 	// If no parameters are given, all text within the layer is removed.
 	//
 	// Note that the text is not immediately removed; it is simply marked as
-	// inactive, which will result in its removal on the next render pass.
+	// inactive.php, which will result in its removal on the next render pass.
 	// This avoids the performance penalty for 'clear and redraw' behavior,
 	// where we potentially get rid of all text on a layer, but will likely
 	// add back most or all of it later, as when redrawing axes, for example.
