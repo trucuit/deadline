@@ -1,7 +1,6 @@
 $(function () {
     $('.category .submit-form').click(function (event) {
         event.preventDefault();
-
         category = $('.edit-modal input[name="category"]').val();
         image = $('.category input[name="image"]').prop('files')[0];
         id = $('.edit-modal input[name="id"]').val();
@@ -16,7 +15,9 @@ $(function () {
             contentType: false,
             processData: false,
             data: form_data,
+
             success: function (data, status) {
+                console.log(data);
                 $('#modal-category-edit .modal-body').html(data);
 
             },
@@ -29,7 +30,7 @@ $(function () {
         });
     });
 
-    // submit form fiel ajax
+    // submit form file ajax
     $('.course .submit-form').click(function (event) {
         event.preventDefault();
         dataForm = {
@@ -47,7 +48,6 @@ $(function () {
             }
         });
     });
-    // /.submit form fiel ajax
 
     // $("button.close span").click(function () {
     //     location.reload();
@@ -62,28 +62,32 @@ $(function () {
             this.checked = checkStatus;
         });
     })
-    // /.check All
 })
 
 // change Status
 function ajaxStatus(url) {
-    $.get(url, function (data) {
-        var element = ".content span#status-" + data['id'];
-        if (data['status'] == 0) {
-            $(element).attr({
-                class: "glyphicon glyphicon-remove",
-                onclick: "javascript:ajaxStatus('" + data['link'] + "')"
-            });
+    $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+            var element = ".content span#status-" + data['id'];
+            if (data['status'] == 0) {
+                $(element).attr({
+                    class: "glyphicon glyphicon-remove",
+                    onclick: "javascript:ajaxStatus('" + data['link'] + "')"
+                });
+            }
+            else {
+                $(element).attr({
+                    class: "glyphicon glyphicon-ok",
+                    onclick: "javascript:ajaxStatus('" + data['link'] + "')"
+                });
+            }
         }
-        else {
-            $(element).attr({
-                class: "glyphicon glyphicon-ok",
-                onclick: "javascript:ajaxStatus('" + data['link'] + "')"
-            });
-        }
-    }, 'json');
+    });
+
 }
-// /.change Status
 
 // send File Ajax
 function readURL(input) {
@@ -96,7 +100,6 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
-// /.send File Ajax
 
 // ajaxEdit
 function ajaxEdit(url) {
@@ -106,14 +109,13 @@ function ajaxEdit(url) {
     })
 }
 
-function ajaxAdd() {
-    url =
+function ajaxAdd(url) {
+    console.log(url);
     $.get(url, function (data) {
         $('#modal-category-edit .modal-body').html(data);
     })
 }
 
-// /.ajaxEdit
 
 // ajax Delete
 function ajaxDelete(url) {
@@ -121,5 +123,4 @@ function ajaxDelete(url) {
         $(".category .success").html(data);
     });
 }
-// /.ajax Delete
 

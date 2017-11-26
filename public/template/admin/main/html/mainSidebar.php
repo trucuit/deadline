@@ -2,11 +2,12 @@
 $url = array(
     'profile' => URL::createLink('admin', 'user', 'profile'),
     'category' => URL::createLink('admin', 'category', 'index'),
-    'course' => array(
-        'list' => URL::createLink('admin', 'course', 'index'),
-        'add' => URL::createLink('admin', 'course', 'add'),
-    )
+    'course' => URL::createLink('admin', 'course', 'index'),
+    'video' => URL::createLink('admin', 'video', 'index'),
 );
+$model = new Model();
+$query = "SELECT `id`,`name` FROM `" . DB_TBCOURSE . "`";
+$listCourse = $model->execute($query, 1);
 
 ?>
 <aside class="main-sidebar">
@@ -45,30 +46,33 @@ $url = array(
             </li>
             <li>
                 <a href="<?php echo $url['category'] ?>">
-                    <span class="glyphicon glyphicon-folder-open"></span>
+                    <i class="fa fa-fw fa-reorder"></i>
                     <span>Category</span>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo $url['course'] ?>">
+                    <i class="fa fa-fw fa-file-o"></i>
+                    <span>Course</span>
                 </a>
             </li>
             <li class="treeview">
                 <a href="#">
-                    <span class="glyphicon glyphicon-folder-open"></span>
-                    <span>Course</span>
-                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    <i class="fa fa-fw fa-youtube-play"></i>
+                    <span>Video</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
+            </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li>
-                        <a href="<?php echo $url['course']['list'] ?>">
-                            <i class="fa fa-circle-o"></i>
-                            <span>Danh sách</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo $url['course']['add'] ?>">
-                            <i class="fa fa-circle-o"></i>
-                            <span>Thêm Course</span>
-                        </a>
-                    </li>
-
+                    <?php foreach ($listCourse as $val) {
+                        $url = URL::createLink('admin', 'video', 'index', ['id' => $val['id']]);
+                        ?>
+                        <li>
+                            <a href='<?php echo $url ?>'>
+                                <i class='fa fa - circle - o'></i><?php echo $val['name'] ?>
+                            </a>
+                        </li>
+                    <?php } ?>
                 </ul>
             </li>
         </ul>

@@ -8,7 +8,7 @@ $dirAdminLTE = $this->_dirAdminLTE;
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title><?php echo $this->_title ?></title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -17,6 +17,9 @@ $dirAdminLTE = $this->_dirAdminLTE;
     <link rel="stylesheet" href="<?php echo $dirAdminLTE ?>/bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="<?php echo $dirAdminLTE ?>/bower_components/Ionicons/css/ionicons.min.css">
+    <!--  Table  -->
+    <link rel="stylesheet"
+          href="<?php echo $dirAdminLTE ?>/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo $dirAdminLTE ?>/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -34,6 +37,8 @@ $dirAdminLTE = $this->_dirAdminLTE;
           href="<?php echo $dirAdminLTE ?>/bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="<?php echo $dirAdminLTE ?>/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+    <?php echo $this->_fileCSS ?>
 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -98,8 +103,25 @@ $dirAdminLTE = $this->_dirAdminLTE;
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo $dirAdminLTE ?>/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
+
+<!-- DataTables -->
+<script src="<?php echo $dirAdminLTE ?>/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo $dirAdminLTE ?>/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- Demo -->
 <script src="<?php echo $dirAdminLTE ?>/dist/js/demo.js"></script>
 <?php echo $this->_fileJS ?>
-
+<script>
+    $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging'      : true,
+            'lengthChange': false,
+            'searching'   : false,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : false
+        })
+    })
+</script>
 </body>
 </html>

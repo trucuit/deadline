@@ -3,7 +3,7 @@ $listCategory = empty($this->listCategory) ? [] : $this->listCategory;
 $url = array(
     'category' => [
         'add' => URL::createLink('admin', 'category', 'add'),
-        'active' => URL::createLink('admin', 'category', 'active'),
+        'active' => URL::createLink('admin', 'category', 'active',['type'=>1]),
         'inactive' => URL::createLink('admin', 'category', 'inactive'),
         'delete' => URL::createLink('admin', 'category', 'delete'),
     ]
@@ -33,7 +33,9 @@ $url = array(
                         >
                             <i class="fa fa-plus-square-o"></i> Add
                         </button>
-                        <button class="btn btn-app">
+                        <button class="btn btn-app"
+
+                        >
                             <i class="fa fa-check-circle-o"></i> Active
                         </button>
                         <button class="btn btn-app">

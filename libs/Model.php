@@ -32,19 +32,19 @@ class Model
         $this->table = $table;
     }
 
-    public function delete($table, $id)
-    {
-        if ($table == 'category') {
-            $itemOld = $this->select('category', $id, true);
-            $path = TEMPLATE_PATH . "/admin/main/images/" . $itemOld['picture'];
-            if (file_exists($path))
-                unlink($path);
-        }
-
-        $stmt = $this->conn->prepare("DELETE FROM `$table` WHERE id=:id");
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-    }
+//    public function delete($table, $id)
+//    {
+//        if ($table == 'category') {
+//            $itemOld = $this->select('category', $id, true);
+//            $path = TEMPLATE_PATH . "/admin/main/images/" . $itemOld['picture'];
+//            if (file_exists($path))
+//                unlink($path);
+//        }
+//
+//        $stmt = $this->conn->prepare("DELETE FROM `$table` WHERE id=:id");
+//        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+//        $stmt->execute();
+//    }
 
     public function update($table, $data, $where)
     {
@@ -113,7 +113,7 @@ class Model
     {
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
-        if ($return)
+        if ($return == true)
             return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -160,6 +160,26 @@ class Model
                 $this->execute($query);
             }
         }
+    }
+
+    public function delete($table, $where)
+    {
+        $newWhere = $this->createWhereDeleteSQL($where);
+        $query = "DELETE FROM `$table` WHERE `id` IN ($newWhere)";
+        $this->execute($query);
+    }
+
+
+    public function createWhereDeleteSQL($data)
+    {
+        $newWhere = '';
+        if (!empty($data)) {
+            foreach ($data as $id) {
+                $newWhere .= "'" . $id . "', ";
+            }
+            $newWhere .= "'0'";
+        }
+        return $newWhere;
     }
 }
 

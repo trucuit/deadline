@@ -10,14 +10,11 @@ class Bootstrap
         $this->setParam();
 
         if ($this->_params['module'] == 'admin') {
-            if (!Session::get('login')) {
-                    if ($this->_params['action'] != 'login' || $this->_params['controller'] != 'user')
-                    URL::redirect('admin', 'user', 'login');
-            } else {
-                if (Session::get('login')['time'] + TIME_LOGIN < time()) {
-                    Session::delete('login');
-                    URL::redirect('admin', 'user', 'login');
-                }
+            if (!ISSET($_COOKIE['remember'])) {
+                    if ($this->_params['action'] != 'login' || $this->_params['controller'] != 'user'){
+                        URL::redirect('admin', 'user', 'login');
+                    }
+
             }
         }
 
