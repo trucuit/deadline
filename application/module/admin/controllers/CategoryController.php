@@ -6,8 +6,8 @@ class CategoryController extends Controller
     {
         parent::__construct($params);
         $this->_templateObj->setFolderTemplate('admin/main');
-        $this->_templateObj->setFileTemplate('category.php');
-        $this->_templateObj->setFileConfig('category.ini');
+        $this->_templateObj->setFileTemplate('index.php');
+        $this->_templateObj->setFileConfig('template.ini');
         $this->_templateObj->load();
     }
 
@@ -98,6 +98,3 @@ class CategoryController extends Controller
         URL::redirect('admin', 'category', 'index');
     }
 }
-
-?>
-
