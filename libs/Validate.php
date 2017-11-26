@@ -154,17 +154,19 @@ class Validate
         }
     }
 
-    public function showErrors()
+    public function showErrors($imageError = null)
     {
         $xhtml = '';
         if (!empty($this->errors)) {
-            $xhtml .= '<div class="alert alert-warning alert-dismissible">';
+            $xhtml .= '<div class="alert alert-warning alert-dismissible alert-course">';
             $xhtml .= '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>';
             $xhtml .= '<h4><i class="icon fa fa-warning"></i> Oops!</h4>';
             $xhtml .= '<ul class="list-unstyled">';
             foreach ($this->errors as $key => $value) {
                 $xhtml .= '<li>' . $value . ' </li>';
             }
+            if ($imageError != null)
+                $xhtml .= '<li>' . $imageError . ' </li>';
             $xhtml .= '</ul></div>';
         }
         return $xhtml;

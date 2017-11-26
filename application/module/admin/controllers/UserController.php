@@ -13,31 +13,36 @@ class UserController extends Controller
 
     public function loginAction()
     {
-        if (Session::get('login')) {
-            URL::redirect('admin', 'index', 'index');
-        } else {
-            if (isset($this->_arrParam['form']['token']) && ($this->_arrParam['form']['token'] > 0)) {
-                $validate = new Validate($this->_arrParam['form']);
-                $queryUserName = "SELECT id,username,fullname,email FROM `user` WHERE username = '" . $this->_arrParam['form']['email'] . "' AND password='" . md5($this->_arrParam['form']['password']) . "'";
-                $validate->addRule('email', 'existRecord', array('database' => $this->_model, 'query' => $queryUserName, 'min' => 3, 'max' => 25))
-                    ->addRule('password', 'password');
-                $validate->run();
-                $this->_arrParam['form'] = $validate->getResult();
-                if ($validate->isValid() == false) {
-                    $this->_view->errors = $validate->showErrors();
-                } else {
-                    Session::set('login', ['status' => 1, 'user' => $this->_model->show($queryUserName), 'time' => time()]);
+        if (isset($this->_arrParam['form'])) {
 
-                    URL::redirect('admin', 'index', 'index');
+            $validate = new Validate($this->_arrParam['form']);
+            $queryUserName = "SELECT id,username,fullname,email FROM `user` WHERE username = '" . $this->_arrParam['form']['email'] . "' AND password='" . md5($this->_arrParam['form']['password']) . "'";
+            $validate->addRule('email', 'existRecord', array('database' => $this->_model, 'query' => $queryUserName, 'min' => 3, 'max' => 25))
+                ->addRule('password', 'password');
+            $validate->run();
+            $this->_arrParam['form'] = $validate->getResult();
+            if ($validate->isValid() == false) {
+                $this->_view->errors = $validate->showErrors();
+
+            } else {
+
+                if (isset($this->_arrParam['form']['check'])) {
+                    setcookie('remember', serialize(['user' => $this->_model->execute($queryUserName, true)]), time() + TIME_LOGIN);
+                } else {
+
+                    setcookie('remember', serialize(['user' => $this->_model->execute($queryUserName, true)]), false);
                 }
+
+                URL::redirect('admin', 'index', 'index');
             }
-            $this->_view->render('user/login', false);
         }
+        $this->_view->render('user/login', false);
     }
+
 
     public function logoutAction()
     {
-        Session::delete('login');
+        setcookie('remember', ' ', time() - TIME_LOGIN);
         URL::redirect('admin', 'user', 'login');
     }
 
@@ -49,12 +54,11 @@ class UserController extends Controller
                 ->addRule('email', 'email')
                 ->addRule('password', 'password');
             $validate->run();
-            $this->_arrParam['form'] = $validate->getResult();
             if ($validate->isValid() == false) {
                 $this->_view->errors = $validate->showErrors();
             } else {
                 $query = "UPDATE `user` SET `username`='" . $this->_arrParam['form']['username'] . "',`fullname`='" . $this->_arrParam['form']['fullname'] . "', `email`='" . $this->_arrParam['form']['email'] . "', `password`='" . md5($this->_arrParam['form']['password']) . "'";
-                $query.= " WHERE `id`=" . Session::get('login')['user'][0]['id'];
+                $query .= " WHERE `id`=" . Session::get('login')['user'][0]['id'];
                 $this->_model->execute($query);
                 $this->_view->success = Helper::success('Cập nhật thành công');
             }
