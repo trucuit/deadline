@@ -13,6 +13,40 @@ $(function () {
     //         console.log(data);
     //     })
     // });
+    // ajaxEdit
+    $('.name-edit').click(function () {
+       var value=$(this).attr("value");
+        console.log(value);
+        $.ajax({
+           url:'index.php?module=admin&controller=category&action=ajaxEditCategory',
+           data:{id:value},
+           success:function(data){
+               $('#modal-category-edit .modal-body').html(data);
+           }
+       })
+        $('#form-edit .submit-edit').click(function (event) {
+            event.preventDefault();
+            var dataForm = {
+                'name': $('#form-edit input[name="name"]').val(),
+                'status': $('#form-edit select[name="status"]').val(),
+                'id':$('#form-edit input[name="name"]').attr("id")
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "index.php?module=admin&controller=category&action=ajaxEditCategory",
+                data: {form: dataForm}, // serializes the form's elements.
+                success: function (data) {
+                    console.log(data);
+                    $('#modal-category-edit .modal-body').html(data);
+                    location.reload();
+                }
+            });
+        });
+
+    })
+    //ajaxEdit end
+
 // ajaxActive
 
     $('.btn-active,.btn-inactive,.btn-delete').click(function (event) {
@@ -206,14 +240,14 @@ function ajaxAdd(url) {
 
 
 //ajaxActive
-function ajaxActive(url) {
-    console.log(url);
-    $.get(url,function(data){
-        console.log(data);
-        $('#modal-add .modal-body').html(data);
-    })
-
-}
+// function ajaxActive(url) {
+//     console.log(url);
+//     $.get(url,function(data){
+//         console.log(data);
+//         $('#modal-add .modal-body').html(data);
+//     })
+//
+// }
 // /.ajaxEdit
 function ajaxEdit(url) {
     console.log(url);
