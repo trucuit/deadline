@@ -21,19 +21,17 @@ class CategoryController extends Controller
 
     public function ajaxAddAction()
     {
+
         if (isset($this->_arrParam['form'])) {
             $query = "SELECT * FROM `" . DB_TBCATEGORY . "` WHERE `name`='" . $this->_arrParam['form']['name'] . "'";
             $validate = new Validate($this->_arrParam['form']);
             $validate->addRule('name', 'string-notExistRecord', ['min' => 3, 'max' => 200, 'database' => $this->_model, 'query' => $query]);
             $validate->run();
+            $this->_arrParam['form'] = $validate->getResult();
             if ($validate->isValid() == false) {
                 $this->_view->errors = $validate->showErrors();
-
             } else {
-                $arrCategory = array();
-                $arrCategory['name'] = $this->_arrParam['form']['name'];
-                $arrCategory['status'] = $this->_arrParam['form']['status'];
-                $this->_model->insertCategory($arrCategory);
+                $this->_model->insertCategory($this->_arrParam['form']);
                 $this->_view->success = Helper::success("thêm thành công!");
             }
         }
@@ -114,7 +112,7 @@ class CategoryController extends Controller
     public function ajaxEditCategoryAction()
     {
         if (isset($this->_arrParam['form'])) {
-            $query = "SELECT * FROM `" . DB_TBCATEGORY . "` WHERE `name`='" . $this->_arrParam['form']['name'] . "'";
+            $query = "SELECT * FROM `" . DB_TBCATEGORY . "` WHERE `name`='" . $this->_arrParam['form']['name'] . "' AND `id` <> '" . $this->_arrParam['id'] . "'";
             $validate = new Validate($this->_arrParam['form']);
             $validate->addRule('name', 'string-notExistRecord', ['min' => 3, 'max' => 200, 'database' => $this->_model, 'query' => $query]);
             $validate->run();
@@ -125,7 +123,7 @@ class CategoryController extends Controller
                 $arrCategory = array();
                 $arrCategory['name'] = $this->_arrParam['form']['name'];
                 $arrCategory['status'] = $this->_arrParam['form']['status'];
-                $this->_model->updateCategory($arrCategory, $this->_arrParam['form']['id']);
+                $this->_model->updateCategory($arrCategory, $this->_arrParam['id']);
                 $this->_view->success = Helper::success("Cập nhật thành công!");
             }
         }

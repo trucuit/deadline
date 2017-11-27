@@ -15,12 +15,13 @@ $(function () {
             }
         })
     })
-    $('#form-edit .submit-edit').click(function (event) {
+
+    $('#form-edit .submit-form').click(function (event) {
         event.preventDefault();
+        status = $('#form-edit #status')[0].checked;
         var dataForm = {
             'name': $('#form-edit input[name="name"]').val(),
-            'status': $('#form-edit select[name="status"]').val(),
-            'id': $('#form-edit input[name="name"]').attr("id")
+            'status': (status == 'true') ? 1 : 0
         }
         id = $('#form-edit input[name="name"]').attr("id")
         $.ajax({
@@ -28,16 +29,14 @@ $(function () {
             url: "index.php?module=admin&controller=category&action=ajaxEditCategory",
             data: {form: dataForm, id: id}, // serializes the form's elements.
             beforeSend: function () {
-                $('.alert-course').hide();
-                $("#loader").show();
-                $("#xoay").addClass('xoay');
-
+                $('#form-edit .alert-course').hide();
+                $("#form-edit #loader").show();
+                $("#form-edit #xoay").addClass('xoay');
             },
             success: function (data) {
-                $("#loader").hide();
-                $("#xoay").removeClass('xoay');
+                $("#form-edit #loader").hide();
+                $("#form-edit #xoay").removeClass('xoay');
                 $('#modal-category-edit .modal-body').html(data);
-                // location.reload();
             }
         });
     });
@@ -134,11 +133,13 @@ $(function () {
     });
 
     // submit new form file ajax
-    $('#form-add .submit-add').click(function (event) {
+    $('#form-add .submit-form').click(function (event) {
         event.preventDefault();
+
+        status = $('#form-add #status')[0].checked;
         var dataForm = {
             'name': $('#form-add input[name="name"]').val(),
-            'status': $('#form-add select[name="status"]').val()
+            'status': (status == 'true') ? 1 : 0
         }
         id = this.id;
         $.ajax({
@@ -149,49 +150,11 @@ $(function () {
                 $('.alert-course').hide();
                 $("#loader").show();
                 $("#xoay").addClass('xoay');
-
             },
             success: function (data) {
                 $("#loader").hide();
                 $("#xoay").removeClass('xoay');
                 $('#form-add .modal-body').html(data);
-            },
-            complete: function () {
-                if (id == "submit-close") {
-                    if ($("#form-add .alert-success").length) {
-                        location.reload();
-                    }
-                }
-            }
-        });
-    });
-
-    //submit close form fiel ajax
-    $('#form-add .submit-close').click(function (event) {
-        event.preventDefault();
-        var dataForm = {
-            'name': $('#form-add input[name="name"]').val(),
-            'status': $('#form-add select[name="status"]').val(),
-
-
-        }
-        id = this.id;
-        $.ajax({
-            type: "POST",
-            url: "index.php?module=admin&controller=category&action=ajaxAdd",
-            data: {form: dataForm}, // serializes the form's elements.
-            beforeSend: function () {
-                $('.alert-course').hide();
-                $("#loader").show();
-                $("#xoay").addClass('xoay');
-            },
-            success: function (data) {
-                $("#loader").hide();
-                $("#xoay").removeClass('xoay');
-                $('#form-add .modal-body').html(data);
-                // $('.modal-backdrop').remove();
-                // $('#form-add').hide();
-                // location.reload();
             },
             complete: function () {
                 if (id == "save-close") {
@@ -205,7 +168,6 @@ $(function () {
     // check All
     $('input[name="checkall-toggle"]').change(function () {
         var checkStatus = this.checked;
-        console.log(checkStatus);
         $('#adminForm').find(':checkbox').each(function () {
             this.checked = checkStatus;
         });
@@ -214,21 +176,24 @@ $(function () {
 
 // change Status
 function ajaxStatus(url) {
-    $.get(url, function (data) {
-        var element = ".content span#status-" + data['id'];
-        if (data['status'] == 0) {
-            $(element).attr({
-                class: "glyphicon glyphicon-remove",
-                onclick: "javascript:ajaxStatus('" + data['link'] + "')"
-            });
+    $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+            var element = ".status i#status-" + data['id'];
+            if (data['status'] == 0) {
+                $(element).attr({
+                    onclick: "javascript:ajaxStatus('" + data['link'] + "')"
+                }).text('off');
+            }
+            else {
+                $(element).attr({
+                    onclick: "javascript:ajaxStatus('" + data['link'] + "')"
+                }).text('on');
+            }
         }
-        else {
-            $(element).attr({
-                class: "glyphicon glyphicon-ok",
-                onclick: "javascript:ajaxStatus('" + data['link'] + "')"
-            });
-        }
-    }, 'json');
+    });
 }
 
 // send File Ajax

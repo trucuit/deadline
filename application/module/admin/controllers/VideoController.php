@@ -111,4 +111,9 @@ class VideoController extends Controller
         URL::redirect('admin', 'video', 'index', ['id' => $this->_arrParam['id']]);
     }
 
+    public function showVideoAjaxAction()
+    {
+        
+    }
+
 }

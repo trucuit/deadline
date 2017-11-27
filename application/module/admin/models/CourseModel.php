@@ -28,15 +28,17 @@ class CourseModel extends Model
 
     public function chageStatus($param, $type = 1, $task = '')
     {
+        $modified = date('Y-m-d', time());
+        $modified_by = unserialize($_COOKIE['remember'])['user'][0]['username'];
         if ($task == "change-status") {
             foreach ($param as $val) {
-                $query = "UPDATE `" . DB_TBCOURSE . "` SET `status` = '$type' WHERE `id` = '" . $val . "'";
+                $query = "UPDATE `" . DB_TBCOURSE . "` SET `status` = '$type',`modified`='$modified',`modified_by`='$modified_by' WHERE `id` = '" . $val . "'";
                 $this->execute($query);
             }
         } else {
             $status = ($param['status'] == 0) ? 1 : 0;
             $id = $param['id'];
-            $query = "UPDATE `" . DB_TBCOURSE . "` SET `status` = '$status' WHERE `id` = '" . $id . "'";
+            $query = "UPDATE `" . DB_TBCOURSE . "` SET `status` = '$status',`modified`='$modified',`modified_by`='$modified_by' WHERE `id` = '" . $id . "'";
             $this->execute($query);
             $result = array(
                 'id' => $id,
@@ -49,15 +51,23 @@ class CourseModel extends Model
 
     public function insertCourse($data)
     {
+
         $image = $data['image'];
         $data['image'] = $data['name'] . '.' . Helper::cutCharacter($image['type'], '/', 1);
         $data['created'] = date("Y-m-d H:i:s");
+        $data['name'] = trim($data['name']);
         $data['created_by'] = unserialize($_COOKIE['remember'])['user'][0]['username'];
         $this->insert(DB_TBCOURSE, $data);
+
+        $query = "SELECT `id` FROM `" . DB_TBCOURSE . "` ORDER BY `id` DESC LIMIT 0,1";
+        $bl = $this->insertVideo($data['link'], $this->execute($query, 1)[0]['id']);
+        if ($bl == 0)
+            return 0;
+
         $nameImage = TEMPLATE_PATH . "/admin/main/images/" . $data['image'];
         move_uploaded_file($image['tmp_name'], $nameImage);
-        $query = "SELECT `id` FROM `" . DB_TBCOURSE . "` ORDER BY `id` DESC LIMIT 0,1";
-        $this->insertVideo($data['link'], $this->execute($query, 1)[0]['id']);
+        return 1;
+
     }
 
     public function updateCourse($data, $file)
@@ -89,19 +99,23 @@ class CourseModel extends Model
     public function insertVideo($link, $id)
     {
         $data = $this->getVideo($link);
-        foreach ($data as $value) {
-            $val['link'] = $value['id'];
-            $val['course_id'] = $id;
-            $val['title'] = $value['title'];
-            $val['thumbnails'] = $value['thumbnails'];
-            $this->insert(DB_TBVIDEO, $val);
+        if (!empty($data)) {
+            foreach ($data as $key => $value) {
+                $val['link'] = $value['id'];
+                $val['course_id'] = $id;
+                $val['title'] = $value['title'];
+                $val['thumbnails'] = $value['thumbnails'];
+                $val['ordering'] = $key + 1;
+                $this->insert(DB_TBVIDEO, $val);
+            }
+            return 1;
         }
+        return 0;
     }
 
-    public function deleteVideo($where)
+    public function deleteVideo($course_id)
     {
-        $newWhere = $this->createWhereDeleteSQL($where);
-        $query = "DELETE FROM `" . DB_TBVIDEO . "` WHERE `course_id` IN ($newWhere)";
+        $query = "DELETE FROM `" . DB_TBVIDEO . "` WHERE `course_id`='$course_id'";
         $this->execute($query);
     }
 
@@ -163,14 +177,6 @@ class CourseModel extends Model
 
     public function getVideo($playlistID)
     {
-        $strInfoURL = $this->createURL([
-            'part' => 'snippet',
-            'id' => $playlistID,
-            'key' => API_KEY
-        ]);
-
-        $dataInfoReturn = json_decode(file_get_contents(API_URL . 'playlists?' . $strInfoURL), true);
-
         $items = [];
         $nextPageToken = '';
         do {
@@ -181,9 +187,7 @@ class CourseModel extends Model
                 'maxResults' => 15,
                 'pageToken' => $nextPageToken
             ]);
-
             $dataReturn = json_decode(file_get_contents(API_URL . 'playlistItems?' . $strURL), true);
-
             if ($dataReturn['items']) {
                 foreach ($dataReturn['items'] as $key => $value) {
                     $snippet = $value['snippet'];
@@ -200,12 +204,20 @@ class CourseModel extends Model
         return $items;
     }
 
-    public function deleteItem($param){
-        $this->delete(DB_TBCOURSE,$param);
-        foreach ($param as $val){
-            $newWhere = $this->createWhereDeleteSQL([$val]);
-            $query = "DELETE FROM `".DB_TBVIDEO."` WHERE `course_id` IN ($newWhere)";
+    public function deleteItem($param)
+    {
+        foreach ($param as $val) {
+            $item = $this->select(DB_TBCOURSE, $val, 1);
+            $nameImage = TEMPLATE_PATH . "/admin/main/images/" . $item['image'];
+            if (file_exists($nameImage)) {
+                unlink($nameImage);
+            }
+            $query = "DELETE FROM `" . DB_TBCOURSE . "` WHERE `id`='$val'";
             $this->execute($query);
+
+        }
+        foreach ($param as $val) {
+            $this->deleteVideo($val);
         }
     }
 }
