@@ -200,3 +200,6 @@ $url = array(
         </div>
     </div>
 </div>
+
+<a href="index.php?module=admin&contro=asdf&action=adfsdf"></a>
+<a href="admin/user/index&id=12"></a>
