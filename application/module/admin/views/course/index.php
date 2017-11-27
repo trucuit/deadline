@@ -14,7 +14,7 @@ $url = array(
     <section class="content-header">
         <h1>
             Manage Course
-            <small>List <span style="color: red">* Click vào hình ảnh để xem chi tiết</span></small>
+            <small>List <span style="color: red">* Click on the image for details</span></small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

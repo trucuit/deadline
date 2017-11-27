@@ -1,8 +1,14 @@
+<?php
+$url = [
+        'login'=>URL::createLink('admin','user','login')
+]
+?>
+
 <header id="header" class="header">
     <div class="container">
 
         <!-- LOGO -->
-        <div class="logo"><a href="index.html"><img src="<?php echo $imageURL?>/logo.png" alt=""></a></div>
+        <div class="logo"><a href="index.html"><img src="<?php echo $urlImage ?>/logo.png" alt=""></a></div>
         <!-- END / LOGO -->
 
         <!-- NAVIGATION -->
@@ -83,7 +89,7 @@
                 <li class="menu-item-has-children">
                     <a href="#">Login</a>
                     <ul class="sub-menu">
-                        <li><a href="login.html">Login</a></li>
+                        <li><a href="<?php echo $url['login'] ?>">Login</a></li>
                         <li><a href="register.html">Register</a></li>
                     </ul>
                 </li>
@@ -119,132 +125,132 @@
                             <span class="count-value">3</span>
                             <a href="#" class="new-message"><i class="icon md-pencil"></i></a>
                         </div>
-                        <div class="list-wrap ps-container ps-active-y"><ul class="list-message">
+                        <ul class="list-message">
 
-                                <!-- LIST ITEM -->
-                                <li class="ac-new">
-                                    <a href="#">
-                                        <div class="image">
-                                            <img src="<?php echo $imageURL?>/team-13.jpg" alt="">
+                            <!-- LIST ITEM -->
+                            <li class="ac-new">
+                                <a href="#">
+                                    <div class="image">
+                                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
+                                    </div>
+                                    <div class="list-body">
+                                        <div class="author">
+                                            <span>Megacourse</span>
+                                            <div class="div-x"></div>
                                         </div>
-                                        <div class="list-body">
-                                            <div class="author">
-                                                <span>Megacourse</span>
-                                                <div class="div-x"></div>
-                                            </div>
-                                            <p>Welcome message</p>
-                                            <div class="time">
-                                                <span>12:53</span>
-                                            </div>
-                                            <div class="indicator">
-                                                <i class="icon md-paperclip"></i>
-                                            </div>
+                                        <p>Welcome message</p>
+                                        <div class="time">
+                                            <span>12:53</span>
                                         </div>
-                                    </a>
-                                </li>
-                                <!-- END / LIST ITEM -->
+                                        <div class="indicator">
+                                            <i class="icon md-paperclip"></i>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- END / LIST ITEM -->
 
-                                <!-- LIST ITEM -->
-                                <li class="ac-new">
-                                    <a href="#">
-                                        <div class="image">
-                                            <img src="<?php echo $imageURL?>/team-13.jpg" alt="">
+                            <!-- LIST ITEM -->
+                            <li class="ac-new">
+                                <a href="#">
+                                    <div class="image">
+                                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
+                                    </div>
+                                    <div class="list-body">
+                                        <div class="author">
+                                            <span>Name of sender</span>
+                                            <div class="div-x"></div>
                                         </div>
-                                        <div class="list-body">
-                                            <div class="author">
-                                                <span>Name of sender</span>
-                                                <div class="div-x"></div>
-                                            </div>
-                                            <p>Message title</p>
-                                            <div class="time">
-                                                <span>5 days ago</span>
-                                            </div>
+                                        <p>Message title</p>
+                                        <div class="time">
+                                            <span>5 days ago</span>
                                         </div>
-                                    </a>
-                                </li>
-                                <!-- END / LIST ITEM -->
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- END / LIST ITEM -->
 
-                                <!-- LIST ITEM -->
-                                <li class="ac-new">
-                                    <a href="#">
-                                        <div class="image">
-                                            <img src="<?php echo $imageURL?>/team-13.jpg" alt="">
+                            <!-- LIST ITEM -->
+                            <li class="ac-new">
+                                <a href="#">
+                                    <div class="image">
+                                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
+                                    </div>
+                                    <div class="list-body">
+                                        <div class="author">
+                                            <span>Sasha Grey</span>
+                                            <div class="div-x"></div>
                                         </div>
-                                        <div class="list-body">
-                                            <div class="author">
-                                                <span>Sasha Grey</span>
-                                                <div class="div-x"></div>
-                                            </div>
-                                            <p>Maecenas sodales, nisl eget dign...</p>
-                                            <div class="time">
-                                                <span>5 days ago</span>
-                                            </div>
+                                        <p>Maecenas sodales, nisl eget dign...</p>
+                                        <div class="time">
+                                            <span>5 days ago</span>
                                         </div>
-                                    </a>
-                                </li>
-                                <!-- END / LIST ITEM -->
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- END / LIST ITEM -->
 
-                                <!-- LIST ITEM -->
-                                <li>
-                                    <a href="#">
-                                        <div class="image">
-                                            <img src="<?php echo $imageURL?>/team-13.jpg" alt="">
+                            <!-- LIST ITEM -->
+                            <li>
+                                <a href="#">
+                                    <div class="image">
+                                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
+                                    </div>
+                                    <div class="list-body">
+                                        <div class="author">
+                                            <span>Amanda Gleam</span>
+                                            <div class="div-x"></div>
                                         </div>
-                                        <div class="list-body">
-                                            <div class="author">
-                                                <span>Amanda Gleam</span>
-                                                <div class="div-x"></div>
-                                            </div>
-                                            <p>Message title</p>
-                                            <div class="time">
-                                                <span>5 days ago</span>
-                                            </div>
+                                        <p>Message title</p>
+                                        <div class="time">
+                                            <span>5 days ago</span>
                                         </div>
-                                    </a>
-                                </li>
-                                <!-- END / LIST ITEM -->
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- END / LIST ITEM -->
 
-                                <!-- LIST ITEM -->
-                                <li>
-                                    <a href="#">
-                                        <div class="image">
-                                            <img src="<?php echo $imageURL?>/team-13.jpg" alt="">
+                            <!-- LIST ITEM -->
+                            <li>
+                                <a href="#">
+                                    <div class="image">
+                                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
+                                    </div>
+                                    <div class="list-body">
+                                        <div class="author">
+                                            <span>Amanda Gleam</span>
+                                            <div class="div-x"></div>
                                         </div>
-                                        <div class="list-body">
-                                            <div class="author">
-                                                <span>Amanda Gleam</span>
-                                                <div class="div-x"></div>
-                                            </div>
-                                            <p>Message title</p>
-                                            <div class="time">
-                                                <span>5 days ago</span>
-                                            </div>
+                                        <p>Message title</p>
+                                        <div class="time">
+                                            <span>5 days ago</span>
                                         </div>
-                                    </a>
-                                </li>
-                                <!-- END / LIST ITEM -->
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- END / LIST ITEM -->
 
-                                <!-- LIST ITEM -->
-                                <li>
-                                    <a href="#">
-                                        <div class="image">
-                                            <img src="<?php echo $imageURL?>/team-13.jpg" alt="">
+                            <!-- LIST ITEM -->
+                            <li>
+                                <a href="#">
+                                    <div class="image">
+                                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
+                                    </div>
+                                    <div class="list-body">
+                                        <div class="author">
+                                            <span>Amanda Gleam</span>
+                                            <div class="div-x"></div>
                                         </div>
-                                        <div class="list-body">
-                                            <div class="author">
-                                                <span>Amanda Gleam</span>
-                                                <div class="div-x"></div>
-                                            </div>
-                                            <p>Message title</p>
-                                            <div class="time">
-                                                <span>5 days ago</span>
-                                            </div>
+                                        <p>Message title</p>
+                                        <div class="time">
+                                            <span>5 days ago</span>
                                         </div>
-                                    </a>
-                                </li>
-                                <!-- END / LIST ITEM -->
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- END / LIST ITEM -->
 
-                            </ul><div class="ps-scrollbar-x-rail" style="width: 400px; display: none; left: 0px;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 300px; display: inherit; right: 0px;"><div class="ps-scrollbar-y" style="top: 0px; height: 150px;"></div></div></div>
+                        </ul>
                         <div class="viewall">
                             <a href="#">view all 80 messages</a>
                         </div>
@@ -264,138 +270,137 @@
                             <span class="count-value">2</span>
                         </div>
 
-                        <div class="list-wrap ps-container ps-active-y"><ul class="list-notification">
+                        <ul class="list-notification">
 
-                                <!-- LIST ITEM -->
-                                <li class="ac-new">
-                                    <a href="#">
-                                        <div class="list-body">
-                                            <div class="author">
-                                                <span>Megacourse</span>
-                                                <div class="div-x"></div>
-                                            </div>
-                                            <p>attend Salary for newbie course</p>
-                                            <div class="image">
-                                                <img src="<?php echo $imageURL?>/feature/img-1.jpg" alt="">
-                                            </div>
-                                            <div class="time">
-                                                <span>5 minutes ago</span>
-                                            </div>
+                            <!-- LIST ITEM -->
+                            <li class="ac-new">
+                                <a href="#">
+                                    <div class="list-body">
+                                        <div class="author">
+                                            <span>Megacourse</span>
+                                            <div class="div-x"></div>
                                         </div>
-                                    </a>
-                                </li>
-                                <!-- END / LIST ITEM -->
-
-                                <!-- LIST ITEM -->
-                                <li class="ac-new">
-                                    <a href="#">
-                                        <div class="list-body">
-                                            <div class="author">
-                                                <span>Megacourse</span>
-                                                <div class="div-x"></div>
-                                            </div>
-                                            <p>attend Salary for newbie course</p>
-                                            <div class="image">
-                                                <img src="<?php echo $imageURL?>/feature/img-1.jpg" alt="">
-                                            </div>
-                                            <div class="time">
-                                                <span>5 minutes ago</span>
-                                            </div>
+                                        <p>attend Salary for newbie course</p>
+                                        <div class="image">
+                                            <img src="<?php echo $urlImage ?>/feature/img-1.jpg" alt="">
                                         </div>
-                                    </a>
-                                </li>
-                                <!-- END / LIST ITEM -->
-
-                                <!-- LIST ITEM -->
-                                <li>
-                                    <a href="#">
-                                        <div class="list-body">
-                                            <div class="author">
-                                                <span>Megacourse</span>
-                                                <div class="div-x"></div>
-                                            </div>
-                                            <p>attend Salary for newbie course</p>
-                                            <div class="image">
-                                                <img src="<?php echo $imageURL?>/feature/img-1.jpg" alt="">
-                                            </div>
-                                            <div class="time">
-                                                <span>5 minutes ago</span>
-                                            </div>
+                                        <div class="time">
+                                            <span>5 minutes ago</span>
                                         </div>
-                                    </a>
-                                </li>
-                                <!-- END / LIST ITEM -->
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- END / LIST ITEM -->
 
-                                <!-- LIST ITEM -->
-                                <li>
-                                    <a href="#">
-                                        <div class="list-body">
-                                            <div class="author">
-                                                <span>Megacourse</span>
-                                                <div class="div-x"></div>
-                                            </div>
-                                            <p>attend Salary for newbie course</p>
-                                            <div class="image">
-                                                <img src="<?php echo $imageURL?>/feature/img-1.jpg" alt="">
-                                            </div>
-                                            <div class="time">
-                                                <span>5 minutes ago</span>
-                                            </div>
+                            <!-- LIST ITEM -->
+                            <li class="ac-new">
+                                <a href="#">
+                                    <div class="list-body">
+                                        <div class="author">
+                                            <span>Megacourse</span>
+                                            <div class="div-x"></div>
                                         </div>
-                                    </a>
-                                </li>
-                                <!-- END / LIST ITEM -->
-
-                                <!-- LIST ITEM -->
-                                <li>
-                                    <a href="#">
-                                        <div class="list-body">
-                                            <div class="author">
-                                                <span>Megacourse</span>
-                                                <div class="div-x"></div>
-                                            </div>
-                                            <p>attend Salary for newbie course</p>
-                                            <div class="image">
-                                                <img src="<?php echo $imageURL?>/feature/img-1.jpg" alt="">
-                                            </div>
-                                            <div class="time">
-                                                <span>5 minutes ago</span>
-                                            </div>
+                                        <p>attend Salary for newbie course</p>
+                                        <div class="image">
+                                            <img src="<?php echo $urlImage ?>/feature/img-1.jpg" alt="">
                                         </div>
-                                    </a>
-                                </li>
-                                <!-- END / LIST ITEM -->
-
-                                <!-- LIST ITEM -->
-                                <li>
-                                    <a href="#">
-                                        <div class="list-body">
-                                            <div class="author">
-                                                <span>Megacourse</span>
-                                                <div class="div-x"></div>
-                                            </div>
-                                            <p>attend Salary for newbie course</p>
-                                            <div class="image">
-                                                <img src="<?php echo $imageURL?>/feature/img-1.jpg" alt="">
-                                            </div>
-                                            <div class="time">
-                                                <span>5 minutes ago</span>
-                                            </div>
+                                        <div class="time">
+                                            <span>5 minutes ago</span>
                                         </div>
-                                    </a>
-                                </li>
-                                <!-- END / LIST ITEM -->
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- END / LIST ITEM -->
+
+                            <!-- LIST ITEM -->
+                            <li>
+                                <a href="#">
+                                    <div class="list-body">
+                                        <div class="author">
+                                            <span>Megacourse</span>
+                                            <div class="div-x"></div>
+                                        </div>
+                                        <p>attend Salary for newbie course</p>
+                                        <div class="image">
+                                            <img src="<?php echo $urlImage ?>/feature/img-1.jpg" alt="">
+                                        </div>
+                                        <div class="time">
+                                            <span>5 minutes ago</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- END / LIST ITEM -->
+
+                            <!-- LIST ITEM -->
+                            <li>
+                                <a href="#">
+                                    <div class="list-body">
+                                        <div class="author">
+                                            <span>Megacourse</span>
+                                            <div class="div-x"></div>
+                                        </div>
+                                        <p>attend Salary for newbie course</p>
+                                        <div class="image">
+                                            <img src="<?php echo $urlImage ?>/feature/img-1.jpg" alt="">
+                                        </div>
+                                        <div class="time">
+                                            <span>5 minutes ago</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- END / LIST ITEM -->
+
+                            <!-- LIST ITEM -->
+                            <li>
+                                <a href="#">
+                                    <div class="list-body">
+                                        <div class="author">
+                                            <span>Megacourse</span>
+                                            <div class="div-x"></div>
+                                        </div>
+                                        <p>attend Salary for newbie course</p>
+                                        <div class="image">
+                                            <img src="<?php echo $urlImage ?>/feature/img-1.jpg" alt="">
+                                        </div>
+                                        <div class="time">
+                                            <span>5 minutes ago</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- END / LIST ITEM -->
+
+                            <!-- LIST ITEM -->
+                            <li>
+                                <a href="#">
+                                    <div class="list-body">
+                                        <div class="author">
+                                            <span>Megacourse</span>
+                                            <div class="div-x"></div>
+                                        </div>
+                                        <p>attend Salary for newbie course</p>
+                                        <div class="image">
+                                            <img src="<?php echo $urlImage ?>/feature/img-1.jpg" alt="">
+                                        </div>
+                                        <div class="time">
+                                            <span>5 minutes ago</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- END / LIST ITEM -->
 
 
-
-                            </ul><div class="ps-scrollbar-x-rail" style="width: 400px; display: none; left: 0px;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 225px; display: inherit; right: 0px;"><div class="ps-scrollbar-y" style="top: 0px; height: 101px;"></div></div></div>
+                        </ul>
                     </div>
                 </li>
                 <!-- END / NOTIFICATION -->
 
                 <li class="list-item account">
                     <div class="account-info item-click">
-                        <img src="<?php echo $imageURL?>/team-13.jpg" alt="">
+                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
                     </div>
                     <div class="toggle-account toggle-list">
                         <ul class="list-account">
