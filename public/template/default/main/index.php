@@ -1,17 +1,26 @@
+<?php
+$urlImage = $this->_dirImg;
+$urlFile = TEMPLATE_URL . '/default/main';
+?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title><?php echo $this->_title; ?></title>
+    <title><?php echo $this->_title ?></title>
+    <!-- Google font -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- Css -->
     <?php
 
     echo $this->_metaHTTP;
     echo $this->_metaName;
-    echo $this->_fileCSS;
-
-    $imageURL = $this->_dirImg;
+    echo $this->_fileCSS
     ?>
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+    <title>Mega Course - Learning and Courses HTML5 Template</title>
     <script>
         !function (f, b, e, v, n, t, s) {
             if (f.fbq) return;
@@ -33,13 +42,10 @@
             document, 'script', '//connect.facebook.net/en_US/fbevents.js');
 
         fbq('init', '1031554816897182');
-        fbq('track', "PageView");
-    </script>
-    <noscript>
-        <img height="1" width="1" style="display:none"
-             src="https://www.facebook.com/tr?id=1031554816897182&ev=PageView&noscript=1"
-        />
-    </noscript>
+        fbq('track', "PageView");</script>
+    <noscript><img height="1" width="1" style="display:none"
+                   src="https://www.facebook.com/tr?id=1031554816897182&ev=PageView&noscript=1"
+        /></noscript>
 </head>
 <body id="page-top" class="home">
 
@@ -47,27 +53,40 @@
 <div id="page-wrap">
 
     <!-- PRELOADER -->
-    <?php include_once 'html/preloader.php' ?>
+    <?php include_once "html/preloader.php"; ?>
     <!-- END / PRELOADER -->
 
-    <!--header-->
-    <?php include_once 'html/header.php' ?>
-    <!--//header-->
+    <!-- HEADER -->
+    <?php include_once "html/header.php"; ?>
+    <!-- END / HEADER -->
 
-    <!--content-->
-    <?php include_once MODULE_PATH . DS . $this->_moduleName . DS . 'views' . DS . $this->_fileView . '.php'; ?>
-    <!--//content-->
 
-    <!--footer-->
-    <?php include_once 'html/footer.php' ?>
-    <!--//footer-->
+    <!-- HOME SLIDER -->
+    <?php include_once "html/slider.php"; ?>
+    <!-- END / HOME SLIDER -->
+
+
+    <!-- AFTER SLIDER -->
+    <?php include_once "html/after-slider.php"; ?>
+    <!-- END / AFTER SLIDER -->
+
+    <?php require_once MODULE_PATH . DS . $this->_moduleName . DS . 'views' . DS . $this->_fileView . '.php'; ?>
+
+    <!-- BEFORE FOOTER -->
+    <?php include_once "html/before-footer.php"; ?>
+    <!-- END / BEFORE FOOTER -->
+
+
+    <!-- FOOTER -->
+    <?php include_once "html/footer.php"; ?>
+    <!-- END / FOOTER -->
+
 
 </div>
 <!-- END / PAGE WRAP -->
 
-<?php
-echo $this->_fileJS;
-?>
+<!-- Load jQuery -->
+<?php echo $this->_fileJS ?>
 <script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;

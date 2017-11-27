@@ -14,7 +14,7 @@ $url = array(
     <section class="content-header">
         <h1>
             Manage Video
-            <small>List <span style="color: red">* Click vào link để xem chi tiết</span></small>
+            <small>List <span style="color: red">* Click on the link to view details</span></small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

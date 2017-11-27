@@ -1,4 +1,3 @@
-<!-- FOOTER -->
 <footer id="footer" class="footer">
     <div class="first-footer">
         <div class="container">
@@ -7,7 +6,8 @@
                 <div class="col-md-3">
                     <div class="widget megacourse">
                         <h3 class="md">MegaCourse</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat</p>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+                            tincidunt ut laoreet dolore magna aliquam erat volutpat</p>
                         <a href="#" class="mc-btn btn-style-1">Get started</a>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
                             <li>
                                 <a href="#">
                                     <div class="image-thumb">
-                                        <img src="public/template/default/main/images/team-13.jpg" alt="">
+                                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
                                     </div>
                                     <span>How to have a good Boyfriend in college?</span>
                                 </a>
@@ -27,7 +27,7 @@
                             <li>
                                 <a href="#">
                                     <div class="image-thumb">
-                                        <img src="public/template/default/main/images/team-13.jpg" alt="">
+                                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
                                     </div>
                                     <span>How to have a good Boyfriend in college?</span>
                                 </a>
@@ -78,7 +78,8 @@
             <div class="contact">
                 <div class="email">
                     <i class="icon md-email"></i>
-                    <a href="#"><span class="__cf_email__" data-cfemail="6a09051f18190f2a070f0d0b0e181f1a0b0644090507">[email&#160;protected]</span></a>
+                    <a href="#"><span class="__cf_email__"
+                                      data-cfemail="c2a1adb7b0b1a782afa7a5a3a6b0b7b2a3aeeca1adaf">[email&#160;protected]</span></a>
                 </div>
                 <div class="phone">
                     <i class="fa fa-mobile"></i>
@@ -93,4 +94,3 @@
         </div>
     </div>
 </footer>
-<!-- END / FOOTER -->
