@@ -13,6 +13,7 @@ class IndexController extends Controller
 
     public function indexAction()
     {
+        $this->_view->userInfo = $this->_model->show(DB_TBUSER, unserialize($_COOKIE['remember'])['user'][0]['id']);
         $this->_view->render('user/profile');
     }
 

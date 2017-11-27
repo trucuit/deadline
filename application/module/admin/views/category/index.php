@@ -65,14 +65,14 @@ $url = array(
                                                role="grid" aria-describedby="example1_info">
                                             <thead>
                                             <tr role="row">
-                                                <th><input type="checkbox" name="checkall-toggle"></th>
+                                                <th class="no-sort"><input type="checkbox" name="checkall-toggle"></th>
                                                 <th class="sorting_asc">Name</th>
-                                                <th class="sorting">Created</th>
-                                                <th class="sorting">Created by</th>
-                                                <th class="sorting">Modified</th>
-                                                <th class="sorting">Modified By</th>
-                                                <th class="sorting">Status</th>
-                                                <th class="sorting">ID</th>
+                                                <th>Created</th>
+                                                <th>Created by</th>
+                                                <th>Modified</th>
+                                                <th>Modified By</th>
+                                                <th>Status</th>
+                                                <th>ID</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -95,14 +95,10 @@ $url = array(
                                                     <td><?php echo $value['created_by'] ?></td>
                                                     <td><?php echo $value['modified'] ?></td>
                                                     <td><?php echo $value['modified_by'] ?></td>
-                                                    <td class="text-center">
+                                                    <td class="text-center status">
                                                         <?php
-                                                        if ($value['status'])
-                                                            $gly_val = 'ok';
-                                                        else
-                                                            $gly_val = 'remove';
                                                         $onclick = URL::createLink('admin', 'category', 'ajaxStatus', ['id' => $value['id'], 'status' => $value['status']]);
-                                                        echo '<span class="glyphicon glyphicon-' . $gly_val . '" onclick="javascript:ajaxStatus(\'' . $onclick . '\')" id="status-' . $value['id'] . '"></span>';
+                                                        echo '<i onclick="javascript:ajaxStatus(\'' . $onclick . '\')" id="status-' . $value['id'] . '">' . ($value['status'] ? 'on' : 'off') . '</i>';
                                                         ?>
                                                     </td>
                                                     <td><?php echo $value['id'] ?></td>
@@ -133,7 +129,6 @@ $url = array(
 </div>
 
 <!-- Modal add -->
-<!-- Modal -->
 <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" id="form-add">
     <div class="modal fade" id="modal-add">
         <div class="modal-dialog">
@@ -141,22 +136,24 @@ $url = array(
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">ADD </h4>
+                    <h4 class="modal-title">Add Category </h4>
                 </div>
                 <div class="modal-body">
 
                 </div>
                 <div class="box-footer text-center">
-                    <button class="btn btn-default" data-dismiss="modal">Hủy</button>
-                    <button type="submit" class="btn btn-primary submit-close" id="save-close">Save & Close</button>
-                    <button type="submit" class="btn btn-primary submit-add">Save & New</button>
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary submit-form" id="save-close">Save & Close</button>
+                    <button type="submit" class="btn btn-primary submit-form">Save & New</button>
                 </div>
                 <!-- /.box-footer -->
             </div>
         </div>
+        <div id="xoay">
+            <div id="loader" style="display: none"></div>
+        </div>
     </div>
 </form>
-<!-- /.Modal -->
 <!--modal edit-->
 <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" id="form-edit">
     <div class="modal fade" id="modal-category-edit">
@@ -165,21 +162,23 @@ $url = array(
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">EDIT </h4>
+                    <h4 class="modal-title">Edit Category </h4>
                 </div>
                 <div class="modal-body">
 
                 </div>
-                <div class="box-footer">
-                    <button type="submit" class="btn pull-right btn-primary submit-edit">Save</button>
-                    <button class="btn btn-default" data-dismiss="modal">Hủy</button>
+                <div class="box-footer text-center">
+                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary submit-form">Save</button>
                 </div>
                 <!-- /.box-footer -->
             </div>
         </div>
+        <div id="xoay">
+            <div id="loader" style="display: none"></div>
+        </div>
     </div>
 </form>
-<!-- /.Modal -->
 <!--modal Active-->
 
 <div class="modal fade" id="modal-action" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

@@ -14,12 +14,12 @@ $url = array(
     <section class="content-header">
         <h1>
             Manage Video
-            <small>List</small>
+            <small>List <span style="color: red">* Click vào link để xem chi tiết</span></small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Tables</a></li>
-            <li class="active">Data tables</li>
+            <li><a href="#">Video</a></li>
+            <li class="active">List</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -62,13 +62,13 @@ $url = array(
                                                role="grid" aria-describedby="example1_info">
                                             <thead>
                                             <tr role="row">
-                                                <th><input type="checkbox" name="checkall-toggle"></th>
+                                                <th class="no-sort"><input type="checkbox" name="checkall-toggle"></th>
                                                 <th class="sorting_asc">Title</th>
-                                                <th class="sorting">Link</th>
-                                                <th class="sorting">Course</th>
-                                                <th class="sorting">Status</th>
-                                                <th class="sorting">Ordering</th>
-                                                <th class="sorting">ID</th>
+                                                <th>Link</th>
+                                                <th>Course</th>
+                                                <th >Status</th>
+                                                <th>Ordering</th>
+                                                <th>ID</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -81,7 +81,6 @@ $url = array(
                                                     <td><input type="checkbox" name="cid[]"
                                                                value="<?php echo $value['id'] ?>"></td>
                                                     <td class="sorting_1">
-
                                                         <a href="#"
                                                            data-toggle="modal" data-target="#modal-edit"
                                                            onclick="javascript:ajaxEdit('<?php echo $urlEdit ?>')">
@@ -89,20 +88,18 @@ $url = array(
                                                         </a>
                                                     </td>
                                                     <td>
-                                                        <a href="https://www.youtube.com/watch?v=<?php echo $value['link'] ?>"
-                                                           target="_blank">
+                                                        <a data-toggle="modal" data-target="#modal-show-video"
+                                                           href="#"
+                                                           onclick="javascript:ajaxShowVideo('<?php echo $value['link'] ?>','video')"
+                                                        >
                                                             <?php echo $value['link'] ?>
                                                         </a>
                                                     </td>
                                                     <td><?php echo $value['courseName'] ?></td>
-                                                    <td class="text-center">
+                                                    <td class="text-center status">
                                                         <?php
-                                                        if ($value['status'])
-                                                            $gly_val = 'ok';
-                                                        else
-                                                            $gly_val = 'remove';
                                                         $onclick = URL::createLink('admin', 'video', 'ajaxStatus', ['id' => $value['id'], 'status' => $value['status']]);
-                                                        echo '<span class="glyphicon glyphicon-' . $gly_val . '" onclick="javascript:ajaxStatus(\'' . $onclick . '\')" id="status-' . $value['id'] . '"></span>';
+                                                        echo '<i onclick="javascript:ajaxStatus(\'' . $onclick . '\')" id="status-' . $value['id'] . '">' . ($value['status'] ? 'on' : 'off') . '</i>';
                                                         ?>
                                                     </td>
                                                     <td><?php echo $value['ordering'] ?></td>
@@ -129,6 +126,8 @@ $url = array(
 </div>
 
 <!-- Modal -->
+
+<!-- Add Video-->
 <form class="form-horizontal form-add-video" action="#" method="post" enctype="multipart/form-data" id="form-add">
     <div class="modal fade" id="modal-add">
         <div class="modal-dialog">
@@ -153,6 +152,8 @@ $url = array(
         </div>
     </div>
 </form>
+
+<!-- Edit Video -->
 <form class="form-horizontal form-edit-video" action="#" method="post" enctype="multipart/form-data" id="form-edit">
     <div class="modal fade" id="modal-edit">
         <div class="modal-dialog">
@@ -176,4 +177,25 @@ $url = array(
         </div>
     </div>
 </form>
+
+<!-- Show Video -->
+<div class="modal fade in" id="modal-show-video">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></a>
+                <h4 class="modal-title">Play Video</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="box-footer text-center">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <a class="btn btn-primary" id="youtube" target="_blank">Youtube</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 <!-- /.Modal -->

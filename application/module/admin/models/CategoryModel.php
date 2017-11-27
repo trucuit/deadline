@@ -10,7 +10,7 @@ class CategoryModel extends Model
     public function chageStatus($param)
     {
         $status = ($param['status'] == 0) ? 1 : 0;
-        $modified_by = Session::get('login')['user']['username'];
+        $modified_by = unserialize($_COOKIE['remember'])['user'][0]['username'];
         $modified = date('Y-m-d', time());
         $id = $param['id'];
         $query = "UPDATE `" . DB_TBCATEGORY . "` SET `status` = $status, `modified` = '$modified', `modified_by` = '$modified_by' WHERE `id` = '" . $id . "'";
@@ -27,36 +27,26 @@ class CategoryModel extends Model
 
     public function insertCategory($arrParam)
     {
-        $arrCookie = unserialize($_COOKIE['remember']);
-        $name = trim($arrParam['name']);
-        $created = date('Y-m-d H:i:s', time());
-        $created_by = $arrCookie['user'][0]['username'];
-        $status = $arrParam['status'];
-        $query[] = "INSERT INTO `" . DB_TBCATEGORY . "`";
-        $query[] = "(`name`, `created`, `created_by`, `status`)";
-        $query[] = "VALUES ('$name','$created','$created_by','$status')";
-
-        $query = implode(' ', $query);
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
-
+        $arrParam['name'] = $arrParam['name'];
+        $arrParam['created'] = date('Y-m-d', time());
+        $arrParam['created_by'] = unserialize($_COOKIE['remember'])['user'][0]['username'];
+        $this->insert(DB_TBCATEGORY, $arrParam);
     }
 
 
-    public function updateCategory($arrParam,$where)
+    public function updateCategory($arrParam, $where)
     {
-        $arrCookie=unserialize($_COOKIE['remember']);
-
-        $modified = date('Y-m-d H:i:s', time());
+        $arrCookie = unserialize($_COOKIE['remember']);
+        $modified = date('Y-m-d', time());
         $modified_by = $arrCookie['user'][0]['username'];
-        $status=$arrParam['status'];
+        $status = $arrParam['status'];
         $id = $where;
-        if (isset($arrParam['name'])){
+        if (isset($arrParam['name'])) {
             $name = $arrParam['name'];
-            $query = "UPDATE `category` SET `name`='$name', `modified`='$modified',`modified_by`='$modified_by',`status`='$status' WHERE `id`='$id'";
+            $query = "UPDATE `".DB_TBCATEGORY."` SET `name`='$name', `modified`='$modified',`modified_by`='$modified_by',`status`='$status' WHERE `id`='$id'";
 
-        }else{
-            $query = "UPDATE `category` SET `modified`='$modified',`modified_by`='$modified_by',`status`='$status' WHERE `id`='$id'";
+        } else {
+            $query = "UPDATE `".DB_TBCATEGORY."` SET `modified`='$modified',`modified_by`='$modified_by',`status`='$status' WHERE `id`='$id'";
 
         }
         $stmt = $this->conn->prepare($query);

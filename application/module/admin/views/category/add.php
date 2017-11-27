@@ -16,12 +16,16 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-3 control-label">Status:</label>
+        <label class="col-sm-3 control-label">Status <i style="color: red">*</i></label>
         <div class="col-sm-9">
-            <select name="status" id="status" class="form-control">
-                <option value="1">on</option>
-                <option value="0">off</option>
-            </select>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="status" id="status" value="1">On
+                </label>
+                <label style="margin-left: 20px">
+                    <input type="radio" name="status" value="0" checked>Off
+                </label>
+            </div>
         </div>
     </div>
 
