@@ -14,12 +14,12 @@ $url = array(
     <section class="content-header">
         <h1>
             Manage Course
-            <small>List</small>
+            <small>List <span style="color: red">* Click vào hình ảnh để xem chi tiết</span></small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Course</a></li>
-            <li class="active">List</li>
+            <li class="active">List </li>
         </ol>
     </section>
     <!-- Main content -->
@@ -53,15 +53,16 @@ $url = array(
                     <form action="#" method="post" id="adminForm">
                         <div class="box-body">
                             <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <table id="example1" class="table table-bordered table-striped dataTable"
                                                role="grid" aria-describedby="example1_info">
                                             <thead>
                                             <tr role="row">
-                                                <th><input type="checkbox" name="checkall-toggle"></th>
+                                                <th class="no-sort"><input type="checkbox" name="checkall-toggle"></th>
                                                 <th class="sorting">Name</th>
-                                                <th>Image</th>
+                                                <th class="no-sort">Image</th>
                                                 <th class="sorting">Total Video</th>
                                                 <th class="sorting">Category</th>
                                                 <th class="sorting">Created</th>
@@ -93,8 +94,10 @@ $url = array(
                                                     </td>
                                                     </td>
                                                     <td>
-                                                        <a href="https://www.youtube.com/watch?v=5l7jxM41kB8&list=<?php echo $value['link'] ?>"
-                                                           target="_blank">
+                                                        <a data-toggle="modal" data-target="#modal-show-video"
+                                                           href="#"
+                                                           onclick="javascript:ajaxShowVideo('<?php echo $value['link'] ?>','list')"
+                                                        >
                                                             <img src="<?php echo $this->_dirImg . "/" . $value['image'] ?>"
                                                                  alt="" height="40px">
                                                         </a>
@@ -105,14 +108,10 @@ $url = array(
                                                     <td><?php echo $value['created_by'] ?></td>
                                                     <td><?php echo $value['modified'] ?></td>
                                                     <td><?php echo $value['modified_by'] ?></td>
-                                                    <td class="text-center">
+                                                    <td class="text-center status">
                                                         <?php
-                                                        if ($value['status'])
-                                                            $gly_val = 'ok';
-                                                        else
-                                                            $gly_val = 'remove';
                                                         $onclick = URL::createLink('admin', 'course', 'ajaxStatus', ['id' => $value['id'], 'status' => $value['status']]);
-                                                        echo '<span class="glyphicon glyphicon-' . $gly_val . '" onclick="javascript:ajaxStatus(\'' . $onclick . '\')" id="status-' . $value['id'] . '"></span>';
+                                                        echo '<i onclick="javascript:ajaxStatus(\'' . $onclick . '\')" id="status-' . $value['id'] . '">' . ($value['status'] ? 'on' : 'off') . '</i>';
                                                         ?>
                                                     </td>
                                                     <td><?php echo $value['id'] ?></td>
@@ -138,6 +137,7 @@ $url = array(
 </div>
 
 <!-- Modal -->
+
 <form class="form-horizontal form-add-course" action="#" method="post" enctype="multipart/form-data" id="form-add">
     <div class="modal fade" id="modal-add">
         <div class="modal-dialog">
@@ -187,5 +187,24 @@ $url = array(
         </div>
     </div>
 </form>
+<!-- Show Video -->
+<div class="modal fade in" id="modal-show-video">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></a>
+                <h4 class="modal-title">List Video</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="box-footer text-center">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<!--                <a class="btn btn-primary" id="youtube" target="_blank">Youtube</a>-->
+            </div>
+        </div>
+    </div>
+
+</div>
 
 <!-- /.Modal -->

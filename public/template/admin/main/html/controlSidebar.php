@@ -1,3 +1,10 @@
+<?php
+$url = [
+    'profile' => URL::createLink('admin', 'user', 'profile')
+];
+$userInfo = unserialize($_COOKIE['remember'])['user'][0];
+?>
+
 <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">

@@ -274,7 +274,7 @@ class Validate
                 $this->setError($element, 'kích thước không phù hợp');
             }
 
-            $ext = pathinfo($this->source[$element]['name'], PATHINFO_EXTENSION);
+            $ext = strtolower(pathinfo($this->source[$element]['name'], PATHINFO_EXTENSION));
             if (in_array($ext, $options['extension']) == false) {
                 $this->setError($element, 'phần mở rộng không phù hợp');
             }

@@ -46,9 +46,15 @@ class CourseController extends Controller
                 } else
                     $this->_view->errors = Helper::showErrors("<b>Image</b>: Chưa chọn hình ảnh");
             } else {
-                $this->_model->insertCourse($this->_arrParam['form']);
-                $this->_view->success = Helper::success('Thêm thành công');
-                $this->_view->infoItem = [];
+                $bl = $this->_model->insertCourse($this->_arrParam['form']);
+                if ($bl == 0) {
+                    $this->_view->errors = Helper::showErrors('Link không hợp lệ');
+                    $query = "SELECT `id` FROM `" . DB_TBCOURSE . "` ORDER BY `id` DESC LIMIT 0,1";
+                    $this->_model->delete(DB_TBCOURSE,[$this->_model->execute($query, 1)[0]['id']]);
+                } else {
+                    $this->_view->success = Helper::success('Thêm thành công');
+                    $this->_view->infoItem = [];
+                }
             }
         }
 
@@ -64,7 +70,9 @@ class CourseController extends Controller
     //Ajax
     public function deleteAction()
     {
-        $this->_model->deleteItem($this->_arrParam['cid']);
+        if (isset($this->_arrParam['cid'])) {
+            $this->_model->deleteItem($this->_arrParam['cid']);
+        }
         URL::redirect('admin', 'course', 'index');
     }
 
@@ -121,8 +129,8 @@ class CourseController extends Controller
     //Ajax
     public function statusAction()
     {
-        $this->_model->chageStatus($this->_arrParam['cid'],$this->_arrParam['type'],"change-status");
-        URL::redirect('admin','course','index');
+        $this->_model->chageStatus($this->_arrParam['cid'], $this->_arrParam['type'], "change-status");
+        URL::redirect('admin', 'course', 'index');
     }
 
     public function ajaxEditCourseAction()

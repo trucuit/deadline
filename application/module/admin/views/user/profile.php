@@ -1,6 +1,5 @@
 <?php
 $userInfo = $this->userInfo;
-print_r($_SESSION);
 ?>
 
 <div class="content-wrapper" style="min-height: 1125.8px;" id="profile">
@@ -11,7 +10,6 @@ print_r($_SESSION);
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Examples</a></li>
             <li class="active">User profile</li>
         </ol>
     </section>
@@ -26,7 +24,7 @@ print_r($_SESSION);
                 <div class="box box-primary">
                     <div class="box-body box-profile">
                         <img class="profile-user-img img-responsive img-circle"
-                             src="<?php echo $dirAdminLTE ?>/dist/img/user4-128x128.jpg"
+                             src="<?php echo $dirAdminLTE ?>/dist/img/no_image_user.png"
                              alt="User profile picture">
 
                         <h3 class="profile-username text-center"><?php  ?></h3>
@@ -48,7 +46,7 @@ print_r($_SESSION);
             <div class="col-md-9">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#changeInfo" data-toggle="tab" aria-expanded="true">Change Info</a>
+                        <li class="active"><a href="#changeInfo" data-toggle="tab" aria-expanded="true">Info</a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -87,6 +85,7 @@ print_r($_SESSION);
                                     <div class="col-sm-10">
                                         <input type="password" class="form-control" id="inputEmail"
                                                placeholder="Password" name="form[password]">
+                                        <span class="help-block"><i style="color: red"> *</i>Enter a new password if you want to change</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -103,13 +102,13 @@ print_r($_SESSION);
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                     aria-label="Close">
                                                                 <span aria-hidden="true">×</span></button>
-                                                            <h4 class="modal-title">Bạn có muốn thay đổi không?</h4>
+                                                            <h4 class="modal-title">Would you like to change?</h4>
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default pull-left"
-                                                                    data-dismiss="modal">Không
+                                                        <div class="modal-footer text-center">
+                                                            <button type="button" class="btn btn-default"
+                                                                    data-dismiss="modal">Cancel
                                                             </button>
-                                                            <button type="submit" class="btn btn-primary submit-form">Có
+                                                            <button type="submit" class="btn btn-primary submit-form">Ok
                                                             </button>
                                                         </div>
                                                     </div>

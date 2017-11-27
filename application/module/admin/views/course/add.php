@@ -12,7 +12,7 @@ $selectBox = Helper::cmsSelecbox($listCategory, 'category_id', 'form-control', $
     <div class="form-group">
         <label class="col-sm-3 control-label">Name<i style="color: red"> *</i></label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" placeholder="Tên Course" name="name"
+            <input type="text" class="form-control" placeholder="Course" name="name"
                    value="<?php if (isset($infoItem['name'])) echo $infoItem['name'] ?>"
             >
         </div>

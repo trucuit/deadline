@@ -62,14 +62,14 @@ $(function () {
             processData: false,
             data: form_data,
             beforeSend: function () {
-                $('.alert-course').hide();
-                $("#loader").show();
-                $("#xoay").addClass('xoay');
+                $('.form-edit-course .alert-warning').hide();
+                $(".form-edit-course #loader").show();
+                $(".form-edit-course #xoay").addClass('xoay');
                 console.log($("#xoay").attr('class'));
             },
             success: function (data, status) {
-                $("#loader").hide();
-                $("#xoay").removeClass('xoay');
+                $(".form-edit-course #loader").hide();
+                $(".form-edit-course #xoay").removeClass('xoay');
                 $('#modal-edit .modal-body').html(data);
             }
         });
@@ -123,18 +123,19 @@ $(function () {
             url: "index.php?module=admin&controller=video&action=editAjax&id=" + id,
             data: {form: dataForm, id: id},
             beforeSend: function () {
-                $('.alert-course').hide();
-                $("#loader").show();
-                $("#xoay").addClass('xoay');
+                $('.form-edit-video .alert-course').show();
+                $(".form-edit-video #loader").show();
+                $(".form-edit-video #xoay").addClass('xoay');
             },
             success: function (data) {
-                $("#loader").hide();
-                $("#xoay").removeClass('xoay');
+                $(".form-edit-video #loader").hide();
+                $(".form-edit-video #xoay").removeClass('xoay');
                 $('#modal-edit .modal-body').html(data);
             },
         });
     });
 
+    //close form
     $("button.close span").click(function () {
         location.reload();
     })
@@ -155,12 +156,14 @@ function submitForm(url) {
     $('#adminForm').submit();
 }
 
+//submit Form Controller Video
 function submitFormVideo(url) {
     url = url + "&id=" + getUrlVar("id");
     $('#adminForm').attr('action', url);
     $('#adminForm').submit();
 }
 
+//get URL
 function getUrlVar(key) {
     var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search);
     return result && unescape(result[1]) || "";
@@ -168,25 +171,21 @@ function getUrlVar(key) {
 
 // change Status
 function ajaxStatus(url) {
-    console.log(url);
     $.ajax({
         url: url,
         type: "GET",
         dataType: "json",
         success: function (data) {
-            console.log(data);
-            var element = ".content span#status-" + data['id'];
+            var element = ".status i#status-" + data['id'];
             if (data['status'] == 0) {
                 $(element).attr({
-                    class: "glyphicon glyphicon-remove",
                     onclick: "javascript:ajaxStatus('" + data['link'] + "')"
-                });
+                }).text('off');
             }
             else {
                 $(element).attr({
-                    class: "glyphicon glyphicon-ok",
                     onclick: "javascript:ajaxStatus('" + data['link'] + "')"
-                });
+                }).text('on');
             }
         }
     });
@@ -209,7 +208,6 @@ function readURL(input) {
 function ajaxEdit(url) {
     console.log(url);
     $.get(url, function (data) {
-        console.log(data);
         $('#modal-edit .modal-body').html(data);
     })
 }
@@ -222,6 +220,17 @@ function ajaxAdd(url) {
     })
 }
 
+//ajax Show Video
+function ajaxShowVideo(videoID, type) {
+    if(type == 'video') {
+        $("#youtube").attr('href', 'https://www.youtube.com/watch?v=' + videoID);
+        iframe = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoID + ' " frameborder="0" allowfullscreen></iframe>';
+        $('#modal-show-video .modal-body').html(iframe);
+    }else{
+        iframe ='<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list='+videoID+' " frameborder="0" allowfullscreen></iframe>';
+        $('#modal-show-video .modal-body').html(iframe);
+    }
+}
 
 // ajax Delete
 function ajaxDelete(url) {

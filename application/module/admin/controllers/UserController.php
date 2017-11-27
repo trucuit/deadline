@@ -56,18 +56,22 @@ class UserController extends Controller
             $validate = new Validate($this->_arrParam['form']);
             $validate->addRule('fullname', 'string', array('max' => 100, 'min' => 5))
                 ->addRule('email', 'email');
-            if (isset($form['password'])) {
+            if (trim($this->_arrParam['form']['password']) != "") {
                 $validate->addRule('password', 'password');
             }
             $validate->run();
+            $this->_arrParam['form'] = $validate->getResult();
+            if ($this->_arrParam['form']['password'] == null)
+                unset($this->_arrParam['form']['password']);
+            else {
+                $this->_arrParam['form']['password'] = md5($this->_arrParam['form']['password']);
+            }
             if ($validate->isValid() == false) {
                 $this->_view->errors = $validate->showErrors();
             } else {
-                $query = "UPDATE `user` SET `username`='" . $this->_arrParam['form']['username'] . "',`fullname`='" . $this->_arrParam['form']['fullname'] . "', `email`='" . $this->_arrParam['form']['email'] . "', `password`='" . md5($this->_arrParam['form']['password']) . "'";
-                $query .= " WHERE `id`=" . unserialize($_COOKIE['remember'])['user'][0]['id'];
-                $this->_model->execute($query);
+                $this->_model->update(DB_TBUSER, $this->_arrParam['form'], ['id' => unserialize($_COOKIE['remember'])['user'][0]['id']]);
                 $this->_view->success = Helper::success('Cập nhật thành công');
-//                URL::redirect('admin', 'user', 'profile');
+                URL::redirect('admin', 'user', 'profile');
             }
         }
         $this->_view->userInfo = $this->_model->show(DB_TBUSER, unserialize($_COOKIE['remember'])['user'][0]['id']);

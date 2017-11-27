@@ -16,8 +16,7 @@ $userInfo = unserialize($_COOKIE['remember'])['user'][0];
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?php echo $dirAdminLTE ?>/dist/img/no_image_user.png" class="img-circle"
-                     alt="User Image">
+                <img src="<?php echo $dirAdminLTE ?>/dist/img/no_image_user.png">
             </div>
             <div class="pull-left info">
                 <p><?php echo $userInfo['username'] ?></p>

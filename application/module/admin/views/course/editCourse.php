@@ -14,7 +14,7 @@ $selectBox = Helper::cmsSelecbox($listCategory, 'category_id', 'form-control', $
         <div class="form-group">
             <label class="col-sm-3 control-label">Name<i style="color: red"> *</i></label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" name="name" placeholder="Tên Course"
+                <input type="text" class="form-control" name="name" placeholder="Course"
                        value="<?php if (isset($infoItem['name'])) echo $infoItem['name'] ?>"
                 >
             </div>
@@ -38,7 +38,7 @@ $selectBox = Helper::cmsSelecbox($listCategory, 'category_id', 'form-control', $
             <label class="col-sm-3 control-label">Image</label>
             <div class="col-sm-9">
                 <input type="file" class="form-control" onchange="readURL(this);" name="image">
-                <span class="help-block"><i style="color: red"> *</i>Chọn hình mới nếu muốn đổi hình</span>
+                <span class="help-block"><i style="color: red"> *</i>Select a new one if you want to change it</span>
                 <div class="blah">
                     <img id="blah" src="#" height="50px"/>
                 </div>
@@ -47,7 +47,7 @@ $selectBox = Helper::cmsSelecbox($listCategory, 'category_id', 'form-control', $
 
         <div class="form-group">
 
-            <label class="col-sm-3 control-label">Chọn Category<i style="color: red">*</i></label>
+            <label class="col-sm-3 control-label">Category<i style="color: red">*</i></label>
 
             <div class="col-sm-9">
                 <?php echo $selectBox ?>
