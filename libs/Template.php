@@ -31,12 +31,13 @@ class Template
         if (file_exists($pathFileConfig)) {
             $arrConfig = parse_ini_file($pathFileConfig);
             $view = $this->_controller->getView();
-            $view->_title = $view->createTitle($arrConfig['title']);
+            $view->_title = $arrConfig['title'];
             $view->_metaHTTP = $view->createMeta($arrConfig['metaHTTP'], 'http');
             $view->_metaName = $view->createMeta($arrConfig['metaName'], 'name');
             $view->_fileCSS = $view->createLink($this->_folderTemplate . DS . $arrConfig['dirCss'], $arrConfig['fileCss'], 'css');
             $view->_fileJS = $view->createLink($this->_folderTemplate . DS . $arrConfig['dirJs'], $arrConfig['fileJs'], 'js');
             $view->_dirImg = TEMPLATE_URL . DS . $this->_folderTemplate . DS . $arrConfig['dirImg'];
+            $view->_dirAdminLTE = TEMPLATE_URL . DS . $this->_folderTemplate . DS . 'adminLTE';
             $view->setTemplatePath(TEMPLATE_PATH . DS . $this->_folderTemplate . DS . $fileTemplate);
         }
     }
