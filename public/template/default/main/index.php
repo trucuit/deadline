@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+    <title><?php echo $this->_title; ?></title>
     <?php
-    echo $this->_title;
+
     echo $this->_metaHTTP;
     echo $this->_metaName;
     echo $this->_fileCSS;
@@ -40,8 +40,6 @@
              src="https://www.facebook.com/tr?id=1031554816897182&ev=PageView&noscript=1"
         />
     </noscript>
-
-
 </head>
 <body id="page-top" class="home">
 
@@ -66,6 +64,10 @@
 
 </div>
 <!-- END / PAGE WRAP -->
+
+<?php
+echo $this->_fileJS;
+?>
 <script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
@@ -82,8 +84,5 @@
     ga('create', 'UA-20585382-5', 'megadrupal.com');
     ga('send', 'pageview');
 </script>
-<?php
-echo $this->_fileJS;
-?>
 </body>
 </html>

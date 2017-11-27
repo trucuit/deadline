@@ -180,7 +180,7 @@ function ajaxStatus(url) {
         url: url,
         type: "GET",
         dataType: "json",
-        success: function (data) {
+        success: function (data,status) {
             var element = ".status i#status-" + data['id'];
             if (data['status'] == 0) {
                 $(element).attr({
