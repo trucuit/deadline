@@ -206,11 +206,11 @@
                                 <a href="#"></a>
                             </div>
                             <div class="view-info">
-                                <i class="icon md-users"></i>
+                                <i class="icon fa fa-users"></i>
                                 2568
                             </div>
                             <div class="comment-info">
-                                <i class="icon md-comment"></i>
+                                <i class="icon fa fa-commenting-o"></i>
                                 25
                             </div>
                             <div class="price">
@@ -242,11 +242,11 @@
                                 <a href="#"></a>
                             </div>
                             <div class="view-info">
-                                <i class="icon md-users"></i>
+                                <i class="icon fa fa-users"></i>
                                 2568
                             </div>
                             <div class="comment-info">
-                                <i class="icon md-comment"></i>
+                                <i class="icon fa fa-commenting-o"></i>
                                 25
                             </div>
                             <div class="price">
@@ -277,11 +277,11 @@
                                 <a href="#"></a>
                             </div>
                             <div class="view-info">
-                                <i class="icon md-users"></i>
+                                <i class="icon fa fa-users"></i>
                                 2568
                             </div>
                             <div class="comment-info">
-                                <i class="icon md-comment"></i>
+                                <i class="icon fa fa-commenting-o"></i>
                                 25
                             </div>
                             <div class="price">
@@ -314,11 +314,11 @@
                                 <a href="#"></a>
                             </div>
                             <div class="view-info">
-                                <i class="icon md-users"></i>
+                                <i class="icon fa fa-users"></i>
                                 2568
                             </div>
                             <div class="comment-info">
-                                <i class="icon md-comment"></i>
+                                <i class="icon fa fa-commenting-o"></i>
                                 25
                             </div>
                             <div class="price">
@@ -350,11 +350,11 @@
                                 <a href="#"></a>
                             </div>
                             <div class="view-info">
-                                <i class="icon md-users"></i>
+                                <i class="icon fa fa-users"></i>
                                 2568
                             </div>
                             <div class="comment-info">
-                                <i class="icon md-comment"></i>
+                                <i class="icon fa fa-commenting-o"></i>
                                 25
                             </div>
                             <div class="price">
