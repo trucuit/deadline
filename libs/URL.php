@@ -9,7 +9,7 @@ class URL
 				$linkParam .="&$key=$value";
 			}
 		}
-		return "index.php?module=$module&controller=$controller&action=$action$linkParam";
+		return ROOT_URL."/$module/$controller/$action$linkParam";
 	}
 
 	public static function redirect($module, $controller, $action , $params = null){

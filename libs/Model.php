@@ -27,13 +27,13 @@ class Model
         $this->conn = null;
     }
 
+    // SET TABLE
     public function setTable($table)
     {
         $this->table = $table;
     }
 
-
-
+    // UPDATE
     public function update($table, $data, $where)
     {
         $newSet = $this->createUpdateSQL($data);
@@ -55,6 +55,7 @@ class Model
         return $newQuery;
     }
 
+    // CREATE WHERE UPDATE
     public function createWhereUpdateSQL($data)
     {
         $newWhere = '';
@@ -68,6 +69,7 @@ class Model
         return $newWhere;
     }
 
+    // SHOW ALL
     public function showAll($table)
     {
         $stmt = $this->conn->prepare("SELECT * FROM `$table`");
@@ -75,6 +77,7 @@ class Model
         return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // SHOW
     public function show($table, $id)
     {
         $stmt = $this->conn->prepare("SELECT * FROM `$table` WHERE id=:id");
@@ -83,6 +86,7 @@ class Model
         return $data = $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // SELECT
     public function select($table, $id = null, $return = false)
     {
         $query = "SELECT * FROM `$table` AS `t1`";
@@ -97,7 +101,7 @@ class Model
             return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-
+    // EXECUTE QUERY
     public function execute($sql, $return = false)
     {
         $stmt = $this->conn->prepare($sql);
@@ -106,6 +110,7 @@ class Model
             return $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // IS EXIST
     public function isExist($query)
     {
         if ($query != null) {
@@ -119,7 +124,7 @@ class Model
         return true;
     }
 
-
+    // CREATE INSERT
     public function createInsertSQL($data)
     {
         $newQuery = array();
@@ -136,6 +141,7 @@ class Model
         return $newQuery;
     }
 
+    // INSERT
     public function insert($table, $data, $type = 'single')
     {
         if ($type == 'single') {
@@ -151,6 +157,7 @@ class Model
         }
     }
 
+    // DELETE
     public function delete($table, $where)
     {
         $newWhere = $this->createWhereDeleteSQL($where);
@@ -158,7 +165,7 @@ class Model
         $this->execute($query);
     }
 
-
+    // CREATE WHERE DELETE
     public function createWhereDeleteSQL($data)
     {
         $newWhere = '';

@@ -4,6 +4,7 @@ $url = array(
     'category' => URL::createLink('admin', 'category', 'index'),
     'course' => URL::createLink('admin', 'course', 'index'),
     'video' => URL::createLink('admin', 'video', 'index'),
+    'author' => URL::createLink('admin', 'author', 'index'),
 );
 $model = new Model();
 $query = "SELECT `id`,`name` FROM `" . DB_TBCOURSE . "`";
@@ -55,24 +56,29 @@ $userInfo = unserialize($_COOKIE['remember'])['user'][0];
                     <span>Course</span>
                 </a>
             </li>
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-fw fa-youtube-play"></i>
                     <span>Video</span>
-                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
-            </span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
                     <?php foreach ($listCourse as $val) {
-                        $url = URL::createLink('admin', 'video', 'index', ['id' => $val['id']]);
+                        $link = URL::createLink('admin', 'video', 'index', ['id' => $val['id']]);
                         ?>
                         <li>
-                            <a href='<?php echo $url ?>'>
-                                <i class='fa fa - circle - o'></i><?php echo $val['name'] ?>
+                            <a href='<?php echo $link ?>'>
+                                <i class='fa fa-circle-o'></i><?php echo $val['name'] ?>
                             </a>
                         </li>
                     <?php } ?>
                 </ul>
+            </li>
+            <li>
+                <a href="<?php echo $url['author'] ?>">
+                    <i class="fa fa-fw fa-user-secret"></i>
+                    <span>Author</span>
                 </a>
             </li>
         </ul>
