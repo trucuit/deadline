@@ -16,7 +16,6 @@ define('TEMPLATE_URL', PUBLIC_URL .DS. 'template');
 define('DEFAULT_MODULE', 'admin');
 define('DEFAULT_CONTROLLER', 'user');
 define('DEFAULT_ACTION', 'profile');
-
 // ====================== DATABASE ===========================
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
@@ -24,10 +23,13 @@ define('DB_PASS', '');
 define('DB_NAME', 'deadline');
 define('DB_TABLE', '');
 
+// ====================== TABLE ===========================
 define('DB_TBUSER', 'user');
 define('DB_TBCATEGORY', 'category');
 define('DB_TBCOURSE', 'course');
 define('DB_TBVIDEO', 'video');
+define('DB_TBAUTHOR', 'author');
+
 // ====================== TIME LOGIN ===========================
 define('TIME_LOGIN', 3600);
 

@@ -45,6 +45,10 @@ $dirAdminLTE = $this->_dirAdminLTE;
 
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <script type="text/javascript">
+        root_url =  <?php echo json_encode(ROOT_URL ."/")  ?>;
+        const ROOT_URL = root_url;
+    </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -114,12 +118,12 @@ $dirAdminLTE = $this->_dirAdminLTE;
     $(function () {
         $('#example1').DataTable()
         $('#example2').DataTable({
-            'paging'      : true,
+            'paging': true,
             'lengthChange': false,
-            'searching'   : false,
-            'ordering'    : true,
-            'info'        : true,
-            'autoWidth'   : false
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
         })
     })
 </script>

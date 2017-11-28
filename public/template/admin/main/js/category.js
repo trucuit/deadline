@@ -1,20 +1,56 @@
 $(function () {
+
 //reload khi close
     $("button.close span").click(function () {
         location.reload();
     })
     // ajaxEdit
-    $('.name-edit').click(function (e) {
-        var value = $(this).attr("value");
-        e.preventDefault();
+    // $('.name-edit').click(function (e) {
+    //     var value = $(this).attr("value");
+    //     e.preventDefault();
+    //     $.ajax({
+    //         // url: 'index.php?module=admin&controller=category&action=ajaxEditCategory',
+    //         url: ROOT_URL + 'admin/category/ajaxEditCategory',
+    //         data: {id: value},
+    //         success: function (data) {
+    //             $('#modal-category-edit .modal-body').html(data);
+    //         }
+    //     })
+    // })
+
+    // submit form ajax
+    $('#form-add .submit-form').click(function (event) {
+        event.preventDefault();
+        status = $('#form-add #status')[0].checked;
+        var dataForm = {
+            'name': $('#form-add input[name="name"]').val(),
+            'status': (status == 'true') ? 1 : 0
+        }
+        id = this.id;
         $.ajax({
-            url: 'index.php?module=admin&controller=category&action=ajaxEditCategory',
-            data: {id: value},
-            success: function (data) {
-                $('#modal-category-edit .modal-body').html(data);
+            type: "POST",
+            // url: "index.php?module=admin&controller=category&action=ajaxAdd",
+            url: ROOT_URL + "admin/category/ajaxAdd",
+            data: {form: dataForm},
+            beforeSend: function () {
+                $('.alert-course').hide();
+                $("#loader").show();
+                $("#xoay").addClass('xoay');
+            },
+            success: function (data, status) {
+                $("#loader").hide();
+                $("#xoay").removeClass('xoay');
+                $('#form-add .modal-body').html(data);
+            },
+            complete: function () {
+                if (id == "save-close") {
+                    if ($("#form-add .alert-success").length) {
+                        location.reload();
+                    }
+                }
             }
-        })
-    })
+        });
+    });
 
     $('#form-edit .submit-form').click(function (event) {
         event.preventDefault();
@@ -26,7 +62,8 @@ $(function () {
         id = $('#form-edit input[name="name"]').attr("id")
         $.ajax({
             type: "POST",
-            url: "index.php?module=admin&controller=category&action=ajaxEditCategory",
+            // url: "index.php?module=admin&controller=category&action=ajaxEditCategory",
+            url: ROOT_URL + "admin/category/ajaxEditCategory",
             data: {form: dataForm, id: id}, // serializes the form's elements.
             beforeSend: function () {
                 $('#form-edit .alert-course').hide();
@@ -60,13 +97,13 @@ $(function () {
         }
         var checkButton = $(this).text().trim();
         if (checkButton === 'Active') {
-            var url = 'index.php?module=admin&controller=category&action=ajaxActive';
+            var url = ROOT_URL + 'admin/category/ajaxActive';
         }
         else if (checkButton === 'Inactive') {
-            var url = 'index.php?module=admin&controller=category&action=ajaxInactive';
+            var url = ROOT_URL + '/admin/category/ajaxInactive';
         }
         else if (checkButton === 'Delete') {
-            var url = 'index.php?module=admin&controller=category&action=ajaxDelete';
+            var url = ROOT_URL + '/admin/category/ajaxDelete';
         }
         id = this.id;
         $.ajax({
@@ -106,7 +143,7 @@ $(function () {
         form_data.append('category', category);
         form_data.append('id', id);
         $.ajax({
-            url: 'index.php?module=admin&controller=category&action=ajaxEditCategory',
+            url: ROOT_URL + 'admin/category/ajaxEditCategory',
             type: 'POST',
             cache: false,
             contentType: false,
@@ -132,39 +169,7 @@ $(function () {
         });
     });
 
-    // submit new form file ajax
-    $('#form-add .submit-form').click(function (event) {
-        event.preventDefault();
 
-        status = $('#form-add #status')[0].checked;
-        var dataForm = {
-            'name': $('#form-add input[name="name"]').val(),
-            'status': (status == 'true') ? 1 : 0
-        }
-        id = this.id;
-        $.ajax({
-            type: "POST",
-            url: "index.php?module=admin&controller=category&action=ajaxAdd",
-            data: {form: dataForm},
-            beforeSend: function () {
-                $('.alert-course').hide();
-                $("#loader").show();
-                $("#xoay").addClass('xoay');
-            },
-            success: function (data) {
-                $("#loader").hide();
-                $("#xoay").removeClass('xoay');
-                $('#form-add .modal-body').html(data);
-            },
-            complete: function () {
-                if (id == "save-close") {
-                    if ($("#form-add .alert-success").length) {
-                        location.reload();
-                    }
-                }
-            }
-        });
-    });
     // check All
     $('input[name="checkall-toggle"]').change(function () {
         var checkStatus = this.checked;
@@ -180,7 +185,7 @@ function ajaxStatus(url) {
         url: url,
         type: "GET",
         dataType: "json",
-        success: function (data,status) {
+        success: function (data, status) {
             var element = ".status i#status-" + data['id'];
             if (data['status'] == 0) {
                 $(element).attr({

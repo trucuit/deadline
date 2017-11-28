@@ -11,12 +11,14 @@ class CourseController extends Controller
         $this->_templateObj->load();
     }
 
+    // Index
     public function indexAction()
     {
         $this->_view->listCourse = $this->_model->showCourse();
         $this->_view->render('course/index');
     }
 
+    // Add Ajax
     public function addAjaxAction()
     {
         if (isset($this->_arrParam['form'])) {
@@ -62,12 +64,13 @@ class CourseController extends Controller
         $this->_view->render('course/add', false);
     }
 
+    // Click change Status
     public function ajaxStatusAction()
     {
         echo json_encode($this->_model->chageStatus($this->_arrParam));
     }
 
-    //Ajax
+    // Delete Ajax
     public function deleteAction()
     {
         if (isset($this->_arrParam['cid'])) {
@@ -76,6 +79,7 @@ class CourseController extends Controller
         URL::redirect('admin', 'course', 'index');
     }
 
+    // Edit Ajax
     public function ajaxEditAction()
     {
         $this->_view->infoItem = $this->_model->select(DB_TBCOURSE, $this->_arrParam['id'], 1);
@@ -126,39 +130,11 @@ class CourseController extends Controller
         $this->_view->render('course/editCourse', false);
     }
 
-    //Ajax
+    // Change Status Ajax
     public function statusAction()
     {
         $this->_model->chageStatus($this->_arrParam['cid'], $this->_arrParam['type'], "change-status");
         URL::redirect('admin', 'course', 'index');
     }
-
-    public function ajaxEditCourseAction()
-    {
-        if (isset($this->_arrParam['form'])) {
-            $this->_arrParam['form']['id'] = $this->_arrParam['id'];
-            $validate = new Validate($this->_arrParam['form']);
-            $queryName = "SELECT * FROM `" . DB_TBCOURSE . "` WHERE `name`='" . $this->_arrParam['form']['name'] . "' AND `id` <> '" . $this->_arrParam['form']['id'] . "'";
-            $queryLink = "SELECT * FROM `" . DB_TBCOURSE . "` WHERE `name`='" . $this->_arrParam['form']['link'] . "' AND `id` <> '" . $this->_arrParam['form']['id'] . "'";
-
-            $validate->addRule('name', 'string-notExistRecord', ['min' => 1, 'max' => 200, 'database' => $this->_model, 'query' => $queryName])
-                ->addRule('link', 'string-notExistRecord', ['min' => 1, 'max' => 200, 'database' => $this->_model, 'query' => $queryLink])
-                ->addRule('category_id', 'status', ['deny' => [0]]);
-            $validate->run();
-            $this->_arrParam['form'] = $validate->getResult();
-            if ($validate->isValid() == false) {
-                $this->_view->errors = $validate->showErrors();
-            } else {
-                $form = $this->_arrParam['form'];
-                unset($form['id']);
-                $this->_model->update(DB_TBCOURSE, $form, ['id' => $this->_arrParam['form']['id']]);
-                $this->_view->success = Helper::success('Cập nhật thành công');
-            }
-        }
-        $this->_view->listCategory = $this->_model->showAll(DB_TBCATEGORY);
-        $this->_view->infoCourse = $this->_model->select(DB_TBCOURSE, $this->_arrParam['id'], true);
-        $this->_view->render('course/editCourse', false);
-    }
-
 
 }

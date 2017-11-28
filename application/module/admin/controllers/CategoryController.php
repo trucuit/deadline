@@ -21,7 +21,6 @@ class CategoryController extends Controller
 
     public function ajaxAddAction()
     {
-
         if (isset($this->_arrParam['form'])) {
             $query = "SELECT * FROM `" . DB_TBCATEGORY . "` WHERE `name`='" . $this->_arrParam['form']['name'] . "'";
             $validate = new Validate($this->_arrParam['form']);

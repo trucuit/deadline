@@ -11,9 +11,9 @@ class Bootstrap
 
         if ($this->_params['module'] == 'admin') {
             if (!ISSET($_COOKIE['remember'])) {
-                    if ($this->_params['action'] != 'login' || $this->_params['controller'] != 'user'){
-                        URL::redirect('admin', 'user', 'login');
-                    }
+                if ($this->_params['action'] != 'login' || $this->_params['controller'] != 'user') {
+                    URL::redirect('admin', 'user', 'login');
+                }
 
             }
         }
@@ -23,15 +23,22 @@ class Bootstrap
         if (file_exists($filePath)) {
             $this->loadFileExits($filePath, $controllerName);
             $this->callMethod();
+        }else{
+            URL::redirect('default', 'index', 'index');
         }
     }
 
     public function setParam()
     {
-        $this->_params = array_merge($_POST, $_GET);
-        $this->_params['module'] = isset($this->_params['module']) ? $this->_params['module'] : DEFAULT_MODULE;
-        $this->_params['controller'] = isset($this->_params['controller']) ? $this->_params['controller'] : DEFAULT_CONTROLLER;
-        $this->_params['action'] = isset($this->_params['action']) ? $this->_params['action'] : DEFAULT_ACTION;
+        $url = array_merge($_POST, $_GET);
+        if (isset($url['url'])) {
+            $url = explode('/', $url['url']);
+        }
+
+        $this->_params = array_merge($_GET, $_POST);
+        $this->_params['module'] = isset($url[0]) ? $url[0] : DEFAULT_MODULE;
+        $this->_params['controller'] = isset($url[1]) ? $url[1] : DEFAULT_CONTROLLER;
+        $this->_params['action'] = isset($url[2]) ? $url[2] : DEFAULT_ACTION;
     }
 
     public function loadFileExits($filePath, $controllerName)
@@ -45,6 +52,8 @@ class Bootstrap
         $actionName = $this->_params['action'] . 'Action';
         if (method_exists($this->_controllerObj, $actionName)) {
             $this->_controllerObj->$actionName();
+        }else{
+            URL::redirect('default', 'index', 'index');
         }
 
     }
