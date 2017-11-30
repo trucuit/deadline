@@ -9,14 +9,14 @@ class Bootstrap
     {
         $this->setParam();
 
-        if ($this->_params['module'] == 'admin') {
-            if (!ISSET($_COOKIE['remember'])) {
-                if ($this->_params['action'] != 'login' || $this->_params['controller'] != 'user') {
-                    URL::redirect('admin', 'user', 'login');
-                }
-
-            }
-        }
+//        if ($this->_params['module'] == 'admin') {
+//            if (!ISSET($_COOKIE['remember'])) {
+//                if ($this->_params['action'] != 'login' || $this->_params['controller'] != 'user') {
+//                    URL::redirect('admin', 'user', 'login');
+//                }
+//
+//            }
+//        }
 
         $controllerName = ucfirst($this->_params['controller']) . 'Controller';
         $filePath = MODULE_PATH . DS . $this->_params['module'] . DS . 'controllers' . DS . $controllerName . '.php';

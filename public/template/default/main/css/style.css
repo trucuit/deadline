@@ -4721,6 +4721,7 @@ footer#footer.footer-style-2 {
   margin: auto;
   left: 0;
   right: 0;
+  display: none;
   -webkit-border-radius: 6px 6px 0 0;
   -moz-border-radius: 6px 6px 0 0;
   border-radius: 6px 6px 0 0;
@@ -6650,6 +6651,7 @@ footer#footer.footer-style-2 {
 }
 .score-sb ul,
 .score-criteria ul {
+  padding-bottom: ;
 }
 .score-sb ul li,
 .score-criteria ul li {
@@ -8029,6 +8031,18 @@ footer#footer.footer-style-2 {
 
 /* 6.   Responsive
 --------------------------------------------------------------------------------*/
+@media screen and (min-width: 1200px) {
+  .navigation .menu .sub-menu {
+    display: block !important;
+  }
+  .navigation .menu, .search-box {
+    display: inline-block !important;
+    overflow: visible !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
 @media screen and (max-width: 1199px) {
   .after-slider-content .inner {
     width: 80%;
@@ -8103,6 +8117,7 @@ footer#footer.footer-style-2 {
     right: 17px;
   }
   .navigation .menu .sub-menu {
+    width: auto;
     display: none;
     -webkit-transition: none;
        -moz-transition: none;
@@ -8452,4 +8467,31 @@ footer#footer.footer-style-2 {
   .list-item-body {
     width: 300px !important;
   }
+}
+
+.form-checkout > .container {
+  max-height: calc(100vh - 80px);
+  margin-top: 40px;
+  margin-bottom: 40px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.form-checkout fieldset:nth-child(1) {
+  position: static;
+}
+
+.toggle-sub {
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  line-height: 3em;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+  color: transparent;
+  cursor: pointer;
+  z-index: 99;
+  -webkit-transform: translate(0, -100%);
+  -moz-transform: translate(0, -100%);
+  transform: translate(0, -100%);
 }
