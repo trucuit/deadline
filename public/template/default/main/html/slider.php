@@ -1,4 +1,4 @@
-<section class="slide" style="background-image: url(<?php echo $urlImage ?>/homeslider/bg.jpg)">
+<section class="slide" style="background-image: url(<?php echo $urlImage?>/homeslider/bg.jpg)">
     <div class="container">
         <div class="slide-cn" id="slide-home">
             <!-- SLIDE ITEM -->
@@ -6,8 +6,7 @@
                 <div class="item-inner">
                     <div class="text">
                         <h2>Learn more - Earn more</h2>
-                        <p>this is not only an elegant theme but also<br> a course management system<br> for
-                            wordpress and drupal
+                        <p>this is not only an elegant theme but also<br> a course management system<br> for wordpress and drupal
                         </p>
                         <div class="group">
                             <a href="#" class="mc-btn btn-style-1">See full features</a>
@@ -15,7 +14,7 @@
                     </div>
 
                     <div class="img">
-                        <img src="<?php echo $urlImage ?>/homeslider/img-thumb.png" alt="">
+                        <img src="<?php echo $urlImage?>/homeslider/img-thumb.png" alt="">
                     </div>
                 </div>
 
@@ -27,8 +26,7 @@
                 <div class="item-inner">
                     <div class="text">
                         <h2>Learn more - Earn more</h2>
-                        <p>this is not only an elegant theme but also<br> a course management system<br> for
-                            wordpress and drupal
+                        <p>this is not only an elegant theme but also<br> a course management system<br> for wordpress and drupal
                         </p>
                         <div class="group">
                             <a href="#" class="mc-btn btn-style-1">See full features</a>
@@ -36,7 +34,7 @@
                     </div>
 
                     <div class="img">
-                        <img src="<?php echo $urlImage ?>/homeslider/img-thumb.png" alt="">
+                        <img src="<?php echo $urlImage?>/homeslider/img-thumb.png" alt="">
                     </div>
 
                 </div>

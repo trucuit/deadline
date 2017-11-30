@@ -17,6 +17,9 @@ class UserController extends Controller
 
     public function loginAction()
     {
+        echo "<pre>";
+        print_r($_COOKIE);
+        echo "</pre>";
         if (isset($this->_arrParam['form'])) {
 
             $validate = new Validate($this->_arrParam['form']);
