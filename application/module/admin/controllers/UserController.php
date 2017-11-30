@@ -2,10 +2,6 @@
 
 class UserController extends Controller
 {
-    /**
-     * UserController constructor.
-     * @param $params
-     */
     public function __construct($params)
     {
         parent::__construct($params);
@@ -15,43 +11,13 @@ class UserController extends Controller
         $this->_templateObj->load();
     }
 
-    public function loginAction()
-    {
-        if (isset($this->_arrParam['form'])) {
-
-            $validate = new Validate($this->_arrParam['form']);
-            $queryUserName = "SELECT id,username,fullname,email FROM `user` WHERE username = '" . $this->_arrParam['form']['email'] . "' AND password='" . md5($this->_arrParam['form']['password']) . "'";
-            $validate->addRule('email', 'existRecord', array('database' => $this->_model, 'query' => $queryUserName, 'min' => 3, 'max' => 25))
-                ->addRule('password', 'password');
-            $validate->run();
-            $this->_arrParam['form'] = $validate->getResult();
-            if ($validate->isValid() == false) {
-                $this->_view->errors = $validate->showErrors();
-
-            } else {
-
-                if (isset($this->_arrParam['form']['check'])) {
-                    setcookie('remember', serialize(['user' => $this->_model->execute($queryUserName, true)]), time() + TIME_LOGIN);
-                } else {
-
-                    setcookie('remember', serialize(['user' => $this->_model->execute($queryUserName, true)]), false);
-                }
-
-                URL::redirect('admin', 'index', 'index');
-            }
-        }
-        $this->_view->render('user/login', false);
-    }
-
-
-    public function logoutAction()
-    {
-        setcookie('remember', ' ', time() - TIME_LOGIN);
-        URL::redirect('admin', 'user', 'login');
-    }
 
     public function profileAction()
     {
+        $this->_templateObj->setFolderTemplate('admin/main');
+        $this->_templateObj->setFileTemplate('index.php');
+        $this->_templateObj->setFileConfig('index.ini');
+        $this->_templateObj->load();
         if (isset($this->_arrParam['form'])) {
             $validate = new Validate($this->_arrParam['form']);
             $validate->addRule('fullname', 'string', array('max' => 100, 'min' => 5))
@@ -74,7 +40,7 @@ class UserController extends Controller
                 URL::redirect('admin', 'user', 'profile');
             }
         }
-        $this->_view->userInfo = $this->_model->show(DB_TBUSER, unserialize($_COOKIE['remember'])['user'][0]['id']);
+        $this->_view->userInfo = $this->_model->show(DB_TBUSER, Cookie::get('remember')['id']);
         $this->_view->render('user/profile');
     }
 }

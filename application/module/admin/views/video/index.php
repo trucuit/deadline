@@ -1,25 +1,26 @@
 <?php
 $listItem = empty($this->listItem) ? [] : $this->listItem;
+$arrURL = explode("/", $this->arrParam['url']);
 $url = array(
-    'video' => [
-        'add' => URL::createLink('admin', 'video', 'addAjax'),
-        'active' => URL::createLink('admin', 'video', 'status', ['type' => 1]),
-        'inactive' => URL::createLink('admin', 'video', 'status', ['type' => 0]),
-        'delete' => URL::createLink('admin', 'video', 'delete'),
-    ]
+    'add' => URL::createLink('admin', DB_TBVIDEO, 'add',['id'=>$this->arrParam['id']]),
+    'edit' => URL::createLink('admin', DB_TBVIDEO, 'edit',['course_id'=>$this->arrParam['id']]),
+    'active' => URL::createLink('admin', DB_TBVIDEO, 'status', ['type' => 1,'id'=>$this->arrParam['id']]),
+    'inactive' => URL::createLink('admin', DB_TBVIDEO, 'status', ['type' => 0,'id'=>$this->arrParam['id']]),
+    'delete' => URL::createLink('admin', DB_TBVIDEO, 'delete',['id'=>$this->arrParam['id']]),
 );
+
 ?>
-<div class="content-wrapper category" style="min-height: 915.8px;">
+<div class="content-wrapper category" style="min-height: 915.8px;" id="content">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Manage Video
+            Manage <?php echo ucfirst($arrURL[1]) ?>
             <small>List <span style="color: red">* Click on the link to view details</span></small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Video</a></li>
-            <li class="active">List</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i><?php echo ucfirst($arrURL[0]) ?></a></li>
+            <li><a href="#"><?php echo ucfirst($arrURL[1]) ?></a></li>
+            <li class="active"><?php echo ucfirst($arrURL[2]) ?></li>
         </ol>
     </section>
     <!-- Main content -->
@@ -28,30 +29,29 @@ $url = array(
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header text-center">
-                        <button class="btn btn-app" data-toggle="modal" data-target="#modal-add"
-                                onclick="javascript:ajaxAdd('<?php echo $url['video']['add'] ?>')"
+                        <button class="btn btn-app"
+                                onclick="javascript:submitForm('<?php echo $url['add'] ?>')"
                         >
                             <i class="fa fa-plus-square-o"></i> Add
                         </button>
                         <button class="btn btn-app"
-                                onclick="javascript:submitFormVideo('<?php echo $url['video']['active'] ?>')"
+                                onclick="javascript:submitForm('<?php echo $url['active'] ?>')"
                         >
                             <i class="fa fa-check-circle-o"></i> Active
                         </button>
                         <button class="btn btn-app"
-                                onclick="javascript:submitFormVideo('<?php echo $url['video']['inactive'] ?>')"
+                                onclick="javascript:submitForm('<?php echo $url['inactive'] ?>')"
                         >
                             <i class="fa fa-circle-o"></i> Inactive
                         </button>
                         <button class="btn btn-app"
-                                onclick="javascript:submitFormVideo('<?php echo $url['video']['delete'] ?>')"
+                                onclick="javascript:submitForm('<?php echo $url['delete'] ?>')"
                         >
                             <i class="fa fa-minus-square-o"></i> delete
+                            <input type="hidden" value="<?php echo $this->arrParam['id'] ?>" name="idItem">
                         </button>
                     </div>
-                    <?php
-                    if (isset($this->success)) echo $this->success;
-                    ?>
+
                     <!-- /.box-header -->
                     <form action="#" method="post" id="adminForm">
                         <div class="box-body">
@@ -66,7 +66,7 @@ $url = array(
                                                 <th class="sorting_asc">Title</th>
                                                 <th>Link</th>
                                                 <th>Course</th>
-                                                <th >Status</th>
+                                                <th>Status</th>
                                                 <th>Ordering</th>
                                                 <th>ID</th>
                                             </tr>
@@ -74,16 +74,14 @@ $url = array(
                                             <tbody>
                                             <?php
                                             foreach ($listItem as $key => $value) {
-                                                $urlEdit = URL::createLink('admin', 'video', 'editAjax', ['id' => $value['id']]);
-                                                $urlDelete = URL::createLink('admin', 'video', 'delete', ['id' => $value['id']])
                                                 ?>
                                                 <tr role="row" class="odd">
                                                     <td><input type="checkbox" name="cid[]"
                                                                value="<?php echo $value['id'] ?>"></td>
                                                     <td class="sorting_1">
                                                         <a href="#"
-                                                           data-toggle="modal" data-target="#modal-edit"
-                                                           onclick="javascript:ajaxEdit('<?php echo $urlEdit ?>')">
+                                                           onclick="submitForm('<?php echo $url['edit'] . "&id=" . $value['id'] ?>')"
+                                                        >
                                                             <?php echo $value['title'] ?>
                                                         </a>
                                                     </td>

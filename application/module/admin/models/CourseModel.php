@@ -9,10 +9,11 @@ class CourseModel extends Model
 
     public function showCourse()
     {
-        $query[] = "SELECT COUNT(v.course_id) as 'total_video',co.id,co.name,co.link,ca.name as 'category',co.created,co.created_by,co.modified,co.modified_by,co.status, co.image";
-        $query[] = "FROM `" . DB_TBCOURSE . "` AS `co` LEFT JOIN `" . DB_TBCATEGORY . "` AS `ca`";
-        $query[] = "ON `co`.category_id=`ca`.id";
+        $query[] = "SELECT COUNT(v.course_id) as 'total_video',co.id,co.name,co.link,ca.name as 'category',co.created,co.created_by,co.modified,co.modified_by,co.status, co.image, au.name as `author`";
+        $query[] = "FROM `" . DB_TBCOURSE . "` AS `co`";
+        $query[] = "LEFT JOIN `" . DB_TBCATEGORY . "` AS `ca` ON `co`.category_id=`ca`.id";
         $query[] = "JOIN `" . DB_TBVIDEO . "` AS `v` ON v.course_id=co.id";
+        $query[] = "LEFT JOIN `" . DB_TBAUTHOR . "` AS `au` ON co.author_id=au.id";
         $query[] = "GROUP BY co.id";
 //        SELECT COUNT(v.course_id), c.id FROM
 //`video` as v JOIN `course` as c ON v.course_id = c.id
@@ -29,7 +30,7 @@ class CourseModel extends Model
     public function chageStatus($param, $type = 1, $task = '')
     {
         $modified = date('Y-m-d', time());
-        $modified_by = unserialize($_COOKIE['remember'])['user'][0]['username'];
+        $modified_by = Cookie::get('remember')['username'];
         if ($task == "change-status") {
             foreach ($param as $val) {
                 $query = "UPDATE `" . DB_TBCOURSE . "` SET `status` = '$type',`modified`='$modified',`modified_by`='$modified_by' WHERE `id` = '" . $val . "'";
@@ -56,7 +57,7 @@ class CourseModel extends Model
         $data['image'] = $data['name'] . '.' . Helper::cutCharacter($image['type'], '/', 1);
         $data['created'] = date("Y-m-d H:i:s");
         $data['name'] = trim($data['name']);
-        $data['created_by'] = unserialize($_COOKIE['remember'])['user'][0]['username'];
+        $data['created_by'] = Cookie::get('remember')['username'];
         $this->insert(DB_TBCOURSE, $data);
 
         $query = "SELECT `id` FROM `" . DB_TBCOURSE . "` ORDER BY `id` DESC LIMIT 0,1";
@@ -72,18 +73,16 @@ class CourseModel extends Model
 
     public function updateCourse($data, $file)
     {
-
         if (isset($data['link']) && strlen($data['link']) > 40) {
             $data['link'] = Helper::cutCharacter($data['link'], 'list=', 5);
         }
         $data['modified'] = date('Y-m-d');
-        $data['modified_by'] = unserialize($_COOKIE['remember'])['user'][0]['username'];
+        $data['modified_by'] = Cookie::get('remember')['username'];
         $id = $data['id'];
         unset($data['id']);
-
-        if (!empty($file)) {
+        if (!empty($file['image']['name'])) {
             $imageOld = TEMPLATE_PATH . "/admin/main/images/" . $data['image'];
-            $data['image'] = $data['name'] . '.' . Helper::cutCharacter($file['image']['type'], '/', 1);
+            $data['image'] = $data['name'] . '.' . pathinfo($file['image']['name'])['extension'];
             $imageNew = TEMPLATE_PATH . "/admin/main/images/" . $data['image'];
             if (file_exists($imageOld))
                 unlink($imageOld);

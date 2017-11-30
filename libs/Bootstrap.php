@@ -8,23 +8,11 @@ class Bootstrap
     public function __construct()
     {
         $this->setParam();
-
-        if ($this->_params['module'] == 'admin') {
-            if (!ISSET($_COOKIE['remember'])) {
-                if ($this->_params['action'] != 'login' || $this->_params['controller'] != 'user') {
-                    URL::redirect('admin', 'user', 'login');
-                }
-
-            }
-        }
-
         $controllerName = ucfirst($this->_params['controller']) . 'Controller';
         $filePath = MODULE_PATH . DS . $this->_params['module'] . DS . 'controllers' . DS . $controllerName . '.php';
         if (file_exists($filePath)) {
             $this->loadFileExits($filePath, $controllerName);
             $this->callMethod();
-        }else{
-            URL::redirect('default', 'index', 'index');
         }
     }
 
@@ -51,10 +39,24 @@ class Bootstrap
     {
         $actionName = $this->_params['action'] . 'Action';
         if (method_exists($this->_controllerObj, $actionName)) {
-            $this->_controllerObj->$actionName();
+            if ($this->_params['module'] == 'admin') {
+                if (Cookie::get('remember')) {
+                    $this->_controllerObj->$actionName();
+                } else {
+                    $this->callLoginAction($this->_params['module']);
+                }
+            }
         }else{
-            URL::redirect('default', 'index', 'index');
+            URL::redirect('admin','user','profile');
         }
 
+    }
+
+    private function callLoginAction($module = 'default')
+    {
+        Session::delete('remember');
+        require_once(MODULE_PATH . DS . $module . DS . 'controllers' . DS . 'IndexController.php');
+        $indexController = new IndexController($this->_params);
+        $indexController->loginAction();
     }
 }

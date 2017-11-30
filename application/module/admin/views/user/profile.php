@@ -1,16 +1,18 @@
 <?php
 $userInfo = $this->userInfo;
+$arrURL = explode("/", $this->arrParam['url']);
 ?>
 
 <div class="content-wrapper" style="min-height: 1125.8px;" id="profile">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            User Profile
+            <?php echo ucfirst($arrURL[1]) . " " . ucfirst($arrURL[2]) ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">User profile</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i><?php echo ucfirst($arrURL[0]) ?></a></li>
+            <li><a href="#"><?php echo ucfirst($arrURL[1]) ?></a></li>
+            <li class="active"><?php echo ucfirst($arrURL[2]) ?></li>
         </ol>
     </section>
 
@@ -24,10 +26,10 @@ $userInfo = $this->userInfo;
                 <div class="box box-primary">
                     <div class="box-body box-profile">
                         <img class="profile-user-img img-responsive img-circle"
-                             src="<?php echo $dirAdminLTE ?>/dist/img/no_image_user.png"
+                             src="<?php echo $dirImg ?>/no-avatar.png"
                              alt="User profile picture">
 
-                        <h3 class="profile-username text-center"><?php  ?></h3>
+                        <h3 class="profile-username text-center"><?php ?></h3>
 
                         <ul class="list-group list-group-unbordered">
                             <li class="list-group-item">
@@ -58,7 +60,8 @@ $userInfo = $this->userInfo;
                                 ?>
                                 <input type="hidden" value="<?php echo time() ?>" name="token">
                                 <div class="form-group">
-                                    <label for="inputName" class="col-sm-2 control-label">Username<i style="color: red"> *</i></label>
+                                    <label for="inputName" class="col-sm-2 control-label">Username<i style="color: red">
+                                            *</i></label>
 
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="inputName" placeholder="Username"
@@ -66,7 +69,8 @@ $userInfo = $this->userInfo;
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputName" class="col-sm-2 control-label">Full Name<i style="color: red"> *</i></label>
+                                    <label for="inputName" class="col-sm-2 control-label">Full Name<i
+                                                style="color: red"> *</i></label>
 
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="inputName" placeholder="Fullname"
@@ -74,7 +78,8 @@ $userInfo = $this->userInfo;
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail" class="col-sm-2 control-label">Email<i style="color: red"> *</i></label>
+                                    <label for="inputEmail" class="col-sm-2 control-label">Email<i style="color: red">
+                                            *</i></label>
                                     <div class="col-sm-10">
                                         <input type="email" class="form-control" id="inputEmail" placeholder="Email"
                                                value="<?php echo $userInfo['email'] ?>" name="form[email]">

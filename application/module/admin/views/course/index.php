@@ -1,25 +1,25 @@
 <?php
 $listCourse = empty($this->listCourse) ? [] : $this->listCourse;
+$arrURL = explode("/", $this->arrParam['url']);
 $url = array(
-    'course' => [
-        'add' => URL::createLink('admin', 'course', 'addAjax'),
-        'active' => URL::createLink('admin', 'course', 'status', ['type' => 1]),
-        'inactive' => URL::createLink('admin', 'course', 'status', ['type' => 0]),
-        'delete' => URL::createLink('admin', 'course', 'delete'),
-    ]
+    'add' => URL::createLink('admin', DB_TBCOURSE, 'add'),
+    'edit' => URL::createLink('admin', DB_TBCOURSE, 'edit'),
+    'delete' => URL::createLink('admin', DB_TBCOURSE, 'delete'),
+    'active' => URL::createLink('admin', DB_TBCOURSE, 'status', ['type' => 1]),
+    'inactive' => URL::createLink('admin', DB_TBCOURSE, 'status', ['type' => 0]),
 );
 ?>
-<div class="content-wrapper category" style="min-height: 915.8px;">
+<div class="content-wrapper category" style="min-height: 915.8px;" id="content">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Manage Course
+            Manage <?php echo ucfirst($arrURL[1]) ?>
             <small>List <span style="color: red">* Click on the image for details</span></small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Course</a></li>
-            <li class="active">List </li>
+            <li><a href="#"><i class="fa fa-dashboard"></i><?php echo ucfirst($arrURL[0]) ?></a></li>
+            <li><a href="#"><?php echo ucfirst($arrURL[1]) ?></a></li>
+            <li class="active"><?php echo ucfirst($arrURL[2]) ?></li>
         </ol>
     </section>
     <!-- Main content -->
@@ -28,23 +28,23 @@ $url = array(
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header text-center">
-                        <button class="btn btn-app" data-toggle="modal" data-target="#modal-add"
-                                onclick="javascript:ajaxAdd('<?php echo $url['course']['add'] ?>')"
+                        <button class="btn btn-app"
+                                onclick="javascript:submitForm('<?php echo $url['add'] ?>')"
                         >
                             <i class="fa fa-plus-square-o"></i> Add
                         </button>
-                        <button class="btn btn-app"
-                                onclick="javascript:submitForm('<?php echo $url['course']['active'] ?>')"
+                        <button class="btn btn-app btn-active"
+                                onclick="javascript:submitForm('<?php echo $url['active'] ?>')"
                         >
                             <i class="fa fa-check-circle-o"></i> Active
                         </button>
-                        <button class="btn btn-app"
-                                onclick="javascript:submitForm('<?php echo $url['course']['inactive'] ?>')"
+                        <button class="btn btn-app btn-inactive"
+                                onclick="javascript:submitForm('<?php echo $url['inactive'] ?>')"
                         >
                             <i class="fa fa-circle-o"></i> Inactive
                         </button>
-                        <button class="btn btn-app"
-                                onclick="javascript:submitForm('<?php echo $url['course']['delete'] ?>')"
+                        <button class="btn btn-app btn-delete"
+                                onclick="javascript:submitForm('<?php echo $url['delete'] ?>')"
                         >
                             <i class="fa fa-minus-square-o"></i> Delete
                         </button>
@@ -65,6 +65,7 @@ $url = array(
                                                 <th class="no-sort">Image</th>
                                                 <th class="sorting">Total Video</th>
                                                 <th class="sorting">Category</th>
+                                                <th class="sorting">Author</th>
                                                 <th class="sorting">Created</th>
                                                 <th class="sorting">Created by</th>
                                                 <th class="sorting">Modified</th>
@@ -76,9 +77,6 @@ $url = array(
                                             <tbody>
                                             <?php
                                             foreach ($listCourse as $key => $value) {
-                                                $urlEdit = URL::createLink('admin', 'course', 'ajaxEdit', ['id' => $value['id']]);
-                                                $urlDelete = URL::createLink('admin', 'course', 'delete', ['id' => $value['id']])
-
                                                 ?>
                                                 <tr role="row" class="odd">
                                                     <td>
@@ -87,8 +85,8 @@ $url = array(
                                                     </td>
                                                     <td class="sorting_1">
                                                         <a href="#"
-                                                           data-toggle="modal" data-target="#modal-edit"
-                                                           onclick="javascript:ajaxEdit('<?php echo $urlEdit ?>')">
+                                                           onclick="submitForm('<?php echo $url['edit'] . "&id=" . $value['id'] ?>')"
+                                                        >
                                                             <?php echo $value['name'] ?>
                                                         </a>
                                                     </td>
@@ -102,15 +100,20 @@ $url = array(
                                                                  alt="" height="40px">
                                                         </a>
                                                     </td>
-                                                    <td><?php echo $value['total_video'] ?></td>
+                                                    <td>
+                                                        <a href="<?php echo URL::createLink("admin","video","index",["id"=>$value['id']]) ?>">
+                                                        <?php echo $value['total_video'] ?>
+                                                        </a>
+                                                    </td>
                                                     <td><?php echo $value['category'] ?></td>
+                                                    <td><?php echo $value['author'] ?></td>
                                                     <td><?php echo $value['created'] ?></td>
                                                     <td><?php echo $value['created_by'] ?></td>
                                                     <td><?php echo $value['modified'] ?></td>
                                                     <td><?php echo $value['modified_by'] ?></td>
                                                     <td class="text-center status">
                                                         <?php
-                                                        $onclick = URL::createLink('admin', 'course', 'ajaxStatus', ['id' => $value['id'], 'status' => $value['status']]);
+                                                        $onclick = URL::createLink('admin', DB_TBCOURSE, 'ajaxStatus', ['id' => $value['id'], 'status' => $value['status']]);
                                                         echo '<i onclick="javascript:ajaxStatus(\'' . $onclick . '\')" id="status-' . $value['id'] . '">' . ($value['status'] ? 'on' : 'off') . '</i>';
                                                         ?>
                                                     </td>
@@ -145,7 +148,7 @@ $url = array(
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Add Course</h4>
+                    <h4 class="modal-title"></h4>
                 </div>
                 <div class="modal-body">
                     <p>One fine body…</p>
@@ -200,7 +203,7 @@ $url = array(
             </div>
             <div class="box-footer text-center">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-<!--                <a class="btn btn-primary" id="youtube" target="_blank">Youtube</a>-->
+                <!--                <a class="btn btn-primary" id="youtube" target="_blank">Youtube</a>-->
             </div>
         </div>
     </div>

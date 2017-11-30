@@ -67,7 +67,7 @@ class Validate
     {
         foreach ($this->rules as $element => $value) {
             if ($value['required'] == true && trim($this->source[$element]) == null) {
-                $this->setError($element, 'giá trị này không được rỗng!');
+                $this->setError($element, 'Giá trị này không được rỗng!');
             } else {
                 switch ($value['type']) {
                     case 'int':
@@ -262,7 +262,7 @@ class Validate
 
         $query = $options['query'];    // SELECT id FROM user where username = 'admin'
         if ($database->isExist($query) == true) {
-            $this->setError($element, 'giá trị này đã tồn tại');
+            $this->setError($element, 'Giá trị này đã tồn tại');
         }
     }
 
@@ -271,15 +271,15 @@ class Validate
     {
         if ($this->source[$element]['name'] != null) {
             if (!filter_var($this->source[$element]['size'], FILTER_VALIDATE_INT, array("options" => array("min_range" => $options['min'], "max_range" => $options['max'])))) {
-                $this->setError($element, 'kích thước không phù hợp');
+                $this->setError($element, 'Kích thước không phù hợp');
             }
 
             $ext = strtolower(pathinfo($this->source[$element]['name'], PATHINFO_EXTENSION));
             if (in_array($ext, $options['extension']) == false) {
-                $this->setError($element, 'phần mở rộng không phù hợp');
+                $this->setError($element, 'Phần mở rộng không phù hợp');
             }
         } else {
-            $this->setError($element, 'chưa chọn hình ảnh');
+            $this->setError($element, 'Chưa chọn hình ảnh');
         }
     }
 }

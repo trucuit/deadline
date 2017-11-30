@@ -7,64 +7,51 @@ class CategoryModel extends Model
         parent::__construct();
     }
 
-    public function chageStatus($param)
+    public function showVideo($course_id)
     {
-        $status = ($param['status'] == 0) ? 1 : 0;
-        $modified_by = unserialize($_COOKIE['remember'])['user'][0]['username'];
+        $query[] = "SELECT v.id, v.link, v.title,v.status,v.ordering , v.thumbnails, c.name as courseName";
+        $query[] = "FROM `video` v LEFT JOIN `course` c ON c.id = v.course_id";
+        $query[] = "WHERE v.course_id=$course_id";
+        return $this->execute(implode(" ", $query), 1);
+    }
+
+    public function chageStatus($param, $type = 1, $task = '')
+    {
         $modified = date('Y-m-d', time());
-        $id = $param['id'];
-        $query = "UPDATE `" . DB_TBCATEGORY . "` SET `status` = $status, `modified` = '$modified', `modified_by` = '$modified_by' WHERE `id` = '" . $id . "'";
+        $modified_by = Cookie::get('remember')['username'];
 
-        $this->execute($query);
+        if ($task == "change-status") {
+            foreach ($param as $val) {
+                $query = "UPDATE `" . DB_TBCATEGORY . "` SET `status` = '$type',`modified`='$modified',`modified_by`='$modified_by' WHERE `id` = '" . $val . "'";
+                $this->execute($query);
+            }
+        } else {
+            $status = ($param['status'] == 0) ? 1 : 0;
+            $id = $param['id'];
+            $query = "UPDATE `" . DB_TBCATEGORY . "` SET `status` = '$status',`modified`='$modified',`modified_by`='$modified_by' WHERE `id` = '" . $id . "'";
+            $this->execute($query);
+            $result = array(
+                'id' => $id,
+                'status' => $status,
+                'link' => URL::createLink('admin', DB_TBCATEGORY, 'ajaxStatus', array('id' => $id, 'status' => $status))
+            );
+            return $result;
+        }
+    }
 
-        $result = array(
-            'id' => $id,
-            'status' => $status,
-            'link' => URL::createLink('admin', 'category', 'ajaxStatus', array('id' => $id, 'status' => $status))
-        );
-        return $result;
+    public function updateCategory($arrParam, $arrID)
+    {
+        $arrParam['modified'] = date('Y-m-d');
+        $arrParam['modified_by'] = Cookie::get('remember')['username'];
+        $this->update(DB_TBCATEGORY, $arrParam, $arrID);
     }
 
     public function insertCategory($arrParam)
     {
-        $arrParam['name'] = $arrParam['name'];
-        $arrParam['created'] = date('Y-m-d', time());
-        $arrParam['created_by'] = unserialize($_COOKIE['remember'])['user'][0]['username'];
+        $arrParam['created'] = date('Y-m-d');
+        $arrParam['created_by'] = Cookie::get('remember')['username'];
         $this->insert(DB_TBCATEGORY, $arrParam);
     }
 
-
-    public function updateCategory($arrParam, $where)
-    {
-        $arrCookie = unserialize($_COOKIE['remember']);
-        $modified = date('Y-m-d', time());
-        $modified_by = $arrCookie['user'][0]['username'];
-        $status = $arrParam['status'];
-        $id = $where;
-        if (isset($arrParam['name'])) {
-            $name = $arrParam['name'];
-            $query = "UPDATE `".DB_TBCATEGORY."` SET `name`='$name', `modified`='$modified',`modified_by`='$modified_by',`status`='$status' WHERE `id`='$id'";
-
-        } else {
-            $query = "UPDATE `".DB_TBCATEGORY."` SET `modified`='$modified',`modified_by`='$modified_by',`status`='$status' WHERE `id`='$id'";
-
-        }
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
-
-
-    }
-
-    public function deleteCategory($table, $id)
-    {
-        $stmt = $this->conn->prepare("DELETE FROM `$table` WHERE id=:id");
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-    }
-
-    public function selectItemLast($table)
-    {
-        return $this->show("SELECT `id` FROM `$table` ORDER BY `id` DESC");
-    }
 
 }

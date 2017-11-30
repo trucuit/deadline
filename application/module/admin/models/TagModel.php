@@ -1,6 +1,6 @@
 <?php
 
-class VideoModel extends Model
+class TagModel extends Model
 {
     public function __construct()
     {
@@ -19,27 +19,36 @@ class VideoModel extends Model
     {
         if ($task == "change-status") {
             foreach ($param as $val) {
-                $query = "UPDATE `" . DB_TBVIDEO . "` SET `status` = '$type' WHERE `id` = '" . $val . "'";
+                $query = "UPDATE `" . DB_TBCATEGORY . "` SET `status` = '$type' WHERE `id` = '" . $val . "'";
                 $this->execute($query);
             }
         } else {
             $status = ($param['status'] == 0) ? 1 : 0;
             $id = $param['id'];
-            $query = "UPDATE `" . DB_TBVIDEO . "` SET `status` = '$status' WHERE `id` = '" . $id . "'";
+            $query = "UPDATE `" . DB_TBCATEGORY . "` SET `status` = '$status' WHERE `id` = '" . $id . "'";
             $this->execute($query);
             $result = array(
                 'id' => $id,
                 'status' => $status,
-                'link' => URL::createLink('admin', 'course', 'ajaxStatus', array('id' => $id, 'status' => $status))
+                'link' => URL::createLink('admin', DB_TBCATEGORY, 'ajaxStatus', array('id' => $id, 'status' => $status))
             );
             return $result;
         }
     }
 
-    public function updateVideo($arrParam, $arrID)
+    public function updateCategory($arrParam, $arrID)
     {
         $arrParam['modified'] = date('Y-m-d');
-        $arrParam['modified_by'] = Cookie::get('remember')['username'];
-        $this->update(DB_TBVIDEO, $arrParam, $arrID);
+        $arrParam['modified_by'] = unserialize($_COOKIE['remember'])['user'][0]['username'];
+        $this->update(DB_TBCATEGORY, $arrParam, $arrID);
     }
+
+    public function insertCategory($arrParam)
+    {
+        $arrParam['created'] = date('Y-m-d');
+        $arrParam['created_by'] = unserialize($_COOKIE['remember'])['user'][0]['username'];
+        $this->insert(DB_TBCATEGORY, $arrParam);
+    }
+
+
 }
