@@ -40,6 +40,9 @@ class UserController extends Controller
                 URL::redirect('admin', 'user', 'profile');
             }
         }
+     echo "<pre>";
+     print_r(Cookie::get('remember'));    
+     echo "</pre>";
         $this->_view->userInfo = $this->_model->show(DB_TBUSER, Cookie::get('remember')['id']);
         $this->_view->render('user/profile');
     }
