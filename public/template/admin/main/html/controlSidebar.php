@@ -2,7 +2,7 @@
 $url = [
     'profile' => URL::createLink('admin', 'user', 'profile')
 ];
-$userInfo = unserialize($_COOKIE['remember'])['user'][0];
+$userInfo = Cookie::get('remember');
 ?>
 
 <aside class="control-sidebar control-sidebar-dark">

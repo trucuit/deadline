@@ -44,8 +44,6 @@ th.no-sort.sorting_asc:after {
     height: 120px;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
-    margin: auto;
-    margin-bottom: 30px;
     margin: 155px auto;
     z-index: 100;
 }
@@ -66,4 +64,7 @@ th.no-sort.sorting_asc:after {
     100% {
         transform: rotate(360deg);
     }
+}
+.no-bg .btn{
+    background-color: #fff;
 }

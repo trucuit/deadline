@@ -1,18 +1,23 @@
 <?php
-class Cookie{
 
-//    public static function set($key, $value){
-//        $_SESSION[$key] = $value;
-//    }
+class Cookie
+{
 
-    public static function get($key){
-        if(isset($_COOKIE[$key]))
+    public static function set($key, $value, $time = "")
+    {
+        setcookie($key, serialize($value), $time);
+    }
+
+    public static function get($key)
+    {
+        if (isset($_COOKIE[$key]))
             return unserialize($_COOKIE[$key]);
 
     }
 
-    public static function delete($key){
-        if(isset($_SESSION[$key])) unset($_SESSION[$key]);
+    public static function delete($key)
+    {
+        if (isset($_COOKIE[$key])) setcookie($key);
     }
 
 }

@@ -1,27 +1,26 @@
 <?php
-$listCategory = empty($this->listCategory) ? [] : $this->listCategory;
-
+$listItem = empty($this->listItem) ? [] : $this->listItem;
+$arrURL = explode("/", $this->arrParam['url']);
 $url = array(
-    'category' => [
-        'add' => URL::createLink('admin', 'category', 'ajaxAdd'),
-        'active' => URL::createLink('admin', 'category', 'ajaxActive'),
-        'inactive' => URL::createLink('admin', 'category', 'ajaxInactive'),
-        'delete' => URL::createLink('admin', 'category', 'ajaxDelete'),
-        'edit' => URL::createLink('admin', 'category', 'ajaxEditCategory')
-    ]
+    'add' => URL::createLink('admin', DB_TBCATEGORY, 'add'),
+    'edit' => URL::createLink('admin', DB_TBCATEGORY, 'edit'),
+    'delete' => URL::createLink('admin', DB_TBCATEGORY, 'delete'),
+    'active' => URL::createLink('admin', DB_TBCATEGORY, 'status',['type' => 1]),
+    'inactive' => URL::createLink('admin', DB_TBCATEGORY, 'status',['type' => 0]),
 );
+
 ?>
-<div class="content-wrapper category" style="min-height: 915.8px;" xmlns="http://www.w3.org/1999/html">
+<div class="content-wrapper category" style="min-height: 915.8px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Manage Category
-            <small>List </small>
+            Manage <?php echo ucfirst($arrURL[1]) ?>
+            <small>List</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Tables</a></li>
-            <li class="active">Data tables</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i><?php echo ucfirst($arrURL[0]) ?></a></li>
+            <li><a href="#"><?php echo ucfirst($arrURL[1]) ?></a></li>
+            <li class="active"><?php echo ucfirst($arrURL[2]) ?></li>
         </ol>
     </section>
     <!-- Main content -->
@@ -29,32 +28,28 @@ $url = array(
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <!--                    <form action="" method="post">-->
-
                     <div class="box-header text-center">
-                        <button class="btn btn-app btn-add" data-toggle="modal" data-target="#modal-add"
-                                onclick="javascript:ajaxAdd('<?php echo $url['category']['add'] ?>')"
+                        <button class="btn btn-app"
+                                onclick="javascript:submitForm('<?php echo $url['add'] ?>')"
                         >
                             <i class="fa fa-plus-square-o"></i> Add
                         </button>
-                        <button form="adminForm" class="btn btn-app btn-active" data-toggle="modal"
-                                data-target="#modal-action"
+                        <button class="btn btn-app btn-active"
+                                onclick="javascript:submitForm('<?php echo $url['active'] ?>')"
                         >
                             <i class="fa fa-check-circle-o"></i> Active
-
                         </button>
-                        <button form="adminForm" class="btn btn-app btn-inactive" data-toggle="modal"
-                                data-target="#modal-action">
+                        <button class="btn btn-app btn-inactive"
+                                onclick="javascript:submitForm('<?php echo $url['inactive'] ?>')"
+                        >
                             <i class="fa fa-circle-o"></i> Inactive
                         </button>
-                        <button form="adminForm" class="btn btn-app btn-delete" data-toggle="modal"
-                                data-target="#modal-action">
+                        <button class="btn btn-app btn-delete"
+                                onclick="javascript:submitForm('<?php echo $url['delete'] ?>')"
+                        >
                             <i class="fa fa-minus-square-o"></i> Delete
                         </button>
                     </div>
-                    <?php
-                    if (isset($this->success)) echo $this->success;
-                    ?>
                     <!-- /.box-header -->
                     <form action="#" method="post" id="adminForm">
                         <div class="box-body">
@@ -77,19 +72,15 @@ $url = array(
                                             </thead>
                                             <tbody>
                                             <?php
-                                            $i = 0;
-                                            foreach ($listCategory as $key => $value) {
-                                                $urlEdit = URL::createLink('admin', 'category', 'ajaxEditCategory', ['id' => $value['id']]);
-                                                $urlDelete = URL::createLink('admin', 'category', 'delete', ['id' => $value['id']])
-                                                ?>
+                                            foreach ($listItem as $key => $value) { ?>
                                                 <tr role="row" class="odd">
                                                     <td><input type="checkbox" name="cid[]"
                                                                value="<?php echo $value['id'] ?>"></td>
-                                                    <td class="sorting_1"><a href="#" value="<?php echo $value['id'] ?>"
-                                                                             class="name-edit"
-                                                                             onclick="ajaxEdit('<?php echo $url['category']['edit'] ?>')"
-                                                                             data-toggle="modal"
-                                                                             data-target="#modal-category-edit"><?php echo $value['name'] ?></a>
+                                                    <td class="sorting_1">
+                                                        <a href="#"
+                                                           onclick="submitForm('<?php echo $url['edit'] . "&id=" . $value['id'] ?>')"
+                                                        >
+                                                            <?php echo $value['name'] ?></a>
                                                     </td>
                                                     <td><?php echo $value['created'] ?></td>
                                                     <td><?php echo $value['created_by'] ?></td>
@@ -97,7 +88,7 @@ $url = array(
                                                     <td><?php echo $value['modified_by'] ?></td>
                                                     <td class="text-center status">
                                                         <?php
-                                                        $onclick = URL::createLink('admin', 'category', 'ajaxStatus', ['id' => $value['id'], 'status' => $value['status']]);
+                                                        $onclick = URL::createLink('admin', DB_TBCATEGORY, 'ajaxStatus', ['id' => $value['id'], 'status' => $value['status']]);
                                                         echo '<i onclick="javascript:ajaxStatus(\'' . $onclick . '\')" id="status-' . $value['id'] . '">' . ($value['status'] ? 'on' : 'off') . '</i>';
                                                         ?>
                                                     </td>
@@ -105,7 +96,6 @@ $url = array(
                                                 </tr>
 
                                                 <?php
-                                                $i++;
                                             } ?>
                                             </tbody>
                                         </table>
@@ -126,76 +116,4 @@ $url = array(
     </section>
 
     <!-- /.content -->
-</div>
-
-<!-- Modal add -->
-<form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" id="form-add">
-    <div class="modal fade" id="modal-add">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Add Category </h4>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="box-footer text-center">
-                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary submit-form" id="save-close">Save & Close</button>
-                    <button type="submit" class="btn btn-primary submit-form">Save & New</button>
-                </div>
-                <!-- /.box-footer -->
-            </div>
-        </div>
-        <div id="xoay">
-            <div id="loader" style="display: none"></div>
-        </div>
-    </div>
-</form>
-<!--modal edit-->
-<form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" id="form-edit">
-    <div class="modal fade" id="modal-category-edit">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Edit Category </h4>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="box-footer text-center">
-                    <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary submit-form">Save</button>
-                </div>
-                <!-- /.box-footer -->
-            </div>
-        </div>
-        <div id="xoay">
-            <div id="loader" style="display: none"></div>
-        </div>
-    </div>
-</form>
-<!--modal Active-->
-
-<div class="modal fade" id="modal-action" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Successed</h4>
-            </div>
-            <div class="modal-body">
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default close-active " data-dismiss="modal">OK</button>
-
-            </div>
-        </div>
-    </div>
 </div>

@@ -2,6 +2,8 @@
 
 class VideoController extends Controller
 {
+    private $table = DB_TBVIDEO;
+
     public function __construct($params)
     {
         parent::__construct($params);
@@ -15,19 +17,20 @@ class VideoController extends Controller
     {
         $course_id = isset($this->_arrParam['id']) ? (int)$this->_arrParam['id'] : 0;
         $this->_view->listItem = $this->_model->showVideo($course_id);
-        $this->_view->render('video/index');
+        $this->_view->render($this->table . '/index');
     }
 
-    public function addAjaxAction()
+    // Add Ajax
+    public function addAction()
     {
+        $this->_view->infoItem['course_id'] = $this->_arrParam['id'];
         if (isset($this->_arrParam['form'])) {
-
             if (strlen($this->_arrParam['form']['link']) > 40) {
                 $this->_arrParam['form']['link'] = Helper::cutCharacter($this->_arrParam['form']['link'], 'v=', 2);
             }
             $validate = new Validate($this->_arrParam['form']);
-            $queryName = "SELECT * FROM `" . DB_TBVIDEO . "` WHERE `title`='" . $this->_arrParam['form']['title'] . "'";
-            $queryLink = "SELECT * FROM `" . DB_TBVIDEO . "` WHERE `link`='" . $this->_arrParam['form']['link'] . "'";
+            $queryName = "SELECT * FROM `" . $this->table . "` WHERE `title`='" . $this->_arrParam['form']['title'] . "'";
+            $queryLink = "SELECT * FROM `" . $this->table . "` WHERE `link`='" . $this->_arrParam['form']['link'] . "'";
 
             $validate->addRule('title', 'string-notExistRecord', ['min' => 1, 'max' => 200, 'database' => $this->_model, 'query' => $queryName])
                 ->addRule('link', 'string-notExistRecord', ['min' => 10, 'max' => 200, 'database' => $this->_model, 'query' => $queryLink])
@@ -38,19 +41,22 @@ class VideoController extends Controller
             if ($validate->isValid() == false) {
                 $this->_view->errors = $validate->showErrors();
             } else {
-                $this->_model->insert(DB_TBVIDEO, $this->_arrParam['form']);
-                $this->_view->success = Helper::success('Thêm thành công');
-                $this->_view->infoItem = [];
+                $this->_model->insert($this->table, $this->_arrParam['form']);
+                $this->_view->success = Helper::success('Add Successful');
+                if ($this->_arrParam['type'] == "close")
+                    URL::redirect("admin", $this->table, "index", ['id' => $this->_arrParam['id']]);
+                if ($this->_arrParam['type'] == "new")
+                    $this->_view->infoItem = [];
             }
         }
         $this->_view->listCourse = $this->_model->showAll(DB_TBCOURSE);
-        $this->_view->render('video/add', false);
+        $this->_view->render($this->table . '/add');
     }
 
-    public function editAjaxAction()
+    // Edit Ajax
+    public function editAction()
     {
-        $this->_view->infoItem = $this->_model->select(DB_TBVIDEO, $this->_arrParam['id'], 1);
-
+        $this->_view->infoItem = $this->_model->select($this->table, $this->_arrParam['id'], 1);
         if (isset($this->_arrParam['form'])) {
             $form = array_diff_assoc($this->_arrParam['form'], $this->_view->infoItem);
             if (isset($form['link']) && strlen($form['link']) > 40) {
@@ -60,11 +66,7 @@ class VideoController extends Controller
             foreach ($form as $key => $value) {
                 switch ($key) {
                     case 'title':
-                        $query = "SELECT * FROM `" . DB_TBVIDEO . "` WHERE `title`='" . $form['title'] . "'";
-                        $validate->addRule('title', 'string-notExistRecord', ['min' => 1, 'max' => 200, 'database' => $this->_model, 'query' => $query]);
-                        break;
-                    case 'link':
-                        $query = "SELECT * FROM `" . DB_TBVIDEO . "` WHERE `link`='" . $form['link'] . "'";
+                        $query = "SELECT * FROM `" . $this->table . "` WHERE `link`='" . $form['link'] . "'";
                         $validate->addRule('link', 'string-notExistRecord', ['min' => 1, 'max' => 200, 'database' => $this->_model, 'query' => $query]);
                         break;
                     case 'course_id':
@@ -80,40 +82,37 @@ class VideoController extends Controller
             } else {
                 if (!empty($form)) {
                     $id = $this->_view->infoItem['id'];
-                    $this->_model->update(DB_TBVIDEO, $form, ['id' => $id]);
-                    $this->_view->success = Helper::success('Sửa thành công');
+                    $this->_model->updateVideo($form, ['id' => $id]);
+                    $this->_view->success = Helper::success('Edit Successful');
 
                 } else {
-                    $this->_view->success = Helper::success('Không thay đổi');
+                    $this->_view->success = Helper::success('Nothing changes');
                 }
             }
         }
         $this->_view->listCourse = $this->_model->showAll(DB_TBCOURSE);
-        $this->_view->render('video/editVideo', false);
+        $this->_view->render($this->table . '/editVideo');
     }
+
 
     public function ajaxStatusAction()
     {
         echo json_encode($this->_model->chageStatus($this->_arrParam));
     }
 
-    //Ajax
+    // Status Ajax
     public function statusAction()
     {
         $this->_model->chageStatus($this->_arrParam['cid'], $this->_arrParam['type'], "change-status");
         URL::redirect('admin', 'video', 'index', ['id' => $this->_arrParam['id']]);
     }
 
-    //Ajax
+    // Delet Ajax
     public function deleteAction()
     {
-        $this->_model->delete(DB_TBVIDEO,$this->_arrParam['cid']);
+        $this->_model->delete($this->table, $this->_arrParam['cid']);
         URL::redirect('admin', 'video', 'index', ['id' => $this->_arrParam['id']]);
     }
 
-    public function showVideoAjaxAction()
-    {
-        
-    }
 
 }
