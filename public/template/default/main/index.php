@@ -41,11 +41,11 @@ $urlFile = TEMPLATE_URL . '/default/main';
     <!-- END / HEADER -->
 
     <?php
-    if ($_GET['url'] == 'default/index/index') {
+    if ($this->arrParam['url'] == 'default/index/index') {
         echo '<!--HOME SLIDER-->';
         include_once "html/slider.php";
         echo '<!--END / HOME SLIDER-->';
-    } else if ($_GET['url'] == 'default/courses/index') {
+    } else if ($this->arrParam['url'] == 'default/courses/index') {
         echo '<!--SUB BANNER-->';
         include_once "html/sub-banner.php";
         echo '<!--END / SUB BANNER-->';
@@ -60,7 +60,7 @@ $urlFile = TEMPLATE_URL . '/default/main';
     <?php require_once MODULE_PATH . DS . $this->_moduleName . DS . 'views' . DS . $this->_fileView . '.php'; ?>
 
     <?php
-    if($_GET['url']== 'default/index/index'){
+    if($this->arrParam['url']== 'default/index/index'){
        echo '<!-- BEFORE FOOTER -->';
      include_once "html/before-footer.php";
         echo '<!-- END / BEFORE FOOTER -->';

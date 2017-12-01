@@ -39,14 +39,14 @@ class TagModel extends Model
     public function updateCategory($arrParam, $arrID)
     {
         $arrParam['modified'] = date('Y-m-d');
-        $arrParam['modified_by'] = unserialize($_COOKIE['remember'])['user'][0]['username'];
+        $arrParam['modified_by'] = uSession::get("user")['info']['username'];
         $this->update(DB_TBCATEGORY, $arrParam, $arrID);
     }
 
     public function insertCategory($arrParam)
     {
         $arrParam['created'] = date('Y-m-d');
-        $arrParam['created_by'] = unserialize($_COOKIE['remember'])['user'][0]['username'];
+        $arrParam['created_by'] = uSession::get("user")['info']['username'];
         $this->insert(DB_TBCATEGORY, $arrParam);
     }
 

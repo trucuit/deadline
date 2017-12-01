@@ -1,6 +1,6 @@
 <?php
 $url = [
-        'login'=>URL::createLink('admin','user','login')
+    'login' => URL::createLink('admin', 'index', 'login')
 ]
 ?>
 
@@ -8,7 +8,7 @@ $url = [
     <div class="container">
 
         <!-- LOGO -->
-        <div class="logo"><a href="index.html"><img src="<?php echo $urlImage?>/logo.png" alt=""></a></div>
+        <div class="logo"><a href="index.html"><img src="<?php echo $urlImage ?>/logo.png" alt=""></a></div>
         <!-- END / LOGO -->
 
         <!-- NAVIGATION -->
@@ -89,7 +89,7 @@ $url = [
                 <li class="menu-item-has-children">
                     <a href="#">Login</a>
                     <ul class="sub-menu">
-                        <li><a href="<?php echo URL::createLink('admin','user','login')?>">Login</a></li>
+                        <li><a href="<?php echo $url['login']?>">Login</a></li>
                         <li><a href="register.html">Register</a></li>
                     </ul>
                 </li>
@@ -131,7 +131,7 @@ $url = [
                             <li class="ac-new">
                                 <a href="#">
                                     <div class="image">
-                                        <img src="<?php echo $urlImage?>/team-13.jpg" alt="">
+                                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
                                     </div>
                                     <div class="list-body">
                                         <div class="author">
@@ -154,7 +154,7 @@ $url = [
                             <li class="ac-new">
                                 <a href="#">
                                     <div class="image">
-                                        <img src="<?php echo $urlImage?>/team-13.jpg" alt="">
+                                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
                                     </div>
                                     <div class="list-body">
                                         <div class="author">
@@ -174,7 +174,7 @@ $url = [
                             <li class="ac-new">
                                 <a href="#">
                                     <div class="image">
-                                        <img src="<?php echo $urlImage?>/team-13.jpg" alt="">
+                                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
                                     </div>
                                     <div class="list-body">
                                         <div class="author">
@@ -194,7 +194,7 @@ $url = [
                             <li>
                                 <a href="#">
                                     <div class="image">
-                                        <img src="<?php echo $urlImage?>/team-13.jpg" alt="">
+                                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
                                     </div>
                                     <div class="list-body">
                                         <div class="author">
@@ -214,7 +214,7 @@ $url = [
                             <li>
                                 <a href="#">
                                     <div class="image">
-                                        <img src="<?php echo $urlImage?>/team-13.jpg" alt="">
+                                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
                                     </div>
                                     <div class="list-body">
                                         <div class="author">
@@ -234,7 +234,7 @@ $url = [
                             <li>
                                 <a href="#">
                                     <div class="image">
-                                        <img src="<?php echo $urlImage?>/team-13.jpg" alt="">
+                                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
                                     </div>
                                     <div class="list-body">
                                         <div class="author">
@@ -282,7 +282,7 @@ $url = [
                                         </div>
                                         <p>attend Salary for newbie course</p>
                                         <div class="image">
-                                            <img src="<?php echo $urlImage?>/feature/img-1.jpg" alt="">
+                                            <img src="<?php echo $urlImage ?>/feature/img-1.jpg" alt="">
                                         </div>
                                         <div class="time">
                                             <span>5 minutes ago</span>
@@ -302,7 +302,7 @@ $url = [
                                         </div>
                                         <p>attend Salary for newbie course</p>
                                         <div class="image">
-                                            <img src="<?php echo $urlImage?>/feature/img-1.jpg" alt="">
+                                            <img src="<?php echo $urlImage ?>/feature/img-1.jpg" alt="">
                                         </div>
                                         <div class="time">
                                             <span>5 minutes ago</span>
@@ -322,7 +322,7 @@ $url = [
                                         </div>
                                         <p>attend Salary for newbie course</p>
                                         <div class="image">
-                                            <img src="<?php echo $urlImage?>/feature/img-1.jpg" alt="">
+                                            <img src="<?php echo $urlImage ?>/feature/img-1.jpg" alt="">
                                         </div>
                                         <div class="time">
                                             <span>5 minutes ago</span>
@@ -342,7 +342,7 @@ $url = [
                                         </div>
                                         <p>attend Salary for newbie course</p>
                                         <div class="image">
-                                            <img src="<?php echo $urlImage?>/feature/img-1.jpg" alt="">
+                                            <img src="<?php echo $urlImage ?>/feature/img-1.jpg" alt="">
                                         </div>
                                         <div class="time">
                                             <span>5 minutes ago</span>
@@ -362,7 +362,7 @@ $url = [
                                         </div>
                                         <p>attend Salary for newbie course</p>
                                         <div class="image">
-                                            <img src="<?php echo $urlImage?>/feature/img-1.jpg" alt="">
+                                            <img src="<?php echo $urlImage ?>/feature/img-1.jpg" alt="">
                                         </div>
                                         <div class="time">
                                             <span>5 minutes ago</span>
@@ -382,7 +382,7 @@ $url = [
                                         </div>
                                         <p>attend Salary for newbie course</p>
                                         <div class="image">
-                                            <img src="<?php echo $urlImage?>/feature/img-1.jpg" alt="">
+                                            <img src="<?php echo $urlImage ?>/feature/img-1.jpg" alt="">
                                         </div>
                                         <div class="time">
                                             <span>5 minutes ago</span>
@@ -391,7 +391,6 @@ $url = [
                                 </a>
                             </li>
                             <!-- END / LIST ITEM -->
-
 
 
                         </ul>
@@ -401,7 +400,7 @@ $url = [
 
                 <li class="list-item account">
                     <div class="account-info item-click">
-                        <img src="<?php echo $urlImage?>/team-13.jpg" alt="">
+                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
                     </div>
                     <div class="toggle-account toggle-list">
                         <ul class="list-account">

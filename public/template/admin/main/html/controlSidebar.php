@@ -2,7 +2,7 @@
 $url = [
     'profile' => URL::createLink('admin', 'user', 'profile')
 ];
-$userInfo = Cookie::get('remember');
+$userInfo = Session::get("user")['info'];
 ?>
 
 <aside class="control-sidebar control-sidebar-dark">

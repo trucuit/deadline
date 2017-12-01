@@ -1,5 +1,5 @@
 <?php
-$userInfo = Cookie::get('remember');
+$userInfo =Session::get("user")['info'];
 $url = [
     'profile' => URL::createLink('admin', 'user', 'profile'),
     'logout' => URL::createLink('admin', 'index', 'logout')

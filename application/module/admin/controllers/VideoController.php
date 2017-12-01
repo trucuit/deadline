@@ -110,7 +110,9 @@ class VideoController extends Controller
     // Delet Ajax
     public function deleteAction()
     {
-        $this->_model->delete($this->table, $this->_arrParam['cid']);
+        if(!empty($this->_arrParam['cid'])) {
+            $this->_model->delete($this->table, $this->_arrParam['cid']);
+        }
         URL::redirect('admin', 'video', 'index', ['id' => $this->_arrParam['id']]);
     }
 

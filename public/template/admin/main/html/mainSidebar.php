@@ -9,7 +9,7 @@ $url = array(
 $model = new Model();
 $query = "SELECT `id`,`name` FROM `" . DB_TBCOURSE . "`";
 $listCourse = $model->execute($query, 1);
-$userInfo = Cookie::get('remember');
+$userInfo = Session::get("user")['info'];
 ?>
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->

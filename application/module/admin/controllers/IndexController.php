@@ -13,11 +13,10 @@ class IndexController extends Controller
 
     public function loginAction()
     {
-        if (Cookie::get('remember')) {
-//            echo URL::createLink('admin', 'category', 'index');
-            URL::redirect('admin', 'user', 'profile');
+        $userInfo = Session::get('user');
+        if ($userInfo['login'] == true && $userInfo['time'] + TIME_LOGIN >= time()) {
+            URL::redirect('admin', 'index', 'index');
         }
-
         if (isset($this->_arrParam['form'])) {
             $validate = new Validate($this->_arrParam['form']);
             $queryUserName = "SELECT id,username,fullname,email FROM `user` WHERE username = '" . $this->_arrParam['form']['email'] . "' AND password='" . md5($this->_arrParam['form']['password']) . "'";
@@ -29,14 +28,7 @@ class IndexController extends Controller
                 $this->_view->errors = $validate->showErrors();
 
             } else {
-//                if (isset($this->_arrParam['form']['check'])) {
-//                    setcookie('remember', serialize(['user' => $this->_model->execute($queryUserName, true)]), time() + TIME_LOGIN);
-//                    Cookie::set('remember', $this->_model->execute($queryUserName, true)[0], time() + TIME_LOGIN);
-//                } else {
-//                    setcookie('remember', serialize(['user' => $this->_model->execute($queryUserName, true)]), false);
-//                    Cookie::set('remember', $this->_model->execute($queryUserName, true)[0], false);
-//                }
-                Cookie::set('remember', $this->_model->execute($queryUserName, true)[0], time() + TIME_LOGIN);
+                Session::set('user', ['login' => true, 'info' => $this->_model->execute($queryUserName, true)[0], 'time' => time()]);
                 URL::redirect('admin', DB_TBUSER, 'profile');
             }
         }
@@ -46,7 +38,7 @@ class IndexController extends Controller
 
     public function logoutAction()
     {
-        Cookie::delete('remember');
+        Session::delete('user');
         URL::redirect('admin', 'index', 'login');
     }
 

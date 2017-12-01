@@ -94,7 +94,9 @@ class CategoryController extends Controller
     // Delet Ajax
     public function deleteAction()
     {
-        $this->_model->delete($this->table, $this->_arrParam['cid']);
+        if(!empty($this->_arrParam['cid'])) {
+            $this->_model->delete($this->table, $this->_arrParam['cid']);
+        }
         URL::redirect('admin', $this->table, 'index');
     }
 }

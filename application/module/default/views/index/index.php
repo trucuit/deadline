@@ -1,4 +1,3 @@
-
 <!-- SECTION 1 -->
 <section id="mc-section-1" class="mc-section-1 section">
     <div class="container">
