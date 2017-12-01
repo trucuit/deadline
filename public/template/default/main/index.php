@@ -26,31 +26,7 @@ $urlFile = TEMPLATE_URL . '/default/main';
         root_url =  <?php echo json_encode(ROOT_URL . "/")  ?>;
         const ROOT_URL = root_url;
     </script>
-    <script>
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq) return;
-            n = f.fbq = function () {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n;
-            n.push = n;
-            n.loaded = !0;
-            n.version = '2.0';
-            n.queue = [];
-            t = b.createElement(e);
-            t.async = !0;
-            t.src = v;
-            s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window,
-            document, 'script', '//connect.facebook.net/en_US/fbevents.js');
 
-        fbq('init', '1031554816897182');
-        fbq('track', "PageView");</script>
-    <noscript><img height="1" width="1" style="display:none"
-                   src="https://www.facebook.com/tr?id=1031554816897182&ev=PageView&noscript=1"
-        /></noscript>
 </head>
 <body id="page-top" class="home">
 
@@ -66,11 +42,11 @@ $urlFile = TEMPLATE_URL . '/default/main';
     <!-- END / HEADER -->
 
     <?php
-    if ($_GET['url'] == 'default/index/index') {
+    if ($this->arrParam['url'] == 'default/index/index') {
         echo '<!--HOME SLIDER-->';
         include_once "html/slider.php";
         echo '<!--END / HOME SLIDER-->';
-    } else if ($_GET['url'] == 'default/courses/index') {
+    } else if ($this->arrParam['url'] == 'default/courses/index') {
         echo '<!--SUB BANNER-->';
         include_once "html/sub-banner.php";
         echo '<!--END / SUB BANNER-->';
@@ -104,21 +80,6 @@ $urlFile = TEMPLATE_URL . '/default/main';
 
 <!-- Load jQuery -->
 <?php echo $this->_fileJS ?>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-20585382-5', 'megadrupal.com');
-    ga('send', 'pageview');
-</script>
 </body>
 </html>

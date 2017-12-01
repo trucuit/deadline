@@ -1,7 +1,8 @@
 <?php
 $url = [
         'login'=>URL::createLink('admin','user','login')
-]
+];
+
 ?>
 
 <header id="header" class="header">
@@ -23,6 +24,26 @@ $url = [
             <!-- MENU -->
             <ul class="menu">
                 <li class="current-menu-item"><a href="index.html">Home</a></li>
+<!--                category-->
+                <li class="menu-item-has-children megamenu col-4">
+                    <a href="#">Category</a>
+                    <ul class="sub-menu">
+                        <li class="menu-item-has-children">
+                            <a href="#">Account 1</a>
+                            <ul class="sub-menu">
+                                <li><a href="account-assignment.html">Account Assignment</a></li>
+                                <li><a href="account-inbox.html">Account Inbox</a></li>
+                                <li><a href="account-learning.html">Account Learning</a></li>
+                                <li><a href="account-profile-owner-view.html">Account Profile Owner</a></li>
+                                <li><a href="account-profile-guest-view.html">Account Profile Guest</a></li>
+                                <li><a href="account-teaching.html">Account Teaching</a></li>
+                                <li><a href="setting.html">Setting</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+<!--                pages-->
                 <li class="menu-item-has-children megamenu col-4">
                     <a href="#">Pages</a>
                     <ul class="sub-menu">
@@ -89,7 +110,7 @@ $url = [
                 <li class="menu-item-has-children">
                     <a href="#">Login</a>
                     <ul class="sub-menu">
-                        <li><a href="<?php echo URL::createLink('admin','user','login')?>">Login</a></li>
+                        <li><a href="<?php echo $url['login']?>">Login</a></li>
                         <li><a href="register.html">Register</a></li>
                     </ul>
                 </li>
