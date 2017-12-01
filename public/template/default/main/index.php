@@ -1,6 +1,7 @@
 <?php
 $urlImage = $this->_dirImg;
 $urlFile = TEMPLATE_URL . '/default/main';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +22,10 @@ $urlFile = TEMPLATE_URL . '/default/main';
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <![endif]-->
     <title>Mega Course - Learning and Courses HTML5 Template</title>
+    <script type="text/javascript">
+        root_url =  <?php echo json_encode(ROOT_URL . "/")  ?>;
+        const ROOT_URL = root_url;
+    </script>
     <script>
         !function (f, b, e, v, n, t, s) {
             if (f.fbq) return;
@@ -60,24 +65,36 @@ $urlFile = TEMPLATE_URL . '/default/main';
     <?php include_once "html/header.php"; ?>
     <!-- END / HEADER -->
 
+    <?php
+    if ($_GET['url'] == 'default/index/index') {
+        echo '<!--HOME SLIDER-->';
+        include_once "html/slider.php";
+        echo '<!--END / HOME SLIDER-->';
+    } else if ($_GET['url'] == 'default/courses/index') {
+        echo '<!--SUB BANNER-->';
+        include_once "html/sub-banner.php";
+        echo '<!--END / SUB BANNER-->';
+    }
 
-    <!-- HOME SLIDER -->
-    <?php include_once "html/slider.php"; ?>
-    <!-- END / HOME SLIDER -->
+?>
 
-
-    <!-- AFTER SLIDER -->
+        <!-- AFTER SLIDER -->
     <?php include_once "html/after-slider.php"; ?>
-    <!-- END / AFTER SLIDER -->
+        <!-- END / AFTER SLIDER -->
 
     <?php require_once MODULE_PATH . DS . $this->_moduleName . DS . 'views' . DS . $this->_fileView . '.php'; ?>
 
-    <!-- BEFORE FOOTER -->
-    <?php include_once "html/before-footer.php"; ?>
-    <!-- END / BEFORE FOOTER -->
+    <?php
+    if($_GET['url']== 'default/index/index'){
+       echo '<!-- BEFORE FOOTER -->';
+     include_once "html/before-footer.php";
+        echo '<!-- END / BEFORE FOOTER -->';
+    }
+    ?>
 
 
-    <!-- FOOTER -->
+
+        <!-- FOOTER -->
     <?php include_once "html/footer.php"; ?>
     <!-- END / FOOTER -->
 

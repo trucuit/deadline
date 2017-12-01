@@ -13,9 +13,9 @@ define('APPLICATION_URL', ROOT_URL .DS. 'application');
 define('PUBLIC_URL', ROOT_URL .DS. 'public');
 define('TEMPLATE_URL', PUBLIC_URL .DS. 'template');
 
-define('DEFAULT_MODULE', 'admin');
-define('DEFAULT_CONTROLLER', 'user');
-define('DEFAULT_ACTION', 'profile');
+define('DEFAULT_MODULE', 'default');
+define('DEFAULT_CONTROLLER', 'index');
+define('DEFAULT_ACTION', 'index');
 // ====================== DATABASE ===========================
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
