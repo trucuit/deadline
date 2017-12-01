@@ -114,8 +114,15 @@
                 step: function(now, mx) {
                     left = (now * 50)+"%";
                     opacity = 1 - now;
-                    current_fs.css({'opacity': '0'});
-                    next_fs.css({'left': left, 'opacity': opacity});
+                    current_fs.css({
+                        'opacity': '0',
+                        'position': 'absolute'
+                    });
+                    next_fs.css({
+                        'left': left, 
+                        'opacity': opacity,
+                        'position': 'static'
+                    });
                 }, 
                 duration: 800, 
                 complete: function(){
@@ -135,13 +142,14 @@
         $('#page-wrap').append('<div class="overlayForm"></div>');
         $('.take-this-course').on('click', function() {
             $('.form-checkout, .overlayForm').fadeIn(400);
+            $(window).trigger('resize');
             return false;
         });
         
         $('.closeForm').on('click', function() {
             $('.form-checkout, .overlayForm').fadeOut(400);
         });
-        $('.closeForm').click();
+        $('.closeForm').trigger('click');
 
         /*==============================
             TABS STYLE LINE
@@ -191,10 +199,9 @@
 
     function formCheckoutCal() {
         var heightWindow = $(window).height(),
-            heightForm = $('.form-checkout .container').height(),
-            formMiddle = (heightWindow - heightForm) / 2;
+            heightForm = $('.form-checkout .container').outerHeight(),
+            formMiddle = (heightWindow - heightForm - 80) / 2;
         $('.form-checkout').css('top', formMiddle);
-        $('.form-checkout .form-body').height($(".form-checkout fieldset").height());
     }
 
     /*==============================
@@ -233,7 +240,7 @@
             $(this).parent().toggleClass('active');
             if ($(this).parent().hasClass('active')) {
                 $('.learning-section')
-                    .toggleClass('learning-section-fly')
+                    .addClass('learning-section-fly')
                     .css('paddingRight', width);
             } else {
                 $('.learning-section')
@@ -396,16 +403,34 @@
         scrollbar();
         $('.nav-tabs').wrap('<div class="nav-tabs-wrap"></div>');
 
+        $('.open-menu').on('click', function() {
+            $(this).toggleClass('toggle-active');
+            $('.navigation .menu, .search-box').slideToggle(300);
+        });
+        $('.menu-item-has-children').on('click', '> .toggle-sub', function(evt) {
+            evt.preventDefault();
+            $(this).next().slideToggle(300);
+            $(this).prev().toggleClass('mobile-active');
+        });
+    });
+    $(window).load(function() {
+        ResizeSliderHome();
+    });
+
+    $(window).on('resize', function() {
+        formCheckoutCal();
+    });
+    $(window).on('resize', function() {
+        setHeightRespon();
+        setHeightMessagesb();
+        scrollbar();
+        SliderHome();
+        ResizeSliderHome();
+
         if (window.innerWidth < 1200) {
-            $('.menu-item-has-children').on('click', '> a', function(evt) {
-                evt.preventDefault();
-                $(this).next().slideToggle(300);
-                $(this).toggleClass('mobile-active');
-            });
-            $('.open-menu').on('click', function() {
-                $(this).toggleClass('toggle-active');
-                $('.navigation .menu, .search-box').slideToggle(300);
-            });
+            $('.navigation .menu, .search-box').css('display', 'none');
+            if ($('.menu-item-has-children').children('.toggle-sub').length === 0 && $('.menu-item-has-children').children('.toggle-sub').length < 1)
+                $('.menu-item-has-children > a').after('<span class="toggle-sub">Toggle</span>');
             $('html').on('click', function() {
                 $('.open-menu').removeClass('toggle-active');
                 $('.navigation .menu, .search-box').slideUp(300);
@@ -413,19 +438,10 @@
             $('.navigation .menu, .open-menu, .search-box').on('click', function(evt) {
                 evt.stopPropagation();
             });
+        } else {
+            $('.navigation .menu, .search-box').css('display', 'inline-block');
+            $('.toggle-sub').remove();
         }
-    });
-    $(window).load(function() {
-        ResizeSliderHome();
-    });
-
-    $(window).on('resize', function() {
-        setHeightRespon();
-        setHeightMessagesb();
-        scrollbar();
-        SliderHome();
-        formCheckoutCal();
-        ResizeSliderHome();
     }).trigger('resize');;
     
 
