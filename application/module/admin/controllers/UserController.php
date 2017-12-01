@@ -14,10 +14,6 @@ class UserController extends Controller
 
     public function profileAction()
     {
-        $this->_templateObj->setFolderTemplate('admin/main');
-        $this->_templateObj->setFileTemplate('index.php');
-        $this->_templateObj->setFileConfig('index.ini');
-        $this->_templateObj->load();
         if (isset($this->_arrParam['form'])) {
             $validate = new Validate($this->_arrParam['form']);
             $validate->addRule('fullname', 'string', array('max' => 100, 'min' => 5))
@@ -35,15 +31,16 @@ class UserController extends Controller
             if ($validate->isValid() == false) {
                 $this->_view->errors = $validate->showErrors();
             } else {
-                $this->_model->update(DB_TBUSER, $this->_arrParam['form'], ['id' => unserialize($_COOKIE['remember'])['user'][0]['id']]);
+                $this->_model->update(DB_TBUSER, $this->_arrParam['form'], ['id' => Session::get("user")['info']['id']]);
+                $info = $this->_arrParam['form'];
+                $info['id'] = Session::get("user")['info']['id'];
+                Session::set('user', ['login' => true, 'info' => $info, 'time' => time()]);
                 $this->_view->success = Helper::success('Cập nhật thành công');
                 URL::redirect('admin', 'user', 'profile');
             }
         }
-     echo "<pre>";
-     print_r(Cookie::get('remember'));    
-     echo "</pre>";
-        $this->_view->userInfo = $this->_model->show(DB_TBUSER, Cookie::get('remember')['id']);
+
+        $this->_view->userInfo = $this->_model->show(DB_TBUSER, Session::get("user")['info']['id']);
         $this->_view->render('user/profile');
     }
 }

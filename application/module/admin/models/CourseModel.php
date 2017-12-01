@@ -30,7 +30,7 @@ class CourseModel extends Model
     public function chageStatus($param, $type = 1, $task = '')
     {
         $modified = date('Y-m-d', time());
-        $modified_by = Cookie::get('remember')['username'];
+        $modified_by = Session::get("user")['info']['username'];
         if ($task == "change-status") {
             foreach ($param as $val) {
                 $query = "UPDATE `" . DB_TBCOURSE . "` SET `status` = '$type',`modified`='$modified',`modified_by`='$modified_by' WHERE `id` = '" . $val . "'";
@@ -57,7 +57,7 @@ class CourseModel extends Model
         $data['image'] = $data['name'] . '.' . Helper::cutCharacter($image['type'], '/', 1);
         $data['created'] = date("Y-m-d H:i:s");
         $data['name'] = trim($data['name']);
-        $data['created_by'] = Cookie::get('remember')['username'];
+        $data['created_by'] = Session::get("user")['info']['username'];
         $this->insert(DB_TBCOURSE, $data);
 
         $query = "SELECT `id` FROM `" . DB_TBCOURSE . "` ORDER BY `id` DESC LIMIT 0,1";
@@ -77,7 +77,7 @@ class CourseModel extends Model
             $data['link'] = Helper::cutCharacter($data['link'], 'list=', 5);
         }
         $data['modified'] = date('Y-m-d');
-        $data['modified_by'] = Cookie::get('remember')['username'];
+        $data['modified_by'] = Session::get("user")['info']['username'];
         $id = $data['id'];
         unset($data['id']);
         if (!empty($file['image']['name'])) {

@@ -15,7 +15,7 @@ class AuthorModel extends Model
             move_uploaded_file($arrParam['avatar']['tmp_name'], $pathImage);
             $arrParam['avatar'] = $nameImage;
         }
-        $arrParam['created_by'] = Cookie::get('remember')['username'];
+        $arrParam['created_by'] = Session::get("user")['info']['username'];
         $arrParam['created'] = date("Y-m-d", time());
         $this->insert(DB_TBAUTHOR, $arrParam);
     }
@@ -32,7 +32,7 @@ class AuthorModel extends Model
             $arrParam['avatar'] = $nameImage;
         }
         unset($arrParam['avatarOld']);
-        $arrParam['modified_by'] = Cookie::get('remember')['username'];
+        $arrParam['modified_by'] = Session::get("user")['info']['username'];
         $arrParam['modified'] = date("Y-m-d", time());
         $this->update(DB_TBAUTHOR, $arrParam, ['id' => $id]);
     }
@@ -40,7 +40,7 @@ class AuthorModel extends Model
     public function chageStatus($param, $type = 1, $task = '')
     {
         $modified = date('Y-m-d', time());
-        $modified_by = Cookie::get('remember')['username'];
+        $modified_by = Session::get("user")['info']['username'];
         if ($task == "change-status") {
             foreach ($param as $val) {
                 $query = "UPDATE `" . DB_TBAUTHOR . "` SET `status` = '$type',`modified`='$modified',`modified_by`='$modified_by' WHERE `id` = '" . $val . "'";

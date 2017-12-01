@@ -39,7 +39,7 @@ class VideoModel extends Model
     public function updateVideo($arrParam, $arrID)
     {
         $arrParam['modified'] = date('Y-m-d');
-        $arrParam['modified_by'] = Cookie::get('remember')['username'];
+        $arrParam['modified_by'] = Session::get("user")['info']['username'];
         $this->update(DB_TBVIDEO, $arrParam, $arrID);
     }
 }

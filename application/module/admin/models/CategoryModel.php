@@ -18,7 +18,7 @@ class CategoryModel extends Model
     public function chageStatus($param, $type = 1, $task = '')
     {
         $modified = date('Y-m-d', time());
-        $modified_by = Cookie::get('remember')['username'];
+        $modified_by = Session::get("user")['info']['username'];
 
         if ($task == "change-status") {
             foreach ($param as $val) {
@@ -42,14 +42,14 @@ class CategoryModel extends Model
     public function updateCategory($arrParam, $arrID)
     {
         $arrParam['modified'] = date('Y-m-d');
-        $arrParam['modified_by'] = Cookie::get('remember')['username'];
+        $arrParam['modified_by'] = Session::get("user")['info']['username'];
         $this->update(DB_TBCATEGORY, $arrParam, $arrID);
     }
 
     public function insertCategory($arrParam)
     {
         $arrParam['created'] = date('Y-m-d');
-        $arrParam['created_by'] = Cookie::get('remember')['username'];
+        $arrParam['created_by'] = Session::get("user")['info']['username'];
         $this->insert(DB_TBCATEGORY, $arrParam);
     }
 
