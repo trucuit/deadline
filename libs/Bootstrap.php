@@ -14,6 +14,10 @@ class Bootstrap
             $this->loadFileExits($filePath, $controllerName);
             $this->callMethod();
         }
+
+        echo "<pre>";
+        print_r($this->_params);
+        echo "</pre>";
     }
 
     public function setParam()
@@ -39,17 +43,19 @@ class Bootstrap
     {
         $actionName = $this->_params['action'] . 'Action';
         if (method_exists($this->_controllerObj, $actionName)) {
-            if ($this->_params['module'] == 'admin') {
-                if (Cookie::get('remember')) {
-                    $this->_controllerObj->$actionName();
-                } else {
-                    $this->callLoginAction($this->_params['module']);
-                }
-            }
+//            if ($this->_params['module'] == 'admin') {
+//                if (Cookie::get('remember')) {
+//                    $this->_controllerObj->$actionName();
+//                } else {
+//                    $this->callLoginAction($this->_params['module']);
+//                }
+//            }
+//        }else{
+//            URL::redirect('admin','user','profile');
+            $this->_controllerObj->$actionName();
         }else{
-            URL::redirect('admin','user','profile');
+           URL::redirect('default','index','index');
         }
-
     }
 
     private function callLoginAction($module = 'default')
