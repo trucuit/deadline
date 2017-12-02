@@ -12,6 +12,7 @@ class VideoModel extends Model
         $query[] = "SELECT v.id, v.link, v.title,v.status,v.ordering , v.thumbnails, c.name as courseName";
         $query[] = "FROM `video` v LEFT JOIN `course` c ON c.id = v.course_id";
         $query[] = "WHERE v.course_id=$course_id";
+        $query[] = "ORDER BY v.title";
         return $this->execute(implode(" ", $query), 1);
     }
 

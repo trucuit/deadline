@@ -10,8 +10,8 @@ class AuthorModel extends Model
     public function insertAuthor($arrParam)
     {
         if (isset($arrParam['avatar'])) {
-            $nameImage = $arrParam['name'] . "." . pathinfo($arrParam['avatar']['name'])['extension'];
-            $pathImage = TEMPLATE_PATH . "/admin/main/images/" . $nameImage;
+            $nameImage = trim($arrParam['name']) . "." . pathinfo($arrParam['avatar']['name'])['extension'];
+            $pathImage = TEMPLATE_PATH . "/admin/main/images/author" . $nameImage;
             move_uploaded_file($arrParam['avatar']['tmp_name'], $pathImage);
             $arrParam['avatar'] = $nameImage;
         }
@@ -23,10 +23,10 @@ class AuthorModel extends Model
     public function updateAuthor($arrParam, $id)
     {
         if (!empty($arrParam['avatar']['name'])) {
-            $nameImage = $arrParam['name'] . "." . pathinfo($arrParam['avatar']['name'])['extension'];
-            $pathImage = TEMPLATE_PATH . "/admin/main/images/" . $nameImage;
-            if (file_exists(TEMPLATE_PATH . "/admin/main/images/" . $arrParam['avatarOld'])) {
-                unlink(TEMPLATE_PATH . "/admin/main/images/" . $arrParam['avatarOld']);
+            $nameImage = trim($arrParam['name']) . "." . pathinfo($arrParam['avatar']['name'])['extension'];
+            $pathImage = TEMPLATE_PATH . "/admin/main/images/author" . $nameImage;
+            if (file_exists(TEMPLATE_PATH . "/admin/main/images/author" . $arrParam['avatarOld'])) {
+                unlink(TEMPLATE_PATH . "/admin/main/images/author" . $arrParam['avatarOld']);
             }
             move_uploaded_file($arrParam['avatar']['tmp_name'], $pathImage);
             $arrParam['avatar'] = $nameImage;
@@ -64,7 +64,7 @@ class AuthorModel extends Model
     {
         foreach ($param as $val) {
             $item = $this->select(DB_TBAUTHOR, $val, 1);
-            $nameImage = TEMPLATE_PATH . "/admin/main/images/" . $item['avatar'];
+            $nameImage = TEMPLATE_PATH . "/admin/main/images/author" . $item['avatar'];
             if (file_exists($nameImage)) {
                 unlink($nameImage);
             }

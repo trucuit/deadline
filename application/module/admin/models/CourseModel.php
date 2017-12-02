@@ -15,6 +15,7 @@ class CourseModel extends Model
         $query[] = "JOIN `" . DB_TBVIDEO . "` AS `v` ON v.course_id=co.id";
         $query[] = "LEFT JOIN `" . DB_TBAUTHOR . "` AS `au` ON co.author_id=au.id";
         $query[] = "GROUP BY co.id";
+        $query[] = "ORDER BY co.name";
 //        SELECT COUNT(v.course_id), c.id FROM
 //`video` as v JOIN `course` as c ON v.course_id = c.id
 //JOIN `category` ca ON v.course_id  = c.id
@@ -55,8 +56,8 @@ class CourseModel extends Model
 
         $image = $data['image'];
         $data['image'] = $data['name'] . '.' . Helper::cutCharacter($image['type'], '/', 1);
-        $data['created'] = date("Y-m-d H:i:s");
         $data['name'] = trim($data['name']);
+        $data['created'] = date("Y-m-d H:i:s");
         $data['created_by'] = Session::get("user")['info']['username'];
         $this->insert(DB_TBCOURSE, $data);
 
@@ -65,7 +66,7 @@ class CourseModel extends Model
         if ($bl == 0)
             return 0;
 
-        $nameImage = TEMPLATE_PATH . "/admin/main/images/" . $data['image'];
+        $nameImage = TEMPLATE_PATH . "/admin/main/images/course" . $data['image'];
         move_uploaded_file($image['tmp_name'], $nameImage);
         return 1;
 
@@ -78,12 +79,14 @@ class CourseModel extends Model
         }
         $data['modified'] = date('Y-m-d');
         $data['modified_by'] = Session::get("user")['info']['username'];
+        $data['image'] = trim($data['image']);
         $id = $data['id'];
+
         unset($data['id']);
         if (!empty($file['image']['name'])) {
-            $imageOld = TEMPLATE_PATH . "/admin/main/images/" . $data['image'];
+            $imageOld = TEMPLATE_PATH . "/admin/main/images/course" . $data['image'];
             $data['image'] = $data['name'] . '.' . pathinfo($file['image']['name'])['extension'];
-            $imageNew = TEMPLATE_PATH . "/admin/main/images/" . $data['image'];
+            $imageNew = TEMPLATE_PATH . "/admin/main/images/course" . $data['image'];
             if (file_exists($imageOld))
                 unlink($imageOld);
             move_uploaded_file($file['image']['tmp_name'], $imageNew);
@@ -105,6 +108,8 @@ class CourseModel extends Model
                 $val['title'] = $value['title'];
                 $val['thumbnails'] = $value['thumbnails'];
                 $val['ordering'] = $key + 1;
+                $data['created'] = date("Y-m-d H:i:s");
+                $data['created_by'] = Session::get("user")['info']['username'];
                 $this->insert(DB_TBVIDEO, $val);
             }
             return 1;
@@ -207,7 +212,7 @@ class CourseModel extends Model
     {
         foreach ($param as $val) {
             $item = $this->select(DB_TBCOURSE, $val, 1);
-            $nameImage = TEMPLATE_PATH . "/admin/main/images/" . $item['image'];
+            $nameImage = TEMPLATE_PATH . "/admin/main/images/course" . $item['image'];
             if (file_exists($nameImage)) {
                 unlink($nameImage);
             }

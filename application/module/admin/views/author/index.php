@@ -92,7 +92,7 @@ $url = array(
                                                     </td>
                                                     </td>
                                                     <td>
-                                                        <img src="<?php echo $this->_dirImg . "/" . $value['avatar'] ?>"
+                                                        <img src="<?php echo $this->_dirImg . "/author/" . $value['avatar'] ?>"
                                                              alt="" height="40px">
                                                         </a>
                                                     </td>

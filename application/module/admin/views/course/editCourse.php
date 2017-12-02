@@ -70,7 +70,7 @@ $url = [
                                 <div class="form-group row">
                                     <label class="col-sm-3 text-right control-label">Current Image</label>
                                     <div class="col-sm-6 text-left">
-                                        <img src="<?php echo $this->_dirImg . "/" . $infoItem['image'] ?>"
+                                        <img src="<?php echo $this->_dirImg . "/course/" . $infoItem['image'] ?>"
                                              alt="" height="40px">
                                     </div>
                                 </div>

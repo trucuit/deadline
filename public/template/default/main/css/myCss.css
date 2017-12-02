@@ -1,0 +1,36 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.feature-course:first-child{
+    margin-top: 0px;
+}
+.feature-course {
+    margin-top: 50px;
+}
+
+a.back-to-top i {
+    position: fixed;
+    right: 3%;
+    font-size: 4rem;
+    top: 80%;
+    z-index: 1000;
+    color: #fff;
+    background: #139DF0;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    padding: 5px 12px;
+    display: none;
+    cursor: pointer;
+}
+
+/* category */
+.sidebar-categories .widget ul li a{
+    height:20px;
+}
+
+.mc-item h4{
+    height:20px;
+}
