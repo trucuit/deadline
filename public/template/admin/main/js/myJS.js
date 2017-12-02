@@ -6,7 +6,14 @@ $(function () {
         $('#adminForm').find(':checkbox').each(function () {
             this.checked = checkStatus;
         });
-    })
+    });
+
+    // Active controller
+    var controllerName = window.location.pathname.split("/")[4];
+    console.log(controllerName);
+    $("li." + controllerName).addClass("active");
+    $("li." + getUrlVar("id")).addClass("active");
+
 })
 ;
 
@@ -19,7 +26,7 @@ function submitForm(url) {
 
 //get URL
 function getUrlVar(key) {
-    var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search);
+    var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.href);
     return result && unescape(result[1]) || "";
 }
 

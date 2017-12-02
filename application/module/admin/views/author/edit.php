@@ -53,7 +53,7 @@ $url = [
                             <div class="form-group row">
                                 <label class="col-sm-3 text-right control-label">Current Avatar</label>
                                 <div class="col-sm-6 text-left">
-                                    <img src="<?php echo $this->_dirImg . "/" . $infoItem['avatar'] ?>"
+                                    <img src="<?php echo $this->_dirImg . "/author/" . $infoItem['avatar'] ?>"
                                          alt="No Image" height="40px">
                                 </div>
                             </div>

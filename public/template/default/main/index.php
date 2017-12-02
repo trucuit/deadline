@@ -9,9 +9,9 @@ $urlFile = TEMPLATE_URL . '/default/main';
     <!-- Google font -->
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,700,900' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="<?php echo $urlImage . "/logo.ico" ?>"/>
     <!-- Css -->
     <?php
-
     echo $this->_metaHTTP;
     echo $this->_metaName;
     echo $this->_fileCSS
@@ -45,34 +45,39 @@ $urlFile = TEMPLATE_URL . '/default/main';
         echo '<!--HOME SLIDER-->';
         include_once "html/slider.php";
         echo '<!--END / HOME SLIDER-->';
-    } else if ($this->arrParam['url'] == 'default/courses/index') {
+
+        echo '<!-- AFTER SLIDER -->';
+        include_once "html/after-slider.php";
+        echo '<!-- END / AFTER SLIDER -->';
+
+    } else if ($this->arrParam['url'] == 'default/course/index') {
         echo '<!--SUB BANNER-->';
         include_once "html/sub-banner.php";
         echo '<!--END / SUB BANNER-->';
     }
 
-?>
+    ?>
 
-        <!-- AFTER SLIDER -->
-    <?php include_once "html/after-slider.php"; ?>
-        <!-- END / AFTER SLIDER -->
+
 
     <?php require_once MODULE_PATH . DS . $this->_moduleName . DS . 'views' . DS . $this->_fileView . '.php'; ?>
 
     <?php
-    if($this->arrParam['url']== 'default/index/index'){
-       echo '<!-- BEFORE FOOTER -->';
-     include_once "html/before-footer.php";
+    if ($this->arrParam['url'] == 'default/index/index') {
+        echo '<!-- BEFORE FOOTER -->';
+        include_once "html/before-footer.php";
         echo '<!-- END / BEFORE FOOTER -->';
     }
     ?>
 
 
-
-        <!-- FOOTER -->
+    <!-- FOOTER -->
     <?php include_once "html/footer.php"; ?>
     <!-- END / FOOTER -->
 
+<!--    -->
+    <a class="back-to-top"><i class="fa fa-angle-double-up" aria-hidden="true"></i></a>
+<!--    -->
 
 </div>
 <!-- END / PAGE WRAP -->

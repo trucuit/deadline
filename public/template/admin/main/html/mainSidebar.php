@@ -7,7 +7,7 @@ $url = array(
     'author' => URL::createLink('admin', 'author', 'index'),
 );
 $model = new Model();
-$query = "SELECT `id`,`name` FROM `" . DB_TBCOURSE . "`";
+$query = "SELECT `id`,`name` FROM `" . DB_TBCOURSE . "` ORDER BY `name`";
 $listCourse = $model->execute($query, 1);
 $userInfo = Session::get("user")['info'];
 ?>
@@ -38,26 +38,26 @@ $userInfo = Session::get("user")['info'];
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
-            <li>
+            <li class="user">
                 <a href="<?php echo $url['profile'] ?>">
                     <i class="fa fa-fw fa-user"></i>
                     <span>Profile</span>
                 </a>
             </li>
-            <li>
+            <li class="category">
                 <a href="<?php echo $url['category'] ?>">
                     <i class="fa fa-fw fa-reorder"></i>
                     <span>Category</span>
                 </a>
             </li>
-            <li>
+            <li class="course">
                 <a href="<?php echo $url['course'] ?>">
                     <i class="fa fa-fw fa-file-o"></i>
                     <span>Course</span>
                 </a>
             </li>
 
-            <li class="treeview">
+            <li class="treeview video">
                 <a href="#">
                     <i class="fa fa-fw fa-youtube-play"></i>
                     <span>Video</span>
@@ -67,15 +67,23 @@ $userInfo = Session::get("user")['info'];
                     <?php foreach ($listCourse as $val) {
                         $link = URL::createLink('admin', 'video', 'index', ['id' => $val['id']]);
                         ?>
-                        <li>
-                            <a href='<?php echo $link ?>'>
-                                <i class='fa fa-circle-o'></i><?php echo $val['name'] ?>
+                        <li class="<?php echo $val["id"] ?>">
+                            <a href='<?php echo $link ?>' title="<?php echo $val['name'] ?>">
+                                <i class='fa fa-circle-o'></i>
+                                <?php
+                                if (mb_strlen($val['name']) > 17) {
+                                    echo mb_substr($val['name'], 0, 17) . " ...";
+                                } else {
+                                    echo $val['name'];
+                                }
+
+                                ?>
                             </a>
                         </li>
                     <?php } ?>
                 </ul>
             </li>
-            <li>
+            <li class="author">
                 <a href="<?php echo $url['author'] ?>">
                     <i class="fa fa-fw fa-user-secret"></i>
                     <span>Author</span>

@@ -76,7 +76,7 @@ $url = array(
                                                 <tr role="row" class="odd">
                                                     <td><input type="checkbox" name="cid[]"
                                                                value="<?php echo $value['id'] ?>"></td>
-                                                    <td class="sorting_1">
+                                                    <td >
                                                         <a href="#"
                                                            onclick="submitForm('<?php echo $url['edit'] . "&id=" . $value['id'] ?>')"
                                                         >

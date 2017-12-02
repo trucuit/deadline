@@ -1,3 +1,7 @@
+<?php
+$category = $this->category;
+
+?>
 <!-- SECTION 1 -->
 <section id="mc-section-1" class="mc-section-1 section">
     <div class="container">
@@ -5,10 +9,12 @@
 
             <div class="col-md-5">
                 <div class="mc-section-1-content-1">
-                    <h2 class="big">Online And Offline Training Course Management</h2>
-                    <p class="mc-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                        euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                    <a href="#" class="mc-btn btn-style-1">About us</a>
+                    <h2 class="big">Học lập trình miễn phí tại ZendVN</h2>
+                    <p class="mc-text">
+                        Bên cạnh các khóa học có phí thì ZendVN còn cung cấp cho các bạn đam mê học lập trình các khóa
+                        học miễn phí với chất lượng tương đương các khóa học có phí.
+                    </p>
+                    <a href="#" class="mc-btn btn-style-1">Thông tin chúng tôi</a>
                 </div>
             </div>
 
@@ -17,34 +23,40 @@
                     <div class="col-sm-6">
                         <div class="featured-item">
                             <i class="icon icon-featured-1"></i>
-                            <h4 class="title-box text-uppercase">CLEAN AND EASY</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam tincidunt ut
-                                laoreet</p>
+                            <h4 class="title-box text-uppercase">Dễ dàng và tiện lợi</h4>
+                            <p>
+                                Học online tại nhà đang là xu thế, bạn có thể ở bất cứ đâu và bất kì thời điểm nào.
+                            </p>
                         </div>
                     </div>
 
                     <div class="col-sm-6">
                         <div class="featured-item">
                             <i class="icon icon-featured-2"></i>
-                            <h4 class="title-box text-uppercase">TEACH AS YOU CAN</h4>
-                            <p> Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit</p>
+                            <h4 class="title-box text-uppercase">Chất lượng đảm bảo</h4>
+                            <p>
+                                Khóa học miễn phí nhưng chất lượng có phí.
+                            </p>
                         </div>
                     </div>
 
                     <div class="col-sm-6">
                         <div class="featured-item">
                             <i class="icon icon-featured-3"></i>
-                            <h4 class="title-box text-uppercase">COMMUNITY SUPPORT</h4>
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-                                consequat</p>
+                            <h4 class="title-box text-uppercase">Hỗ trợ tận tình</h4>
+                            <p>
+                                Group facebook lập trình ZendVn hỗ trợ bạn 24/7 khi bạn gặp khó khăn.
+                            </p>
                         </div>
                     </div>
 
                     <div class="col-sm-6">
                         <div class="featured-item">
                             <i class="icon icon-featured-4"></i>
-                            <h4 class="title-box text-uppercase">TRACKING PERFORMANCE</h4>
-                            <p> Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit</p>
+                            <h4 class="title-box text-uppercase">Ủng hộ chúng tôi</h4>
+                            <p>
+                                Nếu các bạn muốn học sâu hơn về lập trình hãy mua những khóa học có phí của chúng tôi.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -66,10 +78,11 @@
 
                 <div class="col-md-5">
                     <div class="ct">
-                        <h2 class="big">Learning online is easier than ever before</h2>
-                        <p class="mc-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-                            nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                        <a href="#" class="mc-btn btn-style-3">See how it work</a>
+                        <h2 class="big">Vì sao tất cả chúng ta đều nên học lập trình?</h2>
+                        <p class="mc-text">
+                            Trong một thế giới số hóa ngày càng mạnh mẽ, sở hữu một số kỹ năng công nghệ, đặc biệt là lập trình, có thể là tấm vé để bạn đến được với những cơ hội tốt hơn trong công việc.
+                        </p>
+                        <a href="#" class="mc-btn btn-style-3">Get started</a>
                     </div>
                 </div>
 
@@ -91,12 +104,15 @@
     <div class="container">
         <!-- FEATURE -->
         <?php
-        foreach ($this->category as $key => $valueCategory) {
-
+        foreach ($category as $key => $valueCategory) {
             ?>
             <div class="feature-course">
+                <a href="" name="<?php echo DB_TBCATEGORY . '-' . $valueCategory[0]['id_category'] ?>"></a>
                 <h4 class="title-box text-uppercase"><?php echo $key ?></h4>
-                <a href="categories.html" class="all-course mc-btn btn-style-1">View all</a>
+                <a href="<?php echo URL::createLink('default', 'category', 'showCourse', ['id' => $valueCategory[0]['id_category']]) ?>"
+                   class="all-course mc-btn btn-style-1">
+                    View all
+                </a>
                 <div class="row">
                     <div class="feature-slider">
                         <?php
@@ -112,7 +128,7 @@
                                         <img src="<?php echo $urlImage ?>/avatar-1.jpg" alt="">
                                     </div>
                                     <h4>
-                                        <a href="<?php echo URL::createLink('default', 'courses', 'index', ['id' => $value['id_course']]) ?>"
+                                        <a href="<?php echo URL::createLink('default', 'course', 'index', ['id' => $value['id_course']]) ?>"
                                            class="nameCategory">
                                             <?php echo $value['name_course'] ?></a>
                                     </h4>

@@ -61,17 +61,13 @@ $url = array(
                                             <thead>
                                             <tr role="row">
                                                 <th class="no-sort"><input type="checkbox" name="checkall-toggle"></th>
-                                                <th class="sorting">Name</th>
+                                                <th class="sorting_asc">Name</th>
                                                 <th class="no-sort">Image</th>
-                                                <th class="sorting">Total Video</th>
-                                                <th class="sorting">Category</th>
-                                                <th class="sorting">Author</th>
-                                                <th class="sorting">Created</th>
-                                                <th class="sorting">Created by</th>
-                                                <th class="sorting">Modified</th>
-                                                <th class="sorting">Modified By</th>
-                                                <th class="sorting">Status</th>
-                                                <th class="sorting">ID</th>
+                                                <th >Total Video</th>
+                                                <th >Category</th>
+                                                <th >Author</th>
+                                                <th >Status</th>
+                                                <th >ID</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -96,7 +92,7 @@ $url = array(
                                                            href="#"
                                                            onclick="javascript:ajaxShowVideo('<?php echo $value['link'] ?>','list')"
                                                         >
-                                                            <img src="<?php echo $this->_dirImg . "/" . $value['image'] ?>"
+                                                            <img src="<?php echo $this->_dirImg . "/course/" . $value['image'] ?>"
                                                                  alt="" height="40px">
                                                         </a>
                                                     </td>
@@ -107,10 +103,6 @@ $url = array(
                                                     </td>
                                                     <td><?php echo $value['category'] ?></td>
                                                     <td><?php echo $value['author'] ?></td>
-                                                    <td><?php echo $value['created'] ?></td>
-                                                    <td><?php echo $value['created_by'] ?></td>
-                                                    <td><?php echo $value['modified'] ?></td>
-                                                    <td><?php echo $value['modified_by'] ?></td>
                                                     <td class="text-center status">
                                                         <?php
                                                         $onclick = URL::createLink('admin', DB_TBCOURSE, 'ajaxStatus', ['id' => $value['id'], 'status' => $value['status']]);
