@@ -52,10 +52,15 @@ $urlFile = TEMPLATE_URL . '/default/main';
     }
 
 ?>
+    <?php
+        if ($this->arrParam['url'] == 'default/index/index'){
 
-        <!-- AFTER SLIDER -->
-    <?php include_once "html/after-slider.php"; ?>
-        <!-- END / AFTER SLIDER -->
+    echo '<!-- AFTER SLIDER -->';
+        include_once "html/after-slider.php";
+    echo '<!-- END / AFTER SLIDER -->';
+        }
+
+    ?>
 
     <?php require_once MODULE_PATH . DS . $this->_moduleName . DS . 'views' . DS . $this->_fileView . '.php'; ?>
 

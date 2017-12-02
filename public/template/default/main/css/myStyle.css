@@ -1,0 +1,17 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+h4.name-course-homepage {
+    height: 40px;
+}
+
+div#outline {
+    overflow-y: auto;
+    height: 734px;
+}
+
+h4.name-course {
+    height: 40px;
+}
