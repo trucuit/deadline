@@ -12,7 +12,8 @@ class Cookie
     {
         if (isset($_COOKIE[$key]))
             return unserialize($_COOKIE[$key]);
-
+        else
+            return [];
     }
 
     public static function delete($key)
