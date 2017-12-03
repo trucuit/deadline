@@ -82,7 +82,7 @@ $category = $this->category;
                         <p class="mc-text">
                             Trong một thế giới số hóa ngày càng mạnh mẽ, sở hữu một số kỹ năng công nghệ, đặc biệt là lập trình, có thể là tấm vé để bạn đến được với những cơ hội tốt hơn trong công việc.
                         </p>
-                        <a href="#" class="mc-btn btn-style-3">Get started</a>
+                        <a href="#" class="mc-btn btn-style-3">Bắt đầu học</a>
                     </div>
                 </div>
 

@@ -11,28 +11,28 @@
                             trình và nội dung chi tiết trong từng video, cho ra đời các khóa học chất lượng đạt chuẩn
                             hàng đầu việt nam.
                         </p>
-                        <a href="#" class="mc-btn btn-style-1">Get started</a>
+                        <a href="#" class="mc-btn btn-style-1">Bắt đầu học</a>
                     </div>
                 </div>
 
                 <div class="col-md-3">
                     <div class="widget widget_latest_new">
-                        <h3 class="sm">Latest News</h3>
+                        <h3 class="sm">Ưu đãi tại ZendVN</h3>
                         <ul>
                             <li>
-                                <a href="#">
+                                <a href="https://zendvn.com/uu-dai-nhom-khoa-hoc/" target="_blank">
                                     <div class="image-thumb">
-                                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
+                                        <img src="<?php echo $urlImage ?>/new.gif" alt="">
                                     </div>
-                                    <span>How to have a good Boyfriend in college?</span>
+                                    <span>Ưu đãi nhóm khóa học</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="https://zendvn.com/uu-dai-hoc-phi-tai-zendvn/" target="_blank">
                                     <div class="image-thumb">
-                                        <img src="<?php echo $urlImage ?>/team-13.jpg" alt="">
+                                        <img src="<?php echo $urlImage ?>/new.gif" alt="">
                                     </div>
-                                    <span>How to have a good Boyfriend in college?</span>
+                                    <span>Ưu đãi học phí tại ZendVN</span>
                                 </a>
                             </li>
                         </ul>
@@ -41,13 +41,13 @@
 
                 <div class="col-md-2">
                     <div class="widget quick_link">
-                        <h3 class="sm">Quick Links</h3>
+                        <h3 class="sm">Liên kết</h3>
                         <ul class="list-style-block">
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">Terms of use</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Support</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="https://zendvn.com/" target="_blank">Về chúng tôi</a></li>
+                            <li><a href="https://www.facebook.com/luutruonghailan" target="_blank">Tác giả</a></li>
+                            <li><a href="https://www.youtube.com/user/luutruonghailan" target="_blank">Youtube</a></li>
+                            <li><a href="http://vdevpro.com/forum/index.php" target="_blank">Hỏi đáp lập trình</a></li>
+                            <li><a href="https://zendvn.com/lien-he/" target="_blank">Liên hệ</a></li>
                         </ul>
                     </div>
                 </div>
