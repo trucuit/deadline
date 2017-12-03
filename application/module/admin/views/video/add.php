@@ -1,5 +1,4 @@
 <?php
-$arrURL = explode("/", $this->arrParam['url']);
 $infoItem = $this->infoItem;
 $url = [
     'save' => URL::createLink('admin', DB_TBVIDEO, 'add', ['type' => 'save','id'=>$this->arrParam['id']]),
@@ -17,13 +16,12 @@ $selectBox = Helper::cmsSelecbox($listCourse, 'form[course_id]', 'form-control',
 <div class="content-wrapper" style="min-height: 915.8px;">
     <section class="content-header">
         <h1>
-            Manage <?php echo ucfirst($arrURL[1]) ?>
-            <small><?php echo ucfirst($arrURL[2]) ?></small>
+            Manage&nbsp;<?php echo ucfirst($this->arrParam['controller'])?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i><?php echo ucfirst($arrURL[0]) ?></a></li>
-            <li><a href="#"><?php echo ucfirst($arrURL[1]) ?></a></li>
-            <li class="active"><?php echo ucfirst($arrURL[2]) ?></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i><?php echo ucfirst($this->arrParam['module']) ?></a></li>
+            <li><a href="#"><?php echo ucfirst($this->arrParam['controller']) ?></a></li>
+            <li class="active"><?php echo ucfirst($this->arrParam['action']) ?></li>
         </ol>
     </section>
     <section class="text-center no-bg">

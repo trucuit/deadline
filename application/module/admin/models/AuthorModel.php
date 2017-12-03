@@ -11,8 +11,10 @@ class AuthorModel extends Model
     {
         if (isset($arrParam['avatar'])) {
             $nameImage = trim($arrParam['name']) . "." . pathinfo($arrParam['avatar']['name'])['extension'];
-            $pathImage = TEMPLATE_PATH . "/admin/main/images/author" . $nameImage;
-            move_uploaded_file($arrParam['avatar']['tmp_name'], $pathImage);
+            echo $pathImageAdmin = TEMPLATE_PATH . "/admin/main/images/author/" . $nameImage;
+            $pathImageDefault = TEMPLATE_PATH . "/default/main/images/author/" . $nameImage;
+            move_uploaded_file($arrParam['avatar']['tmp_name'], $pathImageAdmin);
+            copy($pathImageAdmin, $pathImageDefault);
             $arrParam['avatar'] = $nameImage;
         }
         $arrParam['created_by'] = Session::get("user")['info']['username'];
@@ -24,11 +26,14 @@ class AuthorModel extends Model
     {
         if (!empty($arrParam['avatar']['name'])) {
             $nameImage = trim($arrParam['name']) . "." . pathinfo($arrParam['avatar']['name'])['extension'];
-            $pathImage = TEMPLATE_PATH . "/admin/main/images/author" . $nameImage;
-            if (file_exists(TEMPLATE_PATH . "/admin/main/images/author" . $arrParam['avatarOld'])) {
-                unlink(TEMPLATE_PATH . "/admin/main/images/author" . $arrParam['avatarOld']);
+            $pathImageAdmin = TEMPLATE_PATH . "/admin/main/images/author/" . $nameImage;
+            $pathImageDefault = TEMPLATE_PATH . "/default/main/images/author/" . $nameImage;
+            if (file_exists(TEMPLATE_PATH . "/admin/main/images/author/" . $arrParam['avatarOld'])) {
+                unlink(TEMPLATE_PATH . "/admin/main/images/author/" . $arrParam['avatarOld']);
+                unlink(TEMPLATE_PATH . "/default/main/images/author/" . $arrParam['avatarOld']);
             }
-            move_uploaded_file($arrParam['avatar']['tmp_name'], $pathImage);
+            move_uploaded_file($arrParam['avatar']['tmp_name'], $pathImageAdmin);
+            copy($pathImageAdmin, $pathImageDefault);
             $arrParam['avatar'] = $nameImage;
         }
         unset($arrParam['avatarOld']);
@@ -64,9 +69,11 @@ class AuthorModel extends Model
     {
         foreach ($param as $val) {
             $item = $this->select(DB_TBAUTHOR, $val, 1);
-            $nameImage = TEMPLATE_PATH . "/admin/main/images/author" . $item['avatar'];
-            if (file_exists($nameImage)) {
-                unlink($nameImage);
+            $nameImageAdmin = TEMPLATE_PATH . "/admin/main/images/author/" . $item['avatar'];
+            $nameImageDefault = TEMPLATE_PATH . "/default/main/images/author/" . $item['avatar'];
+            if (file_exists($nameImageAdmin)) {
+                unlink($nameImageAdmin);
+                unlink($nameImageDefault);
             }
             $query = "DELETE FROM `" . DB_TBAUTHOR . "` WHERE `id`='$val'";
             $this->execute($query);

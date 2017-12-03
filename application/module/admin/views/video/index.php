@@ -1,6 +1,5 @@
 <?php
 $listItem = empty($this->listItem) ? [] : $this->listItem;
-$arrURL = explode("/", $this->arrParam['url']);
 $url = array(
     'add' => URL::createLink('admin', DB_TBVIDEO, 'add',['id'=>$this->arrParam['id']]),
     'edit' => URL::createLink('admin', DB_TBVIDEO, 'edit',['course_id'=>$this->arrParam['id']]),
@@ -14,13 +13,12 @@ $url = array(
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Manage <?php echo ucfirst($arrURL[1]) ?>
-            <small>List <span style="color: red">* Click on the link to view details</span></small>
+            Manage&nbsp;<?php echo ucfirst($this->arrParam['controller'])?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i><?php echo ucfirst($arrURL[0]) ?></a></li>
-            <li><a href="#"><?php echo ucfirst($arrURL[1]) ?></a></li>
-            <li class="active"><?php echo ucfirst($arrURL[2]) ?></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i><?php echo ucfirst($this->arrParam['module']) ?></a></li>
+            <li><a href="#"><?php echo ucfirst($this->arrParam['controller']) ?></a></li>
+            <li class="active"><?php echo ucfirst($this->arrParam['action']) ?></li>
         </ol>
     </section>
     <!-- Main content -->

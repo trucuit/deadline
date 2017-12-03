@@ -28,10 +28,12 @@ foreach ($arrCourseHeader as $key => $val) {
         if ($key == DB_TBCATEGORY)
             $xhtmlCourse .= '<li><a href="#' . DB_TBCATEGORY . '-' . $o['id'] . '">' . $o['name'] . '</a></li>';
         elseif ($key == DB_TBCOURSE) {
-            $name_category = $o['name_category'];
+
+            $name_category = URL::filterURL($o['name_category']);
             $id_category = $o['id_category'];
             $name_course = URL::filterURL($o['name_course']);
             $id_course = $o['id_course'];
+
             $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category), "$name_category/$name_course-$id_category-$id_course.html");
             $xhtmlCourse .= '<li><a href="' . $urlCourse . '">' . $o['name_course'] . '</a></li>';;
         } else

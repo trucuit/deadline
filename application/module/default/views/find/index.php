@@ -1,5 +1,9 @@
 <?php
 $resultFind = $this->resultFind['list'];
+
+$url = [
+    'home' => URL::createLink("default",'index','index',null,'trang-chu.html')
+]
 ?>
 
 <!-- SUB BANNER -->
@@ -24,7 +28,7 @@ $resultFind = $this->resultFind['list'];
 <section class="page-control">
     <div class="container">
         <div class="page-info">
-            <a href="index.html"><i class="icon md-arrow-left"></i>Trở về trang chủ</a>
+            <a href="<?php echo $url['home'] ?>"><i class="icon md-arrow-left"></i>Trở về trang chủ</a>
         </div>
         <div class="page-view">
             View
@@ -43,7 +47,11 @@ $resultFind = $this->resultFind['list'];
                 <!-- ITEM -->
                 <?php
                 foreach ($resultFind as $find) {
-
+                    $name_category = URL::filterURL($find['name_category']);
+                    $id_category = $find['id_category'];
+                    $name_course = URL::filterURL($find['name_course']);
+                    $id_course = $find['id_course'];
+                    $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category),"$name_category/$name_course-$id_category-$id_course.html");
                     ?>
                     <div class="col-xs-6 col-sm-4 col-md-3">
                         <!-- MC ITEM -->
@@ -58,7 +66,7 @@ $resultFind = $this->resultFind['list'];
                                     <img src="<?php echo $urlImage ?>/avatar-1.jpg" alt="">
                                 </div>
                                 <h4>
-                                    <a href="<?php echo URL::createLink('default', DB_TBCOURSE, 'index', ['id' => $find['id']]) ?>">
+                                    <a href="<?php echo $urlCourse ?>">
                                         <?php echo $find['name_course'] ?>
                                     </a>
                                 </h4>

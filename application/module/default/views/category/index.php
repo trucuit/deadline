@@ -2,7 +2,7 @@
 $listCourse = $this->listCourse;
 $listCategory = $this->listCategory;
 $url = [
-        'home' => URL::createLink("default",'index','index')
+    'home' => URL::createLink("default", 'index', 'index', null, 'trang-chu.html')
 ]
 ?>
 <!-- SUB BANNER -->
@@ -111,7 +111,7 @@ $url = [
                             <ul class="list-style-block">
                                 <?php foreach ($listCategory as $value) {
                                     $categoryURL = URL::filterURL($value['name']);
-                                    $id_category =$value['id'];
+                                    $id_category = $value['id'];
                                     $urlCategory = URL::createLink('default', 'category', 'showCourse', ['id' => $id_category], "$categoryURL-$id_category.html");
                                     ?>
                                     <li class="category-<?php echo $value['id'] ?>">

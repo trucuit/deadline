@@ -15,9 +15,6 @@ class CategoryController extends Controller
 
     public function showCourseAction()
     {
-        echo "<pre>";
-        print_r($this->_arrParam);
-        echo "</pre>";
         $this->_view->listCourse = $this->_model->getCourse($this->_arrParam['id_category']);
         $this->_view->listCategory = $this->_model->showAll(DB_TBCATEGORY);
         $this->_view->render($this->table . '/index');
