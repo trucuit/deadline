@@ -34,3 +34,23 @@ a.back-to-top i {
 .mc-item h4{
     height:20px;
 }
+h4.name-course-homepage {
+    height: 40px;
+}
+
+div#outline {
+    overflow-y: auto;
+    height: 807px;
+}
+
+h4.name-course {
+    height: 40px;
+}
+.section-outline .section-list .active {
+    background-color: #fff;
+    border-top: 1px solid #eee;
+}
+.section-outline .section-list li .active {
+    background-color: #37abf2;
+    color: #fff;
+}

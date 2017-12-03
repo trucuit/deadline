@@ -17,7 +17,10 @@ $urlFile = TEMPLATE_URL . '/default/main';
     echo $this->_fileCSS
     ?>
     <title><?php echo $this->_title ?></title>
-
+    <script type="text/javascript">
+        root_url =  <?php echo json_encode(ROOT_URL . "/")  ?>;
+        const ROOT_URL = root_url;
+    </script>
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>

@@ -15,6 +15,7 @@ class CourseController extends Controller
     public function indexAction()
     {
 
+
         $this->_view->video = $this->_model->videoQuery($this->_arrParam['id_course']);
 
         $this->_view->category = $this->_model->videoRelativeQuery($this->_arrParam['id_course'], $this->_view->video[0]['name_category']);
@@ -22,5 +23,20 @@ class CourseController extends Controller
         $this->_view->render('course/index');
     }
 
-
+    public function setCookieViewAction()
+    {
+        if (isset($this->_arrParam['videoId'])) {
+            if (!isset($_COOKIE['view'])) {
+                $viewed = array();
+                array_unshift($viewed, $this->_arrParam['videoId']);
+                setcookie('view', serialize($viewed), time() + 3600 * 24 * 30);
+            } else {
+                $review = unserialize($_COOKIE['view']);
+                if (!in_array($this->_arrParam['videoId'], $review)) {
+                    array_unshift($review, $this->_arrParam['videoId']);
+                    setcookie('view', serialize($review), time() + 3600 * 24 * 30);
+                }
+            }
+        }
+    }
 }

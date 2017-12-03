@@ -27,13 +27,12 @@
                             </iframe>
                         </div>
                     </div>
-
                     <div class="about-instructor">
                         <h4 class="xsm black bold">Tác giả</h4>
                         <ul>
                             <li>
                                 <div class="image-instructor text-center">
-                                    <img src="<?php echo $urlImage ?>/author/<?php echo $this->video[0]['avatar_author'] ?>" alt="">
+                                    <img src="<?php echo $urlImage ?>/author/<?php echo $this->video[0]['author_avatar'] ?>" alt="">
                                 </div>
                                 <div class="info-instructor">
                                     <cite class="sm black"><a href="#"><?php echo $this->video[0]['name_author'] ?></a></cite>
@@ -49,7 +48,17 @@
                         </ul>
                     </div>
                     <hr class="line">
-
+                    <div class="widget widget_tags">
+                        <i class="icon md-download-2"></i>
+                        <h4 class="xsm black bold">Tag</h4>
+                        <div class="tagCould">
+                            <a href="#">Design</a>,
+                            <a href="#">Photoshop</a>,
+                            <a href="#">Illustrator</a>,
+                            <a href="">Art</a>,
+                            <a href="">Graphic Design</a>
+                        </div>
+                    </div>
                     <div class="widget widget_share">
                         <i class="icon md-forward"></i>
                         <h4 class="xsm black bold">Share course</h4>
@@ -97,11 +106,12 @@
                                         ?>
 
 
-                                        <li class="o-view active-video">
+                                        <li class="o-view">
                                             <div class="count"><span><?php echo $number ?></span></div>
                                             <div class="list-body">
                                                 <i class="icon md-camera"></i>
                                                 <p><a href="#" class="name-video"
+                                                      id="video-<?php echo $infoVideo['video_id'] ?>"
                                                       link="<?php echo $infoVideo['link'] ?>"><?php echo $infoVideo['title'] ?></a>
                                                 </p>
 
@@ -111,8 +121,16 @@
                                                         <span>Reference 12 mb</span>
                                                     </div>
                                                 </div>
-                                                <div class="div-x"><i class="icon md-check-2"></i></div>
-                                                <div class="line"></div>
+                                                <?php
+                                                if (in_array("video-" . $infoVideo['video_id'], Cookie::get('view'))) {
+                                                    echo '<div class="div-x"><i class="icon md-check-2"></i></div>';
+                                                    echo '<div class="line"></div>';
+                                                } else {
+                                                    echo '<div class="div-x"><i class="icon"></i></div>';
+                                                    echo '<div class="line"></div>';
+                                                }
+                                                ?>
+
                                             </div>
                                         </li>
                                         <?php
@@ -647,7 +665,12 @@
         <h3 class="md black">Khóa học liên quan</h3>
         <div class="row">
             <?php foreach ($this->category as $valueCategory) {
-
+                $name_category = URL::filterURL($valueCategory['name_category']);
+                $id_category = $valueCategory['category_id'];
+                $name_course = URL::filterURL($valueCategory['name_course']);
+                $id_course = $valueCategory['course_id'];
+                $author_avatar = $valueCategory['author_avatar'];
+                $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category),"$name_category/$name_course-$id_category-$id_course.html");
                 ?>
                 <div class="col-sm-6 col-md-3 course-relative">
                     <!-- MC ITEM -->
@@ -658,10 +681,10 @@
                         <div class="meta-categories"><a href="#">Web design</a></div>
                         <div class="content-item">
                             <div class="image-author">
-                                <img src="<?php echo $urlImage ?>/avatar-1.jpg" alt="">
+                                <img src="<?php echo $urlImage ?>/author/<?php echo $author_avatar ?>" alt="">
                             </div>
                             <h4 class="name-course">
-                                <a href="<?php echo URL::createLink('default', 'courses', 'index', ['id' => $valueCategory['course_id']]) ?>"><?php echo $valueCategory['name_course'] ?></a>
+                                <a href="<?php echo $urlCourse ?>"><?php echo $valueCategory['name_course'] ?></a>
                             </h4>
                             <div class="name-author">
                                 By <a href="#"><?php echo $valueCategory['name_author'] ?></a>
@@ -701,3 +724,4 @@
     </div>
 </section>
 <!-- END / COURSE CONCERN-->
+
