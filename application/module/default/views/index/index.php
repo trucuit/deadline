@@ -80,7 +80,8 @@ $category = $this->category;
                     <div class="ct">
                         <h2 class="big">Vì sao tất cả chúng ta đều nên học lập trình?</h2>
                         <p class="mc-text">
-                            Trong một thế giới số hóa ngày càng mạnh mẽ, sở hữu một số kỹ năng công nghệ, đặc biệt là lập trình, có thể là tấm vé để bạn đến được với những cơ hội tốt hơn trong công việc.
+                            Trong một thế giới số hóa ngày càng mạnh mẽ, sở hữu một số kỹ năng công nghệ, đặc biệt là
+                            lập trình, có thể là tấm vé để bạn đến được với những cơ hội tốt hơn trong công việc.
                         </p>
                         <a href="#" class="mc-btn btn-style-3">Bắt đầu học</a>
                     </div>
@@ -105,11 +106,14 @@ $category = $this->category;
         <!-- FEATURE -->
         <?php
         foreach ($category as $key => $valueCategory) {
+            $categoryURL = URL::filterURL($key);
+            $id_category = $valueCategory[0]['id_category'];
+            $urlCategory = URL::createLink('default', 'category', 'showCourse', ['id' => $id_category], "$categoryURL-$id_category.html");
             ?>
             <div class="feature-course">
                 <a href="" name="<?php echo DB_TBCATEGORY . '-' . $valueCategory[0]['id_category'] ?>"></a>
                 <h4 class="title-box text-uppercase"><?php echo $key ?></h4>
-                <a href="<?php echo URL::createLink('default', 'category', 'showCourse', ['id' => $valueCategory[0]['id_category']]) ?>"
+                <a href="<?php echo $urlCategory ?>"
                    class="all-course mc-btn btn-style-1">
                     View all
                 </a>
@@ -117,6 +121,11 @@ $category = $this->category;
                     <div class="feature-slider">
                         <?php
                         foreach ($valueCategory as $value) {
+                            $name_category = URL::filterURL($value['name_category']);
+                            $id_category = $value['id_category'];
+                            $name_course = URL::filterURL($value['name_course']);
+                            $id_course = $value['id_course'];
+                            $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category));
                             ?>
                             <div class="mc-item mc-item-1">
                                 <div class="image-heading">
@@ -128,9 +137,10 @@ $category = $this->category;
                                         <img src="<?php echo $urlImage ?>/avatar-1.jpg" alt="">
                                     </div>
                                     <h4>
-                                        <a href="<?php echo URL::createLink('default', 'course', 'index', ['id' => $value['id_course']]) ?>"
+                                        <a href="<?php echo $urlCourse ?>"
                                            class="nameCategory">
-                                            <?php echo $value['name_course'] ?></a>
+                                            <?php echo $value['name_course'] ?>
+                                        </a>
                                     </h4>
                                     <div class="name-author">
                                         By <a href="#"><?php echo $value['name_author'] ?></a>

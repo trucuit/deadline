@@ -27,17 +27,6 @@ class IndexModel extends Model
     }
 
 
-    public function getItemHeader()
-    {
-        $arrItem = [];
-        $queryAuthor = "SELECT `id`,`name` FROM `" . DB_TBAUTHOR . "` ORDER BY `name` LIMIT 0,5";
-        $arrItem[DB_TBAUTHOR] = $this->execute($queryAuthor, 1);
-        $queryCategory = "SELECT `id`,`name` FROM `" . DB_TBCATEGORY . "` ORDER BY `name` LIMIT 0,5";
-        $arrItem[DB_TBCATEGORY] = $this->execute($queryCategory, 1);
-        $queryCourse = "SELECT `id`,`name` FROM `" . DB_TBCOURSE . "` ORDER BY `name` LIMIT 0,5";
-        $arrItem[DB_TBCOURSE] = $this->execute($queryCourse, 1);
-        return $arrItem;
-    }
 
     public function getIDNameCategory()
     {

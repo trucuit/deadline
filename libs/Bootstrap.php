@@ -19,17 +19,10 @@ class Bootstrap
 
     public function setParam()
     {
-        $url = array_merge($_POST, $_GET);
-        if (isset($url['url'])) {
-            $url = explode('/', $url['url']);
-        }
-
         $this->_params = array_merge($_GET, $_POST);
-        $this->_params['module'] = isset($url[0]) ? $url[0] : DEFAULT_MODULE;
-        $this->_params['controller'] = isset($url[1]) ? $url[1] : DEFAULT_CONTROLLER;
-        $this->_params['action'] = isset($url[2]) ? $url[2] : DEFAULT_ACTION;
-        if(!isset($this->_params['url']))
-            $this->_params['url'] = "default/index/index";
+        $this->_params['module'] = isset($this->_params['module']) ? $this->_params['module'] : DEFAULT_MODULE;
+        $this->_params['controller'] = isset($this->_params['controller']) ? $this->_params['controller'] : DEFAULT_CONTROLLER;
+        $this->_params['action'] = isset($this->_params['action']) ? $this->_params['action'] : DEFAULT_ACTION;
     }
 
     public function loadFileExits($filePath, $controllerName)
@@ -52,7 +45,7 @@ class Bootstrap
                 } else {
                     $this->callLoginAction($module);
                 }
-            }else{
+            } else {
                 $this->_controllerObj->$actionName();
             }
         } else {

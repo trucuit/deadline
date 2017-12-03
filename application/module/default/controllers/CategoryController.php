@@ -11,12 +11,14 @@ class CategoryController extends Controller
         $this->_templateObj->setFileTemplate('index.php');
         $this->_templateObj->setFileConfig('template.ini');
         $this->_templateObj->load();
-        $this->_view->arrCourseHeader = $this->_model->getItemHeader();
     }
 
     public function showCourseAction()
     {
-        $this->_view->listCourse = $this->_model->getCourse($this->_arrParam['id']);
+        echo "<pre>";
+        print_r($this->_arrParam);
+        echo "</pre>";
+        $this->_view->listCourse = $this->_model->getCourse($this->_arrParam['id_category']);
         $this->_view->listCategory = $this->_model->showAll(DB_TBCATEGORY);
         $this->_view->render($this->table . '/index');
     }
