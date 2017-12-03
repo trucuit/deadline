@@ -112,7 +112,7 @@
                                         <img src="<?php echo $urlImage ?>/avatar-1.jpg" alt="">
                                     </div>
                                     <h4 class="name-course-homepage">
-                                        <a href="<?php echo URL::createLink('default', 'courses', 'index', ['id' => $value['id_course']]) ?>"
+                                        <a href="<?php echo URL::createLink('default', 'course', 'index', ['id' => $value['id_course']]) ?>"
                                            class="nameCategory">
                                             <?php echo $value['name_course'] ?></a>
                                     </h4>

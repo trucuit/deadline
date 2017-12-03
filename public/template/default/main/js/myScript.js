@@ -1,24 +1,47 @@
 $(function () {
-// $('.nameCategory').click(function (event) {
-//    // event.preventDefault();
-//     console.log('hi');
-//
-//     var id=$(this).attr("id");
-//    $.ajax({
-//        url: ROOT_URL + 'default/courses/index',
-//        type: 'POST',
-//         data :{category_id: id},
-//         success: function(data){
-//             console.log("ji");
-//         }
-//
-//     });
-// });
+
+//     js outline
+    var temp=" ";
     $('.name-video').click(function(){
         event.preventDefault();
-        console.log("hi");
+        $('html,body').animate({ scrollTop: 250},500);
+            var pre=$(this).attr("id");
+        console.log(pre);
+        var id="#"+pre;
+            if (temp == " " || temp == pre){
+                $(id).parents(".o-view").addClass("active");
+                $(id).parents(".o-view").children(".count").addClass("active");
+                temp=pre;
+            }
+            else if(temp != pre){
+                var temp_id="#"+temp;
+                $(temp_id).parents(".o-view").removeClass("active");
+                $(temp_id).parents(".o-view").children(".count").removeClass("active");
+                $(id).parents(".o-view").addClass("active");
+                $(id).parents(".o-view").children(".count").addClass("active");
+                temp=pre;
+            }
+            $(this).parents(".list-body").children(".div-x").children().addClass("md-check-2");
+
         var link=$(this).attr("link");
         var src="https://www.youtube.com/embed/" + link;
         $('.embed-responsive-item').attr("src",src);
+        $.ajax({
+            url: ROOT_URL + 'default/course/index',
+            type: 'POST',
+            data:{videoId: pre},
+            success:function(data){
+                console.log(data);
+            }
+        })
     })
+    // end js outline
+
+
+
+
+
+
+
+
 });

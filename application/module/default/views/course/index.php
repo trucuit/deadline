@@ -1,3 +1,4 @@
+
 <!-- COURSE -->
 <section class="course-top">
     <div class="container">
@@ -114,11 +115,11 @@
                                         ?>
 
 
-                                        <li class="o-view active-video">
+                                        <li class="o-view">
                                             <div class="count"><span><?php echo $number ?></span></div>
                                             <div class="list-body">
                                                 <i class="icon md-camera"></i>
-                                                <p><a href="#" class="name-video"
+                                                <p><a href="#" class="name-video" id="video-<?php echo $infoVideo['video_id']?>"
                                                       link="<?php echo $infoVideo['link'] ?>"><?php echo $infoVideo['title'] ?></a>
                                                 </p>
 
@@ -128,8 +129,16 @@
                                                         <span>Reference 12 mb</span>
                                                     </div>
                                                 </div>
-                                                <div class="div-x"><i class="icon md-check-2"></i></div>
-                                                <div class="line"></div>
+                                                <?php
+                                                if(in_array("video-".$infoVideo['video_id'],unserialize($_COOKIE['view']))){
+                                                    echo '<div class="div-x"><i class="icon md-check-2"></i></div>';
+                                                    echo '<div class="line"></div>';
+                                                }else{
+                                                    echo '<div class="div-x"><i class="icon"></i></div>';
+                                                echo '<div class="line"></div>';
+                                                }
+                                                ?>
+
                                             </div>
                                         </li>
                                         <?php
@@ -678,7 +687,7 @@
                                 <img src="<?php echo $urlImage ?>/avatar-1.jpg" alt="">
                             </div>
                             <h4 class="name-course">
-                                <a href="<?php echo URL::createLink('default', 'courses', 'index', ['id' => $valueCategory['course_id']]) ?>"><?php echo $valueCategory['name_course'] ?></a>
+                                <a href="<?php echo URL::createLink('default', 'course', 'index', ['id' => $valueCategory['course_id']]) ?>"><?php echo $valueCategory['name_course'] ?></a>
                             </h4>
                             <div class="name-author">
                                 By <a href="#"><?php echo $valueCategory['name_author'] ?></a>

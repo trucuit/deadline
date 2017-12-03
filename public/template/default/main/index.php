@@ -45,7 +45,7 @@ $urlFile = TEMPLATE_URL . '/default/main';
         echo '<!--HOME SLIDER-->';
         include_once "html/slider.php";
         echo '<!--END / HOME SLIDER-->';
-    } else if ($this->arrParam['url'] == 'default/courses/index') {
+    } else if ($this->arrParam['url'] == 'default/course/index') {
         echo '<!--SUB BANNER-->';
         include_once "html/sub-banner.php";
         echo '<!--END / SUB BANNER-->';
