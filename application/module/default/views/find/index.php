@@ -9,11 +9,11 @@ $resultFind = $this->resultFind['list'];
     <div class="container">
         <div class="sub-banner-content-result">
             <h2>
-                <?php echo count($resultFind) ?> Resultst found for
+                <?php echo count($resultFind) ?> Kết quả cho
                 <a href="#">
                     <?php echo $this->resultFind['search'] ?>
                 </a>
-                in  <?php echo $this->resultFind['category'] ?>
+                trong  <?php echo $this->resultFind['category'] ?>
             </h2>
         </div>
     </div>
@@ -24,7 +24,7 @@ $resultFind = $this->resultFind['list'];
 <section class="page-control">
     <div class="container">
         <div class="page-info">
-            <a href="index.html"><i class="icon md-arrow-left"></i>Back to home</a>
+            <a href="index.html"><i class="icon md-arrow-left"></i>Trở về trang chủ</a>
         </div>
         <div class="page-view">
             View
