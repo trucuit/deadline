@@ -13,15 +13,16 @@ $url = array(
 <div class="content-wrapper category" style="min-height: 915.8px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>
-            Manage <?php echo ucfirst($arrURL[1]) ?>
-            <small>List</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i><?php echo ucfirst($arrURL[0]) ?></a></li>
-            <li><a href="#"><?php echo ucfirst($arrURL[1]) ?></a></li>
-            <li class="active"><?php echo ucfirst($arrURL[2]) ?></li>
-        </ol>
+        <section class="content-header">
+            <h1>
+               Manage&nbsp;<?php echo ucfirst($this->arrParam['controller'])?>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i><?php echo ucfirst($this->arrParam['module']) ?></a></li>
+                <li><a href="#"><?php echo ucfirst($this->arrParam['controller']) ?></a></li>
+                <li class="active"><?php echo ucfirst($this->arrParam['action']) ?></li>
+            </ol>
+        </section>
     </section>
     <!-- Main content -->
     <section class="content">

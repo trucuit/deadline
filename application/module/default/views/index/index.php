@@ -83,7 +83,7 @@ $category = $this->category;
                             Trong một thế giới số hóa ngày càng mạnh mẽ, sở hữu một số kỹ năng công nghệ, đặc biệt là
                             lập trình, có thể là tấm vé để bạn đến được với những cơ hội tốt hơn trong công việc.
                         </p>
-                        <a href="#" class="mc-btn btn-style-3">Bắt đầu học</a>
+                        <a href="#mc-section-3" class="mc-btn btn-style-3">Bắt đầu học</a>
                     </div>
                 </div>
 
@@ -102,6 +102,7 @@ $category = $this->category;
 
 <!-- SECTION 3 -->
 <section id="mc-section-3" class="mc-section-3 section">
+    <a name="mc-section-3"></a>
     <div class="container">
         <!-- FEATURE -->
         <?php
@@ -121,11 +122,12 @@ $category = $this->category;
                     <div class="feature-slider">
                         <?php
                         foreach ($valueCategory as $value) {
+
                             $name_category = URL::filterURL($value['name_category']);
                             $id_category = $value['id_category'];
                             $name_course = URL::filterURL($value['name_course']);
                             $id_course = $value['id_course'];
-                            $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category));
+                            $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category),"$name_category/$name_course-$id_category-$id_course.html");
                             ?>
                             <div class="mc-item mc-item-1">
                                 <div class="image-heading">
@@ -134,7 +136,7 @@ $category = $this->category;
                                 <div class="meta-categories"><a href="#">Web design</a></div>
                                 <div class="content-item">
                                     <div class="image-author">
-                                        <img src="<?php echo $urlImage ?>/avatar-1.jpg" alt="">
+                                        <img src="<?php echo $urlImage ?>/author/<?php echo $value['avatar_author'] ?>" alt="">
                                     </div>
                                     <h4>
                                         <a href="<?php echo $urlCourse ?>"

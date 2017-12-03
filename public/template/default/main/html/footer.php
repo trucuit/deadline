@@ -11,7 +11,7 @@
                             trình và nội dung chi tiết trong từng video, cho ra đời các khóa học chất lượng đạt chuẩn
                             hàng đầu việt nam.
                         </p>
-                        <a href="#" class="mc-btn btn-style-1">Bắt đầu học</a>
+                        <a href="#mc-section-3" class="mc-btn btn-style-1">Bắt đầu học</a>
                     </div>
                 </div>
 

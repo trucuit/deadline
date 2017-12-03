@@ -1,18 +1,18 @@
 <?php
 $userInfo = $this->userInfo;
-$arrURL = explode("/", $this->arrParam['url']);
+
 ?>
 
 <div class="content-wrapper" style="min-height: 1125.8px;" id="profile">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <?php echo ucfirst($arrURL[1]) . " " . ucfirst($arrURL[2]) ?>
+            <?php echo ucfirst($this->arrParam['controller']) . " " . ucfirst($this->arrParam['action']) ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i><?php echo ucfirst($arrURL[0]) ?></a></li>
-            <li><a href="#"><?php echo ucfirst($arrURL[1]) ?></a></li>
-            <li class="active"><?php echo ucfirst($arrURL[2]) ?></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i><?php echo ucfirst($this->arrParam['module']) ?></a></li>
+            <li><a href="#"><?php echo ucfirst($this->arrParam['controller']) ?></a></li>
+            <li class="active"><?php echo ucfirst($this->arrParam['action']) ?></li>
         </ol>
     </section>
 
