@@ -9,12 +9,10 @@ class IndexController extends Controller
         $this->_templateObj->setFileTemplate('index.php');
         $this->_templateObj->setFileConfig('template.ini');
         $this->_templateObj->load();
-        $this->_view->arrCourseHeader = $this->_model->getItemHeader();
     }
 
     public function indexAction()
     {
-
         $this->_view->category = $this->_model->homeQuery();
         $this->_view->listFindCourse = $this->_model->getIDNameCategory();
         $this->_view->statistics = $this->_model->getStatistics();

@@ -1,7 +1,7 @@
 <?php
 $listFindCourse = isset($this->listFindCourse) ? $this->listFindCourse : [];
 $url = [
-    "find" => URL::createLink("default", "index", "find")
+    "find" => URL::createLink("default", "index", "find",null,"tim-kiem.html")
 ];
 ?>
 <section id="after-slider" class="after-slider section">

@@ -22,10 +22,6 @@ $urlFile = TEMPLATE_URL . '/default/main';
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <![endif]-->
-    <script type="text/javascript">
-        root_url =  <?php echo json_encode(ROOT_URL . "/")  ?>;
-        const ROOT_URL = root_url;
-    </script>
 </head>
 <body id="page-top" class="home">
 
@@ -41,7 +37,7 @@ $urlFile = TEMPLATE_URL . '/default/main';
     <!-- END / HEADER -->
 
     <?php
-    if ($this->arrParam['url'] == 'default/index/index') {
+    if ($this->arrParam["controller"] == 'index' && $this->arrParam['action'] == "index") {
         echo '<!--HOME SLIDER-->';
         include_once "html/slider.php";
         echo '<!--END / HOME SLIDER-->';
@@ -50,7 +46,7 @@ $urlFile = TEMPLATE_URL . '/default/main';
         include_once "html/after-slider.php";
         echo '<!-- END / AFTER SLIDER -->';
 
-    } else if ($this->arrParam['url'] == 'default/course/index') {
+    } else if ($this->arrParam["controller"] == 'course' && $this->arrParam['action'] == "index") {
         echo '<!--SUB BANNER-->';
         include_once "html/sub-banner.php";
         echo '<!--END / SUB BANNER-->';
@@ -63,7 +59,7 @@ $urlFile = TEMPLATE_URL . '/default/main';
     <?php require_once MODULE_PATH . DS . $this->_moduleName . DS . 'views' . DS . $this->_fileView . '.php'; ?>
 
     <?php
-    if ($this->arrParam['url'] == 'default/index/index') {
+    if ($this->arrParam["controller"] == 'index' && $this->arrParam['action'] == "index") {
         echo '<!-- BEFORE FOOTER -->';
         include_once "html/before-footer.php";
         echo '<!-- END / BEFORE FOOTER -->';
@@ -75,9 +71,9 @@ $urlFile = TEMPLATE_URL . '/default/main';
     <?php include_once "html/footer.php"; ?>
     <!-- END / FOOTER -->
 
-<!--    -->
+    <!--    -->
     <a class="back-to-top"><i class="fa fa-angle-double-up" aria-hidden="true"></i></a>
-<!--    -->
+    <!--    -->
 
 </div>
 <!-- END / PAGE WRAP -->

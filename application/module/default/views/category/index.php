@@ -43,7 +43,13 @@ $url = [
             <div class="col-md-9 col-md-push-3">
                 <div class="content grid">
                     <div class="row">
-                        <?php foreach ($listCourse as $value) { ?>
+                        <?php foreach ($listCourse as $value) {
+                            $name_category = URL::filterURL($value['name_category']);
+                            $id_category = $value['id_category'];
+                            $name_course = URL::filterURL($value['name_course']);
+                            $id_course = $value['id_course'];
+                            $url = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category), "$name_category/$name_course-$id_category-$id_course.html")
+                            ?>
                             <!-- ITEM -->
                             <div class="col-sm-6 col-md-4">
                                 <div class="mc-item mc-item-2">
@@ -58,7 +64,7 @@ $url = [
                                             <img src="<?php echo $urlImage ?>/avatar-1.jpg" alt="">
                                         </div>
                                         <h4>
-                                            <a href="<?php echo URL::createLink('default', 'course', 'index', ['id' => $value['id_course']]) ?>"
+                                            <a href="<?php echo $url ?>"
                                                class="nameCategory">
                                                 <?php echo $value['name_course'] ?></a>
                                         </h4>
@@ -103,9 +109,13 @@ $url = [
                         <!-- WIDGET CATEGORIES -->
                         <div class="widget widget_categories">
                             <ul class="list-style-block">
-                                <?php foreach ($listCategory as $value) { ?>
+                                <?php foreach ($listCategory as $value) {
+                                    $categoryURL = URL::filterURL($value['name']);
+                                    $id_category =$value['id'];
+                                    $urlCategory = URL::createLink('default', 'category', 'showCourse', ['id' => $id_category], "$categoryURL-$id_category.html");
+                                    ?>
                                     <li class="category-<?php echo $value['id'] ?>">
-                                        <a href="<?php echo URL::createLink("default", DB_TBCATEGORY, "showCourse", ["id" => $value['id']]) ?>">
+                                        <a href="<?php echo $urlCategory ?>">
                                             <?php echo $value['name'] ?>
                                         </a>
                                     </li>
