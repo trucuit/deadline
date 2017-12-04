@@ -92,7 +92,7 @@ class URL
     public static function filterURL($value){
         $value = URL::removeSpace($value);
         $value = self::replaceSpace($value);
-        $value = self::vn_str_filter($value);
+        $value = self::removeCircumflex($value);
 
 
         return $value;
