@@ -9,11 +9,10 @@ $(function () {
     });
 
     // Active controller
-    var controllerName = window.location.pathname.split("/")[4];
-    console.log(controllerName);
-    $("li." + controllerName).addClass("active");
-    $("li." + getUrlVar("id")).addClass("active");
-
+    if (getUrlVar("controller"))
+        $(".sidebar-menu li." + getUrlVar("controller")).addClass("active");
+    if (getUrlVar("id"))
+        $(".sidebar-menu li." + getUrlVar("id")).addClass("active");
 })
 ;
 

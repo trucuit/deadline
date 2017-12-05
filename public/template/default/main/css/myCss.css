@@ -3,6 +3,14 @@
     padding: 0px;
 }
 
+a.all-course.mc-btn.btn-style-1 {
+    right: 0px !important;
+}
+
+.owl-controls.clickable {
+    left: -100px !important;
+}
+
 .feature-course:first-child{
     margin-top: 0px;
 }

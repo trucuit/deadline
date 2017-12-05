@@ -6,8 +6,7 @@ $catefory_id = isset($infoItem ['category_id']) ? $infoItem['category_id'] : 0;
 $author_id = isset($infoItem ['author_id']) ? $infoItem['author_id'] : 0;
 $selectBoxCategory = Helper::cmsSelecbox($listCategory, 'form[category_id]', 'form-control', $catefory_id);
 $selectBoxAuthor = Helper::cmsSelecbox($listAuthor, 'form[author_id]', 'form-control', $author_id);
-$arrURL = explode("/", $this->arrParam['url']);
-$infoItem = $this->infoItem;
+$infoItem = isset($this->infoItem) ? $this->infoItem : [];;
 $url = [
     'save' => URL::createLink('admin', DB_TBCOURSE, 'add', ['type' => 'save']),
     'save-close' => URL::createLink('admin', DB_TBCOURSE, 'add', ['type' => 'close']),
@@ -15,6 +14,7 @@ $url = [
     'cancel' => URL::createLink('admin', DB_TBCOURSE, 'index')
 ];
 ?>
+
 <div class="content-wrapper" style="min-height: 915.8px;">
     <section class="content-header">
         <h1>
@@ -100,6 +100,16 @@ $url = [
                                     <?php echo $selectBoxAuthor ?>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right control-label">Tag<i style="color: red"> *</i></label>
+
+                                <div class="col-sm-6">
+                                    <input name="form[tag]"
+                                           id="mySingleField" value="php,javascript" type="hidden">
+                                    <ul id="singleFieldTags"
+                                    ></ul>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -107,3 +117,14 @@ $url = [
         </div>
     </section>
 </div>
+<script>
+    $(function () {
+        var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
+        $('#singleFieldTags').tagit({
+            availableTags: sampleTags,
+            singleField: true,
+            singleFieldNode: $('#mySingleField')
+        });
+
+    });
+</script>

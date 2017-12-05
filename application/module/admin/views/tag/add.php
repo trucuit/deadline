@@ -2,10 +2,10 @@
 $arrURL = explode("/", $this->arrParam['url']);
 $infoItem = $this->infoItem;
 $url = [
-    'save' => URL::createLink('admin', DB_TBCATEGORY, 'add', ['type' => 'save']),
-    'save-close' => URL::createLink('admin', DB_TBCATEGORY, 'add', ['type' => 'close']),
-    'save-new' => URL::createLink('admin', DB_TBCATEGORY, 'add', ['type' => 'new']),
-    'cancel' => URL::createLink('admin', DB_TBCATEGORY, 'index')
+    'save' => URL::createLink('admin', DB_TBTAG, 'add', ['type' => 'save']),
+    'save-close' => URL::createLink('admin', DB_TBTAG, 'add', ['type' => 'close']),
+    'save-new' => URL::createLink('admin', DB_TBTAG, 'add', ['type' => 'new']),
+    'cancel' => URL::createLink('admin', DB_TBTAG, 'index')
 ];
 ?>
 <div class="content-wrapper" style="min-height: 915.8px;">
@@ -20,6 +20,11 @@ $url = [
         </ol>
     </section>
     <section class="text-center no-bg">
+        <a class="btn btn-app"
+           onclick="javascript:submitForm('<?php echo $url['save'] ?>')"
+        >
+            <i class="fa fa-save"></i> Save
+        </a>
         <a class="btn btn-app"
            onclick="javascript:submitForm('<?php echo $url['save-close'] ?>')"
         >
@@ -49,11 +54,11 @@ $url = [
                     <form action="" method="post" enctype="multipart/form-data" id="adminForm">
                         <div class="box-body">
                             <div class="form-group row">
-                                <label class="col-sm-3 text-right control-label">Category <i
+                                <label class="col-sm-3 text-right control-label">Tag <i
                                             style="color: red">*</i></label>
 
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Category"
+                                    <input type="text" class="form-control" placeholder="Tag"
                                            name="form[name]"
                                            value="<?php if (isset($infoItem['name'])) echo $infoItem['name'] ?>"
                                     >
