@@ -54,7 +54,7 @@ $url = [
                             <div class="col-sm-6 col-md-4">
                                 <div class="mc-item mc-item-2">
                                     <div class="image-heading">
-                                        <img src="<?php echo $urlImage ?>/feature/img-1.jpg" alt="">
+                                        <img src="<?php echo $urlImage."/course/".$value['course_image'] ?>" alt="">
                                     </div>
                                     <div class="meta-categories">
                                         <a href="#">Web design</a>
