@@ -53,10 +53,9 @@ class CourseModel extends Model
 
     public function insertCourse($data)
     {
-
         $image = $data['image'];
         $data['name'] = trim($data['name']);
-        $data['image'] = $data['name'] . '.' . Helper::cutCharacter($image['type'], '/', 1);
+        $data['image'] = URL::filterURL($data['name'] . '.' . Helper::cutCharacter($image['type'], '/', 1));
         $data['created'] = date("Y-m-d H:i:s");
         $data['created_by'] = Session::get("user")['info']['username'];
         $this->insert(DB_TBCOURSE, $data);
@@ -66,8 +65,10 @@ class CourseModel extends Model
         if ($bl == 0)
             return 0;
 
-        $nameImage = TEMPLATE_PATH . "/admin/main/images/course/" . $data['image'];
-        move_uploaded_file($image['tmp_name'], $nameImage);
+        $nameImageAdmin = TEMPLATE_PATH . "/admin/main/images/course/" . $data['image'];
+        $nameImageDefault = TEMPLATE_PATH . "/default/main/images/course/" . $data['image'];
+        move_uploaded_file($image['tmp_name'], $nameImageAdmin);
+        copy($nameImageAdmin, $nameImageDefault);
         return 1;
 
     }
@@ -84,12 +85,17 @@ class CourseModel extends Model
 
         unset($data['id']);
         if (!empty($file['image']['name'])) {
-            $imageOld = TEMPLATE_PATH . "/admin/main/images/course/" . $data['image'];
-            $data['image'] = $data['name'] . '.' . pathinfo($file['image']['name'])['extension'];
-            $imageNew = TEMPLATE_PATH . "/admin/main/images/course/" . $data['image'];
-            if (file_exists($imageOld))
-                unlink($imageOld);
-            move_uploaded_file($file['image']['tmp_name'], $imageNew);
+            $imageOldAdmin = TEMPLATE_PATH . "/admin/main/images/course/" . $data['image'];
+            $imageOldDefault = TEMPLATE_PATH . "/default/main/images/course/" . $data['image'];
+            $data['image'] = URL::filterURL($data['name'] . '.' . pathinfo($file['image']['name'])['extension']);
+            $imageNewAdmin = TEMPLATE_PATH . "/admin/main/images/course/" . $data['image'];
+            $imageNewDefault = TEMPLATE_PATH . "/default/main/images/course/" . $data['image'];
+            if (file_exists($imageOldAdmin))
+                unlink($imageOldAdmin);
+            if (file_exists($imageOldDefault))
+                unlink($imageOldDefault);
+            move_uploaded_file($file['image']['tmp_name'], $imageNewAdmin);
+            copy($imageNewAdmin,$imageNewDefault);
         }
         $this->update(DB_TBCOURSE, $data, ['id' => $id]);
         if (isset($data['link'])) {
@@ -233,13 +239,13 @@ class CourseModel extends Model
         $result = [];
         foreach ($arrTag as $key => $value) {
             if (!in_array($value, $getTags)) {
-                $data['name']=$value;
+                $data['name'] = $value;
                 $data['created'] = date("Y-m-d H:i:s");
                 $data['created_by'] = Session::get("user")['info']['username'];
                 $result[$key] = $data;
             }
         }
-        $this->insert(DB_TBTAG,$result,'multi');
+        $this->insert(DB_TBTAG, $result, 'multi');
     }
 
     public function getArrTag()

@@ -131,7 +131,7 @@ $category = $this->category;
                             ?>
                             <div class="mc-item mc-item-1">
                                 <div class="image-heading">
-                                    <img src="<?php echo $urlImage ?>/feature/img-1.jpg" alt="">
+                                    <img src="<?php echo $urlImage."/course/".$value['course_image'] ?>" alt="">
                                 </div>
                                 <div class="meta-categories"><a href="#">Web design</a></div>
                                 <div class="content-item">

@@ -15,17 +15,19 @@ class IndexModel extends Model
         $nameCategory = $this->execute($selectCategory, true);
         foreach ($nameCategory as $value) {
             foreach ($value as $value1) {
-
-                $query = "SELECT DISTINCT a.avatar as `avatar_author`, `c`.`id` AS `id_category`,`c`.`name`AS `name_category`,`cs`.`name`AS `name_course`,`cs`.`id`AS `id_course`,`a`.`name` AS `name_author` FROM `course`AS`cs` INNER JOIN `category`AS`c` ON `c`.`id`=`cs`.`category_id`
-                                                                      INNER JOIN `author` AS`a` ON `a`.id =`cs`.`author_id`
-                                                                     WHERE `c`.`name`=" . "'" . $value1 . "'";
+                $query = [];
+                $query[] = "SELECT cs.image as `course_image`, a.avatar as `avatar_author`, `c`.`id` AS `id_category`,`c`.`name`AS `name_category`,`cs`.`name`AS `name_course`,`cs`.`id`AS `id_course`,`a`.`name` AS `name_author`";
+                $query[] = "FROM `course`AS`cs`";
+                $query[] = "JOIN `category`AS`c` ON `c`.`id`=`cs`.`category_id`";
+                $query[] = "JOIN `author` AS`a` ON `a`.id =`cs`.`author_id`";
+                $query[] = "WHERE `c`.`name`=" . "'" . $value1 . "'";
+                $query = implode(" ", $query);
                 $category[$value1] = $this->execute($query, true);
             }
 
         }
         return $category;
     }
-
 
 
     public function getIDNameCategory()
@@ -54,15 +56,16 @@ class IndexModel extends Model
         return $this->execute($query, 1);
     }
 
-    public function getStatistics(){
-        $query = "SELECT count(id) as count FROM `".DB_TBCATEGORY."`";
-        $arrItem[DB_TBCATEGORY] = $this->execute($query,1)[0]['count'];
-        $query = "SELECT count(id) as count FROM `".DB_TBCOURSE."`";
-        $arrItem[DB_TBCOURSE] = $this->execute($query,1)[0]['count'];
-        $query = "SELECT count(id) as count FROM `".DB_TBAUTHOR."`";
-        $arrItem[DB_TBAUTHOR] = $this->execute($query,1)[0]['count'];
-        $query = "SELECT count(id) as count FROM `".DB_TBVIDEO."`";
-        $arrItem[DB_TBVIDEO] = $this->execute($query,1)[0]['count'];
+    public function getStatistics()
+    {
+        $query = "SELECT count(id) as count FROM `" . DB_TBCATEGORY . "`";
+        $arrItem[DB_TBCATEGORY] = $this->execute($query, 1)[0]['count'];
+        $query = "SELECT count(id) as count FROM `" . DB_TBCOURSE . "`";
+        $arrItem[DB_TBCOURSE] = $this->execute($query, 1)[0]['count'];
+        $query = "SELECT count(id) as count FROM `" . DB_TBAUTHOR . "`";
+        $arrItem[DB_TBAUTHOR] = $this->execute($query, 1)[0]['count'];
+        $query = "SELECT count(id) as count FROM `" . DB_TBVIDEO . "`";
+        $arrItem[DB_TBVIDEO] = $this->execute($query, 1)[0]['count'];
         return $arrItem;
     }
 
