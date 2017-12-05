@@ -43,7 +43,7 @@ class IndexModel extends Model
             return [];
         }
         $find = $arrParam['find'];
-        $query[] = "SELECT DISTINCT `c`.`id` AS `id_category`,`c`.`name`AS `name_category`,`cs`.`name`AS `name_course`,`cs`.`id`AS `id_course`,`a`.`name` AS `name_author`";
+        $query[] = "SELECT DISTINCT cs.image as `course_image`,`c`.`id` AS `id_category`,`c`.`name`AS `name_category`,`cs`.`name`AS `name_course`,`cs`.`id`AS `id_course`,`a`.`name` AS `name_author`";
         $query[] = "FROM `course` AS `cs`";
         $query[] = "INNER JOIN `category` AS `c` ON `c`.`id`=`cs`.`category_id`";
         $query[] = "INNER JOIN `author` AS `a` ON `a`.id =`cs`.`author_id`";

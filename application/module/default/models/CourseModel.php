@@ -11,7 +11,7 @@ class CourseModel extends Model
     public function videoQuery($where)
     {
         $queryVideo = array();
-        $queryVideo[] = "SELECT a.avatar as `author_avatar`, `c`.`name`AS `name_category`,`cs`.`name` AS `name_course`,`v`.`id` AS `video_id`,`v`.`title`,`v`.`link`,`v`.`thumbnails`,`a`.`name` AS `name_author`";
+        $queryVideo[] = "SELECT cs.image as `course_image`,a.avatar as `author_avatar`, `c`.`name`AS `name_category`,`cs`.`name` AS `name_course`,`v`.`id` AS `video_id`,`v`.`title`,`v`.`link`,`v`.`thumbnails`,`a`.`name` AS `name_author`";
         $queryVideo[] = "FROM `course` AS `cs` INNER JOIN `video`AS`v` ON `cs`.`id`=`v`.`course_id`";
         $queryVideo[] = "INNER JOIN `category` AS `c`ON `c`.`id`=`cs`.`category_id`";
         $queryVideo[] = "INNER JOIN `author`   AS  `a` ON`a`.`id`=`cs`.`author_id`";
@@ -24,7 +24,7 @@ class CourseModel extends Model
     {
         $query = array();
 
-        $query[] = "SELECT DISTINCT a.avatar as `author_avatar`,`c`.`id`AS `category_id`,`cs`.`id` AS `course_id`,`cs`.`name` AS  `name_course`,`a`.`name` AS `name_author`,`c`.`name`AS `name_category`";
+        $query[] = "SELECT DISTINCT cs.image as `course_image`,a.avatar as `author_avatar`,`c`.`id`AS `category_id`,`cs`.`id` AS `course_id`,`cs`.`name` AS  `name_course`,`a`.`name` AS `name_author`,`c`.`name`AS `name_category`";
         $query[] = "FROM `course`AS`cs` INNER JOIN `category`AS`c` ON `c`.`id`=`cs`.`category_id`";
         $query[] = "INNER JOIN `author` AS`a` ON `a`.id =`cs`.`author_id`";
         $query[] = "WHERE `c`.`name`=" . "'" . $name . "' AND `cs`.`id`!=" . $id;
