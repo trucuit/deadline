@@ -9,7 +9,7 @@ class CourseModel extends Model
 
     public function showCourse()
     {
-        $query[] = "SELECT COUNT(v.course_id) as 'total_video',co.id,co.name,co.link,ca.name as 'category',co.created,co.created_by,co.modified,co.modified_by,co.status, co.image, au.name as `author`";
+        $query[] = "SELECT co.tag,COUNT(v.course_id) as 'total_video',co.id,co.name,co.link,ca.name as 'category',co.created,co.created_by,co.modified,co.modified_by,co.status, co.image, au.name as `author`";
         $query[] = "FROM `" . DB_TBCOURSE . "` AS `co`";
         $query[] = "LEFT JOIN `" . DB_TBCATEGORY . "` AS `ca` ON `co`.category_id=`ca`.id";
         $query[] = "JOIN `" . DB_TBVIDEO . "` AS `v` ON v.course_id=co.id";
@@ -55,8 +55,8 @@ class CourseModel extends Model
     {
 
         $image = $data['image'];
-        $data['image'] = $data['name'] . '.' . Helper::cutCharacter($image['type'], '/', 1);
         $data['name'] = trim($data['name']);
+        $data['image'] = $data['name'] . '.' . Helper::cutCharacter($image['type'], '/', 1);
         $data['created'] = date("Y-m-d H:i:s");
         $data['created_by'] = Session::get("user")['info']['username'];
         $this->insert(DB_TBCOURSE, $data);
@@ -66,7 +66,7 @@ class CourseModel extends Model
         if ($bl == 0)
             return 0;
 
-        $nameImage = TEMPLATE_PATH . "/admin/main/images/course" . $data['image'];
+        $nameImage = TEMPLATE_PATH . "/admin/main/images/course/" . $data['image'];
         move_uploaded_file($image['tmp_name'], $nameImage);
         return 1;
 
@@ -84,9 +84,9 @@ class CourseModel extends Model
 
         unset($data['id']);
         if (!empty($file['image']['name'])) {
-            $imageOld = TEMPLATE_PATH . "/admin/main/images/course" . $data['image'];
+            $imageOld = TEMPLATE_PATH . "/admin/main/images/course/" . $data['image'];
             $data['image'] = $data['name'] . '.' . pathinfo($file['image']['name'])['extension'];
-            $imageNew = TEMPLATE_PATH . "/admin/main/images/course" . $data['image'];
+            $imageNew = TEMPLATE_PATH . "/admin/main/images/course/" . $data['image'];
             if (file_exists($imageOld))
                 unlink($imageOld);
             move_uploaded_file($file['image']['tmp_name'], $imageNew);
@@ -96,6 +96,7 @@ class CourseModel extends Model
             $this->deleteVideo(['id' => $id]);
             $this->insertVideo($data['link'], $id);
         }
+        $this->insertTag($data['tag']);
     }
 
     public function insertVideo($link, $id)
@@ -212,7 +213,7 @@ class CourseModel extends Model
     {
         foreach ($param as $val) {
             $item = $this->select(DB_TBCOURSE, $val, 1);
-            $nameImage = TEMPLATE_PATH . "/admin/main/images/course" . $item['image'];
+            $nameImage = TEMPLATE_PATH . "/admin/main/images/course/" . $item['image'];
             if (file_exists($nameImage)) {
                 unlink($nameImage);
             }
@@ -223,6 +224,32 @@ class CourseModel extends Model
         foreach ($param as $val) {
             $this->deleteVideo($val);
         }
+    }
+
+    public function insertTag($strTag)
+    {
+        $getTags = $this->getArrTag();
+        $arrTag = explode(",", $strTag);
+        $result = [];
+        foreach ($arrTag as $key => $value) {
+            if (!in_array($value, $getTags)) {
+                $data['name']=$value;
+                $data['created'] = date("Y-m-d H:i:s");
+                $data['created_by'] = Session::get("user")['info']['username'];
+                $result[$key] = $data;
+            }
+        }
+        $this->insert(DB_TBTAG,$result,'multi');
+    }
+
+    public function getArrTag()
+    {
+        $arrTag = $this->showAll(DB_TBTAG);
+        $result = [];
+        foreach ($arrTag as $key => $value) {
+            $result[$key] = $value['name'];
+        }
+        return $result;
     }
 }
 

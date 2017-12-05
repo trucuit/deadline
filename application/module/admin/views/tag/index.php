@@ -1,11 +1,11 @@
 <?php
 $listItem = empty($this->listItem) ? [] : $this->listItem;
 $url = array(
-    'add' => URL::createLink('admin', DB_TBCATEGORY, 'add'),
-    'edit' => URL::createLink('admin', DB_TBCATEGORY, 'edit'),
-    'delete' => URL::createLink('admin', DB_TBCATEGORY, 'delete'),
-    'active' => URL::createLink('admin', DB_TBCATEGORY, 'status'),
-    'inactive' => URL::createLink('admin', DB_TBCATEGORY, 'status'),
+    'add' => URL::createLink('admin', DB_TBTAG, 'add'),
+    'edit' => URL::createLink('admin', DB_TBTAG, 'edit'),
+    'delete' => URL::createLink('admin', DB_TBTAG, 'delete'),
+    'active' => URL::createLink('admin', DB_TBTAG, 'status', ['type' => 1]),
+    'inactive' => URL::createLink('admin', DB_TBTAG, 'status', ['type' => 0]),
 );
 
 ?>
@@ -13,7 +13,7 @@ $url = array(
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Manage&nbsp;<?php echo ucfirst($this->arrParam['controller'])?>
+            Manage&nbsp;<?php echo ucfirst($this->arrParam['controller']) ?>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i><?php echo ucfirst($this->arrParam['module']) ?></a></li>
@@ -86,7 +86,7 @@ $url = array(
                                                     <td><?php echo $value['modified_by'] ?></td>
                                                     <td class="text-center status">
                                                         <?php
-                                                        $onclick = URL::createLink('admin', DB_TBCATEGORY, 'ajaxStatus', ['id' => $value['id'], 'status' => $value['status']]);
+                                                        $onclick = URL::createLink('admin', DB_TBTAG, 'ajaxStatus', ['id' => $value['id'], 'status' => $value['status']]);
                                                         echo '<i onclick="javascript:ajaxStatus(\'' . $onclick . '\')" id="status-' . $value['id'] . '">' . ($value['status'] ? 'on' : 'off') . '</i>';
                                                         ?>
                                                     </td>

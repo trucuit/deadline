@@ -9,6 +9,7 @@ $dirImg = $this->_dirImg;
     echo $this->_metaHTTP;
     echo $this->_metaName;
     echo $this->_fileCSS;
+    echo $this->_fileJS
     ?>
     <title><?php echo $this->_title ?></title>
     <link rel="stylesheet"
@@ -38,7 +39,6 @@ $dirImg = $this->_dirImg;
 </div>
 <!-- ./wrapper -->
 
-<?php echo $this->_fileJS ?>
 <script>
     $(function () {
         $('#example1').DataTable()

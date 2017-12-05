@@ -5,6 +5,7 @@ $url = array(
     'course' => URL::createLink('admin', 'course', 'index'),
     'video' => URL::createLink('admin', 'video', 'index'),
     'author' => URL::createLink('admin', 'author', 'index'),
+    'tag' => URL::createLink('admin', 'tag', 'index'),
 );
 $model = new Model();
 $query = "SELECT `id`,`name` FROM `" . DB_TBCOURSE . "` ORDER BY `name`";
@@ -87,6 +88,12 @@ $userInfo = Session::get("user")['info'];
                 <a href="<?php echo $url['author'] ?>">
                     <i class="fa fa-fw fa-user-secret"></i>
                     <span>Author</span>
+                </a>
+            </li>
+            <li class="tag">
+                <a href="<?php echo $url['tag'] ?>">
+                    <i class="fa fa-tag"></i>
+                    <span>Tag</span>
                 </a>
             </li>
         </ul>

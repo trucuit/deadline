@@ -129,6 +129,7 @@ class CourseController extends Controller
                 $form['id'] = $this->_view->infoItem['id'];
                 $form['image'] = $this->_view->infoItem['image'];
                 $form['name'] = $this->_view->infoItem['name'];
+                $form['tag'] = $this->_view->infoItem['tag'];
                 $this->_model->updateCourse($form, $_FILES);
                 if (!empty($_FILES['image']['name']))
                     $this->_view->infoItem['image'] = $this->_view->infoItem['name'] . '.' . pathinfo($_FILES['image']['name'])['extension'];

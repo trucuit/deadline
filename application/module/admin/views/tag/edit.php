@@ -2,8 +2,8 @@
 $arrURL = explode("/", $this->arrParam['url']);
 $infoItem = $this->infoItem;
 $url = [
-    'save' => URL::createLink('admin', DB_TBCATEGORY, 'edit',['id'=>$this->arrParam['id']]),
-    'cancel' => URL::createLink('admin', DB_TBCATEGORY, 'index')
+    'save' => URL::createLink('admin', DB_TBTAG, 'edit',['id'=>$this->arrParam['id']]),
+    'cancel' => URL::createLink('admin', DB_TBTAG, 'index')
 ];
 
 ?>

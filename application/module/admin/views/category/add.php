@@ -22,6 +22,11 @@ $url = [
     </section>
     <section class="text-center no-bg">
         <a class="btn btn-app"
+           onclick="javascript:submitForm('<?php echo $url['save'] ?>')"
+        >
+            <i class="fa fa-save"></i> Save
+        </a>
+        <a class="btn btn-app"
            onclick="javascript:submitForm('<?php echo $url['save-close'] ?>')"
         >
             <i class="fa fa-save"></i> Save & Close

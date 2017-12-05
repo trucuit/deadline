@@ -7,47 +7,40 @@ class TagModel extends Model
         parent::__construct();
     }
 
-    public function showVideo($course_id)
-    {
-        $query[] = "SELECT v.id, v.link, v.title,v.status,v.ordering , v.thumbnails, c.name as courseName";
-        $query[] = "FROM `video` v LEFT JOIN `course` c ON c.id = v.course_id";
-        $query[] = "WHERE v.course_id=$course_id";
-        return $this->execute(implode(" ", $query), 1);
-    }
 
     public function chageStatus($param, $type = 1, $task = '')
     {
         if ($task == "change-status") {
             foreach ($param as $val) {
-                $query = "UPDATE `" . DB_TBCATEGORY . "` SET `status` = '$type' WHERE `id` = '" . $val . "'";
+                $query = "UPDATE `" . DB_TBTAG . "` SET `status` = '$type' WHERE `id` = '" . $val . "'";
                 $this->execute($query);
             }
         } else {
             $status = ($param['status'] == 0) ? 1 : 0;
             $id = $param['id'];
-            $query = "UPDATE `" . DB_TBCATEGORY . "` SET `status` = '$status' WHERE `id` = '" . $id . "'";
+            $query = "UPDATE `" . DB_TBTAG . "` SET `status` = '$status' WHERE `id` = '" . $id . "'";
             $this->execute($query);
             $result = array(
                 'id' => $id,
                 'status' => $status,
-                'link' => URL::createLink('admin', DB_TBCATEGORY, 'ajaxStatus', array('id' => $id, 'status' => $status))
+                'link' => URL::createLink('admin', DB_TBTAG, 'ajaxStatus', array('id' => $id, 'status' => $status))
             );
             return $result;
         }
     }
 
-    public function updateCategory($arrParam, $arrID)
+    public function updateItem($arrParam, $arrID)
     {
         $arrParam['modified'] = date('Y-m-d');
-        $arrParam['modified_by'] = uSession::get("user")['info']['username'];
-        $this->update(DB_TBCATEGORY, $arrParam, $arrID);
+        $arrParam['modified_by'] = Session::get("user")['info']['username'];
+        $this->update(DB_TBTAG, $arrParam, $arrID);
     }
 
-    public function insertCategory($arrParam)
+    public function insertItem($arrParam)
     {
         $arrParam['created'] = date('Y-m-d');
-        $arrParam['created_by'] = uSession::get("user")['info']['username'];
-        $this->insert(DB_TBCATEGORY, $arrParam);
+        $arrParam['created_by'] = Session::get("user")['info']['username'];
+        $this->insert(DB_TBTAG, $arrParam);
     }
 
 

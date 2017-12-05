@@ -2,7 +2,7 @@
 
 class TagController extends Controller
 {
-    private $table = DB_TBCATEGORY;
+    private $table = DB_TBTAG;
 
     public function __construct($params)
     {
@@ -32,7 +32,7 @@ class TagController extends Controller
             if ($validate->isValid() == false) {
                 $this->_view->errors = $validate->showErrors();
             } else {
-                $this->_model->insertCategory($this->_arrParam['form']);
+                $this->_model->insertItem($this->_arrParam['form']);
                 $this->_view->success = Helper::success('Thêm thành công');
                 if ($this->_arrParam['type'] == "close")
                     URL::redirect("admin", $this->table, "index");
@@ -66,7 +66,7 @@ class TagController extends Controller
             } else {
                 if (!empty($form)) {
                     $id = $this->_view->infoItem['id'];
-                    $this->_model->updateCategory($form, ['id' => $id]);
+                    $this->_model->updateItem($form, ['id' => $id]);
                     $this->_view->success = Helper::success('Sửa thành công');
 
                 } else {

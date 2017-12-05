@@ -96,6 +96,18 @@ $url = [
                                         <?php echo $selectBoxAuthor?>
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right control-label">Tag<i style="color: red"> *</i></label>
+
+                                    <div class="col-sm-6">
+                                        <input name="form[tag]"
+                                               id="mySingleField"
+                                               value="<?php if (isset($infoItem['tag'])) echo $infoItem['tag'] ?>"
+                                               type="hidden">
+                                        <ul id="singleFieldTags"
+                                        ></ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -104,3 +116,14 @@ $url = [
         </div>
     </section>
 </div>
+<script>
+    $(function () {
+        var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
+        $('#singleFieldTags').tagit({
+            availableTags: sampleTags,
+            singleField: true,
+            singleFieldNode: $('#mySingleField')
+        });
+
+    });
+</script>

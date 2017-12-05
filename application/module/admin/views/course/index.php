@@ -14,7 +14,7 @@ $url = array(
     <section class="content-header">
         <section class="content-header">
             <h1>
-                Manage&nbsp;<?php echo ucfirst($this->arrParam['controller'])?>
+                Manage&nbsp;<?php echo ucfirst($this->arrParam['controller']) ?>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i><?php echo ucfirst($this->arrParam['module']) ?></a></li>
@@ -64,11 +64,12 @@ $url = array(
                                                 <th class="no-sort"><input type="checkbox" name="checkall-toggle"></th>
                                                 <th class="sorting_asc">Name</th>
                                                 <th class="no-sort">Image</th>
-                                                <th >Total Video</th>
-                                                <th >Category</th>
-                                                <th >Author</th>
-                                                <th >Status</th>
-                                                <th >ID</th>
+                                                <th>Total Video</th>
+                                                <th>Category</th>
+                                                <th>Tag</th>
+                                                <th>Author</th>
+                                                <th>Status</th>
+                                                <th>ID</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -98,11 +99,12 @@ $url = array(
                                                         </a>
                                                     </td>
                                                     <td>
-                                                        <a href="<?php echo URL::createLink("admin","video","index",["id"=>$value['id']]) ?>">
-                                                        <?php echo $value['total_video'] ?>
+                                                        <a href="<?php echo URL::createLink("admin", "video", "index", ["id" => $value['id']]) ?>">
+                                                            <?php echo $value['total_video'] ?>
                                                         </a>
                                                     </td>
                                                     <td><?php echo $value['category'] ?></td>
+                                                    <td><?php echo $value['tag'] ?></td>
                                                     <td><?php echo $value['author'] ?></td>
                                                     <td class="text-center status">
                                                         <?php
