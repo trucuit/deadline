@@ -7,23 +7,23 @@ $urlFile = TEMPLATE_URL . '/default/main';
 <html lang="en">
 <head>
     <!-- Google font -->
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,700,900' rel='stylesheet' type='text/css'>
-    <link rel="shortcut icon" href="<?php echo $urlImage . "/logo.ico" ?>"/>
 
-    <meta property="og:url"
-          content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html"/>
-    <meta property="og:type" content="article"/>
-    <meta property="og:title" content="When Great Minds Don’t Think Alike"/>
-    <meta property="og:description" content="How much does culture influence creative thinking?"/>
-    <meta property="og:image"
-          content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg"/>
     <?php
     echo $this->_metaHTTP;
     echo $this->_metaName;
     echo $this->_fileCSS
     ?>
+
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="<?php if (isset($this->course['name'])) echo $this->course['name'] ?>"/>
+    <meta property="og:description" content="Lap trinh git"/>
+    <meta property="og:image"
+          content="<?php echo "http://trungtruc.laptrinhaz.com" . $urlImage . "/thumbnail.jpg" ?>">
+
     <title><?php echo $this->_title ?></title>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,700,900' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="<?php echo $urlImage . "/logo.ico" ?>"/>
     <script type="text/javascript">
         root_url =  <?php echo json_encode(ROOT_URL . "/")  ?>;
         const ROOT_URL = root_url;

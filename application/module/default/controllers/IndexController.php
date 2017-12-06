@@ -34,5 +34,12 @@ class IndexController extends Controller
         $this->_view->render('find/index');
     }
 
+    public function findTagAction()
+    {
+        $this->_view->resultFind['list'] = $this->_model->getResultFindTag($this->_arrParam['tag']);
+        $this->_view->resultFind['search'] = $this->_arrParam['tag'];
+        $this->_view->render('find/index');
+    }
+
 
 }

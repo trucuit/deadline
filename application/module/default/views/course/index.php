@@ -7,15 +7,26 @@
                     <!-- CURRENT PROGRESS -->
                     <div class="current-progress">
                         <h4 class="sm black">Quá trình</h4>
-                        <div class="percent">Hoàn thành <span class="count">25%</span></div>
+                        <?php
+                        $cookie = Cookie::get('view');
+                        $countProcess = 0;
+                        foreach ($cookie as $value) {
+                            foreach ($this->video as $valueVideo) {
+                                if ($value == "video-" . $valueVideo['video_id']) {
+                                    $countProcess++;
+                                }
+                            }
+                        }
+                        $percent = $countProcess / count($this->video) * 100;
+                        ?>
+                        <div class="percent">Hoàn thành <span class="count"><?php echo round($percent, 0) ?>%</span>
+                        </div>
                         <div class="progressbar">
                             <div class="progress-run"></div>
                         </div>
                         <ul class="current-outline">
-                            <li><span>4</span>section</li>
-                            <li><span>1</span>quizzes</li>
-                            <li><span>30</span>units</li>
-                            <li><span>5</span>assignments</li>
+                            <li><span><?php echo count($this->video) ?></span>Video</li>
+
                         </ul>
                     </div>
                     <!-- END / CURRENT PROGRESS -->
@@ -32,7 +43,8 @@
                         <ul>
                             <li>
                                 <div class="image-instructor text-center">
-                                    <img src="<?php echo $urlImage ?>/author/<?php echo $this->video[0]['author_avatar'] ?>" alt="">
+                                    <img src="<?php echo $urlImage ?>/author/<?php echo $this->video[0]['author_avatar'] ?>"
+                                         alt="">
                                 </div>
                                 <div class="info-instructor">
                                     <cite class="sm black"><a href="#"><?php echo $this->video[0]['name_author'] ?></a></cite>
@@ -52,11 +64,24 @@
                         <i class="icon md-download-2"></i>
                         <h4 class="xsm black bold">Tag</h4>
                         <div class="tagCould">
-                            <a href="#">Design</a>,
-                            <a href="#">Photoshop</a>,
-                            <a href="#">Illustrator</a>,
-                            <a href="">Art</a>,
-                            <a href="">Graphic Design</a>
+                            <form action="#" method="post" id="appFormTag">
+                                <?php
+                                $tag = explode(",", $this->video[0]['tag']);
+                                foreach ($tag as $key => $valueTag) {
+                                    $text = "tim-kiem-tag";
+                                    $urlTag = URL::createLink('default', 'index', 'findTag', ['tag' => $valueTag], "$text-$valueTag.html");
+                                    ?>
+                                    <a href="<?php echo $urlTag ?>">
+                                        <?php
+                                        if ($key == count($tag) - 1)
+                                            echo ucfirst($valueTag);
+                                        else {
+                                            echo ucfirst($valueTag) . ", ";
+                                        }
+                                        ?>
+                                    </a>
+                                <?php } ?>
+                            </form>
                         </div>
                     </div>
                     <div class="widget widget_share">
@@ -101,38 +126,59 @@
                                     <?php
                                     $number = 1;
                                     foreach ($this->video as $infoVideo) {
-
-                                        ?>
-
-
-                                        <li class="o-view">
-                                            <div class="count"><span><?php echo $number ?></span></div>
-                                            <div class="list-body">
-                                                <i class="icon md-camera"></i>
-                                                <p><a href="#" class="name-video"
-                                                      id="video-<?php echo $infoVideo['video_id'] ?>"
-                                                      link="<?php echo $infoVideo['link'] ?>"><?php echo $infoVideo['title'] ?></a>
-                                                </p>
+                                        if (in_array("video-" . $infoVideo['video_id'], Cookie::get('view'))) {
+                                            ?>
 
 
-                                                <div class="download">
-                                                    <div class="download-ct">
-                                                        <span>Reference 12 mb</span>
+                                            <li class="o-view active">
+                                                <div class="count active"><span><?php echo $number ?></span></div>
+                                                <div class="list-body">
+                                                    <i class="icon md-camera"></i>
+                                                    <p><a href="#" class="name-video"
+                                                          id="video-<?php echo $infoVideo['video_id'] ?>"
+                                                          link="<?php echo $infoVideo['link'] ?>"><?php echo $infoVideo['title'] ?></a>
+                                                    </p>
+
+
+                                                    <div class="download">
+                                                        <div class="download-ct">
+                                                            <span>Reference 12 mb</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <?php
-                                                if (in_array("video-" . $infoVideo['video_id'], Cookie::get('view'))) {
-                                                    echo '<div class="div-x"><i class="icon md-check-2"></i></div>';
-                                                    echo '<div class="line"></div>';
-                                                } else {
-                                                    echo '<div class="div-x"><i class="icon"></i></div>';
-                                                    echo '<div class="line"></div>';
-                                                }
-                                                ?>
+                                                    <div class="div-x"><i class="icon md-check-2"></i></div>
 
-                                            </div>
-                                        </li>
-                                        <?php
+                                                    <div class="line"></div>
+
+
+                                                </div>
+                                            </li>
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <li class="o-view">
+                                                <div class="count"><span><?php echo $number ?></span></div>
+                                                <div class="list-body">
+                                                    <i class="icon md-camera"></i>
+                                                    <p><a href="#" class="name-video"
+                                                          id="video-<?php echo $infoVideo['video_id'] ?>"
+                                                          link="<?php echo $infoVideo['link'] ?>"><?php echo $infoVideo['title'] ?></a>
+                                                    </p>
+
+
+                                                    <div class="download">
+                                                        <div class="download-ct">
+                                                            <span>Reference 12 mb</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="div-x"><i class="icon"></i></div>
+
+                                                    <div class="line"></div>
+
+
+                                                </div>
+                                            </li>
+                                            <?php
+                                        }
                                         $number++;
                                     }
                                     ?>
@@ -216,18 +262,9 @@
                         <div class="tab-pane fade" id="discussion">
                             <h3 class="md black">5 Topics</h3>
                             <div class="form-discussion">
-                                <form>
-                                    <div class="text-title">
-                                        <input type="text" placeholder="Topic title here">
-                                    </div>
-                                    <div class="post-editor text-form-editor">
-                                        <img src="images/editor-demo-1.jpg" alt="">
-                                        <textarea placeholder="Discussion content"></textarea>
-                                    </div>
-                                    <div class="form-submit">
-                                        <input type="submit" value="Post" class="mc-btn-2 btn-style-2">
-                                    </div>
-                                </form>
+                                <div class="fb-comments"
+                                     data-href="http://trungtruc.laptrinhaz.com/javascript/lap-trinh-react-js-81-83.html"
+                                     data-width="100%" data-numposts="10"></div>
                             </div>
 
                             <ul class="list-discussion">
@@ -482,13 +519,13 @@
                 $name_course = URL::filterURL($valueCategory['name_course']);
                 $id_course = $valueCategory['course_id'];
                 $author_avatar = $valueCategory['author_avatar'];
-                $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category),"$name_category/$name_course-$id_category-$id_course.html");
+                $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category), "$name_category/$name_course-$id_category-$id_course.html");
                 ?>
                 <div class="col-sm-6 col-md-3 course-relative">
                     <!-- MC ITEM -->
                     <div class="mc-item mc-item-2">
                         <div class="image-heading">
-                            <img src="<?php echo $urlImage."/course/".$valueCategory['course_image']  ?>" alt="">
+                            <img src="<?php echo $urlImage . "/course/" . $valueCategory['course_image'] ?>" alt="">
                         </div>
                         <div class="meta-categories"><a href="#">Web design</a></div>
                         <div class="content-item">
