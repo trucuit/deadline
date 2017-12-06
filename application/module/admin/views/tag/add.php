@@ -1,5 +1,4 @@
 <?php
-$arrURL = explode("/", $this->arrParam['url']);
 $infoItem = $this->infoItem;
 $url = [
     'save' => URL::createLink('admin', DB_TBTAG, 'add', ['type' => 'save']),
