@@ -30,6 +30,7 @@ define('DB_TBCOURSE', 'course');
 define('DB_TBVIDEO', 'video');
 define('DB_TBAUTHOR', 'author');
 define('DB_TBTAG', 'tag');
+define('DB_TBDESCRIPTION', 'description');
 
 // ====================== TIME LOGIN ===========================
 define('TIME_LOGIN', 3600);
