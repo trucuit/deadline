@@ -38,5 +38,17 @@ class CourseController extends Controller
                 }
             }
         }
+
+        if (isset($this->_arrParam['deleteId'])) {
+            $delete = unserialize($_COOKIE['view']);
+            for ($i = 0; $i < count($delete); $i++) {
+                if ($delete[$i] == $this->_arrParam['deleteId']) {
+                    unset($delete[$i]);
+
+                }
+            }
+            setcookie('view', serialize($delete), time() + 3600 * 24 * 30);
+        }
+
     }
 }

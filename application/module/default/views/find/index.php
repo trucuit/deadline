@@ -2,7 +2,7 @@
 $resultFind = $this->resultFind['list'];
 
 $url = [
-    'home' => URL::createLink("default",'index','index',null,'trang-chu.html')
+    'home' => URL::createLink("default", 'index', 'index', null, 'trang-chu.html')
 ]
 ?>
 
@@ -15,9 +15,9 @@ $url = [
             <h2>
                 <?php echo count($resultFind) ?> Kết quả cho
                 <a href="#">
-                    <?php echo $this->resultFind['search'] ?>
+                    <?php if (isset($this->resultFind['search'])) echo $this->resultFind['search'] ?>
                 </a>
-                trong  <?php echo $this->resultFind['category'] ?>
+                <?php if (isset($this->resultFind['category'])) echo " trong " . $this->resultFind['category'] ?>
             </h2>
         </div>
     </div>
@@ -51,19 +51,19 @@ $url = [
                     $id_category = $find['id_category'];
                     $name_course = URL::filterURL($find['name_course']);
                     $id_course = $find['id_course'];
-                    $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category),"$name_category/$name_course-$id_category-$id_course.html");
+                    $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category), "$name_category/$name_course-$id_category-$id_course.html");
                     ?>
                     <div class="col-xs-6 col-sm-4 col-md-3">
                         <!-- MC ITEM -->
 
                         <div class="mc-item mc-item-2">
                             <div class="image-heading">
-                                <img src="<?php echo $urlImage."/course/".$find['course_image']  ?>" alt="">
+                                <img src="<?php echo $urlImage . "/course/" . $find['course_image'] ?>" alt="">
                             </div>
                             <div class="meta-categories"><a href="#">Web design</a></div>
                             <div class="content-item">
                                 <div class="image-author">
-                                    <img src="<?php echo $urlImage ?>/avatar-1.jpg" alt="">
+                                    <img src="<?php echo $urlImage."/author/".$find['author_avatar'] ?>" alt="">
                                 </div>
                                 <h4>
                                     <a href="<?php echo $urlCourse ?>">

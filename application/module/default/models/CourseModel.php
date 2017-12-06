@@ -11,7 +11,7 @@ class CourseModel extends Model
     public function videoQuery($where)
     {
         $queryVideo = array();
-        $queryVideo[] = "SELECT cs.image as `course_image`,a.avatar as `author_avatar`, `c`.`name`AS `name_category`,`cs`.`name` AS `name_course`,`v`.`id` AS `video_id`,`v`.`title`,`v`.`link`,`v`.`thumbnails`,`a`.`name` AS `name_author`";
+        $queryVideo[] = "SELECT cs.tag, cs.image as `course_image`,a.avatar as `author_avatar`, `c`.`name`AS `name_category`,`cs`.`name` AS `name_course`,`v`.`id` AS `video_id`,`v`.`title`,`v`.`link`,`v`.`thumbnails`,`a`.`name` AS `name_author`";
         $queryVideo[] = "FROM `course` AS `cs` INNER JOIN `video`AS`v` ON `cs`.`id`=`v`.`course_id`";
         $queryVideo[] = "INNER JOIN `category` AS `c`ON `c`.`id`=`cs`.`category_id`";
         $queryVideo[] = "INNER JOIN `author`   AS  `a` ON`a`.`id`=`cs`.`author_id`";
