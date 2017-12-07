@@ -14,17 +14,17 @@ class CourseController extends Controller
 
     public function indexAction()
     {
-
-
         $this->_view->video = $this->_model->videoQuery($this->_arrParam['id_course']);
-
-        $this->_view->category = $this->_model->videoRelativeQuery($this->_arrParam['id_course'], $this->_view->video[0]['name_category']);
-
+        $this->_view->listVideoRelativeQuery = $this->_model->videoRelativeQuery($this->_arrParam['id_course'], $this->_view->video[0]['name_category']);
+        $this->_view->course = $this->_model->getImageCourse($this->_arrParam['id_course']);
         $this->_view->render('course/index');
     }
 
     public function setCookieViewAction()
     {
+        echo "<pre>";
+        print_r($this->_arrParam);
+        echo "</pre>";
         if (isset($this->_arrParam['videoId'])) {
             if (!isset($_COOKIE['view'])) {
                 $viewed = array();
@@ -44,11 +44,14 @@ class CourseController extends Controller
             for ($i = 0; $i < count($delete); $i++) {
                 if ($delete[$i] == $this->_arrParam['deleteId']) {
                     unset($delete[$i]);
-
                 }
             }
             setcookie('view', serialize($delete), time() + 3600 * 24 * 30);
         }
 
+
+        echo "<pre>";
+        print_r(Cookie::get('view'));
+        echo "</pre>";
     }
 }

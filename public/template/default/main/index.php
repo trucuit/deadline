@@ -1,7 +1,6 @@
 <?php
 $urlImage = $this->_dirImg;
 $urlFile = TEMPLATE_URL . '/default/main';
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,12 +12,13 @@ $urlFile = TEMPLATE_URL . '/default/main';
     echo $this->_metaName;
     echo $this->_fileCSS
     ?>
-
+    <meta property="fb:app_id" content="1937598989836489"/>
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="<?php if (isset($this->course['name'])) echo $this->course['name'] ?>"/>
-    <meta property="og:description" content="Lap trinh git"/>
+    <meta property="og:description"
+          content="<?php if (isset($this->course['description'])) echo $this->course['description'] ?>"/>
     <meta property="og:image"
-          content="<?php echo "http://trungtruc.laptrinhaz.com" . $urlImage . "/thumbnail.jpg" ?>">
+          content="<?php echo DOMAIN . DS . $urlImage . "/thumbnail.jpg" ?>">
 
     <title><?php echo $this->_title ?></title>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
@@ -90,5 +90,6 @@ $urlFile = TEMPLATE_URL . '/default/main';
 
 <!-- Load jQuery -->
 <?php echo $this->_fileJS ?>
+
 </body>
 </html>

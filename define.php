@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // ====================== PATHS ===========================
 define('DS', '/');
 define('ROOT_PATH', dirname(__FILE__)); // Định nghĩa đường dẫn đến thư mục gốc
@@ -44,6 +44,10 @@ define('FILE_VIDEO_JSON', 'data/videos.json');
 
 define('FILE_PLAYLIST_TXT', 'data/playlists.txt');
 define('FILE_PLAYLIST_JSON', 'data/playlists.json');
+
+// ====================== DOMAIN ===========================
+
+define('DOMAIN', 'http://trungtruc.laptrinhaz.com');
 
 
 

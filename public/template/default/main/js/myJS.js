@@ -16,6 +16,13 @@ $(function () {
         return 0;
     })
 
+    //Share Facebook
+    $(".facebook").click(function (e) {
+        url = $(".fb-xfbml-parse-ignore").attr("href");
+        window.open(url, 'name', 'height=255,width=250,left=' + $("body").width() / 2 + ',top:' + screen.height/2);
+        e.preventDefault();
+    });
+
     // Active Category
     $("#categories-content li.category-" + getUrlVar("id")).addClass("current");
 })
