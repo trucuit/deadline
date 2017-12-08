@@ -64,6 +64,17 @@ $(function () {
 
     })
     // end js outline
+    $('.tabs-page .nav-tabs li a').click(function () {
+        var text = $(this).attr("href");
+        $.ajax({
+            url: ROOT_URL + 'index.php?module=default&controller=course&action=activeMenu',
+            type: 'POST',
+            data: {nameMenu: text},
+            success: function (data) {
+                console.log(data);
+            }
+        });
 
+    });
 
 });

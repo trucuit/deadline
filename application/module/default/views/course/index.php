@@ -121,7 +121,7 @@ $url = $_SERVER['REQUEST_URI'];
                         <li class="active"><a href="#outline" role="tab" data-toggle="tab">Menu Video</a></li>
                         <li><a href="#announcement" role="tab" data-toggle="tab">Sourse Code</a></li>
                         <li class="itemnew"><a href="#discussion" role="tab" data-toggle="tab">Facebook Comment</a></li>
-                        <li class="itemnew"><a href="#discussion" role="tab" data-toggle="tab">Youtube Comment</a></li>
+                        <li class="itemnew"><a href="#" role="tab" data-toggle="tab">Youtube Comment</a></li>
 
                     </ul>
                     <!-- Tab panes -->
@@ -266,4 +266,44 @@ $url = $_SERVER['REQUEST_URI'];
         js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=1937598989836489';
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
+<?php
+$session = Session::get('nameMenu')
+?>
+<script type="text/javascript">
 
+    $(function () {
+        var session = '<?php echo $session?>';
+
+        if (session !== '') {
+            var activeDefault = $('.tabs-page .nav-tabs li')[0];
+            $(activeDefault).removeClass("active");
+            $('#outline').removeClass("active");
+            $(session).addClass("active in");
+            var active = "a[href=" + session + "]";
+            $(active).parents('li').addClass("active");
+
+            if ($('.nav-tabs').length) {
+                $.each($('.nav-tabs'), function () {
+                    var tabsItem = $(this).find('a'),
+                        tabs = $(this),
+                        leftActive = tabs.find('.active').children('a').position().left,
+                        widthActive = tabs.find('.active').children('a').width();
+
+                    $('.tabs-hr').css({
+                        left: leftActive,
+                        width: widthActive
+                    });
+                    tabsItem.on('click', function () {
+                        var left = $(this).position().left,
+                            width = $(this).width();
+                        $('.tabs-hr').animate({
+                            left: left,
+                            width: width
+                        }, 500, 'easeInOutExpo');
+                    });
+                });
+            }
+
+        }
+    })
+</script>
