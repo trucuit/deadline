@@ -14,7 +14,7 @@
                     </div>
 
                     <div class="img">
-                        <img src="<?php echo $urlImage?>/homeslider/img-thumb.png" alt="">
+                        <img src="<?php echo $urlImage?>/homeslider/agular.png" alt="">
                     </div>
                 </div>
 
@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="img">
-                        <img src="<?php echo $urlImage?>/homeslider/img-thumb.png" alt="">
+                        <img src="<?php echo $urlImage?>/homeslider/react.png" alt="">
                     </div>
 
                 </div>

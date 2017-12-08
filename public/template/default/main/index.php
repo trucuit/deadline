@@ -88,6 +88,8 @@ $urlFile = TEMPLATE_URL . '/default/main';
 </div>
 <!-- END / PAGE WRAP -->
 
+<!--/google +-->
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 <!-- Load jQuery -->
 <?php echo $this->_fileJS ?>
 

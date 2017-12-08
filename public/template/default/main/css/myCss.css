@@ -3,6 +3,10 @@
     padding: 0px;
 }
 
+#login-content .image {
+    top: 20%;
+}
+
 a.all-course.mc-btn.btn-style-1 {
     right: 0px !important;
 }

@@ -3,6 +3,11 @@ $listVideo = $this->video;
 $listVideoRelativeQuery = $this->listVideoRelativeQuery;
 $infoCourse = $this->course;
 $url = $_SERVER['REQUEST_URI'];
+
+
+$nameAuthor = URL::filterURL($listVideo[0]['name_author']);
+$authorID= URL::filterURL($listVideo[0]['author_id']);
+$urlFindAuthor = URL::createLink('default', 'index', 'findAuthor', ['author' => $nameAuthor,'author_id'=>$authorID], "tac-gia-$nameAuthor/$authorID.html");
 ?>
 <!-- COURSE -->
 <section class="course-top">
@@ -53,7 +58,11 @@ $url = $_SERVER['REQUEST_URI'];
                                          alt="">
                                 </div>
                                 <div class="info-instructor">
-                                    <cite class="sm black"><a href="#"><?php echo $this->video[0]['name_author'] ?></a></cite>
+                                    <cite class="sm black">
+                                        <a href="<?php echo $urlFindAuthor ?>">
+                                            <?php echo $listVideo[0]['name_author'] ?>
+                                        </a>
+                                    </cite>
                                     <a href="#"><i class="fa fa-star"></i></a>
                                     <a href="#"><i class="fa fa-envelope"></i></a>
                                     <a href="#"><i class="fa fa-check-square"></i></a>
@@ -77,7 +86,7 @@ $url = $_SERVER['REQUEST_URI'];
                                     $text = "tim-kiem-tag";
                                     $urlTag = URL::createLink('default', 'index', 'findTag', ['tag' => $valueTag], "$text-$valueTag.html");
                                     ?>
-                                    <a href="<?php echo $urlTag ?>">
+                                    <a href="<?php echo $urlTag ?>" class="bold" style="color: #37ABF2">
                                         <?php
                                         if ($key == count($tag) - 1)
                                             echo ucfirst($valueTag);
@@ -94,23 +103,15 @@ $url = $_SERVER['REQUEST_URI'];
                         <i class="icon md-forward"></i>
                         <h4 class="xsm black bold">Share course</h4>
                         <div class="share-body">
-                            <a href="#" class="twitter" title="twitter">
-                                <i class="icon md-twitter"></i>
-                            </a>
-                            <a href="#" class="pinterest" title="pinterest">
-                                <i class="icon md-pinterest-1"></i>
-                            </a>
-                            <span class="facebook"
-                                  data-href="<?php echo DOMAIN . $url ?>"
-                                  data-layout="button" data-size="small" data-mobile-iframe="true">
-                                <a class="fb-xfbml-parse-ignore" target="_blank"
-                                   href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(DOMAIN . $url) ?>&amp;src=sdkpreparse">
-                                    <i class="icon md-facebook-1"></i>
-                                </a>
-                            </span>
-                            <a href="#" class="google-plus" title="google plus">
-                                <i class="icon md-google-plus"></i>
-                            </a>
+                            <div class="fb-save" data-uri="<?php echo DOMAIN . $url ?>" data-size="small"></div>
+                            <div class="fb-like" data-href="<?php echo DOMAIN . $url ?>"
+                                 data-layout="button_count" data-action="like" data-size="small"
+                                 data-show-faces="true"
+                                 data-share="true">
+                            </div>
+                            <span style="position: absolute; margin-left: 3px">
+                                    <g:plusone size="medium"></g:plusone>
+                                </span>
                         </div>
                     </div>
                 </div>
@@ -204,6 +205,10 @@ $url = $_SERVER['REQUEST_URI'];
                 $id_course = $value['course_id'];
                 $author_avatar = $value['author_avatar'];
                 $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category), "$name_category/$name_course-$id_category-$id_course.html");
+
+                $nameAuthor = URL::filterURL($value['name_author']);
+                $authorID= URL::filterURL($value['author_id']);
+                $urlFindAuthor = URL::createLink('default', 'index', 'findAuthor', ['author' => $value['name_author'],'author_id'=>$authorID], "tac-gia-$nameAuthor/$authorID.html");
                 ?>
                 <div class="col-sm-6 col-md-3 course-relative">
                     <!-- MC ITEM -->
@@ -220,7 +225,7 @@ $url = $_SERVER['REQUEST_URI'];
                                 <a href="<?php echo $urlCourse ?>"><?php echo $value['name_course'] ?></a>
                             </h4>
                             <div class="name-author">
-                                By <a href="#"><?php echo $value['name_author'] ?></a>
+                                By <a href="<?php echo $urlFindAuthor ?>"><?php echo $value['name_author'] ?></a>
                             </div>
                         </div>
                         <div class="ft-item item-rate">

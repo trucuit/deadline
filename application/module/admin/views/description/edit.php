@@ -1,8 +1,6 @@
 <?php
 $infoItem = $this->infoItem;
-$listCourse = $this->listCourse;
-$course_id = isset($infoItem ['course_id']) ? $infoItem['course_id'] : 0;
-$selectBoxCourse = Helper::cmsSelecbox($listCourse, 'form[course_id]', 'form-control', $course_id);
+$id = isset($infoItem ['id']) ? $infoItem['id'] : 0;
 
 $url = [
     'save' => URL::createLink('admin', DB_TBDESCRIPTION, 'edit',['id'=>$this->arrParam['id']]),
@@ -49,15 +47,32 @@ $url = [
                                 <label class="col-sm-3 text-right control-label">Course <i
                                         style="color: red">*</i></label>
                                 <div class="col-sm-6 text-left">
-                                    <?php echo $selectBoxCourse ?>
+                                    <input type="text" value="<?php echo $infoItem['name'] ?>" disabled class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 text-right control-label">Description <i
-                                        style="color: red">*</i></label>
-
+                                <label class="col-sm-3 text-right control-label">Current Image Thumbnail</label>
+                                <div class="col-sm-6 text-left">
+                                    <img src="<?php echo $this->_dirImg . "/course/" . $infoItem['imageThumbnail'] ?>"
+                                         alt="" height="40px">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right control-label">Image</label>
+                                <div class="col-sm-6 text-left">
+                                    <input type="file" class="form-control" onchange="readURL(this);" name="imageThumbnail">
+                                    <span class="help-block"><i style="color: red"> *</i>Select a new one if you want to change image</span>
+                                    <div class="blah">
+                                        <img id="blah" src="#" height="50px"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right control-label">Description</label>
                                 <div class="col-sm-6">
-                                    <textarea name="form[description]" rows="5" class="form-control"><?php if(isset($this->infoItem['description'])) echo $this->infoItem['description'] ?></textarea>
+                                    <textarea name="form[description]" id="ckeditorDescription" rows="10" cols="80">
+                                        <?php if (isset($infoItem['description'])) echo $infoItem['description'] ?>
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
@@ -67,3 +82,6 @@ $url = [
         </div>
     </section>
 </div>
+<script>
+    CKEDITOR.replace('ckeditorDescription');
+</script>

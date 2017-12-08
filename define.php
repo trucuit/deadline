@@ -33,7 +33,7 @@ define('DB_TBTAG', 'tag');
 define('DB_TBDESCRIPTION', 'description');
 
 // ====================== TIME LOGIN ===========================
-define('TIME_LOGIN', 3600);
+define('TIME_LOGIN', 3600*3);
 
 // ====================== GET VIDEO ===========================
 define('API_KEY', 'AIzaSyDQFQIkqeOJhVxrieG1Xaj3P_Q_5OUkbRg');

@@ -5,14 +5,13 @@ $url = [
     'home' => URL::createLink("default", 'index', 'index', null, 'trang-chu.html')
 ]
 ?>
-
 <!-- SUB BANNER -->
 <section class="sub-banner sub-banner-search">
     <div class="awe-parallax bg-section1-demo"></div>
     <div class="awe-overlay overlay-color-1"></div>
     <div class="container">
         <div class="sub-banner-content-result">
-            <h2>
+            <h2 class="text-center">
                 <?php echo count($resultFind) ?> Kết quả cho
                 <a href="#">
                     <?php if (isset($this->resultFind['search'])) echo $this->resultFind['search'] ?>
@@ -46,32 +45,36 @@ $url = [
             <div class="row">
                 <!-- ITEM -->
                 <?php
-                foreach ($resultFind as $find) {
-                    $name_category = URL::filterURL($find['name_category']);
-                    $id_category = $find['id_category'];
-                    $name_course = URL::filterURL($find['name_course']);
-                    $id_course = $find['id_course'];
+                foreach ($resultFind as $value) {
+                    $name_category = URL::filterURL($value['name_category']);
+                    $id_category = $value['id_category'];
+                    $name_course = URL::filterURL($value['name_course']);
+                    $id_course = $value['id_course'];
                     $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category), "$name_category/$name_course-$id_category-$id_course.html");
+
+                    $nameAuthor = URL::filterURL($value['name_author']);
+                    $authorID= URL::filterURL($value['author_id']);
+                    $urlFindAuthor = URL::createLink('default', 'index', 'findAuthor', ['author' => $value['name_author'],'author_id'=>$authorID], "tac-gia-$nameAuthor/$authorID.html");
                     ?>
                     <div class="col-xs-6 col-sm-4 col-md-3">
                         <!-- MC ITEM -->
 
                         <div class="mc-item mc-item-2">
                             <div class="image-heading">
-                                <img src="<?php echo $urlImage . "/course/" . $find['course_image'] ?>" alt="">
+                                <img src="<?php echo $urlImage . "/course/" . $value['course_image'] ?>" alt="">
                             </div>
                             <div class="meta-categories"><a href="#">Web design</a></div>
                             <div class="content-item">
                                 <div class="image-author">
-                                    <img src="<?php echo $urlImage."/author/".$find['author_avatar'] ?>" alt="">
+                                    <img src="<?php echo $urlImage."/author/".$value['author_avatar'] ?>" alt="">
                                 </div>
                                 <h4>
                                     <a href="<?php echo $urlCourse ?>">
-                                        <?php echo $find['name_course'] ?>
+                                        <?php echo $value['name_course'] ?>
                                     </a>
                                 </h4>
                                 <div class="name-author">
-                                    By <a href="#"><?php echo $find['name_author'] ?></a>
+                                    By <a href="<?php echo $urlFindAuthor ?>"><?php echo $value['name_author'] ?></a>
                                 </div>
                             </div>
                             <div class="ft-item">

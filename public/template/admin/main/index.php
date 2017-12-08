@@ -4,7 +4,6 @@ $dirImg = $this->_dirImg;
 <!DOCTYPE html>
 <html>
 <head>
-
     <?php
     echo $this->_metaHTTP;
     echo $this->_metaName;

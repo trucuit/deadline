@@ -16,7 +16,7 @@ class IndexModel extends Model
         foreach ($nameCategory as $value) {
             foreach ($value as $value1) {
                 $query = [];
-                $query[] = "SELECT cs.image as `course_image`, a.avatar as `avatar_author`, `c`.`id` AS `id_category`,`c`.`name`AS `name_category`,`cs`.`name`AS `name_course`,`cs`.`id`AS `id_course`,`a`.`name` AS `name_author`";
+                $query[] = "SELECT a.id as `author_id`,cs.image as `course_image`, a.avatar as `avatar_author`, `c`.`id` AS `id_category`,`c`.`name`AS `name_category`,`cs`.`name`AS `name_course`,`cs`.`id`AS `id_course`,`a`.`name` AS `name_author`";
                 $query[] = "FROM `course`AS`cs`";
                 $query[] = "JOIN `category`AS`c` ON `c`.`id`=`cs`.`category_id`";
                 $query[] = "JOIN `author` AS`a` ON `a`.id =`cs`.`author_id`";
@@ -43,7 +43,7 @@ class IndexModel extends Model
             return [];
         }
         $find = $arrParam['find'];
-        $query[] = "SELECT DISTINCT a.avatar as `author_avatar`,cs.image as `course_image`,`c`.`id` AS `id_category`,`c`.`name`AS `name_category`,`cs`.`name`AS `name_course`,`cs`.`id`AS `id_course`,`a`.`name` AS `name_author`";
+        $query[] = "SELECT DISTINCT  a.id as `author_id`,a.avatar as `author_avatar`,cs.image as `course_image`,`c`.`id` AS `id_category`,`c`.`name`AS `name_category`,`cs`.`name`AS `name_course`,`cs`.`id`AS `id_course`,`a`.`name` AS `name_author`";
         $query[] = "FROM `course` AS `cs`";
         $query[] = "INNER JOIN `category` AS `c` ON `c`.`id`=`cs`.`category_id`";
         $query[] = "INNER JOIN `author` AS `a` ON `a`.id =`cs`.`author_id`";
@@ -58,11 +58,22 @@ class IndexModel extends Model
 
     public function getResultFindTag($tag)
     {
-        $query[] = "SELECT DISTINCT a.avatar as  `author_avatar`,cs.image as `course_image`,`c`.`id` AS `id_category`,`c`.`name`AS `name_category`,`cs`.`name`AS `name_course`,`cs`.`id`AS `id_course`,`a`.`name` AS `name_author`";
+        $query[] = "SELECT DISTINCT a.id as `author_id`,a.id as `author_id`,a.avatar as  `author_avatar`,cs.image as `course_image`,`c`.`id` AS `id_category`,`c`.`name`AS `name_category`,`cs`.`name`AS `name_course`,`cs`.`id`AS `id_course`,`a`.`name` AS `name_author`";
         $query[] = "FROM `course` AS `cs`";
         $query[] = "INNER JOIN `category` AS `c` ON `c`.`id`=`cs`.`category_id`";
         $query[] = "INNER JOIN `author` AS `a` ON `a`.id =`cs`.`author_id`";
         $query[] = "WHERE `cs`.`name` LIKE '%$tag%'";
+        $query = implode(" ", $query);
+        return $this->execute($query, 1);
+    }
+
+    public function getResultFindAuthor($author_id)
+    {
+        $query[] = "SELECT DISTINCT a.id as `author_id`,a.avatar as  `author_avatar`,cs.image as `course_image`,`c`.`id` AS `id_category`,`c`.`name`AS `name_category`,`cs`.`name`AS `name_course`,`cs`.`id`AS `id_course`,`a`.`name` AS `name_author`";
+        $query[] = "FROM `course` AS `cs`";
+        $query[] = "INNER JOIN `category` AS `c` ON `c`.`id`=`cs`.`category_id`";
+        $query[] = "INNER JOIN `author` AS `a` ON `a`.id =`cs`.`author_id`";
+        $query[] = "WHERE `cs`.`author_id` = '$author_id'";
         $query = implode(" ", $query);
         return $this->execute($query, 1);
     }

@@ -2,6 +2,8 @@
 
 class IndexController extends Controller
 {
+    private $table = "index";
+
     public function __construct($params)
     {
         parent::__construct($params);
@@ -14,7 +16,6 @@ class IndexController extends Controller
     public function indexAction()
     {
         $this->_view->category = $this->_model->homeQuery();
-
         $this->_view->listFindCourse = $this->_model->getIDNameCategory();
         $this->_view->statistics = $this->_model->getStatistics();
 
@@ -41,5 +42,38 @@ class IndexController extends Controller
         $this->_view->render('find/index');
     }
 
+    public function findAuthorAction()
+    {
+
+        $this->_view->resultFind['list'] = $this->_model->getResultFindAuthor($this->_arrParam['author_id']);
+        $this->_view->resultFind['search'] = $this->_model->select(DB_TBAUTHOR, $this->_arrParam['author_id'], 1)['name'];
+        $this->_view->render('find/index');
+    }
+
+    public function loginAction()
+    {
+        $userInfo = Session::get('user');
+        if ($userInfo['login'] == true && $userInfo['time'] + TIME_LOGIN >= time()) {
+            URL::redirect('admin', 'index', 'index');
+        }
+        if (isset($this->_arrParam['form'])) {
+            $validate = new Validate($this->_arrParam['form']);
+            $queryUserName = "SELECT id,username,fullname,email FROM `user` WHERE username = '" . $this->_arrParam['form']['email'] . "' AND password='" . md5($this->_arrParam['form']['password']) . "'";
+            $validate->addRule('email', 'existRecord', array('database' => $this->_model, 'query' => $queryUserName, 'min' => 3, 'max' => 25))
+                ->addRule('password', 'password');
+            $validate->run();
+            $this->_arrParam['form'] = $validate->getResult();
+            if ($validate->isValid() == false) {
+                $this->_view->errors = "Invalid username or password.";
+            } else {
+                if (isset($this->_arrParam['form']['check']))
+                    Session::set('user', ['login' => true, 'info' => $this->_model->execute($queryUserName, true)[0], 'time' => time() + 24 * 60 * 60]);
+                else
+                    Session::set('user', ['login' => true, 'info' => $this->_model->execute($queryUserName, true)[0], 'time' => time()]);
+                URL::redirect('admin', DB_TBUSER, 'profile');
+            }
+        }
+        $this->_view->render($this->table . "/login");
+    }
 
 }
