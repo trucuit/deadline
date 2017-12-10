@@ -3,6 +3,15 @@
     padding: 0px;
 }
 
+/*input tim kiem*/
+.after-slider-content .course-keyword {
+    width: 80% !important;
+}
+
+#login-content .image {
+    top: 20%;
+}
+
 a.all-course.mc-btn.btn-style-1 {
     right: 0px !important;
 }
@@ -61,4 +70,15 @@ h4.name-course {
 .section-outline .section-list li .active {
     background-color: #37abf2;
     color: #fff;
+}
+.ui-autocomplete-category{
+    color: #37abf2;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+#login-content .image{
+    top:10% !important;
+}
+#login-content img{
+    width: 40%;
 }

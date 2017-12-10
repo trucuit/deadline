@@ -19,12 +19,17 @@ $(function () {
     //Share Facebook
     $(".facebook").click(function (e) {
         url = $(".fb-xfbml-parse-ignore").attr("href");
-        window.open(url, 'name', 'height=255,width=250,left=' + $("body").width() / 2 + ',top:' + screen.height/2);
+        window.open(url, 'name', 'height=255,width=250,left=' + $("body").width() / 2 + ',top:' + screen.height / 2);
         e.preventDefault();
     });
 
     // Active Category
     $("#categories-content li.category-" + getUrlVar("id")).addClass("current");
+
+
+
+
+
 })
 
 //submit Form
@@ -39,3 +44,7 @@ function getUrlVar(key) {
     return result && unescape(result[1]) || "";
 }
 
+//disableF5
+function disableF5(e) {
+    if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 82) e.preventDefault();
+};

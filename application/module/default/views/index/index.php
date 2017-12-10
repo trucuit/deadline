@@ -2,6 +2,7 @@
 $category = $this->category;
 
 ?>
+
 <!-- SECTION 1 -->
 <section id="mc-section-1" class="mc-section-1 section">
     <div class="container">
@@ -127,16 +128,21 @@ $category = $this->category;
                             $id_category = $value['id_category'];
                             $name_course = URL::filterURL($value['name_course']);
                             $id_course = $value['id_course'];
-                            $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category),"$name_category/$name_course-$id_category-$id_course.html");
+                            $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category), "$name_category/$name_course-$id_category-$id_course.html");
+
+                            $nameAuthor = URL::filterURL($value['name_author']);
+                            $authorID = URL::filterURL($value['author_id']);
+                            $urlFindAuthor = URL::createLink('default', 'index', 'findAuthor', ['author' => $value['name_author'], 'author_id' => $authorID], "tac-gia-$nameAuthor/$authorID.html");
                             ?>
                             <div class="mc-item mc-item-1">
                                 <div class="image-heading">
-                                    <img src="<?php echo $urlImage."/course/".$value['course_image'] ?>" alt="">
+                                    <img src="<?php echo $urlImage . "/course/" . $value['course_image'] ?>" alt="">
                                 </div>
                                 <div class="meta-categories"><a href="#">Web design</a></div>
                                 <div class="content-item">
                                     <div class="image-author">
-                                        <img src="<?php echo $urlImage ?>/author/<?php echo $value['avatar_author'] ?>" alt="">
+                                        <img src="<?php echo $urlImage ?>/author/<?php echo $value['avatar_author'] ?>"
+                                             alt="">
                                     </div>
                                     <h4>
                                         <a href="<?php echo $urlCourse ?>"
@@ -145,7 +151,9 @@ $category = $this->category;
                                         </a>
                                     </h4>
                                     <div class="name-author">
-                                        By <a href="#"><?php echo $value['name_author'] ?></a>
+                                        By <a href="<?php echo $urlFindAuthor ?>">
+                                            <?php echo $value['name_author'] ?>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="ft-item">

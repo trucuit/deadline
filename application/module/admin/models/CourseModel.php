@@ -9,21 +9,13 @@ class CourseModel extends Model
 
     public function showCourse()
     {
-        $query[] = "SELECT co.tag,COUNT(v.course_id) as 'total_video',co.id,co.name,co.link,ca.name as 'category',co.created,co.created_by,co.modified,co.modified_by,co.status, co.image, au.name as `author`";
+        $query[] = "SELECT co.sourse,co.tag,COUNT(v.course_id) as 'total_video',co.id,co.name,co.link,ca.name as 'category',co.created,co.created_by,co.modified,co.modified_by,co.status, co.image, au.name as `author`";
         $query[] = "FROM `" . DB_TBCOURSE . "` AS `co`";
         $query[] = "LEFT JOIN `" . DB_TBCATEGORY . "` AS `ca` ON `co`.category_id=`ca`.id";
         $query[] = "JOIN `" . DB_TBVIDEO . "` AS `v` ON v.course_id=co.id";
         $query[] = "LEFT JOIN `" . DB_TBAUTHOR . "` AS `au` ON co.author_id=au.id";
         $query[] = "GROUP BY co.id";
         $query[] = "ORDER BY co.name";
-//        SELECT COUNT(v.course_id), c.id FROM
-//`video` as v JOIN `course` as c ON v.course_id = c.id
-//JOIN `category` ca ON v.course_id  = c.id
-//GROUP BY c.id
-//        $query[] = "UNION";
-//        $query[] = "SELECT co.id,co.name,co.link,ca.name as 'category',co.created,co.created_by,co.modified,co.modified_by,co.status";
-//        $query[] = "FROM `" . DB_TBCOURSE . "` AS `co` RIGHT JOIN `" . DB_TBCATEGORY . "` AS `ca`";
-//        $query[] = "ON `co`.category_id=`ca`.id";
         $query = implode(" ", $query);
         return $this->execute($query, 1);
     }
@@ -53,11 +45,23 @@ class CourseModel extends Model
 
     public function insertCourse($data)
     {
+//        echo "<pre>";
+//        print_r($data);
+//        echo "</pre>";die;
         $image = $data['image'];
+
         $data['name'] = trim($data['name']);
         $data['image'] = URL::filterURL($data['name'] . '.' . Helper::cutCharacter($image['type'], '/', 1));
         $data['created'] = date("Y-m-d H:i:s");
         $data['created_by'] = Session::get("user")['info']['username'];
+
+        if (isset($data['imageThumbnail'])) {
+            $imageThumbnail = $data['imageThumbnail'];
+            $data['imageThumbnail'] = URL::filterURL($data['name'] . '.' . Helper::cutCharacter($data['imageThumbnail']['type'], '/', 1));
+            $nameImageThumnailDefault = TEMPLATE_PATH . "/default/main/images/thumbnail/" . $data['image'];
+            move_uploaded_file($imageThumbnail['tmp_name'], $nameImageThumnailDefault);
+        }
+
         $this->insert(DB_TBCOURSE, $data);
 
         $query = "SELECT `id` FROM `" . DB_TBCOURSE . "` ORDER BY `id` DESC LIMIT 0,1";
@@ -67,6 +71,7 @@ class CourseModel extends Model
 
         $nameImageAdmin = TEMPLATE_PATH . "/admin/main/images/course/" . $data['image'];
         $nameImageDefault = TEMPLATE_PATH . "/default/main/images/course/" . $data['image'];
+
         move_uploaded_file($image['tmp_name'], $nameImageAdmin);
         copy($nameImageAdmin, $nameImageDefault);
         return 1;
@@ -75,6 +80,7 @@ class CourseModel extends Model
 
     public function updateCourse($data, $file)
     {
+
         if (isset($data['link']) && strlen($data['link']) > 40) {
             $data['link'] = Helper::cutCharacter($data['link'], 'list=', 5);
         }
@@ -95,8 +101,19 @@ class CourseModel extends Model
             if (file_exists($imageOldDefault))
                 unlink($imageOldDefault);
             move_uploaded_file($file['image']['tmp_name'], $imageNewAdmin);
-            copy($imageNewAdmin,$imageNewDefault);
+            copy($imageNewAdmin, $imageNewDefault);
         }
+
+        if (!empty($file['imageThumbnail']['name'])) {
+            $imageOld = TEMPLATE_PATH . "/default/main/images/thumbnail/" . $data['image'];
+            $data['imageThumbnail'] = URL::filterURL($data['name'] . '.' . pathinfo($file['imageThumbnail']['name'])['extension']);
+            $imageNew = TEMPLATE_PATH . "/default/main/images/thumbnail/" . $data['image'];
+            if (file_exists($imageOld))
+                unlink($imageOld);
+            $imageThumbnail = $file['imageThumbnail'];
+            move_uploaded_file($imageThumbnail['tmp_name'], $imageNew);
+        }
+
         $this->update(DB_TBCOURSE, $data, ['id' => $id]);
         if (isset($data['link'])) {
             $this->deleteVideo(['id' => $id]);
@@ -217,16 +234,23 @@ class CourseModel extends Model
 
     public function deleteItem($param)
     {
+        //Delete item Course
         foreach ($param as $val) {
             $item = $this->select(DB_TBCOURSE, $val, 1);
             $nameImage = TEMPLATE_PATH . "/admin/main/images/course/" . $item['image'];
+            $nameThumbnail = TEMPLATE_PATH . "/default/main/images/thumbnail/" . $item['image'];
             if (file_exists($nameImage)) {
                 unlink($nameImage);
+            }
+
+            if (file_exists($nameThumbnail)) {
+                unlink($nameThumbnail);
             }
             $query = "DELETE FROM `" . DB_TBCOURSE . "` WHERE `id`='$val'";
             $this->execute($query);
 
         }
+        //Delete video in table Video
         foreach ($param as $val) {
             $this->deleteVideo($val);
         }
@@ -256,6 +280,16 @@ class CourseModel extends Model
             $result[$key] = $value['name'];
         }
         return $result;
+    }
+
+    public function getStringTag()
+    {
+        $listTag = $this->showAll(DB_TBTAG);
+        $result = '';
+        foreach ($listTag as $value) {
+            $result .= $value['name'] . ",";
+        }
+        return trim($result, ",");
     }
 }
 

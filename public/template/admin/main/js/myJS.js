@@ -57,8 +57,17 @@ function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            $('#blah')
-                .attr('src', e.target.result)
+            $('#blah').attr('src', e.target.result)
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+// xem hình ảnh trước khi submit
+function readURLThumbnail(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#blahThumbnail').attr('src', e.target.result)
         };
         reader.readAsDataURL(input.files[0]);
     }

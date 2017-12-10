@@ -7,6 +7,10 @@ $author_id = isset($infoItem ['author_id']) ? $infoItem['author_id'] : 0;
 $selectBoxCategory = Helper::cmsSelecbox($listCategory, 'form[category_id]', 'form-control', $catefory_id);
 $selectBoxAuthor = Helper::cmsSelecbox($listAuthor, 'form[author_id]', 'form-control', $author_id);
 $infoItem = isset($this->infoItem) ? $this->infoItem : [];;
+
+//listTag tag complete
+$listTag = $this->listTag;
+
 $url = [
     'save' => URL::createLink('admin', DB_TBCOURSE, 'add', ['type' => 'save']),
     'save-close' => URL::createLink('admin', DB_TBCOURSE, 'add', ['type' => 'close']),
@@ -18,7 +22,7 @@ $url = [
 <div class="content-wrapper" style="min-height: 915.8px;">
     <section class="content-header">
         <h1>
-            Manage&nbsp;<?php echo ucfirst($this->arrParam['controller'])?>
+            Manage&nbsp;<?php echo ucfirst($this->arrParam['controller']) ?>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i><?php echo ucfirst($this->arrParam['module']) ?></a></li>
@@ -61,7 +65,8 @@ $url = [
                     <form action="" method="post" enctype="multipart/form-data" id="adminForm">
                         <div class="box-body">
                             <div class="form-group row">
-                                <label class="col-sm-3 text-right control-label">Name<i style="color: red"> *</i></label>
+                                <label class="col-sm-3 text-right control-label">Name<i style="color: red">
+                                        *</i></label>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" placeholder="Course" name="form[name]"
                                            value="<?php if (isset($infoItem['name'])) echo $infoItem['name'] ?>"
@@ -69,7 +74,8 @@ $url = [
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 text-right control-label">Link Youtube<i style="color: red"> *</i></label>
+                                <label class="col-sm-3 text-right control-label">Link Youtube<i style="color: red">
+                                        *</i></label>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" name="form[link]" placeholder="Link Youtube"
                                            value="<?php if (isset($infoItem['link'])) echo $infoItem['link'] ?>"
@@ -77,7 +83,8 @@ $url = [
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 text-right control-label">Image<i style="color: red"> *</i></label>
+                                <label class="col-sm-3 text-right control-label">Image Course<i style="color: red">
+                                        *</i></label>
                                 <div class="col-sm-6">
                                     <input type="file" class="form-control" onchange="readURL(this);" name="image">
                                     <div class="blah">
@@ -85,29 +92,61 @@ $url = [
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right control-label">Image Thumnail Facebook</label>
+                                <div class="col-sm-6">
+                                    <input type="file" class="form-control" onchange="readURLThumbnail(this);"
+                                           name="imageThumbnail">
+                                    <div class="blah">
+                                        <img id="blahThumbnail" src="#" height="50px"/>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="form-group row">
-                                <label class="col-sm-3 text-right control-label">Category<i style="color: red"> *</i></label>
+                                <label class="col-sm-3 text-right control-label">Category<i style="color: red">
+                                        *</i></label>
 
                                 <div class="col-sm-6">
                                     <?php echo $selectBoxCategory ?>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 text-right control-label">Author<i style="color: red"> *</i></label>
+                                <label class="col-sm-3 text-right control-label">Author<i style="color: red">
+                                        *</i></label>
 
                                 <div class="col-sm-6">
                                     <?php echo $selectBoxAuthor ?>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 text-right control-label">Tag<i style="color: red"> *</i></label>
 
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right control-label">Tag<i style="color: red">
+                                        *</i></label>
                                 <div class="col-sm-6">
                                     <input name="form[tag]"
                                            id="mySingleField" value="php,javascript" type="hidden">
-                                    <ul id="singleFieldTags"
-                                    ></ul>
+                                    <ul id="singleFieldTags"></ul>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right control-label">Description</label>
+                                <div class="col-sm-6">
+                                    <textarea name="form[description]" id="ckeditorDescription" rows="10" cols="80">
+                                        <?php if (isset($infoItem['description'])) echo $infoItem['description'] ?>
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 text-right control-label">Link Sourse</label>
+                                <div class="col-sm-6">
+                                    <textarea name="form[sourse]" id="ckeditorSourse" rows="10" cols="80">
+                                        <?php
+                                        if (isset($infoItem['sourse'])) echo($infoItem['sourse']);
+                                        else
+                                            echo 'Link Github:<br>Link Driver:';
+                                        ?>
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
@@ -117,9 +156,10 @@ $url = [
         </div>
     </section>
 </div>
-<script>
+<script type="text/javascript">
     $(function () {
-        var sampleTags = ['c++', 'java', 'php', 'coldfusion', 'javascript', 'asp', 'ruby', 'python', 'c', 'scala', 'groovy', 'haskell', 'perl', 'erlang', 'apl', 'cobol', 'go', 'lua'];
+        var strTag = "<?php echo $listTag ?>";
+        var sampleTags = strTag.split(",");
         $('#singleFieldTags').tagit({
             availableTags: sampleTags,
             singleField: true,
@@ -127,4 +167,8 @@ $url = [
         });
 
     });
+</script>
+<script>
+    CKEDITOR.replace('ckeditorDescription');
+    CKEDITOR.replace('ckeditorSourse');
 </script>

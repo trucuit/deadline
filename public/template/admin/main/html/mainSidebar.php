@@ -100,7 +100,7 @@ $userInfo = Session::get("user")['info'];
             <li class="description">
                 <a href="<?php echo $url['description'] ?>">
                     <i class="fa fa-tag"></i>
-                    <span>Description</span>
+                    <span>Info Share Facebook</span>
                 </a>
             </li>
         </ul>

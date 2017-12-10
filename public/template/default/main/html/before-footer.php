@@ -8,19 +8,35 @@ $statistics = $this->statistics;
             <div class="col-lg-12 text-center">
                 <div class="mc-count-item">
                     <h4>Category</h4>
-                    <p><span class="countup"><?php echo $statistics[DB_TBCOURSE] ?></span></p>
+                    <p>
+                        <span class="countup number-counters">
+                            <strong data-to="<?php echo $statistics[DB_TBCOURSE] ?>">0</strong>
+                        </span>
+                    </p>
                 </div>
                 <div class="mc-count-item">
                     <h4>Courses</h4>
-                    <p><span class="countup"><?php echo $statistics[DB_TBCATEGORY] ?></span></p>
+                    <p>
+                        <span class="countup number-counters">
+                            <strong data-to="<?php echo $statistics[DB_TBCATEGORY] ?>">0</strong>
+                        </span>
+                    </p>
                 </div>
                 <div class="mc-count-item">
                     <h4>Teachers</h4>
-                    <p><span class="countup"><?php echo $statistics[DB_TBAUTHOR] ?></span></p>
+                    <p>
+                        <span class="countup number-counters">
+                            <strong data-to="<?php echo $statistics[DB_TBAUTHOR] ?>">0</strong>
+                        </span>
+                    </p>
                 </div>
                 <div class="mc-count-item">
                     <h4>Video</h4>
-                    <p><span class="countup"><?php echo $statistics[DB_TBVIDEO] ?></span></p>
+                    <p>
+                        <span class="countup number-counters">
+                            <strong data-to="<?php echo $statistics[DB_TBVIDEO] ?>">0</strong>
+                        </span>
+                    </p>
                 </div>
             </div>
         </div>

@@ -63,6 +63,16 @@ $url = [
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-sm-3 text-right control-label">Image Thumbnail<i style="color: red">
+                                        *</i></label>
+                                <div class="col-sm-6">
+                                    <input type="file" class="form-control" onchange="readURL(this);" name="image">
+                                    <div class="blah">
+                                        <img id="blah" src="#" height="50px"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-sm-3 text-right control-label">Description <i
                                             style="color: red">*</i></label>
 

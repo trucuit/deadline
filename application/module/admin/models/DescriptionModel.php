@@ -9,9 +9,9 @@ class DescriptionModel extends Model
 
     public function getItem()
     {
-        $query[] = "SELECT de.id, co.id as `course_id`,de.description, co.name, de.created, de.created_by, de.modified, de.modified_by";
-        $query[] = "FROM `" . DB_TBDESCRIPTION . "` de";
-        $query[] = "JOIN `" . DB_TBCOURSE . "` `co` ON de.course_id = co.id";
+        $query[] = "SELECT name, description, imageThumbnail, id";
+        $query[] = "FROM `" . DB_TBCOURSE . "`";
+        $query[] = "ORDER BY `name`";
         $query = implode(" ", $query);
         return $this->execute($query, 1);
     }
@@ -21,7 +21,20 @@ class DescriptionModel extends Model
         $arrParam['description'] = trim($arrParam['description']);
         $arrParam['modified'] = date('Y-m-d');
         $arrParam['modified_by'] = Session::get("user")['info']['username'];
-        $this->update(DB_TBDESCRIPTION, $arrParam, $arrID);
+        if (isset($arrParam['imageThumbnail'])) {
+            $arrParam['imageThumbnailOld'] = $arrParam['imageThumbnailOld'] == null ? "1.png" : $arrParam['imageThumbnailOld'];
+            $imageThumbnailOld = URL::filterURL($arrParam['name'] . "." . pathinfo($arrParam['imageThumbnail']['name'])['extension']);
+            $pathThumbnailOld = TEMPLATE_PATH . "/default/main/images/thumbnail/" . $arrParam['imageThumbnailOld'];
+            $pathThumbnailNew = TEMPLATE_PATH . "/default/main/images/thumbnail/" . $imageThumbnailOld;
+            if (file_exists($pathThumbnailOld)) {
+                unlink($pathThumbnailOld);
+            }
+            move_uploaded_file($arrParam['imageThumbnail']['tmp_name'], $pathThumbnailNew);
+            $arrParam['imageThumbnail'] = $imageThumbnailOld;
+            unset($arrParam['imageThumbnailOld']);
+        }
+
+        $this->update(DB_TBCOURSE, $arrParam, $arrID);
     }
 
     public function insertItem($arrParam)

@@ -33,11 +33,13 @@ class Bootstrap
 
     public function callMethod()
     {
+
         $actionName = $this->_params['action'] . 'Action';
         if (method_exists($this->_controllerObj, $actionName)) {
             $module = $this->_params['module'];
             $userInfo = Session::get('user');
             $logged = ($userInfo['login'] == true && $userInfo['time'] + TIME_LOGIN >= time());
+
             if ($module == 'admin') {
                 if ($logged == true) {
                     $this->_controllerObj->$actionName();
@@ -48,8 +50,9 @@ class Bootstrap
             } else {
                 $this->_controllerObj->$actionName();
             }
+
         } else {
-            URL::redirect('default', 'index', 'index');
+            URL::redirect('default', 'index', 'index', null, 'trang-chu.html');
         }
     }
 

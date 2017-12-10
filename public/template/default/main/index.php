@@ -1,6 +1,7 @@
 <?php
 $urlImage = $this->_dirImg;
 $urlFile = TEMPLATE_URL . '/default/main';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,8 @@ $urlFile = TEMPLATE_URL . '/default/main';
     <?php
     echo $this->_metaHTTP;
     echo $this->_metaName;
-    echo $this->_fileCSS
+    echo $this->_fileCSS;
+    echo $this->_fileJquery
     ?>
     <meta property="fb:app_id" content="1937598989836489"/>
     <meta property="og:type" content="article"/>
@@ -18,7 +20,7 @@ $urlFile = TEMPLATE_URL . '/default/main';
     <meta property="og:description"
           content="<?php if (isset($this->course['description'])) echo $this->course['description'] ?>"/>
     <meta property="og:image"
-          content="<?php echo DOMAIN . DS . $urlImage . "/thumbnail.jpg" ?>">
+          content="<?php echo DOMAIN . DS . $urlImage . "/thumbnail/" . $this->course['imageThumbnail'] ?>">
 
     <title><?php echo $this->_title ?></title>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
@@ -28,8 +30,6 @@ $urlFile = TEMPLATE_URL . '/default/main';
         root_url =  <?php echo json_encode(ROOT_URL . "/")  ?>;
         const ROOT_URL = root_url;
     </script>
-    <?php echo $this->_fileJS ?>
-
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -90,7 +90,10 @@ $urlFile = TEMPLATE_URL . '/default/main';
 </div>
 <!-- END / PAGE WRAP -->
 
+<!--/google +-->
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 <!-- Load jQuery -->
+<?php echo $this->_fileJS ?>
 
 </body>
 </html>
