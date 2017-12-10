@@ -41,7 +41,7 @@ $(function () {
         var checked = $(this).children().toggleClass("md-check-2");
         $(this).parents(".o-view").toggleClass("active");
         $(this).parents(".o-view").children(".count").toggleClass("active");
-        console.log(checked[0].className);
+        //console.log(checked[0].className);
         if (checked[0].className == "icon md-check-2") {
             $.ajax({
                 url: ROOT_URL + 'index.php?module=default&controller=course&action=setCookieView',

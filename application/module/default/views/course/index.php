@@ -147,7 +147,7 @@ $urlFindAuthor = URL::createLink('default', 'index', 'findAuthor', ['author' => 
                                         }
                                         ?>
                                         <li class="o-view <?php echo $active ?>">
-                                            <div class="count active"><span><?php echo $key + 1 ?></span></div>
+                                            <div class="count"><span><?php echo $key + 1 ?></span></div>
                                             <div class="list-body">
                                                 <i class="icon md-camera"></i>
                                                 <p><a href="#" class="name-video"
