@@ -39,7 +39,7 @@ class IndexController extends Controller
     public function logoutAction()
     {
         Session::delete('user');
-        URL::redirect('admin', 'index', 'login');
+        URL::redirect('admin', 'index', 'login', null, "dang-nhap.html");
     }
 
 

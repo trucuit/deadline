@@ -12,6 +12,7 @@ $dirImg = $this->_dirImg;
     echo $this->_fileJS
     ?>
     <title><?php echo $this->_title ?></title>
+    <link rel="shortcut icon" href="<?php echo $dirImg . "/logo.ico" ?>"/>
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <script type="text/javascript">

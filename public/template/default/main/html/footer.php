@@ -15,23 +15,33 @@
                 </div>
 
                 <div class="col-md-3">
-                    <div class="widget widget_latest_new">
+                    <div class="widget quick_link">
                         <h3 class="sm">Ưu đãi tại ZendVN</h3>
-                        <ul>
+                        <ul class="list-style-block">
                             <li>
                                 <a href="https://zendvn.com/uu-dai-nhom-khoa-hoc/" target="_blank">
-                                    <div class="image-thumb">
-                                        <img src="<?php echo $urlImage ?>/new.gif" alt="">
-                                    </div>
-                                    <span>Ưu đãi nhóm khóa học</span>
+                                    Ưu đãi Combo khóa học
                                 </a>
                             </li>
                             <li>
                                 <a href="https://zendvn.com/uu-dai-hoc-phi-tai-zendvn/" target="_blank">
-                                    <div class="image-thumb">
-                                        <img src="<?php echo $urlImage ?>/new.gif" alt="">
-                                    </div>
-                                    <span>Ưu đãi học phí tại ZendVN</span>
+                                    Ưu đãi đặc biệt
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://zendvn.com/ho-tro-hoc-phi-danh-cho-doi-tuong-nguoi-khuyet-tat/"
+                                   target="_blank">
+                                    Ưu đãi cho người khuyết tật
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://zendvn.com/qua-sinh-nhat/" target="_blank">
+                                    Quà sinh nhật
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://zendvn.com/hoc-thu-tai-zendvn/" target="_blank">
+                                    Học thử 250K
                                 </a>
                             </li>
                         </ul>
@@ -52,22 +62,11 @@
                 </div>
 
                 <div class="col-md-4">
-                    <div class="widget news_letter">
-                        <div class="awe-static bg-news_letter"></div>
-                        <div class="overlay-color-3"></div>
-                        <div class="inner">
-                            <div class="letter-heading">
-                                <h3 class="md">Nhận thông báo</h3>
-                                <p>Chúng tôi sẽ gửi thông báo cho bạn khi có khóa học lập trình mới</p>
-                            </div>
-                            <div class="letter">
-                                <form>
-                                    <input class="input-text" type="text">
-                                    <span class="no-spam">* Đảm bảo không spam</span>
-                                    <input type="submit" value="Gửi" class="mc-btn btn-style-2">
-                                </form>
-                            </div>
-                        </div>
+                    <div class="fb-page" data-href="https://www.facebook.com/zendvngroup" data-tabs="timeline"
+                         data-width="370" data-height="287" data-small-header="false" data-adapt-container-width="true"
+                         data-hide-cover="false" data-show-facepile="true">
+                        <blockquote cite="https://www.facebook.com/zendvngroup" class="fb-xfbml-parse-ignore"><a
+                                    href="https://www.facebook.com/zendvngroup">ZendVN</a></blockquote>
                     </div>
                 </div>
 
@@ -95,3 +94,11 @@
         </div>
     </div>
 </footer>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=1937598989836489';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>

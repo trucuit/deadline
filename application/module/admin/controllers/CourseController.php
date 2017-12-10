@@ -51,6 +51,8 @@ class CourseController extends Controller
                 } else
                     $this->_view->errors = Helper::showErrors("<b>Image</b>: Chưa chọn hình ảnh");
             } else {
+                if (isset($_FILES['imageThumbnail']))
+                    $this->_arrParam['form']['imageThumbnail'] = $_FILES['imageThumbnail'];
                 $bl = $this->_model->insertCourse($this->_arrParam['form']);
                 if ($bl == 0) {
                     $this->_view->errors = Helper::showErrors('Link không hợp lệ');
@@ -68,6 +70,8 @@ class CourseController extends Controller
 
         $this->_view->listCategory = $this->_model->showAll(DB_TBCATEGORY);
         $this->_view->listAuthor = $this->_model->showAll(DB_TBAUTHOR);
+        $this->_view->listTag  =  $this->_model->getStringTag();
+
         $this->_view->render($this->table . '/add');
     }
 
@@ -90,6 +94,7 @@ class CourseController extends Controller
     public function editAction()
     {
         $this->_view->infoItem = $this->_model->select($this->table, $this->_arrParam['id'], 1);
+
         if (isset($this->_arrParam['form'])) {
             $form = array_diff_assoc($this->_arrParam['form'], $this->_view->infoItem);
             if (isset($form['link'])) {
@@ -97,6 +102,9 @@ class CourseController extends Controller
             }
             if (!empty($_FILES['image']['name'])) {
                 $form['image'] = $_FILES['image'];
+            }
+            if (!empty($_FILES['imageThumbnail']['name'])) {
+                $form['imageThumbnail'] = $_FILES['imageThumbnail'];
             }
             $validate = new Validate($form);
             foreach ($form as $key => $value) {
@@ -117,17 +125,22 @@ class CourseController extends Controller
                     case 'image':
                         $validate->addRule('image', 'file', ['min' => 1000, 'max' => 2097152, 'extension' => ['jpg', 'png', 'jpeg']], false);
                         break;
+                    case 'imageThumbnail':
+                        $validate->addRule('imageThumbnail', 'file', ['min' => 1000, 'max' => 2097152, 'extension' => ['jpg', 'png', 'jpeg']], false);
+                        break;
                 }
             }
             $validate->run();
             $form = $validate->getResult();
             unset($form['image']);
+            unset($form['imageThumbnail']);
             $this->_view->infoItem = array_merge($this->_view->infoItem, $form);
             if ($validate->isValid() == false) {
                 $this->_view->errors = $validate->showErrors();
             } else {
                 $form['id'] = $this->_view->infoItem['id'];
                 $form['image'] = $this->_view->infoItem['image'];
+                $form['imageThumbnail'] = $this->_view->infoItem['imageThumbnail'];
                 $form['name'] = $this->_view->infoItem['name'];
                 $form['tag'] = $this->_view->infoItem['tag'];
                 $this->_model->updateCourse($form, $_FILES);
@@ -139,6 +152,7 @@ class CourseController extends Controller
 
         $this->_view->listCategory = $this->_model->showAll(DB_TBCATEGORY);
         $this->_view->listAuthor = $this->_model->showAll(DB_TBAUTHOR);
+        $this->_view->listTag  =  $this->_model->getStringTag();
         $this->_view->render($this->table . '/editCourse');
     }
 

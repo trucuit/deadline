@@ -5,16 +5,13 @@
             <div class="slide-item">
                 <div class="item-inner">
                     <div class="text">
-                        <h2>Learn more - Earn more</h2>
-                        <p>this is not only an elegant theme but also<br> a course management system<br> for wordpress and drupal
+                        <h2>Học Nhiều - Miễn Phí</h2>
+                        <p>Học lập trình trực tuyến miễn phí nhiều hơn<br> tại ZendVn
                         </p>
-                        <div class="group">
-                            <a href="#" class="mc-btn btn-style-1">See full features</a>
-                        </div>
                     </div>
 
                     <div class="img">
-                        <img src="<?php echo $urlImage?>/homeslider/img-thumb.png" alt="">
+                        <img src="<?php echo $urlImage?>/homeslider/agular.png" alt="">
                     </div>
                 </div>
 
@@ -25,16 +22,16 @@
             <div class="slide-item">
                 <div class="item-inner">
                     <div class="text">
-                        <h2>Learn more - Earn more</h2>
-                        <p>this is not only an elegant theme but also<br> a course management system<br> for wordpress and drupal
+                        <h2>Xu thế - Online</h2>
+                        <p>Học trực tuyến giúp bạn tiết kiệm chi phí, thời gian,<br> cập nhật được nhiều kiến thức mới
+                            <br>
+                            nhanh nhất và hiệu quả nhất
                         </p>
-                        <div class="group">
-                            <a href="#" class="mc-btn btn-style-1">See full features</a>
-                        </div>
+
                     </div>
 
                     <div class="img">
-                        <img src="<?php echo $urlImage?>/homeslider/img-thumb.png" alt="">
+                        <img src="<?php echo $urlImage?>/homeslider/react.png" alt="">
                     </div>
 
                 </div>

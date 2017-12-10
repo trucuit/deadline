@@ -1,9 +1,7 @@
 <?php
 $listItem = empty($this->listItem) ? [] : $this->listItem;
 $url = array(
-    'add' => URL::createLink('admin', DB_TBDESCRIPTION, 'add'),
     'edit' => URL::createLink('admin', DB_TBDESCRIPTION, 'edit'),
-    'delete' => URL::createLink('admin', DB_TBDESCRIPTION, 'delete'),
 );
 
 ?>
@@ -25,16 +23,6 @@ $url = array(
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header text-center">
-                        <button class="btn btn-app"
-                                onclick="javascript:submitForm('<?php echo $url['add'] ?>')"
-                        >
-                            <i class="fa fa-plus-square-o"></i> Add
-                        </button>
-                        <button class="btn btn-app btn-delete"
-                                onclick="javascript:submitForm('<?php echo $url['delete'] ?>')"
-                        >
-                            <i class="fa fa-minus-square-o"></i> Delete
-                        </button>
                     </div>
                     <!-- /.box-header -->
                     <form action="#" method="post" id="adminForm">
@@ -49,10 +37,8 @@ $url = array(
                                                 <th class="no-sort"><input type="checkbox" name="checkall-toggle"></th>
                                                 <th>Course</th>
                                                 <th>Description</th>
-                                                <th>Created</th>
-                                                <th>Created by</th>
-                                                <th>Modified</th>
-                                                <th>Modified By</th>
+                                                <th>Image Thumbnail</th>
+                                                <th>ID</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -69,10 +55,11 @@ $url = array(
                                                             <?php echo $value['name'] ?></a>
                                                     </td>
                                                     <td><?php echo $value['description'] ?></td>
-                                                    <td><?php echo $value['created'] ?></td>
-                                                    <td><?php echo $value['created_by'] ?></td>
-                                                    <td><?php echo $value['modified'] ?></td>
-                                                    <td><?php echo $value['modified_by'] ?></td>
+                                                    <td>
+                                                        <img src="<?php echo TEMPLATE_URL . "/default/main/images/thumbnail/" . $value['imageThumbnail'] ?>"
+                                                             alt="" height="40px">
+                                                    </td>
+                                                    <td><?php echo $value['id'] ?></td>
                                                 </tr>
 
                                                 <?php

@@ -2,7 +2,8 @@
 $userInfo =Session::get("user")['info'];
 $url = [
     'profile' => URL::createLink('admin', 'user', 'profile'),
-    'logout' => URL::createLink('admin', 'index', 'logout')
+    'logout' => URL::createLink('admin', 'index', 'logout'),
+    'view-site' => URL::createLink('default', 'index', 'index',null,'trang-chu.html')
 ];
 ?>
 
@@ -26,6 +27,7 @@ $url = [
 
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+                <li><a href="<?php echo $url['view-site'] ?>" target="_blank">View Site</a></li>
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="<?php echo $dirImg ?>/no-avatar.png" class="user-image">
