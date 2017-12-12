@@ -33,17 +33,20 @@ class Bootstrap
 
     public function callMethod()
     {
-
         $actionName = $this->_params['action'] . 'Action';
         if (method_exists($this->_controllerObj, $actionName)) {
             $module = $this->_params['module'];
             $userInfo = Session::get('user');
             $logged = ($userInfo['login'] == true && $userInfo['time'] + TIME_LOGIN >= time());
-
-            if ($module == 'admin') {
+//            echo "<pre>";
+//            print_r($this->_params);
+//            echo "</pre>";die;
+            if ($module == 'default') {
                 if ($logged == true) {
+                    if ($this->_params['controller'] == 'index' && $this->_params['action'] == 'login') {
+                        URL::redirect('admin', 'user', 'profile');
+                    }
                     $this->_controllerObj->$actionName();
-
                 } else {
                     $this->callLoginAction($module);
                 }

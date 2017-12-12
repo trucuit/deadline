@@ -15,11 +15,9 @@ class IndexController extends Controller
 
     public function indexAction()
     {
-        $this->_view->category = $this->_model->homeQuery();
-
+        $this->_view->listCategory = $this->_model->getAllCategory();
         $this->_view->listFindCourse = $this->_model->getIDNameCategory();
         $this->_view->statistics = $this->_model->getStatistics();
-
         $this->_view->render('index/index');
     }
 
@@ -51,12 +49,12 @@ class IndexController extends Controller
 
         $this->_view->resultFind['list'] = $this->_model->getResultFind($this->_arrParam['form']);
         $this->_view->resultFind['search'] = $this->_arrParam['form']['search'];
-        if ($this->_arrParam['form']['find'] == 0) {
+//        if ($this->_arrParam['form']['find'] == 0) {
             $this->_view->resultFind['category'] = "All Category";
-        } else {
-            $this->_view->resultFind['category'] = $this->_model->select(DB_TBCATEGORY, $this->_arrParam['form']['find'], 1)['name'];
-        }
-
+//        } else {
+//            $this->_view->resultFind['category'] = $this->_model->select(DB_TBCATEGORY, $this->_arrParam['form']['find'], 1)['name'];
+//        }
+//
         $this->_view->render('find/index');
     }
 
@@ -126,5 +124,7 @@ class IndexController extends Controller
             }
         }
         echo json_encode($result);
+
     }
+
 }

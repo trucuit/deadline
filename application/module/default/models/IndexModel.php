@@ -8,7 +8,7 @@ class IndexModel extends Model
         parent::__construct();
     }
 
-    public function homeQuery()
+    public function getAllCategory()
     {
         $category = array();
         $selectCategory = "SELECT `name` FROM `category` ";
@@ -16,7 +16,7 @@ class IndexModel extends Model
         foreach ($nameCategory as $value) {
             foreach ($value as $value1) {
                 $query = [];
-                $query[] = "SELECT a.id as `author_id`,cs.image as `course_image`, a.avatar as `avatar_author`, `c`.`id` AS `id_category`,`c`.`name`AS `name_category`,`cs`.`name`AS `name_course`,`cs`.`id`AS `id_course`,`a`.`name` AS `name_author`";
+                $query[] = "SELECT a.id as `author_id`,cs.image as `course_image`, a.avatar as `author_avatar`, `c`.`id` AS `category_id`,`c`.`name`AS `category_name`,`cs`.`name`AS `course_name`,`cs`.`id`AS `course_id`,`a`.`name` AS `author_name`";
                 $query[] = "FROM `course`AS`cs`";
                 $query[] = "JOIN `category`AS`c` ON `c`.`id`=`cs`.`category_id`";
                 $query[] = "JOIN `author` AS`a` ON `a`.id =`cs`.`author_id`";
@@ -42,16 +42,17 @@ class IndexModel extends Model
         if ($search == null) {
             return [];
         }
-        $find = $arrParam['find'];
+//        $find = $arrParam['find'];
         $query[] = "SELECT DISTINCT  a.id as `author_id`,a.avatar as `author_avatar`,cs.image as `course_image`,`c`.`id` AS `id_category`,`c`.`name`AS `name_category`,`cs`.`name`AS `name_course`,`cs`.`id`AS `id_course`,`a`.`name` AS `name_author`";
         $query[] = "FROM `course` AS `cs`";
         $query[] = "INNER JOIN `category` AS `c` ON `c`.`id`=`cs`.`category_id`";
         $query[] = "INNER JOIN `author` AS `a` ON `a`.id =`cs`.`author_id`";
-        if ($arrParam['find'] == 0) {
-            $query[] = "WHERE `cs`.`name` LIKE '%$search%'";
-        } else {
-            $query[] = "WHERE `cs`.`name` LIKE '%$search%' AND `cs`.`category_id`='$find'";
-        }
+        $query[] = "WHERE `cs`.`name` LIKE '%$search%'";
+//        if ($arrParam['find'] == 0) {
+//            $query[] = "WHERE `cs`.`name` LIKE '%$search%'";
+//        } else {
+//            $query[] = "WHERE `cs`.`name` LIKE '%$search%' AND `cs`.`category_id`='$find'";
+//        }
         $query = implode(" ", $query);
         return $this->execute($query, 1);
     }

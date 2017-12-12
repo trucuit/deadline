@@ -3,6 +3,10 @@
     padding: 0px;
 }
 
+.section-outline .section-list li .list-body {
+    padding: 8px 80px 8px 100px!important;
+}
+
 /*input tim kiem*/
 .after-slider-content .course-keyword {
     width: 80% !important;
@@ -20,9 +24,10 @@ a.all-course.mc-btn.btn-style-1 {
     left: -100px !important;
 }
 
-.feature-course:first-child{
+.feature-course:first-child {
     margin-top: 0px;
 }
+
 .feature-course {
     margin-top: 50px;
 }
@@ -44,13 +49,14 @@ a.back-to-top i {
 }
 
 /* category */
-.sidebar-categories .widget ul li a{
-    height:20px;
+.sidebar-categories .widget ul li a {
+    height: 20px;
 }
 
-.mc-item h4{
-    height:20px;
+.mc-item h4 {
+    height: 20px;
 }
+
 h4.name-course-homepage {
     height: 40px;
 }
@@ -63,22 +69,77 @@ div#outline {
 h4.name-course {
     height: 40px;
 }
+
 .section-outline .section-list .active {
     background-color: #fff;
     border-top: 1px solid #eee;
 }
+
 .section-outline .section-list li .active {
     background-color: #37abf2;
     color: #fff;
 }
-.ui-autocomplete-category{
+
+.ui-autocomplete-category {
     color: #37abf2;
     text-transform: uppercase;
     font-weight: bold;
 }
-#login-content .image{
-    top:10% !important;
+
+#login-content .image {
+    top: 10% !important;
 }
-#login-content img{
+
+#login-content img {
     width: 40%;
+}
+
+.autocomplete-suggestions {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #999;
+    background: #FFF;
+    cursor: default;
+    overflow: auto;
+    -webkit-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64);
+    -moz-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64);
+    box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64);
+}
+
+.autocomplete-suggestion {
+    padding: 2px 5px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.autocomplete-no-suggestion {
+    padding: 2px 5px;
+}
+
+.autocomplete-selected {
+    background: #F0F0F0;
+}
+
+.autocomplete-suggestions strong {
+    font-weight: bold;
+    color: #000;
+}
+
+.autocomplete-group {
+    padding: 2px 5px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #000;
+    display: block;
+    border-bottom: 1px solid #000;
+}
+
+.sub-banner-content-result h2 {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+h4.title-box.text-uppercase {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 1.6rem !important;
 }
