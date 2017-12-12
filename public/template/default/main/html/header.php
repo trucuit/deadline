@@ -134,7 +134,6 @@ $controller = $this->arrParam['controller'];
 <script type="text/javascript">
     $(function () {
         var action = "<?php echo $action  ?>";
-        console.log(action);
         var controller = "<?php echo $controller  ?>";
 
         if (controller == "index") {

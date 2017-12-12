@@ -3,6 +3,14 @@
     padding: 0px;
 }
 
+li.ui-menu-item {
+    padding: 10px;
+}
+
+li.ui-menu-item img {
+    padding-right: 10px;
+}
+
 /*input tim kiem*/
 .after-slider-content .course-keyword {
     width: 80% !important;
@@ -82,3 +90,13 @@ h4.name-course {
 #login-content img{
     width: 40%;
 }
+/*.reponse{*/
+    /*width: 631px;*/
+    /*top: 672px;*/
+    /*left: 252.547px;*/
+/*}*/
+/*#reponse-search{*/
+    /*position: absolute;*/
+    /*z-index: 1000;*/
+
+/*}*/

@@ -54,6 +54,7 @@ function ajaxStatus(url) {
 
 // xem hình ảnh trước khi submit
 function readURL(input) {
+    console.log(input.files);
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {

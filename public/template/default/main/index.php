@@ -95,5 +95,6 @@ $urlFile = TEMPLATE_URL . '/default/main';
 <!-- Load jQuery -->
 <?php echo $this->_fileJS ?>
 
+
 </body>
 </html>

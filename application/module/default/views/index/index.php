@@ -132,7 +132,7 @@ $category = $this->category;
 
                             $nameAuthor = URL::filterURL($value['name_author']);
                             $authorID = URL::filterURL($value['author_id']);
-                            $urlFindAuthor = URL::createLink('default', 'index', 'findAuthor', ['author' => $value['name_author'], 'author_id' => $authorID], "tac-gia-$nameAuthor/$authorID.html");
+                            $urlFindAuthor = URL::createLink('default', 'index', 'findAuthor', ['author' => $nameAuthor, 'author_id' => $authorID], "tac-gia-$nameAuthor/$authorID.html");
                             ?>
                             <div class="mc-item mc-item-1">
                                 <div class="image-heading">

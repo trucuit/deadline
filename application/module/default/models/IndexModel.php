@@ -94,17 +94,18 @@ class IndexModel extends Model
     public function getDataAutocomplete($param)
     {
         $result = [];
-        $query1[] = "SELECT name";
+        $query1[] = "SELECT name,id";
         $query1[] = "FROM `" . DB_TBCATEGORY . "`";
         $query1[] = "WHERE name LIKE '%$param%'";
         $result[DB_TBCATEGORY] = $this->execute(implode(" ", $query1), 1);
-        $query2[] = "SELECT name";
+        $query2[] = "SELECT name as `author_name`,avatar, id as `author_id` ";
         $query2[] = "FROM `" . DB_TBAUTHOR . "`";
         $query2[] = "WHERE name LIKE '%$param%'";
         $result[DB_TBAUTHOR] = $this->execute(implode(" ", $query2), 1);
-        $query3[] = "SELECT name";
-        $query3[] = "FROM `" . DB_TBCOURSE . "`";
-        $query3[] = "WHERE name LIKE '%$param%'";
+        $query3[] = "SELECT co.id as `course_id`,co.name as `course_name`,co.image, ca.name as `category_name`, ca.id as `category_id`";
+        $query3[] = "FROM `" . DB_TBCOURSE . "` as `co`";
+        $query3[] = "JOIN `" . DB_TBCATEGORY . "`as `ca` ON ca.id=co.category_id";
+        $query3[] = "WHERE co.name LIKE '%$param%'";
         $result[DB_TBCOURSE] = $this->execute(implode(" ", $query3), 1);
 
         return $result;

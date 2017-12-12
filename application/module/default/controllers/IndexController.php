@@ -108,23 +108,41 @@ class IndexController extends Controller
 
     public function findAutocomleteAction()
     {
-        $result = [];
+
         $data = $this->_model->getDataAutocomplete($this->_arrParam['param']);
+        $result = "<ul class='ui-menu ui-widget-content reponse'>";
         if (!empty($data[DB_TBCATEGORY])) {
+            $result .= "<li class='ui-autocomplete-category'>" . DB_TBCATEGORY . "</li>";
             foreach ($data[DB_TBCATEGORY] as $value) {
-                $result[] = ['label' => $value['name'], 'category' => DB_TBCATEGORY];
+                $categoryURL = URL::filterURL($value['name']);
+                $id_category = $value['id'];
+                $urlCategory = URL::createLink('default', 'category', 'showCourse', ['id' => $id_category], "$categoryURL-$id_category.html");
+                $result .= "<li class='ui-menu-item'><a href='".$urlCategory."'>" . $value['name'] . "</a></li>";
             }
         }
         if (!empty($data[DB_TBCOURSE])) {
+            $result .= "<li class='ui-autocomplete-category'>" . DB_TBCOURSE . "</li>";
             foreach ($data[DB_TBCOURSE] as $value) {
-                $result[] = ['label' => $value['name'], 'category' => DB_TBCOURSE];
+                $name_category = URL::filterURL($value['category_name']);
+                $id_category = $value['category_id'];
+                $name_course = URL::filterURL($value['course_name']);
+                $id_course = $value['course_id'];
+                $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category), "$name_category/$name_course-$id_category-$id_course.html");
+
+                $result .= "<li class='ui-menu-item' ><a href='".$urlCourse."'><img src='".$this->_view->_dirImg.'/course/'.$value['image']."' alt='' style='height:20px'>" . $value['course_name'] . "</a></li>";
             }
         }
         if (!empty($data[DB_TBAUTHOR])) {
+            $result .= "<li class='ui-autocomplete-category'>" . DB_TBAUTHOR . "</li>";
             foreach ($data[DB_TBAUTHOR] as $value) {
-                $result[] = ['label' => $value['name'], 'category' => DB_TBAUTHOR];
+                $nameAuthor = URL::filterURL($value['author_name']);
+                $authorID = URL::filterURL($value['author_id']);
+                $urlFindAuthor = URL::createLink('default', 'index', 'findAuthor', ['author' => $nameAuthor, 'author_id' => $authorID], "tac-gia-$nameAuthor/$authorID.html");
+                $result .= "<li class='ui-menu-item'><a href='".$urlFindAuthor."'><img src='".$this->_view->_dirImg.'/author/'.$value['avatar']."' alt='' style='height:20px'>" . $value['author_name'] . "</a></li>";
             }
         }
-        echo json_encode($result);
+        $result .= "</ul>";
+        echo $result;
+//        echo json_encode($result);
     }
 }

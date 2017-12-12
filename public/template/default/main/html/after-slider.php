@@ -15,7 +15,9 @@ $url = [
                     <h4>Tìm kiếm</h4>
                     <div class="course-keyword">
                         <input type="text" placeholder="Nhập từ khóa" name="form[search]" id="tags">
+                        <div id="reponse-search"></div>
                     </div>
+
                     <!--                    <div class="mc-select-wrap">-->
                     <!--                        <div class="mc-select">-->
                     <!--                            <select class="select" name="form[find]" id="all-categories">-->
@@ -28,7 +30,9 @@ $url = [
                     <!--                            </select>-->
                     <!--                        </div>-->
                     <!--                    </div>-->
+
                 </div>
+
                 <div class="tb-cell text-right">
                     <div class="form-actions">
                         <input type="button" value="Tìm Kiếm" class="mc-btn btn-style-1"
@@ -38,51 +42,26 @@ $url = [
                 </div>
             </div>
 
-        </div>
-    </form>
-</section>
-<script>
-    $(function () {
-        $("#tags").autocomplete({
-            source: function (request, response) {
-                console.log(request);
-                console.log(response);
-                $.ajax({
-                    url: ROOT_URL + 'index.php?module=default&controller=index&action=findAutocomlete',
-                    type: 'POST',
-                    dataType: "json",
-                    data: {param: request.term},
-                    success: function (data) {
-                        console.log(data);
-                        $("#tags").catcomplete({
-                            delay: 0,
-                            source: data
-                        });
-                    }
-                })
-            }
-        })
-        $.widget("custom.catcomplete", $.ui.autocomplete, {
-            _create: function () {
-                this._super();
-                this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)");
-            },
-            _renderMenu: function (ul, items) {
-                var that = this,
-                    currentCategory = "";
-                $.each(items, function (index, item) {
-                    var li;
-                    if (item.category != currentCategory) {
-                        ul.append("<li class='ui-autocomplete-category'>" + item.category + "</li>");
-                        currentCategory = item.category;
-                    }
-                    li = that._renderItemData(ul, item);
-                    if (item.category) {
-                        li.attr("aria-label", item.category + " : " + item.label);
-                    }
-                });
-            }
-        });
 
+        </div>
+
+    </form>
+
+</section>
+
+<script>
+    $('#tags').keyup(function () {
+        var query=$('#tags').val();
+        $.ajax({
+            url: ROOT_URL + 'index.php?module=default&controller=index&action=findAutocomlete',
+            type:'POST',
+            dataType:'text',
+            cache:false,
+            data:{param:query},
+            success:function (data) {
+           $('#reponse-search').html(data);
+        }
+        })
     })
+
 </script>
