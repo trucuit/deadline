@@ -14,28 +14,26 @@ class CourseController extends Controller
 
     public function indexAction()
     {
-        if(session::get('idCourse')){
-            session::set('idCourse',$this->_arrParam['id_course']);
-            if(!session::get('preIdCourse')){
-                $checkSession=session::get('idCourse');
-                session::set('preIdCourse',$checkSession);
-            }
-            else{
-                if (session::get('preIdCourse')!=$this->_arrParam['id_course']){
-                    session::delete('nameMenu');
+        if (Session::get('idCourse')) {
+            Session::set('idCourse', $this->_arrParam['id_course']);
+            if (!Session::get('preIdCourse')) {
+                $checkSession = Session::get('idCourse');
+                Session::set('preIdCourse', $checkSession);
+            } else {
+                if (Session::get('preIdCourse') != $this->_arrParam['id_course']) {
+                    Session::delete('nameMenu');
                 }
-                $checkSession=session::get('idCourse');
-                session::set('preIdCourse',$checkSession);
+                $checkSession = Session::get('idCourse');
+                Session::set('preIdCourse', $checkSession);
             }
 
-        }
-        else{
-            session::set('idCourse',$this->_arrParam['id_course']);
+        } else {
+            Session::set('idCourse', $this->_arrParam['id_course']);
         }
 
 
         $this->_view->video = $this->_model->videoQuery($this->_arrParam['id_course']);
-        $this->_view->listVideoRelativeQuery = $this->_model->videoRelativeQuery($this->_arrParam['id_course'], $this->_view->video[0]['name_category']);
+        $this->_view->listCourseRelative = $this->_model->videoRelativeQuery($this->_arrParam['id_course'], $this->_view->video[0]['name_category']);
 
         $this->_view->course = $this->_model->getImageCourse($this->_arrParam['id_course']);
         $this->_view->render('course/index');
@@ -69,11 +67,13 @@ class CourseController extends Controller
 
 
     }
-    public function activeMenuAction(){
+
+    public function activeMenuAction()
+    {
 
 
-        if(isset($this->_arrParam['nameMenu'])){
-            session::set('nameMenu',$this->_arrParam['nameMenu']);
+        if (isset($this->_arrParam['nameMenu'])) {
+            Session::set('nameMenu', $this->_arrParam['nameMenu']);
         }
 
 

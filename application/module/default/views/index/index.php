@@ -1,6 +1,5 @@
 <?php
-$category = $this->category;
-
+$listCategory = $this->listCategory;
 ?>
 
 <!-- SECTION 1 -->
@@ -106,92 +105,7 @@ $category = $this->category;
     <a name="mc-section-3"></a>
     <div class="container">
         <!-- FEATURE -->
-        <?php
-        foreach ($category as $key => $valueCategory) {
-            $categoryURL = URL::filterURL($key);
-            $id_category = $valueCategory[0]['id_category'];
-            $urlCategory = URL::createLink('default', 'category', 'showCourse', ['id' => $id_category], "$categoryURL-$id_category.html");
-            ?>
-            <div class="feature-course">
-                <a href="" name="<?php echo DB_TBCATEGORY . '-' . $valueCategory[0]['id_category'] ?>"></a>
-                <h4 class="title-box text-uppercase"><?php echo $key ?></h4>
-                <a href="<?php echo $urlCategory ?>"
-                   class="all-course mc-btn btn-style-1">
-                    View all
-                </a>
-                <div class="row">
-                    <div class="feature-slider">
-                        <?php
-                        foreach ($valueCategory as $value) {
-
-                            $name_category = URL::filterURL($value['name_category']);
-                            $id_category = $value['id_category'];
-                            $name_course = URL::filterURL($value['name_course']);
-                            $id_course = $value['id_course'];
-                            $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category), "$name_category/$name_course-$id_category-$id_course.html");
-
-                            $nameAuthor = URL::filterURL($value['name_author']);
-                            $authorID = URL::filterURL($value['author_id']);
-                            $urlFindAuthor = URL::createLink('default', 'index', 'findAuthor', ['author' => $value['name_author'], 'author_id' => $authorID], "tac-gia-$nameAuthor/$authorID.html");
-                            ?>
-                            <div class="mc-item mc-item-1">
-                                <div class="image-heading">
-                                    <img src="<?php echo $urlImage . "/course/" . $value['course_image'] ?>" alt="">
-                                </div>
-                                <div class="meta-categories"><a href="#">Web design</a></div>
-                                <div class="content-item">
-                                    <div class="image-author">
-                                        <img src="<?php echo $urlImage ?>/author/<?php echo $value['avatar_author'] ?>"
-                                             alt="">
-                                    </div>
-                                    <h4>
-                                        <a href="<?php echo $urlCourse ?>"
-                                           class="nameCategory">
-                                            <?php echo $value['name_course'] ?>
-                                        </a>
-                                    </h4>
-                                    <div class="name-author">
-                                        By <a href="<?php echo $urlFindAuthor ?>">
-                                            <?php echo $value['name_author'] ?>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="ft-item">
-                                    <div class="rating">
-                                        <a href="#" class="active"></a>
-                                        <a href="#" class="active"></a>
-                                        <a href="#" class="active"></a>
-                                        <a href="#"></a>
-                                        <a href="#"></a>
-                                    </div>
-                                    <div class="view-info">
-                                        <i class="icon md-users"></i>
-                                        2568
-                                    </div>
-                                    <div class="comment-info">
-                                        <i class="icon md-comment"></i>
-                                        25
-                                    </div>
-                                    <div class="price">
-                                        Free
-                                        <!--                                <span class="price-old">$134</span>-->
-                                    </div>
-                                </div>
-                            </div>
-                            <?php
-
-                        }
-                        ?>
-
-                    </div>
-
-                </div>
-            </div>
-            <?php
-
-
-        }
-        ?>
+        <?php echo Helper::cmsCategory($listCategory) ?>
         <!-- END / FEATURE -->
     </div>
 </section>

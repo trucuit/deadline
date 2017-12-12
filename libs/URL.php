@@ -83,7 +83,7 @@ class URL
         $replaceCharaterY = 'y';
         $value = preg_replace($charaterY, $replaceCharaterY, $value);
 
-        $charaterSpecial = '#(,|$)#imsU';
+        $charaterSpecial = '#(,|$|&)#imsU';
         $replaceSpecial = '';
         $value = preg_replace($charaterSpecial, $replaceSpecial, $value);
 
@@ -95,9 +95,9 @@ class URL
 
     public static function filterURL($value)
     {
+        $value = self::vn_str_filter($value);
         $value = URL::removeSpace($value);
         $value = self::replaceSpace($value);
-        $value = self::vn_str_filter($value);
 
 
         return $value;
@@ -121,7 +121,7 @@ class URL
             'O' => 'Ó|Ò|Ỏ|Õ|Ọ|Ô|Ố|Ồ|Ổ|Ỗ|Ộ|Ơ|Ớ|Ờ|Ở|Ỡ|Ợ',
             'U' => 'Ú|Ù|Ủ|Ũ|Ụ|Ư|Ứ|Ừ|Ử|Ữ|Ự',
             'Y' => 'Ý|Ỳ|Ỷ|Ỹ|Ỵ',
-            '' => ',|$'
+            '' => ',|$|&'
         );
 
         foreach ($unicode as $nonUnicode => $uni) {

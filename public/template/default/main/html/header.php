@@ -134,9 +134,7 @@ $controller = $this->arrParam['controller'];
 <script type="text/javascript">
     $(function () {
         var action = "<?php echo $action  ?>";
-        console.log(action);
         var controller = "<?php echo $controller  ?>";
-
         if (controller == "index") {
             if (action == "index") {
                 $("#header .index").addClass("current-menu-item");
@@ -151,7 +149,6 @@ $controller = $this->arrParam['controller'];
         if (controller == "course") {
             $("#header .course").addClass("current-menu-item");
         }
-
     })
 </script>
 

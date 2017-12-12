@@ -1,13 +1,13 @@
 <?php
 $listVideo = $this->video;
-$listVideoRelativeQuery = $this->listVideoRelativeQuery;
+$listCourseRelative = $this->listCourseRelative;
 $infoCourse = $this->course;
 $url = $_SERVER['REQUEST_URI'];
 
 
 $nameAuthor = URL::filterURL($listVideo[0]['name_author']);
-$authorID= URL::filterURL($listVideo[0]['author_id']);
-$urlFindAuthor = URL::createLink('default', 'index', 'findAuthor', ['author' => $nameAuthor,'author_id'=>$authorID], "tac-gia-$nameAuthor/$authorID.html");
+$authorID = URL::filterURL($listVideo[0]['author_id']);
+$urlFindAuthor = URL::createLink('default', 'index', 'findAuthor', ['author' => $nameAuthor, 'author_id' => $authorID], "tac-gia-$nameAuthor/$authorID.html");
 ?>
 <!-- COURSE -->
 <section class="course-top">
@@ -122,7 +122,6 @@ $urlFindAuthor = URL::createLink('default', 'index', 'findAuthor', ['author' => 
                         <li class="active"><a href="#outline" role="tab" data-toggle="tab">Menu Video</a></li>
                         <li><a href="#announcement" role="tab" data-toggle="tab">Sourse Code</a></li>
                         <li class="itemnew"><a href="#discussion" role="tab" data-toggle="tab">Facebook Comment</a></li>
-                        <li class="itemnew"><a href="#abc" role="tab" data-toggle="tab">Youtube Comment</a></li>
 
                     </ul>
                     <!-- Tab panes -->
@@ -147,7 +146,8 @@ $urlFindAuthor = URL::createLink('default', 'index', 'findAuthor', ['author' => 
                                         }
                                         ?>
                                         <li class="o-view <?php echo $active ?>">
-                                            <div class="count active"><span><?php echo $key + 1 ?></span></div>
+                                            <div class="count <?php echo $active ?>"><span><?php echo $key + 1 ?></span>
+                                            </div>
                                             <div class="list-body">
                                                 <i class="icon md-camera"></i>
                                                 <p><a href="#" class="name-video"
@@ -194,73 +194,7 @@ $urlFindAuthor = URL::createLink('default', 'index', 'findAuthor', ['author' => 
 <!-- END / COURSE TOP -->
 
 <!-- COURSE CONCERN -->
-<section id="course-concern" class="course-concern">
-    <div class="container">
-        <h3 class="md black">Khóa học liên quan</h3>
-        <div class="row">
-            <?php foreach ($listVideoRelativeQuery as $value) {
-                $name_category = URL::filterURL($value['name_category']);
-                $id_category = $value['category_id'];
-                $name_course = URL::filterURL($value['name_course']);
-                $id_course = $value['course_id'];
-                $author_avatar = $value['author_avatar'];
-                $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category), "$name_category/$name_course-$id_category-$id_course.html");
-
-                $nameAuthor = URL::filterURL($value['name_author']);
-                $authorID= URL::filterURL($value['author_id']);
-                $urlFindAuthor = URL::createLink('default', 'index', 'findAuthor', ['author' => $value['name_author'],'author_id'=>$authorID], "tac-gia-$nameAuthor/$authorID.html");
-                ?>
-                <div class="col-sm-6 col-md-3 course-relative">
-                    <!-- MC ITEM -->
-                    <div class="mc-item mc-item-2">
-                        <div class="image-heading">
-                            <img src="<?php echo $urlImage . "/course/" . $value['course_image'] ?>" alt="">
-                        </div>
-                        <div class="meta-categories"><a href="#">Web design</a></div>
-                        <div class="content-item">
-                            <div class="image-author">
-                                <img src="<?php echo $urlImage ?>/author/<?php echo $author_avatar ?>" alt="">
-                            </div>
-                            <h4 class="name-course">
-                                <a href="<?php echo $urlCourse ?>"><?php echo $value['name_course'] ?></a>
-                            </h4>
-                            <div class="name-author">
-                                By <a href="<?php echo $urlFindAuthor ?>"><?php echo $value['name_author'] ?></a>
-                            </div>
-                        </div>
-                        <div class="ft-item item-rate">
-                            <div class="rating">
-                                <a href="#" class="active"></a>
-                                <a href="#" class="active"></a>
-                                <a href="#" class="active"></a>
-                                <a href="#"></a>
-                                <a href="#"></a>
-                            </div>
-                            <div class="view-info">
-                                <i class="icon md-users"></i>
-                                2568
-                            </div>
-                            <div class="comment-info">
-                                <i class="icon md-comment"></i>
-                                25
-                            </div>
-                            <div class="price">
-                                Free
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END / MC ITEM -->
-                </div>
-                <?php
-
-            }
-            ?>
-
-        </div>
-    </div>
-    </div>
-</section>
+<?php echo Helper::cmsCategory($listCourseRelative) ?>
 <!-- END / COURSE CONCERN-->
 <div id="fb-root"></div>
 <script>(function (d, s, id) {
