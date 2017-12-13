@@ -3,6 +3,43 @@
     padding: 0px;
 }
 
+li.ui-autocomplete-category {
+    border-top: 1px solid #dfdada;
+    padding-top: 10px;
+}
+
+li.ui-autocomplete-category i {
+    margin: 5px 15px;
+}
+
+li.ui-autocomplete-category:first-child {
+    margin-top: 10px;
+    border: none;
+    padding-top: 0px;
+}
+
+li.ui-menu-item img {
+    margin-right: 5px;
+}
+
+li.ui-menu-item {
+    padding: 10px;
+    margin-left: 30px;
+}
+
+li.ui-menu-item a {
+    margin-left: 35px;
+    font-family: 'Lora', serif;
+}
+
+li.ui-menu-item a img {
+    margin-right: 10px;
+}
+
+.sub-banner-content h2 {
+    font-family: 'Lora', serif;
+}
+
 .section-outline .section-list li .list-body {
     padding: 8px 80px 8px 100px!important;
 }
@@ -81,7 +118,7 @@ h4.name-course {
 }
 
 .ui-autocomplete-category {
-    color: #37abf2;
+    color: #808080;
     text-transform: uppercase;
     font-weight: bold;
 }
@@ -136,10 +173,35 @@ h4.name-course {
 }
 
 .sub-banner-content-result h2 {
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Lora', serif;
 }
 
 h4.title-box.text-uppercase {
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Lora', serif;
     font-size: 1.6rem !important;
 }
+
+#reponse-search
+{
+    z-index: 1000;
+    position: absolute;
+    padding: 0;
+    width: 71%;
+}
+#reponse-search strong{
+    color: #37abf2;
+}
+
+@media screen and (max-width: 1020px){
+    .after-slider-content .course-keyword {
+        width: 100% !important;
+    }
+    #reponse-search
+    {
+        z-index: 1000;
+        position: absolute;
+        padding: 0;
+        width: 100%;
+    }
+}
+

@@ -1691,38 +1691,38 @@ table.mc-table tbody .new .submissions a:before {
   margin-bottom: 30px;
 }
 .post {
-    overflow: hidden;
-    border-bottom: 1px solid #d4d4d4;
-    padding-bottom: 38px;
-    margin-bottom: 38px;
+  overflow: hidden;
+  border-bottom: 1px solid #d4d4d4;
+  padding-bottom: 38px;
+  margin-bottom: 38px;
 }
 .post .post-media {
-    width: 170px;
-    height: 170px;
-    overflow: hidden;
-    float: left;
-    margin-right: 30px;
+  width: 170px;
+  height: 170px;
+  overflow: hidden;
+  float: left;
+  margin-right: 30px;
 }
 .post .post-body {
-    overflow: hidden;
+  overflow: hidden;
 }
 .post .post-title h3 {
-    font-weight: 700;
-    color: #262626;
-    margin: 0;
-    line-height: 1.4em;
+  font-weight: 700;
+  color: #262626;
+  margin: 0;
+  line-height: 1.4em;
 }
 .post-title h3 a {
-    color: inherit;
+  color: inherit;
 }
 .post .post-title h3 a:hover {
-    color: #37ABF2;
+  color: #37ABF2;
 }
 .post .post-meta {
-    font-family: 'Lato', sans-serif;
-    font-size: 13px;
-    color: #A5A5A5;
-    margin: 10px 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  color: #A5A5A5;
+  margin: 10px 0;
 }
 .post .post-link {
   margin-top: 24px;
@@ -1731,7 +1731,7 @@ table.mc-table tbody .new .submissions a:before {
   font-size: 16px;
   color: #666;
   font-family: 'Raleway', sans-serif;
-    color: #666;
+  color: #666;
 }
 .post .post-link a .fa {
   margin-right: 5px;
@@ -1914,23 +1914,23 @@ table.mc-table tbody .new .submissions a:before {
   color: #262626;
 }
 
-.post-content ul { 
-   list-style-type: disc; 
-   list-style-position: inside; 
+.post-content ul {
+  list-style-type: disc;
+  list-style-position: inside;
 }
-.post-content ol { 
-   list-style-type: decimal; 
-   list-style-position: inside; 
+.post-content ol {
+  list-style-type: decimal;
+  list-style-position: inside;
 }
-.post-content ul ul, .post-content  ol ul { 
-   list-style-type: circle; 
-   list-style-position: inside; 
-   margin-left: 15px; 
+.post-content ul ul, .post-content  ol ul {
+  list-style-type: circle;
+  list-style-position: inside;
+  margin-left: 15px;
 }
-.post-content ol ol, .post-content  ul ol { 
-   list-style-type: lower-latin; 
-   list-style-position: inside; 
-   margin-left: 15px; 
+.post-content ol ol, .post-content  ul ol {
+  list-style-type: lower-latin;
+  list-style-position: inside;
+  margin-left: 15px;
 }
 .post-content ul li,
 .post-content ol li {
@@ -2283,10 +2283,10 @@ blockquote cite:after {
   top: -24px;
   right: 0;
   -webkit-transform: translateY(-100%);
-     -moz-transform: translateY(-100%);
-      -ms-transform: translateY(-100%);
-       -o-transform: translateY(-100%);
-          transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
 }
 .related-slider .owl-controls .owl-buttons div {
   float: left;
@@ -2303,10 +2303,10 @@ blockquote cite:after {
   -moz-border-radius: 4px;
   border-radius: 4px;
   -webkit-transition: all .3s ease;
-     -moz-transition: all .3s ease;
-      -ms-transition: all .3s ease;
-       -o-transition: all .3s ease;
-          transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
 }
 .related-slider .owl-controls .owl-buttons div .fa:hover {
   background-color: #428bca;
@@ -2409,6 +2409,7 @@ blockquote cite:after {
 /* SECTION 1 */
 .mc-section-1 {
   padding: 68px 0;
+  z-index: 0;
 }
 .mc-section-1-content-1 .big {
   margin-bottom: 25px;
@@ -2468,6 +2469,7 @@ blockquote cite:after {
 /* SECTION 2 */
 .mc-section-2 {
   padding: 95px 0;
+  z-index: 0;
 }
 .section-2-content .content .mc-text {
   margin-bottom: 40px;
@@ -2478,6 +2480,7 @@ blockquote cite:after {
 /* SECTION 3 */
 .mc-section-3 {
   padding: 65px 0;
+  z-index: 0;
 }
 .mc-section-3 .title-box {
   position: relative;
@@ -8069,7 +8072,7 @@ footer#footer.footer-style-2 {
     display: block;
   }
   .navigation {
-      height: 60px;
+    height: 60px;
   }
   .navigation .menu {
     position: absolute;
@@ -8103,7 +8106,7 @@ footer#footer.footer-style-2 {
     background-color: #11538c;
   }
   .navigation .menu li.menu-item-has-children ul li a.mobile-active {
-      background-color: #0C406F;
+    background-color: #0C406F;
   }
   .navigation .menu li.menu-item-has-children > a:after {
     content: '';
@@ -8120,10 +8123,10 @@ footer#footer.footer-style-2 {
     width: auto;
     display: none;
     -webkit-transition: none;
-       -moz-transition: none;
-        -ms-transition: none;
-         -o-transition: none;
-            transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
   }
   .navigation .menu .sub-menu li:after {
     display: none;
@@ -8167,10 +8170,10 @@ footer#footer.footer-style-2 {
     position: static;
     margin-top: 10px;
     -webkit-transform: none;
-       -moz-transform: none;
-        -ms-transform: none;
-         -o-transform: none;
-            transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none;
   }
 }
 @media screen and (max-width: 1020px) {

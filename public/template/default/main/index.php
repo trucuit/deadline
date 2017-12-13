@@ -25,7 +25,7 @@ $urlFile = TEMPLATE_URL . '/default/main';
     <title><?php echo $this->_title ?></title>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:300,400,700,900' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700" rel="stylesheet">
     <link rel="shortcut icon" href="<?php echo $urlImage . "/logo.ico" ?>"/>
     <script type="text/javascript">
         root_url =  <?php echo json_encode(ROOT_URL . "/")  ?>;
