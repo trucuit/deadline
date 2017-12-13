@@ -14,9 +14,10 @@ $url = [
                 <div class="inner tb-cell">
                     <h4>Tìm kiếm</h4>
                     <div class="course-keyword">
-                        <input type="text" placeholder="Nhập từ khóa" name="form[search]" id="tags">
-                        <div id="reponse-search"></div>
+                        <input type="text" placeholder="Nhập từ khóa" name="form[search]" id="tags" autocomplete="off">
+                        <div id="reponse-search" class="col-md-8"></div>
                     </div>
+
                     <!--                    <div class="mc-select-wrap">-->
                     <!--                        <div class="mc-select">-->
                     <!--                            <select class="select" name="form[find]" id="all-categories">-->
@@ -29,7 +30,9 @@ $url = [
                     <!--                            </select>-->
                     <!--                        </div>-->
                     <!--                    </div>-->
+
                 </div>
+
                 <div class="tb-cell text-right">
                     <div class="form-actions">
                         <input type="button" value="Tìm Kiếm" class="mc-btn btn-style-1"
@@ -39,22 +42,33 @@ $url = [
                 </div>
             </div>
 
+
         </div>
+
     </form>
+
 </section>
+
 <script>
     $('#tags').keyup(function () {
+        $('#reponse-search').show();
         var query=$('#tags').val();
-        $.ajax({
-            url: ROOT_URL + 'index.php?module=default&controller=index&action=findAutocomlete',
-            type:'POST',
-            dataType:'text',
-            cache:false,
-            data:{param:query},
-            success:function (data) {
-                $('#reponse-search').html(data);
-            }
-        })
-    })
-</script>
 
+            $.ajax({
+                url: ROOT_URL + 'index.php?module=default&controller=index&action=findAutocomlete',
+                type:'POST',
+                dataType:'text',
+                cache:false,
+                data:{param:query},
+                success:function (data) {
+                    $('#reponse-search').html(data);
+                    $(":not(#reponse-search)").click(function () {
+                        $('#reponse-search').hide();
+                    })
+                }
+            })
+
+
+    })
+
+</script>

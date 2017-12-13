@@ -107,34 +107,46 @@ class IndexController extends Controller
     public function findAutocomleteAction()
     {
         $data = $this->_model->getDataAutocomplete($this->_arrParam['param']);
+        if (mb_strlen($this->_arrParam['param']) < 2)
+            return [];
+        $data = $this->_model->getDataAutocomplete($this->_arrParam['param']);
+        foreach ($data as $key => $value) {
+            foreach ($value as $i => $o) {
+                if (isset($o['name']) && $this->_arrParam['param'] != null) {
+                    $pos = mb_stripos(URL::vn_str_filter($o['name']), strtolower($this->_arrParam['param']));
+                    $val = mb_substr($o['name'], $pos, mb_strlen($this->_arrParam['param']));
+                    $data[$key][$i]['name_autocomplete'] = preg_replace("#$val#i", "<strong>$val</strong>", $o['name']);
+                }
+            }
+        }
         $result = "<ul class='ui-menu ui-widget-content reponse'>";
         if (!empty($data[DB_TBCATEGORY])) {
-            $result .= "<li class='ui-autocomplete-category'>" . DB_TBCATEGORY . "</li>";
+            $result .= "<li class='ui-autocomplete-category'><i class=\"fa fa-tags\" aria-hidden=\"true\"></i>" . DB_TBCATEGORY . "</li>";
             foreach ($data[DB_TBCATEGORY] as $value) {
                 $categoryURL = URL::filterURL($value['name']);
                 $id_category = $value['id'];
                 $urlCategory = URL::createLink('default', 'category', 'showCourse', ['id' => $id_category], "$categoryURL-$id_category.html");
-                $result .= "<li class='ui-menu-item'><a href='".$urlCategory."'>" . $value['name'] . "</a></li>";
+                $result .= "<li class='ui-menu-item'><a href='".$urlCategory."'>" . $value['name_autocomplete'] . "</a></li>";
             }
         }
         if (!empty($data[DB_TBCOURSE])) {
-            $result .= "<li class='ui-autocomplete-category'>" . DB_TBCOURSE . "</li>";
+            $result .= "<li class='ui-autocomplete-category'><i class=\"fa fa-book\" aria-hidden=\"true\"></i>" . DB_TBCOURSE . "</li>";
             foreach ($data[DB_TBCOURSE] as $value) {
                 $name_category = URL::filterURL($value['category_name']);
                 $id_category = $value['category_id'];
-                $name_course = URL::filterURL($value['course_name']);
+                $name_course = URL::filterURL($value['name']);
                 $id_course = $value['course_id'];
                 $urlCourse = URL::createLink('default', 'course', 'index', array('id_course' => $id_course, 'id_category' => $id_category), "$name_category/$name_course-$id_category-$id_course.html");
-                $result .= "<li class='ui-menu-item' ><a href='".$urlCourse."'><img src='".$this->_view->_dirImg.'/course/'.$value['image']."' alt='' style='height:20px'>" . $value['course_name'] . "</a></li>";
+                $result .= "<li class='ui-menu-item' ><a href='".$urlCourse."'><img src='".$this->_view->_dirImg.'/course/'.$value['image']."' alt='' style='height:20px'>" . $value['name_autocomplete'] . "</a></li>";
             }
         }
         if (!empty($data[DB_TBAUTHOR])) {
-            $result .= "<li class='ui-autocomplete-category'>" . DB_TBAUTHOR . "</li>";
+            $result .= "<li class='ui-autocomplete-category'><i class=\"fa fa-user\" aria-hidden=\"true\"></i>" . DB_TBAUTHOR . "</li>";
             foreach ($data[DB_TBAUTHOR] as $value) {
-                $nameAuthor = URL::filterURL($value['author_name']);
+                $nameAuthor = URL::filterURL($value['name']);
                 $authorID = URL::filterURL($value['author_id']);
                 $urlFindAuthor = URL::createLink('default', 'index', 'findAuthor', ['author' => $nameAuthor, 'author_id' => $authorID], "tac-gia-$nameAuthor/$authorID.html");
-                $result .= "<li class='ui-menu-item'><a href='".$urlFindAuthor."'><img src='".$this->_view->_dirImg.'/author/'.$value['avatar']."' alt='' style='height:20px'>" . $value['author_name'] . "</a></li>";
+                $result .= "<li class='ui-menu-item'><a href='".$urlFindAuthor."'><img src='".$this->_view->_dirImg.'/author/'.$value['avatar']."' alt='' style='height:20px'>" . $value['name_autocomplete'] . "</a></li>";
             }
         }
         $result .= "</ul>";

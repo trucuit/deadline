@@ -98,15 +98,18 @@ class IndexModel extends Model
         $query1[] = "SELECT name,id";
         $query1[] = "FROM `" . DB_TBCATEGORY . "`";
         $query1[] = "WHERE name LIKE '%$param%'";
+        $query1[] = "LIMIT 0,5";
         $result[DB_TBCATEGORY] = $this->execute(implode(" ", $query1), 1);
-        $query2[] = "SELECT name as `author_name`,avatar, id as `author_id` ";
+        $query2[] = "SELECT name as `name`,avatar, id as `author_id` ";
         $query2[] = "FROM `" . DB_TBAUTHOR . "`";
         $query2[] = "WHERE name LIKE '%$param%'";
+        $query2[] = "LIMIT 0,5";
         $result[DB_TBAUTHOR] = $this->execute(implode(" ", $query2), 1);
-        $query3[] = "SELECT co.id as `course_id`,co.name as `course_name`,co.image, ca.name as `category_name`, ca.id as `category_id`";
+        $query3[] = "SELECT co.id as `course_id`,co.name as `name`,co.image, ca.name as `category_name`, ca.id as `category_id`";
         $query3[] = "FROM `" . DB_TBCOURSE . "` as `co`";
         $query3[] = "JOIN `" . DB_TBCATEGORY . "`as `ca` ON ca.id=co.category_id";
         $query3[] = "WHERE co.name LIKE '%$param%'";
+        $query3[] = "LIMIT 0,5";
         $result[DB_TBCOURSE] = $this->execute(implode(" ", $query3), 1);
         return $result;
     }

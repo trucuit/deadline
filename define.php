@@ -23,6 +23,7 @@ define('DB_PASS', '');
 define('DB_NAME', 'deadline');
 define('DB_TABLE', '');
 
+
 // ====================== TABLE ===========================
 define('DB_TBUSER', 'user');
 define('DB_TBCATEGORY', 'category');
