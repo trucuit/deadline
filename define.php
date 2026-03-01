@@ -17,10 +17,12 @@ define('DEFAULT_MODULE', 'default');
 define('DEFAULT_CONTROLLER', 'index');
 define('DEFAULT_ACTION', 'index');
 // ====================== DATABASE ===========================
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'deadline');
+// IMPORTANT: Set these values via environment variables or a local config file
+// DO NOT commit real credentials to version control
+define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+define('DB_USER', getenv('DB_USER') ?: 'root');
+define('DB_PASS', getenv('DB_PASS') ?: '');
+define('DB_NAME', getenv('DB_NAME') ?: 'deadline');
 define('DB_TABLE', '');
 
 
@@ -37,7 +39,8 @@ define('DB_TBDESCRIPTION', 'description');
 define('TIME_LOGIN', 3600);
 
 // ====================== GET VIDEO ===========================
-define('API_KEY', '***REMOVED***');
+// IMPORTANT: Set API_KEY via environment variable
+define('API_KEY', getenv('YOUTUBE_API_KEY') ?: 'YOUR_API_KEY_HERE');
 define('API_URL', 'https://www.googleapis.com/youtube/v3/');
 
 define('FILE_VIDEO_TXT', 'data/videos.txt');
@@ -48,9 +51,4 @@ define('FILE_PLAYLIST_JSON', 'data/playlists.json');
 
 // ====================== DOMAIN ===========================
 
-define('DOMAIN', 'http://***REMOVED***');
-
-
-
-
-
+define('DOMAIN', getenv('DOMAIN') ?: 'http://localhost');
